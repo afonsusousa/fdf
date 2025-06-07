@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point_get.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 00:26:11 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/07 17:22:42 by amagno-r         ###   ########.fr       */
+/*   Created: 2025/04/10 01:37:30 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/04/10 19:53:54 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
+#include <stdlib.h>
 
-t_point	*get_point(t_data *data, int x, int y)
+char	*ft_strdup(const char *s)
 {
-	int index;
+	char	*t;
+	char	*r;
+	size_t	len;
 
-	if (!data || !data->map || !data->map->points)
+	len = ft_strlen((char *)s);
+	t = (char *)malloc(len + 1);
+	if (!t)
 		return (NULL);
-	if (x < 0 || y < 0 || x >= data->map->map_width || y >= data->map->map_height)
-		return (NULL);
-	index = y * data->map->map_width + x;
-	return (&data->map->points[index]);
+	r = t;
+	while ((size_t)(t - r) < len)
+		*t++ = *s++;
+	*t = 0;
+	return (r);
 }
-

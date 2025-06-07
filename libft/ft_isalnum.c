@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point_get.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 00:26:11 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/07 17:22:42 by amagno-r         ###   ########.fr       */
+/*   Created: 2025/04/04 01:09:41 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/04/10 16:31:50 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-t_point	*get_point(t_data *data, int x, int y)
+int	ft_isalnum(int c)
 {
-	int index;
-
-	if (!data || !data->map || !data->map->points)
-		return (NULL);
-	if (x < 0 || y < 0 || x >= data->map->map_width || y >= data->map->map_height)
-		return (NULL);
-	index = y * data->map->map_width + x;
-	return (&data->map->points[index]);
+	return (ft_isalpha(c) || ft_isdigit(c));
 }
-

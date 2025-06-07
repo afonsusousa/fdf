@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point_get.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 00:26:11 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/07 17:22:42 by amagno-r         ###   ########.fr       */
+/*   Created: 2025/04/04 01:36:47 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/04/04 15:39:48 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-t_point	*get_point(t_data *data, int x, int y)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	int index;
+	size_t	i;
 
-	if (!data || !data->map || !data->map->points)
-		return (NULL);
-	if (x < 0 || y < 0 || x >= data->map->map_width || y >= data->map->map_height)
-		return (NULL);
-	index = y * data->map->map_width + x;
-	return (&data->map->points[index]);
+	i = 0;
+	while (i < n)
+		*(((unsigned char *) s) + i++) = c;
+	return (s);
 }
 
+/*
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	char *arr = malloc(5);
+	ft_memset(arr, 97, 5);
+	for(int i = 0; i < 5; i++)
+			printf("%c\n", arr[i]);
+	free(arr);
+}
+*/

@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point_get.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 00:26:11 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/07 17:22:42 by amagno-r         ###   ########.fr       */
+/*   Created: 2025/04/04 15:45:00 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/04/10 18:24:19 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-t_point	*get_point(t_data *data, int x, int y)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	int index;
+	char	*cdest;
+	char	*csrc;
 
-	if (!data || !data->map || !data->map->points)
+	cdest = (char *)dest;
+	csrc = (char *)src;
+	if (!dest && !src)
 		return (NULL);
-	if (x < 0 || y < 0 || x >= data->map->map_width || y >= data->map->map_height)
-		return (NULL);
-	index = y * data->map->map_width + x;
-	return (&data->map->points[index]);
+	if (dest <= src)
+	{
+		while (n--)
+			*cdest++ = *csrc++;
+	}
+	else if (dest > src)
+	{
+		cdest += n - 1;
+		csrc += n - 1;
+		while (n--)
+			*cdest-- = *csrc--;
+	}
+	return (dest);
 }
-

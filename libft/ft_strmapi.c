@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point_get.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 00:26:11 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/07 17:22:42 by amagno-r         ###   ########.fr       */
+/*   Created: 2025/04/11 16:39:24 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/04/15 21:01:40 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-t_point	*get_point(t_data *data, int x, int y)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int index;
+	char			*ret;
+	unsigned int	i;
 
-	if (!data || !data->map || !data->map->points)
+	i = 0;
+	if (!s)
+		return (0);
+	ret = ft_strdup(s);
+	if (!ret)
 		return (NULL);
-	if (x < 0 || y < 0 || x >= data->map->map_width || y >= data->map->map_height)
-		return (NULL);
-	index = y * data->map->map_width + x;
-	return (&data->map->points[index]);
+	while (ret[i])
+	{
+		ret[i] = (*f)(i, ret[i]);
+		i++;
+	}
+	return (ret);
 }
-

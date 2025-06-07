@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point_get.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 00:26:11 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/07 17:22:42 by amagno-r         ###   ########.fr       */
+/*   Created: 2025/04/10 01:32:03 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/04/14 18:00:53 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
+#include <stdlib.h>
 
-t_point	*get_point(t_data *data, int x, int y)
+void	*ft_calloc(size_t n, size_t size)
 {
-	int index;
+	size_t	total;
+	void	*ret;
 
-	if (!data || !data->map || !data->map->points)
+	if (!n || !size)
+		return (malloc(0));
+	total = n * size;
+	ret = malloc(total);
+	if (!ret)
 		return (NULL);
-	if (x < 0 || y < 0 || x >= data->map->map_width || y >= data->map->map_height)
-		return (NULL);
-	index = y * data->map->map_width + x;
-	return (&data->map->points[index]);
+	return (ft_bzero(ret, total));
 }
-

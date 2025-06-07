@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point_get.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 00:26:11 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/07 17:22:42 by amagno-r         ###   ########.fr       */
+/*   Created: 2025/04/04 15:33:56 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/04/14 19:14:50 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-t_point	*get_point(t_data *data, int x, int y)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int index;
+	unsigned char	*d;
+	unsigned char	*s;
 
-	if (!data || !data->map || !data->map->points)
+	d = (unsigned char *) dest;
+	s = (unsigned char *) src;
+	if (!dest && !src)
 		return (NULL);
-	if (x < 0 || y < 0 || x >= data->map->map_width || y >= data->map->map_height)
-		return (NULL);
-	index = y * data->map->map_width + x;
-	return (&data->map->points[index]);
+	while (n--)
+		*d++ = *s++;
+	return (dest);
 }
-
