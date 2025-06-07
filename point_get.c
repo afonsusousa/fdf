@@ -1,0 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   point_get.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/07 00:26:11 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/06/07 16:00:00 by amagno-r         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fdf.h"
+
+t_point	*get_point(t_data *data, int x, int y)
+{
+	int index;
+	int i;
+
+	if (!data || !data->map || !data->map->map)
+		return (NULL);
+	if (x < 0 || y < 0 || x >= data->map->map_width || y >= data->map->map_height)
+		return (NULL);
+	
+	index = y * data->map->map_width + x;
+	i = 0;
+	while (i <= index && !data->map->map[i].last)
+	{
+		if (i == index)
+			return (&data->map->map[i]);
+		i++;
+	}
+	return (NULL);
+}
+
