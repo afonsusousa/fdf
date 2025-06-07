@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 16:56:24 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/07 17:22:21 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/07 19:43:00 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void apply_projection(t_coords *coords, double x, double y, double z)
 	coords->y = (int)((x + y) * sin(0.523599) - z);
 }
 
-void rotate_point(t_coords *coords, t_point *source, t_rotation *rotation)
+void rotate_point(t_point *source, t_rotation *rotation)
 {
 	double x = (double)source->x;
 	double y = (double)source->y;
@@ -63,5 +63,5 @@ void rotate_point(t_coords *coords, t_point *source, t_rotation *rotation)
 	x *= rotation->scale;
 	y *= rotation->scale;
 	z *= rotation->scale;
-	apply_projection(coords, x, y, z);
+	apply_projection(&source->display, x, y, z);
 }

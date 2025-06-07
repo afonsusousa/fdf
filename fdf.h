@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/07 17:19:39 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/07 19:48:41 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,29 @@
 #include <stdlib.h>
 #include <math.h>
 
-typedef  struct s_point
-{
-    int x;
-    int y;
-    int z;
-} t_point;
-
 typedef struct s_coords
 {
 	int x;
 	int y;
 }	t_coords;
+
+typedef  struct s_point
+{
+    int x;
+    int y;
+    int z;
+	t_coords display;
+} t_point;
+
+typedef struct s_line
+{
+	float dx;
+	float dy;
+	float gradient;
+	int xpxl1;
+	int xpxl2;
+	float intersectY;
+} t_line;
 
 typedef struct s_rotation
 {
@@ -81,10 +92,26 @@ void	add_point(t_data *data, int x, int y, int z);
 t_point	*get_point(t_data *data, int x, int y);
 
 /* point.c */
-void	rotate_point(t_coords *coords, t_point *source, t_rotation *rotation);
+void	rotate_point(t_point *source, t_rotation *rotation);
 void	rotate_x_coords(double *y, double *z, double alpha);
 void	rotate_y_coords(double *x, double *z, double beta);
 void	rotate_z_coords(double *x, double *y, double gamma);
 void	apply_projection(t_coords *coords, double x, double y, double z);
+
+/* line_utils.c */
+int		integer_of(float n);
+int		round_of(float n);
+int		float_of(float n);
+int		fractional_of(float n);
+int		reverse_fractional_of(float n);
+
+/* line.c */
+void	swap(int *a, int *b);
+void	init_line_struct(t_line *line, t_coords *p0, t_coords *p1);
+void	init_line(t_line *line, t_coords *p0, t_coords *p1, int *steep);
+void	draw_line(t_data *data, t_coords *p0, t_coords *p1);
+
+/* draw.c */
+void	draw_pixel(t_data *data, int x, int y, float brightness);
 
 #endif

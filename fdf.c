@@ -6,22 +6,13 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/07 17:24:23 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/07 19:49:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minilibx-linux/mlx.h"
 #include "fdf.h"
 #include <stdio.h>
-
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
 
 void connect_two_points(void)
 {
@@ -50,50 +41,49 @@ int	main(void)
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-    int points_drawn = 0;
+    int lines_drawn = 0;
+    
+    // First pass: calculate display coordinates for all points
+	for (int i = 0; i < img.map->points_count; i++)
+		rotate_point(&img.map->points[i], &img.rotation);
+    
+    // Second pass: draw horizontal lines (connecting points in same row)
     for (int y = 0; y < img.map->map_height; y++)
     {
-        for (int x = 0; x < img.map->map_width; x++)
+        for (int x = 0; x < img.map->map_width - 1; x++)
         {
-            t_point *point = get_point(&img, x, y);
-            if (point)
+            t_point *p1 = get_point(&img, x, y);
+            t_point *p2 = get_point(&img, x + 1, y);
+            if (p1 && p2)
             {
-                t_coords rotated_coords;
-                rotate_point(&rotated_coords, point, &img.rotation);
-                
-                int screen_x = rotated_coords.x + 960;
-                int screen_y = rotated_coords.y + 540;
-                
-                if (point->z == 0)
-                {
-                    for (int i = 0; i < 5; i++)
-                    {
-                        for (int j = 0; j < 5; j++)
-                        {
-                            if (screen_x + i >= 0 && screen_x + i < 1920 && 
-                                screen_y + j >= 0 && screen_y + j < 1080)
-                                my_mlx_pixel_put(&img, screen_x + i, screen_y + j, 0x00FF0000);
-                        }
-                    }
-                    points_drawn++;
-                }
-                else
-                {
-                    for (int i = 0; i < 5; i++)
-                    {
-                        for (int j = 0; j < 5; j++)
-                        {
-                            if (screen_x + i >= 0 && screen_x + i < 1920 && 
-                                screen_y + j >= 0 && screen_y + j < 1080)
-                                my_mlx_pixel_put(&img, screen_x + i, screen_y + j, 0x0000FF00);
-                        }
-                    }
-                    points_drawn++;
-                }
+                // Add offset to center the image
+                t_coords start = {p1->display.x + 960, p1->display.y + 540};
+                t_coords end = {p2->display.x + 960, p2->display.y + 540};
+                draw_line(&img, &start, &end);
+                lines_drawn++;
             }
         }
     }
-    printf("Points drawn: %d\n", points_drawn);
+    
+    // Third pass: draw vertical lines (connecting points in same column)
+    for (int x = 0; x < img.map->map_width; x++)
+    {
+        for (int y = 0; y < img.map->map_height - 1; y++)
+        {
+            t_point *p1 = get_point(&img, x, y);
+            t_point *p2 = get_point(&img, x, y + 1);
+            if (p1 && p2)
+            {
+                // Add offset to center the image
+                t_coords start = {p1->display.x + 960, p1->display.y + 540};
+                t_coords end = {p2->display.x + 960, p2->display.y + 540};
+                draw_line(&img, &start, &end);
+                lines_drawn++;
+            }
+        }
+    }
+	
+    printf("Lines drawn: %d\n", lines_drawn);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
