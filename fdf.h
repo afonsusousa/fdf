@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 02:57:51 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/09 03:29:34 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void map_set_limits(t_data *data);
 void print_map(t_data *data);
 
 /* point_set.c */
-size_t	pntlen(t_data *data);
 size_t	ft_pntlcat(t_point *dest, t_point *src, size_t size);
 t_point	*pntjoin(t_data *data, t_point *p1, t_point p2);
 void	add_point(t_data *data, int x, int y, int z);

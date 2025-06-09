@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 03:03:11 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/09 03:30:50 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ int rotate_and_render(t_data *img)
 	}
 //	img->rotation.angle = 0.523599 + sin(animation_frame * 0.02) * 0.3; // Oscillate around 30°
 	img->rotation.gamma = 0.005 * animation_frame;
-	//img->rotation.alpha = 0.02 * animation_frame;
+	img->rotation.alpha = 0.001 * animation_frame;
 	animation_frame++;
 	
 	for (int i = 0; i < img->map->points_count; i++)
 		rotate_point(&img->map->points[i], &img->rotation);
-	draw_horizontal(img, offset_x, offset_y);
 	draw_vertical(img, offset_x, offset_y);
+	draw_horizontal(img, offset_x, offset_y);
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
 	return (0);
 }
@@ -65,8 +65,8 @@ int	main(void)
     img.rotation.alpha = 0.0;    
     img.rotation.beta = 0.0; 
     img.rotation.gamma = 0.0;    
-    img.rotation.scale = 0.25;    
-	img.rotation.zoom = 7;
+    img.rotation.scale = 1;    
+	img.rotation.zoom = 15;
 	img.rotation.angle = 0.523599;
 	
 	mlx = mlx_init();
