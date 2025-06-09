@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/07 19:50:02 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/09 02:11:39 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS = fdf.c \
 	   point.c \
 	   line.c \
 	   line_utils.c \
+	   colors.c \
 	   draw.c
 
 OBJS = $(SRCS:.c=.o)

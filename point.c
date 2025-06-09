@@ -6,62 +6,86 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 16:56:24 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/07 19:43:00 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/09 03:00:47 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
 
-void rotate_x_coords(double *y, double *z, double alpha)
+void rotate_x_coords(double coords[3], double alpha)
 {
-	double cos_a = cos(alpha);
-	double sin_a = sin(alpha);
-	double temp_y = *y;
-	double temp_z = *z;
+	double cos_a;
+	double sin_a;
+	double temp_y;
+	double temp_z;
 	
-	*y = temp_y * cos_a - temp_z * sin_a;
-	*z = temp_y * sin_a + temp_z * cos_a;
+	cos_a = cos(alpha);
+	sin_a = sin(alpha);
+	temp_y = coords[1];
+	temp_z = coords[2];
+	coords[1] = temp_y * cos_a - temp_z * sin_a;
+	coords[2] = temp_y * sin_a + temp_z * cos_a;
 }
 
-void rotate_y_coords(double *x, double *z, double beta)
+void rotate_y_coords(double coords[3], double beta)
 {
-	double cos_b = cos(beta);
-	double sin_b = sin(beta);
-	double temp_x = *x;
-	double temp_z = *z;
+	double cos_b;
+	double sin_b;
+	double temp_x;
+	double temp_z;
 	
-	*x = temp_x * cos_b + temp_z * sin_b;
-	*z = -temp_x * sin_b + temp_z * cos_b;
+	cos_b = cos(beta);
+	sin_b = sin(beta);
+	temp_x = coords[0];
+	temp_z = coords[2];
+	coords[0] = temp_x * cos_b + temp_z * sin_b;
+	coords[2] = -temp_x * sin_b + temp_z * cos_b;
 }
 
-void rotate_z_coords(double *x, double *y, double gamma)
+void rotate_z_coords(double coords[3], double gamma)
 {
-	double cos_g = cos(gamma);
-	double sin_g = sin(gamma);
-	double temp_x = *x;
-	double temp_y = *y;
+	double cos_g;
+	double sin_g;
+	double temp_x;
+	double temp_y;
 	
-	*x = temp_x * cos_g - temp_y * sin_g;
-	*y = temp_x * sin_g + temp_y * cos_g;
+	cos_g = cos(gamma);
+	sin_g = sin(gamma);
+	temp_x = coords[0];
+	temp_y = coords[1];
+	coords[0] = temp_x * cos_g - temp_y * sin_g;
+	coords[1] = temp_x * sin_g + temp_y * cos_g;
 }
 
-void apply_projection(t_coords *coords, double x, double y, double z)
+void center_coordinates(t_data *data)
 {
-	coords->x = (int)((x - y) * cos(0.523599));
-	coords->y = (int)((x + y) * sin(0.523599) - z);
+	int center_x;
+	int center_y;
+	int i;
+	
+	center_x = data->map->map_width / 2;
+	center_y = data->map->map_height / 2;
+	for (i = 0; i < data->map->points_count; i++)
+	{
+		data->map->points[i].x -= center_x;
+		data->map->points[i].y -= center_y;
+	}
 }
 
 void rotate_point(t_point *source, t_rotation *rotation)
 {
-	double x = (double)source->x;
-	double y = (double)source->y;
-	double z = (double)source->z;
-	rotate_x_coords(&y, &z, rotation->alpha);
-	rotate_y_coords(&x, &z, rotation->beta);
-	rotate_z_coords(&x, &y, rotation->gamma);
-	x *= rotation->scale;
-	y *= rotation->scale;
-	z *= rotation->scale;
-	apply_projection(&source->display, x, y, z);
+	double coords[3];
+
+	coords[0] = (double)source->x;
+	coords[1] = (double)source->y;
+	coords[2] = (double)source->z * rotation->scale;
+	rotate_x_coords(coords, rotation->alpha);
+	rotate_y_coords(coords, rotation->beta);
+	rotate_z_coords(coords, rotation->gamma);
+	coords[0] *= rotation->zoom;
+	coords[1] *= rotation->zoom;
+	coords[2] *= rotation->zoom;
+	source->display[0] = (int)((coords[0] - coords[1]) * cos(rotation->angle));
+	source->display[1] = (int)((coords[0] + coords[1]) * sin(rotation->angle) - coords[2]);
 }

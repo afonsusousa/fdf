@@ -6,17 +6,17 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:32:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/07 17:20:24 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/09 02:58:12 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./fdf.h"
 #include "../libft/libft.h"
+#include <limits.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
 
-// Forward declare get_next_line to avoid header conflicts
 char	*get_next_line(int fd);
 
 void init_map(t_data *data, char *file_name)
@@ -58,6 +58,36 @@ void init_map(t_data *data, char *file_name)
     close(map_file);
 }
 
+void map_set_limits(t_data *data)
+{
+    int min;
+    int max;
+    int x, y;
+    t_point *current;
+
+    if (!data || !data->map)
+        return;
+
+    min = INT_MAX;
+    max = INT_MIN;
+    
+    for (y = 0; y < data->map->map_height; y++)
+    {
+        for (x = 0; x < data->map->map_width; x++)
+        {
+            current = get_point(data, x, y);
+            if (current)
+            {
+                if(current->z < min)
+                    min = current->z;
+                if(current->z > max)
+                    max = current->z;
+            }
+        }
+    }
+    data->map->min_z = min;
+    data->map->max_z = max;
+}
 #include <stdio.h>
 void print_map(t_data *data)
 {
@@ -77,7 +107,7 @@ void print_map(t_data *data)
 			if (current)
 				printf("%3d ", current->z);
 			else
-				printf("  0 ");  // Print 0 if point not found
+				printf("  0 ");
 		}
 		printf("\n");
 	}
