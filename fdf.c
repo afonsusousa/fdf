@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 03:30:50 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/09 19:09:18 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void clear_image(t_data *data)
 {
 	memset(data->addr, 0, 1920 * 1080 * (data->bits_per_pixel / 8));
 }
-
-t_point *original_points = NULL;
 int animation_frame = 0;
 
 int rotate_and_render(t_data *img)
@@ -30,25 +28,31 @@ int rotate_and_render(t_data *img)
 	const int offset_x = 1920/2;
 	const int offset_y = 1080/2;
 	clear_image(img);
-	if (original_points)
-	{
-		for (int i = 0; i < img->map->points_count; i++)
-		{
-			img->map->points[i].x = original_points[i].x;
-			img->map->points[i].y = original_points[i].y;
-			img->map->points[i].z = original_points[i].z;
-		}
-	}
-//	img->rotation.angle = 0.523599 + sin(animation_frame * 0.02) * 0.3; // Oscillate around 30°
-	img->rotation.gamma = 0.005 * animation_frame;
-	img->rotation.alpha = 0.001 * animation_frame;
-	animation_frame++;
+	
+	// Rotation disabled - keep values static for debugging
+	// img->rotation.gamma = 0.009 * animation_frame;
+	// img->rotation.alpha = 0.003 * animation_frame;
+	// img->rotation.beta = 0.003 * animation_frame;
+	// animation_frame++;
 	
 	for (int i = 0; i < img->map->points_count; i++)
 		rotate_point(&img->map->points[i], &img->rotation);
-	draw_vertical(img, offset_x, offset_y);
-	draw_horizontal(img, offset_x, offset_y);
+	
+	// Use the proper Z-depth based priority rendering system
+	collect_and_render_lines(img, offset_x, offset_y);
+	
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
+	
+	// Display rotation values on screen
+	char rotation_text[256];
+	sprintf(rotation_text, "Gamma: %.3f  Alpha: %.3f  Beta: %.3f", 
+			img->rotation.gamma, img->rotation.alpha, img->rotation.beta);
+	mlx_string_put(img->mlx, img->mlx_win, 20, 30, 0xFFFFFF, rotation_text);
+	
+	sprintf(rotation_text, "Scale: %.2f  Zoom: %d", 
+			img->rotation.scale, img->rotation.zoom);
+	mlx_string_put(img->mlx, img->mlx_win, 20, 50, 0xFFFFFF, rotation_text);
+	
 	return (0);
 }
 int	main(void)
@@ -57,16 +61,17 @@ int	main(void)
 	void	*mlx_win;
 	t_data	img;
 
-    init_map(&img, "./maps/test_maps/mars.fdf");
+    init_map(&img, "./maps/test_maps/elem2.fdf");
 	print_map(&img);
 	map_set_limits(&img);
 	center_coordinates(&img);
 	
-    img.rotation.alpha = 0.0;    
-    img.rotation.beta = 0.0; 
-    img.rotation.gamma = 0.0;    
-    img.rotation.scale = 1;    
-	img.rotation.zoom = 15;
+	// Set rotation to the problematic angles for debugging clipping issues
+	img.rotation.alpha = 67.809;     // Direct radian values
+	img.rotation.beta = 67.809;      // Direct radian values
+	img.rotation.gamma = 203.427;    // Direct radian values
+	img.rotation.scale = 0.3;    
+	img.rotation.zoom = 25;
 	img.rotation.angle = 0.523599;
 	
 	mlx = mlx_init();
@@ -76,15 +81,6 @@ int	main(void)
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-	original_points = malloc(img.map->points_count * sizeof(t_point));
-	if (!original_points)
-		return (1);
-	for (int i = 0; i < img.map->points_count; i++)
-	{
-		original_points[i].x = img.map->points[i].x;
-		original_points[i].y = img.map->points[i].y;
-		original_points[i].z = img.map->points[i].z;
-	}
 	mlx_loop_hook(mlx, rotate_and_render, &img);
 	mlx_loop(mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 03:29:34 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/09 19:15:54 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,15 @@ typedef  struct s_point
     int y;
     int z;
 	int display[2];
+	int world_3d[3];
 } t_point;
+
+typedef struct s_line_info
+{
+	t_point *p0;
+	t_point *p2;
+	float depth;
+}	t_line_info;
 
 typedef struct s_line
 {
@@ -97,7 +105,6 @@ typedef struct s_gradient
 
 /* fdf.c */
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	connect_two_points(void);
 
 /* init_map.c */
 void	init_map(t_data *data, char *file_name);
@@ -105,8 +112,8 @@ void map_set_limits(t_data *data);
 void print_map(t_data *data);
 
 /* point_set.c */
-size_t	ft_pntlcat(t_point *dest, t_point *src, size_t size);
-t_point	*pntjoin(t_data *data, t_point *p1, t_point p2);
+
+void 	init_point(t_point *point, int x, int y, char *value);
 void	add_point(t_data *data, int x, int y, int z);
 
 /* point_get.c */
@@ -130,10 +137,20 @@ float	reverse_fractional_of(float n);
 void	swap(int *a, int *b);
 void	init_line_struct(t_line *line, int p0[2], int p1[2], int vz[2]);
 bool	init_line(t_line *line, int p0[2], int p1[2], int vz[2]);
-void	draw_line(t_data *data, int p0[2], int p1[2], int vz[2]);
+void	draw_line(t_data *data, t_point *p0, t_point *p1);
+void	draw_line_with_offset(t_data *data, t_point *p0, t_point *p1, int offset_x, int offset_y);
 
 void draw_horizontal(t_data *img, int offset_x, int offset_y);
 void draw_vertical(t_data *img, int offset_x, int offset_y);
+
+/* line_priority.c */
+float calculate_line_depth(t_line_info *line);
+int compare_depth(const void *a, const void *b);
+void collect_and_render_lines(t_data *data, int offset_x, int offset_y);
+void add_line_data(t_line_info *line, t_point *p0, t_point *p1);
+int collect_horizontal_lines(t_data *data, t_line_info *lines);
+int collect_vertical_lines(t_data *data, t_line_info *lines, int start);
+int collect_lines(t_data *data, t_line_info *lines);
 
 /* draw.c */
 void	draw_pixel(t_data *data, int x, int y, float brightness);

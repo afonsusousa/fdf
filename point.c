@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 16:56:24 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 03:00:47 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/09 19:14:32 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,12 @@ void rotate_point(t_point *source, t_rotation *rotation)
 	coords[0] *= rotation->zoom;
 	coords[1] *= rotation->zoom;
 	coords[2] *= rotation->zoom;
+	
+	// Store the transformed 3D coordinates
+	source->world_3d[0] = coords[0];
+	source->world_3d[1] = coords[1];
+	source->world_3d[2] = coords[2];
+	
 	source->display[0] = (int)((coords[0] - coords[1]) * cos(rotation->angle));
 	source->display[1] = (int)((coords[0] + coords[1]) * sin(rotation->angle) - coords[2]);
 }
