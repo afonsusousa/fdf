@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 19:09:18 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 00:10:19 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,36 @@
 
 void clear_image(t_data *data)
 {
-	memset(data->addr, 0, 1920 * 1080 * (data->bits_per_pixel / 8));
+	// Easy color switching - uncomment the one you want to try:
+	
+	// Dark Professional
+	//int background_color = 0x1E1E1E; // VS Code Dark
+	// int background_color = 0x2D2D30; // Visual Studio Dark
+	// int background_color = 0x0D1117; // GitHub Dark
+	int background_color = 0x282C34; // Atom One Dark
+	
+	// Blue Tones
+	// int background_color = 0x0F1419; // Dark Blue-Gray
+	// int background_color = 0x16213E; // Navy Blue
+	// int background_color = 0x1A1A2E; // Deep Blue
+	
+	// Purple Tones
+	// int background_color = 0x2D1B69; // Dark Purple (your current)
+	// int background_color = 0x1E1E3F; // Deep Purple
+	// int background_color = 0x483D8B; // Dark Slate Blue
+	
+	// Classic
+	// int background_color = 0x000000; // Pure Black
+	
+	// Light Themes
+	// int background_color = 0xF5F5F5; // Light Gray
+	// int background_color = 0xFFFFFF; // Pure White
+	
+	int total_pixels = 1920 * 1080;
+	int *pixel_ptr = (int *)data->addr;
+	
+	for (int i = 0; i < total_pixels; i++)
+		pixel_ptr[i] = background_color;
 }
 int animation_frame = 0;
 
@@ -30,29 +59,23 @@ int rotate_and_render(t_data *img)
 	clear_image(img);
 	
 	// Rotation disabled - keep values static for debugging
-	// img->rotation.gamma = 0.009 * animation_frame;
-	// img->rotation.alpha = 0.003 * animation_frame;
-	// img->rotation.beta = 0.003 * animation_frame;
-	// animation_frame++;
+	img->rotation.gamma = 0.009 * animation_frame;
+	img->rotation.alpha = 0.003 * animation_frame;
+	img->rotation.beta = 0.006 * animation_frame;
+	animation_frame++;
 	
-	for (int i = 0; i < img->map->points_count; i++)
-		rotate_point(&img->map->points[i], &img->rotation);
-	
-	// Use the proper Z-depth based priority rendering system
+	rotate(img);
 	collect_and_render_lines(img, offset_x, offset_y);
-	
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
 	
-	// Display rotation values on screen
 	char rotation_text[256];
 	sprintf(rotation_text, "Gamma: %.3f  Alpha: %.3f  Beta: %.3f", 
 			img->rotation.gamma, img->rotation.alpha, img->rotation.beta);
 	mlx_string_put(img->mlx, img->mlx_win, 20, 30, 0xFFFFFF, rotation_text);
 	
-	sprintf(rotation_text, "Scale: %.2f  Zoom: %d", 
-			img->rotation.scale, img->rotation.zoom);
+	sprintf(rotation_text, "Scale: %.2f  Zoom: %d TOP_DOWN: %d", 
+			img->rotation.scale, img->rotation.zoom, img->rotation.top_down);
 	mlx_string_put(img->mlx, img->mlx_win, 20, 50, 0xFFFFFF, rotation_text);
-	
 	return (0);
 }
 int	main(void)
@@ -61,7 +84,7 @@ int	main(void)
 	void	*mlx_win;
 	t_data	img;
 
-    init_map(&img, "./maps/test_maps/elem2.fdf");
+    init_map(&img, "./maps/test_maps/mars.fdf");
 	print_map(&img);
 	map_set_limits(&img);
 	center_coordinates(&img);
@@ -70,7 +93,7 @@ int	main(void)
 	img.rotation.alpha = 67.809;     // Direct radian values
 	img.rotation.beta = 67.809;      // Direct radian values
 	img.rotation.gamma = 203.427;    // Direct radian values
-	img.rotation.scale = 0.3;    
+	img.rotation.scale = 0.25;    
 	img.rotation.zoom = 25;
 	img.rotation.angle = 0.523599;
 	

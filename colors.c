@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:56:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 18:57:02 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/09 23:39:18 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int get_color_from_z(int z_value, int min_z, int max_z)
 {
 	float ratio;
-	int r, g, b;
-	
-	// Soft Pastel Gradient: Deep Blue → Lavender → Light Pink
+	int r;
+	int g;
+	int b;
 	
 	if (max_z == min_z)
 		ratio = 0.5f;
@@ -26,7 +26,6 @@ int get_color_from_z(int z_value, int min_z, int max_z)
 	
 	if (ratio <= 0.5f)
 	{
-		// Deeper Blue → Lavender
 		float t = ratio * 2.0f;
 		r = (int)(15 + (150 - 15) * t);    // 15 → 150 (deeper start, same lavender)
 		g = (int)(25 + (130 - 25) * t);    // 25 → 130 (deeper start, same lavender)
@@ -34,13 +33,11 @@ int get_color_from_z(int z_value, int min_z, int max_z)
 	}
 	else
 	{
-		// Lavender → Light Pink
 		float t = (ratio - 0.5f) * 2.0f;
 		r = (int)(150 + (220 - 150) * t);  // 150 → 220 (soft pink)
 		g = (int)(130 + (160 - 130) * t);  // 130 → 160 (gentle pink)
 		b = (int)(220 + (190 - 220) * t);  // 220 → 190 (reduce blue)
 	}
-	
 	return (r << 16) | (g << 8) | b;
 }
 
@@ -59,4 +56,14 @@ int interpolate_color(int color1, int color2, float t)
 	int b = (int)(b1 + (b2 - b1) * t);
 	
 	return (r << 16) | (g << 8) | b;
+}
+
+void set_line_color(t_line *line, t_data *data)
+{
+	line->color1 = get_color_from_z(line->z1 * data->rotation.scale,
+				data->map->min_z * data->rotation.scale,
+				data->map->max_z * data->rotation.scale);
+	line->color2 = get_color_from_z(line->z2 * data->rotation.scale, 
+				data->map->min_z * data->rotation.scale,
+				data->map->max_z * data->rotation.scale);
 }

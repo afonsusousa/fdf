@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 19:15:54 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/09 23:40:48 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef  struct s_point
 typedef struct s_line_info
 {
 	t_point *p0;
-	t_point *p2;
+	t_point *p1;
 	float depth;
 }	t_line_info;
 
@@ -63,7 +63,8 @@ typedef struct s_rotation
 	double gamma;  
 	double scale;
 	double angle;
-	int zoom;     
+	int zoom;
+	bool top_down;   
 }	t_rotation;
 
 typedef struct s_map
@@ -101,50 +102,37 @@ typedef struct s_gradient
 	t_color end_color;
 }	t_gradient;
 
-/* Function prototypes */
+// Function prototypes
 
-/* fdf.c */
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+// Main functions
+void clear_image(t_data *data);
+int rotate_and_render(t_data *img);
 
-/* init_map.c */
-void	init_map(t_data *data, char *file_name);
+// Map initialization
+void init_map(t_data *data, char *file_name);
 void map_set_limits(t_data *data);
 void print_map(t_data *data);
+int count_map_width(char **row);
+void get_map_dimensions(t_data *data, int map_file);
+void parse_map_row(t_data *data, char **row, int y);
+void read_map_data(t_data *data, int map_file);
 
-/* point_set.c */
+// Point operations
+void init_point(t_point *point, int x, int y, char *value);
+void center_coordinates(t_data *data);
+t_point *get_point(t_data *data, int x, int y);
 
-void 	init_point(t_point *point, int x, int y, char *value);
-void	add_point(t_data *data, int x, int y, int z);
+// Line drawing
+void swap(int *a, int *b);
+void draw_steep(t_data *data, t_line *line);
+void draw_nonsteep(t_data *data, t_line *line);
+void draw_line(t_data *data, t_point *p0, t_point *p1);
+void draw_line_with_offset(t_data *data, t_point *p0, t_point *p1, int offset_x, int offset_y);
+void init_line_struct(t_line *line, int p0[2], int p1[2], int vz[2]);
+bool init_line(t_line *line, int p0[2], int p1[2], int vz[2]);
 
-/* point_get.c */
-t_point	*get_point(t_data *data, int x, int y);
-
-/* point.c */
-void	rotate_point(t_point *source, t_rotation *rotation);
-void	rotate_x_coords(double coords[3], double alpha);
-void	rotate_y_coords(double coords[3], double beta);
-void	rotate_z_coords(double coords[3], double gamma);
-void	center_coordinates(t_data *data);
-
-/* line_utils.c */
-int		integer_of(float n);
-int		round_of(float n);
-float	float_of(float n);
-float	fractional_of(float n);
-float	reverse_fractional_of(float n);
-
-/* line.c */
-void	swap(int *a, int *b);
-void	init_line_struct(t_line *line, int p0[2], int p1[2], int vz[2]);
-bool	init_line(t_line *line, int p0[2], int p1[2], int vz[2]);
-void	draw_line(t_data *data, t_point *p0, t_point *p1);
-void	draw_line_with_offset(t_data *data, t_point *p0, t_point *p1, int offset_x, int offset_y);
-
-void draw_horizontal(t_data *img, int offset_x, int offset_y);
-void draw_vertical(t_data *img, int offset_x, int offset_y);
-
-/* line_priority.c */
-float calculate_line_depth(t_line_info *line);
+// Line priority and depth sorting
+float calculate_line_depth(t_line_info *line, t_rotation *rotation);
 int compare_depth(const void *a, const void *b);
 void collect_and_render_lines(t_data *data, int offset_x, int offset_y);
 void add_line_data(t_line_info *line, t_point *p0, t_point *p1);
@@ -152,10 +140,25 @@ int collect_horizontal_lines(t_data *data, t_line_info *lines);
 int collect_vertical_lines(t_data *data, t_line_info *lines, int start);
 int collect_lines(t_data *data, t_line_info *lines);
 
-/* draw.c */
-void	draw_pixel(t_data *data, int x, int y, float brightness);
-int		get_color_from_z(int z, int min_z, int max_z);
-int		interpolate_color(int color1, int color2, float t);
-void	draw_pixel_color(t_data *data, int x, int y, int color, float brightness);
+// Colors
+int get_color_from_z(int z_value, int min_z, int max_z);
+int interpolate_color(int color1, int color2, float t);
+void set_line_color(t_line *line, t_data *data);
+void draw_pixel_color(t_data *data, int x, int y, int color, float alpha);
+
+// Rotations
+void rotate_x_coords(double coords[3], double alpha);
+void rotate_y_coords(double coords[3], double beta);
+void rotate_z_coords(double coords[3], double gamma);
+void rotate_point(t_point *source, t_rotation *rotation);
+void rotate_vector(double vector[3], t_rotation *rotation);
+void rotate(t_data *data);
+
+// Float utilities
+int integer_of(float n);
+int round_of(float n);
+float float_of(float n);
+float fractional_of(float n);
+float reverse_fractional_of(float n);
 
 #endif

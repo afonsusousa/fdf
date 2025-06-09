@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:57:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 17:48:26 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/09 23:33:34 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,43 +19,6 @@ void swap(int *a, int *b)
 	int temp = *a;
 	*a = *b;
 	*b = temp;
-}
-
-void init_line_struct(t_line *line, int p0[2], int p1[2], int vz[2])
-{
-	line->dx = p1[0] - p0[0];
-	line->dy = p1[1] - p0[1];
-	if (fabs(line->dx) < 0.001f)
-		line->gradient = (line->dy > 0) ? 1000.0f : -1000.0f;
-	else
-		line->gradient = line->dy / line->dx;
-	line->xpxl1 = p0[0];
-	line->xpxl2 = p1[0];
-	line->intersectY = (float)p0[1];
-	line->z1 = vz[0];
-	line->z2 = vz[1];
-}
-bool init_line(t_line *line, int p0[2], int p1[2], int vz[2])
-{
-	bool steep;
-	int start[2] = {p0[0], p0[1]};
-	int end[2] = {p1[0], p1[1]};
-	int z_values[2] = {vz[0], vz[1]};
-	
-	steep = abs(end[1] - start[1]) > abs(end[0] - start[0]);
-	if (steep)
-	{
-		swap(&start[0], &start[1]);
-		swap(&end[0], &end[1]);
-	}
-	if (start[0] > end[0])
-	{
-		swap(&start[0], &end[0]);
-		swap(&start[1], &end[1]);
-		swap(&z_values[0], &z_values[1]);
-	}
-	init_line_struct(line, start, end, z_values);
-	return (steep);
 }
 
 void draw_steep(t_data *data, t_line *line)
@@ -111,16 +74,6 @@ void draw_nonsteep(t_data *data, t_line *line)
     }
 }
 
-void set_line_color(t_line *line, t_data *data)
-{
-	line->color1 = get_color_from_z(line->z1 * data->rotation.scale,
-				data->map->min_z * data->rotation.scale,
-				data->map->max_z * data->rotation.scale);
-	line->color2 = get_color_from_z(line->z2 * data->rotation.scale, 
-				data->map->min_z * data->rotation.scale,
-				data->map->max_z * data->rotation.scale);
-}
-
 void draw_line(t_data *data, t_point *p0, t_point *p1)
 {
 	t_line line;
@@ -146,7 +99,6 @@ void draw_line_with_offset(t_data *data, t_point *p0, t_point *p1, int offset_x,
 	int p1_coords[2];
 	bool	steep;
 
-	// Create temporary coordinates with offsets
 	p0_coords[0] = p0->display[0] + offset_x;
 	p0_coords[1] = p0->display[1] + offset_y;
 	p1_coords[0] = p1->display[0] + offset_x;
@@ -156,7 +108,6 @@ void draw_line_with_offset(t_data *data, t_point *p0, t_point *p1, int offset_x,
 	z_vector[1] = p1->z;
 	steep = init_line(&line, p0_coords, p1_coords, z_vector);
 	set_line_color(&line, data);
-	
 	if (steep)
 		draw_steep(data, &line);	
     else
