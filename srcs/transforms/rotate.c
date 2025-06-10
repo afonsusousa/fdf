@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 20:16:44 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 20:39:06 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void rotate_vector(double vector[3], t_view *view)
 void rotate(t_data *data)
 {
 	int i;
+	double iso_view[3] = {0.577, 0.577, 0.577};
+	double dot_product;
 
 	i = 0;
 	while (i < data->map->points_count)
@@ -52,16 +54,17 @@ void rotate(t_data *data)
 		rotate_point(&data->map->points[i], &data->view);
 		i++;
 	}
-	double up_vector[3] = {0.0, 0.0, 1.0};
-    rotate_vector(up_vector, &data->view);
-    double iso_view[3] = {0.577, 0.577, 0.577};
-    double dot_product = up_vector[0] * iso_view[0] + 
-                        up_vector[1] * iso_view[1] + 
-                        up_vector[2] * iso_view[2];
-    if (dot_product > 0.1)  // Threshold for significant alignment
-    {
+	data->map->axis[0] = 0.0;
+	data->map->axis[1] = 0.0;
+	data->map->axis[2] = 1.0;
+	rotate_vector(data->map->axis, &data->view);
+	dot_product = data->map->axis[0] * iso_view[0] + 
+		data->map->axis[1] * iso_view[1] + 
+		data->map->axis[2] * iso_view[2];
+	if (dot_product > 0.1)
+	{
 		data->view.top_down = true;
-        return ;
-    }
+		return ;
+	}
 	data->view.top_down = false;
 }

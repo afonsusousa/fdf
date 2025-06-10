@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 20:09:05 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 20:43:49 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(void)
 	void	*mlx_win;
 	t_data	img;
 
-    init_map(&img, "./maps/test_maps/elem2.fdf");
+    init_map(&img, "./maps/test_maps/mars.fdf");
 	print_map(&img);
 	map_set_limits(&img);
 	center_coordinates(&img);
@@ -74,10 +74,15 @@ int	main(void)
 	img.view.chaos_mode = false;
 	img.window_height = 1080;
 	img.window_width = 1920;
-	img.menu_ratio = 8;
+	img.menu_ratio = 6;
 	img.menu_width = img.window_width / img.menu_ratio;
 	img.view.offset_x = (img.window_width + img.menu_width) / 2;
 	img.view.offset_y = img.window_height/2;
+	
+	// Initialize axis vector
+	img.map->axis[0] = 0.0;
+	img.map->axis[1] = 0.0;
+	img.map->axis[2] = 1.0;
 	
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, img.window_width, img.window_height, "amagno-r - FDF");
