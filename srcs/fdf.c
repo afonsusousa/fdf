@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 16:41:23 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:18:25 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	main(void)
 	void	*mlx_win;
 	t_data	img;
 
-    init_map(&img, "./maps/test_maps/elem2.fdf");
+    init_map(&img, "./maps/test_maps/pylone.fdf");
 	print_map(&img);
 	map_set_limits(&img);
 	center_coordinates(&img);
@@ -99,7 +99,7 @@ int	main(void)
 	img.view.alpha = 67.809;     // Direct radian values
 	img.view.beta = 67.809;      // Direct radian values
 	img.view.gamma = 203.427;    // Direct radian values
-	img.view.scale = 0.25;    
+	img.view.scale = 1;    
 	img.view.zoom = 25;
 	img.view.angle = 0.523599;
 	img.view.offset_x = 1920/2;

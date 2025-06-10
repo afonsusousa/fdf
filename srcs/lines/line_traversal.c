@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 16:07:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 16:36:30 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:11:20 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void draw_lines_traversal(t_data *data)
 			if (y != data->map->map_height - 1)
 				draw_line_with_offset(data, get_point(data, x, y), 
 					get_point(data, x, y + 1));
-			x += -2 * (data->view.beta > M_PI) + 1;
+			if (data->view.beta > M_PI)
+				x--;
+			else
+				x++;
 		}
 		y += -2 * (data->view.alpha > M_PI) + 1;
 	}
