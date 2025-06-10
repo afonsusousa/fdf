@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   axis_fixed.c                                       :+:      :+:    :+:   */
+/*   axis.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:32:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 21:15:05 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 21:22:36 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,13 @@ void	draw_axis_line(t_data *img, int start[2], int end[2], int color)
 	y_inc = (float)dy / steps;
 	x = start[0];
 	y = start[1];
-	i = 0;
-	while (i <= steps)
+	i = -1;
+	while (++i <= steps)
 	{
 		if (x >= 0 && x < img->window_width && y >= 0 && y < img->window_height)
 			draw_pixel_color(img, (int)x, (int)y, color, 1.0f);
 		x += x_inc;
 		y += y_inc;
-		i++;
 	}
 }
 
@@ -88,6 +87,6 @@ void	draw_axis_labels(t_data *img, int corner_x, int corner_y, int size)
 void	get_axis_position(t_data *img, int *corner_x, int *corner_y, int *size)
 {
 	*size = img->menu_width / 3;
-	*corner_x = 10;
-	*corner_y = img->window_height - img->window_height / 8;
+	*corner_x = img->menu_width / 3;
+	*corner_y = 7 * (img->window_height / 9);
 }
