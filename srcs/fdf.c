@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 16:01:57 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:41:23 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,27 +54,33 @@ int animation_frame = 0;
 
 int rotate_and_render(t_data *img)
 {
-	const int offset_x = 1920/2;
-	const int offset_y = 1080/2;
+	
 	clear_image(img);
 	
 	// Rotation disabled - keep values static for debugging
-	img->rotation.gamma = 0.009 * animation_frame;
-	img->rotation.alpha = 0.003 * animation_frame;
-	img->rotation.beta = 0.006 * animation_frame;
+	img->view.gamma = 0.009 * animation_frame;
+	img->view.alpha = 0.003 * animation_frame;
+	img->view.beta = 0.006 * animation_frame;
 	animation_frame++;
 	
 	rotate(img);
-	collect_and_render_lines(img, offset_x, offset_y);
+	
+	// Choose rendering method:
+	// Option 1: Logic-based traversal (no sorting, should fix clipping)
+	draw_lines_priority(img);
+	
+	// Option 2: Depth-based priority sorting (original method)
+	// collect_and_render_lines(img, offset_x, offset_y);
+	
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
 	
 	char rotation_text[256];
 	sprintf(rotation_text, "Gamma: %.3f  Alpha: %.3f  Beta: %.3f", 
-			img->rotation.gamma, img->rotation.alpha, img->rotation.beta);
+			img->view.gamma, img->view.alpha, img->view.beta);
 	mlx_string_put(img->mlx, img->mlx_win, 20, 30, 0xFFFFFF, rotation_text);
 	
 	sprintf(rotation_text, "Scale: %.2f  Zoom: %d TOP_DOWN: %d", 
-			img->rotation.scale, img->rotation.zoom, img->rotation.top_down);
+			img->view.scale, img->view.zoom, img->view.top_down);
 	mlx_string_put(img->mlx, img->mlx_win, 20, 50, 0xFFFFFF, rotation_text);
 	return (0);
 }
@@ -84,18 +90,20 @@ int	main(void)
 	void	*mlx_win;
 	t_data	img;
 
-    init_map(&img, "./maps/test_maps/elem-fract.fdf");
+    init_map(&img, "./maps/test_maps/elem2.fdf");
 	print_map(&img);
 	map_set_limits(&img);
 	center_coordinates(&img);
 	
-	// Set rotation to the problematic angles for debugging clipping issues
-	img.rotation.alpha = 67.809;     // Direct radian values
-	img.rotation.beta = 67.809;      // Direct radian values
-	img.rotation.gamma = 203.427;    // Direct radian values
-	img.rotation.scale = 0.25;    
-	img.rotation.zoom = 5;
-	img.rotation.angle = 0.523599;
+	// Set view to the problematic angles for debugging clipping issues
+	img.view.alpha = 67.809;     // Direct radian values
+	img.view.beta = 67.809;      // Direct radian values
+	img.view.gamma = 203.427;    // Direct radian values
+	img.view.scale = 0.25;    
+	img.view.zoom = 25;
+	img.view.angle = 0.523599;
+	img.view.offset_x = 1920/2;
+	img.view.offset_y = 1080/2;
 	
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "amagno-r - FDF");

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:56:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 23:39:18 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:24:35 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ int interpolate_color(int color1, int color2, float t)
 
 void set_line_color(t_line *line, t_data *data)
 {
-	line->color1 = get_color_from_z(line->z1 * data->rotation.scale,
-				data->map->min_z * data->rotation.scale,
-				data->map->max_z * data->rotation.scale);
-	line->color2 = get_color_from_z(line->z2 * data->rotation.scale, 
-				data->map->min_z * data->rotation.scale,
-				data->map->max_z * data->rotation.scale);
+	line->color1 = get_color_from_z(line->z1 * data->view.scale,
+				data->map->min_z * data->view.scale,
+				data->map->max_z * data->view.scale);
+	line->color2 = get_color_from_z(line->z2 * data->view.scale, 
+				data->map->min_z * data->view.scale,
+				data->map->max_z * data->view.scale);
 }

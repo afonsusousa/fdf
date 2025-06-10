@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 03:40:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 16:03:38 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:50:14 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #include <math.h>
 #include <stdio.h>
 
-float calculate_line_depth(t_line_info *line, t_rotation *rotation)
+float calculate_line_depth(t_line_info *line, t_view *view)
 {
     double midpoint_z = (line->p0->world_3d[2] + line->p1->world_3d[2]) / 2.0;
     
-     if (!rotation->top_down)
+     if (!view->top_down)
          return (midpoint_z);  // Positive for upside down perspective
     return (-midpoint_z);  // Negative for normal perspective
 }
@@ -42,7 +42,7 @@ int compare_depth(const void *a, const void *b)
 	return (0);
 }
 
-void collect_and_render_lines(t_data *data, int offset_x, int offset_y)
+void draw_lines_priority(t_data *data)
 {
 	t_line_info *lines;
 	int line_count;
@@ -58,11 +58,11 @@ void collect_and_render_lines(t_data *data, int offset_x, int offset_y)
 		return free(lines);
 	i = -1;
 	while (++i < line_count)
-		lines[i].depth = calculate_line_depth(&lines[i], &data->rotation);
+		lines[i].depth = calculate_line_depth(&lines[i], &data->view);
 	qsort(lines, line_count, sizeof(t_line_info), compare_depth);
 	i = -1;
 	while (++i < line_count)
-		draw_line_with_offset(data, lines[i].p0, lines[i].p1, offset_x, offset_y);
+		draw_line_with_offset(data, lines[i].p0, lines[i].p1);
 	free(lines);
 }
 

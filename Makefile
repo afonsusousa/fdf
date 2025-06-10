@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/09 23:41:34 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/10 16:20:31 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,21 +24,21 @@ MLXDIR = minilibx-linux
 GNLDIR = get_next_line
 
 # Source files
-SRCS = fdf.c \
-       init_map.c \
-       init_map_utils.c \
-       point_set.c \
-       point_get.c \
-	   point.c \
-	   line.c \
-	   line_utils.c \
-	   colors.c \
-	   line_priority.c \
-	   line_traversal.c \
-	   draw.c \
-	   rotate.c \
-	   rotations.c \
-	   float_utils.c
+SRCS = srcs/fdf.c \
+       srcs/draw/draw.c \
+       srcs/draw/line.c \
+       srcs/draw/colors.c \
+       srcs/lines/line_priority.c \
+       srcs/lines/line_utils.c \
+       srcs/lines/line_traversal.c \
+       srcs/map/init_map.c \
+       srcs/map/init_map_utils.c \
+       srcs/point/point.c \
+       srcs/point/point_get.c \
+       srcs/point/point_set.c \
+       srcs/transforms/rotate.c \
+       srcs/transforms/rotations.c \
+       srcs/utils/float_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 23:40:48 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:38:55 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ typedef struct s_line
 	int color2;    
 } t_line;
 
-typedef struct s_rotation
+typedef struct s_view
 {
+	int offset_x;
+	int offset_y;
 	double alpha;  
 	double beta;   
 	double gamma;  
@@ -65,7 +67,7 @@ typedef struct s_rotation
 	double angle;
 	int zoom;
 	bool top_down;   
-}	t_rotation;
+}	t_view;
 
 typedef struct s_map
 {
@@ -83,7 +85,7 @@ typedef struct	s_data {
 	void	*img;
 	char	*addr;
     t_map   *map;
-    t_rotation rotation; 
+    t_view view; 
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -127,21 +129,21 @@ void swap(int *a, int *b);
 void draw_steep(t_data *data, t_line *line);
 void draw_nonsteep(t_data *data, t_line *line);
 void draw_line(t_data *data, t_point *p0, t_point *p1);
-void draw_line_with_offset(t_data *data, t_point *p0, t_point *p1, int offset_x, int offset_y);
+void draw_line_with_offset(t_data *data, t_point *p0, t_point *p1);
 void init_line_struct(t_line *line, int p0[2], int p1[2], int vz[2]);
 bool init_line(t_line *line, int p0[2], int p1[2], int vz[2]);
 
 // Line priority and depth sorting
-float calculate_line_depth(t_line_info *line, t_rotation *rotation);
+float calculate_line_depth(t_line_info *line, t_view *view);
 int compare_depth(const void *a, const void *b);
-void collect_and_render_lines(t_data *data, int offset_x, int offset_y);
+void draw_lines_priority(t_data *data);
 void add_line_data(t_line_info *line, t_point *p0, t_point *p1);
 int collect_horizontal_lines(t_data *data, t_line_info *lines);
 int collect_vertical_lines(t_data *data, t_line_info *lines, int start);
 int collect_lines(t_data *data, t_line_info *lines);
 
 // Line traversal (logic-based rendering)
-void draw_lines_traversal(t_data *data, int offset_x, int offset_y);
+void draw_lines_traversal(t_data *data);
 
 // Colors
 int get_color_from_z(int z_value, int min_z, int max_z);
@@ -153,8 +155,8 @@ void draw_pixel_color(t_data *data, int x, int y, int color, float alpha);
 void rotate_x_coords(double coords[3], double alpha);
 void rotate_y_coords(double coords[3], double beta);
 void rotate_z_coords(double coords[3], double gamma);
-void rotate_point(t_point *source, t_rotation *rotation);
-void rotate_vector(double vector[3], t_rotation *rotation);
+void rotate_point(t_point *source, t_view *view);
+void rotate_vector(double vector[3], t_view *view);
 void rotate(t_data *data);
 
 // Float utilities

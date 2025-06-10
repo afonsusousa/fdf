@@ -1,41 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_regular.c                                     :+:      :+:    :+:   */
+/*   line_traversal.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 16:07:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 16:14:27 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:36:30 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../fdf.h"
+#include <math.h>
 
-void draw_lines_regular(t_data *data)
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
+void draw_lines_traversal(t_data *data)
 {
-	int x;
-	int y;
-
-	ft_bzero(env->data_addr, WIDTH * HEIGHT * (env->bpp / 8));
-	y = 0;
-	if (env->camera->x_angle > 0)
-		y = map->height - 1;
-	while (y < map->height && y >= 0)
+	int x, y;
+	
+	if (data->view.alpha > M_PI)
+		y = data->map->map_height - 1;
+	else
+		y = 0;
+	while (y < data->map->map_height && y >= 0)
 	{
-		x = 0;
-		if (env->camera->y_angle > 0)
-			x = map->width - 1;
-		while (x < map->width && x >= 0)
+		if (data->view.beta > M_PI)
+			x = data->map->map_width - 1;
+		else
+			x = 0;
+		while (x < data->map->map_width && x >= 0)
 		{
-			if (x != map->width - 1)
-				ft_draw_line(project(x, y, env), project(x + 1, y, env), env);
-			if (y != map->height - 1)
-				ft_draw_line(project(x, y, env), project(x, y + 1, env), env);
-			x += -2 * (env->camera->y_angle > 0) + 1;
+			if (x != data->map->map_width - 1)
+				draw_line_with_offset(data, get_point(data, x, y), 
+					get_point(data, x + 1, y));
+			if (y != data->map->map_height - 1)
+				draw_line_with_offset(data, get_point(data, x, y), 
+					get_point(data, x, y + 1));
+			x += -2 * (data->view.beta > M_PI) + 1;
 		}
-		y += -2 * (env->camera->x_angle > 0) + 1;
+		y += -2 * (data->view.alpha > M_PI) + 1;
 	}
-	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
-	ft_draw_instructions(env);
 }

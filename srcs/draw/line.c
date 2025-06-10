@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:57:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 23:33:34 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:26:42 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void draw_line(t_data *data, t_point *p0, t_point *p1)
 		draw_nonsteep(data, &line);
 }
 
-void draw_line_with_offset(t_data *data, t_point *p0, t_point *p1, int offset_x, int offset_y)
+void draw_line_with_offset(t_data *data, t_point *p0, t_point *p1)
 {
 	t_line line;
 	int z_vector[2];
@@ -99,10 +99,10 @@ void draw_line_with_offset(t_data *data, t_point *p0, t_point *p1, int offset_x,
 	int p1_coords[2];
 	bool	steep;
 
-	p0_coords[0] = p0->display[0] + offset_x;
-	p0_coords[1] = p0->display[1] + offset_y;
-	p1_coords[0] = p1->display[0] + offset_x;
-	p1_coords[1] = p1->display[1] + offset_y;
+	p0_coords[0] = p0->display[0] + data->view.offset_x;
+	p0_coords[1] = p0->display[1] + data->view.offset_y;
+	p1_coords[0] = p1->display[0] + data->view.offset_x;
+	p1_coords[1] = p1->display[1] + data->view.offset_y;
 	
 	z_vector[0] = p0->z;
 	z_vector[1] = p1->z;
