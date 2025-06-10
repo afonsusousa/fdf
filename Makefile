@@ -34,6 +34,7 @@ SRCS = fdf.c \
 	   line_utils.c \
 	   colors.c \
 	   line_priority.c \
+	   line_traversal.c \
 	   draw.c \
 	   rotate.c \
 	   rotations.c \

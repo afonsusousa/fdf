@@ -140,6 +140,9 @@ int collect_horizontal_lines(t_data *data, t_line_info *lines);
 int collect_vertical_lines(t_data *data, t_line_info *lines, int start);
 int collect_lines(t_data *data, t_line_info *lines);
 
+// Line traversal (logic-based rendering)
+void draw_lines_traversal(t_data *data, int offset_x, int offset_y);
+
 // Colors
 int get_color_from_z(int z_value, int min_z, int max_z);
 int interpolate_color(int color1, int color2, float t);

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 00:10:19 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:01:57 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	main(void)
 	void	*mlx_win;
 	t_data	img;
 
-    init_map(&img, "./maps/test_maps/mars.fdf");
+    init_map(&img, "./maps/test_maps/elem-fract.fdf");
 	print_map(&img);
 	map_set_limits(&img);
 	center_coordinates(&img);
@@ -94,7 +94,7 @@ int	main(void)
 	img.rotation.beta = 67.809;      // Direct radian values
 	img.rotation.gamma = 203.427;    // Direct radian values
 	img.rotation.scale = 0.25;    
-	img.rotation.zoom = 25;
+	img.rotation.zoom = 5;
 	img.rotation.angle = 0.523599;
 	
 	mlx = mlx_init();
