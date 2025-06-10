@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:57:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 16:26:42 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:03:47 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,13 @@ void draw_line(t_data *data, t_point *p0, t_point *p1)
 {
 	t_line line;
 	int z_vector[2];
-	bool	steep;
 
 	z_vector[0] = p0->z;
 	z_vector[1] = p1->z;
-	steep = init_line(&line, p0->display, p1->display, z_vector);
+	init_line(&line, p0->display, p1->display, z_vector);
 	set_line_color(&line, data);
 	
-	if (steep)
+	if (line.steep)
 		draw_steep(data, &line);	
     else
 		draw_nonsteep(data, &line);
@@ -97,7 +96,6 @@ void draw_line_with_offset(t_data *data, t_point *p0, t_point *p1)
 	int z_vector[2];
 	int p0_coords[2];
 	int p1_coords[2];
-	bool	steep;
 
 	p0_coords[0] = p0->display[0] + data->view.offset_x;
 	p0_coords[1] = p0->display[1] + data->view.offset_y;
@@ -106,9 +104,9 @@ void draw_line_with_offset(t_data *data, t_point *p0, t_point *p1)
 	
 	z_vector[0] = p0->z;
 	z_vector[1] = p1->z;
-	steep = init_line(&line, p0_coords, p1_coords, z_vector);
+	init_line(&line, p0_coords, p1_coords, z_vector);
 	set_line_color(&line, data);
-	if (steep)
+	if (line.steep)
 		draw_steep(data, &line);	
     else
 		draw_nonsteep(data, &line);
