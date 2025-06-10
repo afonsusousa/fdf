@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 20:43:49 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 22:59:31 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 void clear_image(t_data *data)
 {
 	(void) data;
-	int background_color = 0x282C34; // Atom One Dark
+	int background_color = 0x1a1a2e; // Atom One Dark
 	draw_background(data, background_color);
 }
 int animation_frame = 0;
@@ -36,10 +36,10 @@ int rotate_and_render(t_data *img)
 	rotate(img);
 	
 	// Choose rendering method based on priority_rendering flag:
-	if (img->view.priority_rendering)
+	// if (img->view.priority_rendering)
 		draw_lines_priority(img);   // Depth-based priority sorting
-	else
-		draw_lines_traversal(img);  // Logic-based traversal
+	// else
+	// 	draw_lines_traversal(img);  // Logic-based traversal
 	
 	draw_menu_background(img, 0xFFAABB);
 	
@@ -55,7 +55,7 @@ int	main(void)
 	void	*mlx_win;
 	t_data	img;
 
-    init_map(&img, "./maps/test_maps/mars.fdf");
+    init_map(&img, "./maps/test_maps/elem2.fdf");
 	print_map(&img);
 	map_set_limits(&img);
 	center_coordinates(&img);

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 20:39:06 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 23:36:56 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void rotate(t_data *data)
 	dot_product = data->map->axis[0] * iso_view[0] + 
 		data->map->axis[1] * iso_view[1] + 
 		data->map->axis[2] * iso_view[2];
-	if (dot_product > 0.1)
+	if (dot_product > 0.2)
 	{
 		data->view.top_down = true;
 		return ;
