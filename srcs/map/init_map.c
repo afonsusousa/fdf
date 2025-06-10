@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:32:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 23:37:40 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 20:16:34 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ void map_set_limits(t_data *data)
     min = INT_MAX;
     max = INT_MIN;
     
-    for (y = 0; y < data->map->map_height; y++)
+    y = 0;
+    while (y < data->map->map_height)
     {
-        for (x = 0; x < data->map->map_width; x++)
+        x = 0;
+        while (x < data->map->map_width)
         {
             current = get_point(data, x, y);
             if (current)
@@ -59,7 +61,9 @@ void map_set_limits(t_data *data)
                 if(current->z > max)
                     max = current->z;
             }
+            x++;
         }
+        y++;
     }
     data->map->min_z = min;
     data->map->max_z = max;
@@ -75,16 +79,20 @@ void print_map(t_data *data)
 	
 	printf("Map dimensions: %d x %d\n", data->map->map_width, data->map->map_height);
 	
-	for (y = 0; y < data->map->map_height; y++)
+	y = 0;
+	while (y < data->map->map_height)
 	{
-		for (x = 0; x < data->map->map_width; x++)
+		x = 0;
+		while (x < data->map->map_width)
 		{
 			current = get_point(data, x, y);
 			if (current)
 				printf("%3d ", current->z);
 			else
 				printf("  0 ");
+			x++;
 		}
 		printf("\n");
+		y++;
 	}
 }

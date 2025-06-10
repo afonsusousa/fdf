@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 17:05:02 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 20:09:03 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ typedef struct s_view
 	double angle;
 	int zoom;
 	bool top_down;   
+	bool priority_rendering;
+	bool auto_rotate_x;
+	bool auto_rotate_y;
+	bool auto_rotate_z;
+	bool chaos_mode;
 }	t_view;
 
 typedef struct s_map
@@ -80,16 +85,29 @@ typedef struct s_map
     t_point     *points;
 } t_map;
 
+typedef struct s_mouse
+{
+	int is_pressed;
+	int button;
+	int last_x;
+	int last_y;
+}	t_mouse;
+
 typedef struct	s_data {
 	void	*mlx;
 	void	*mlx_win;
 	void	*img;
 	char	*addr;
-    t_map   *map;
-    t_view view; 
+	int		window_height;
+	int		window_width;
+	int		menu_ratio;
+	int		menu_width;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+    t_map   *map;
+    t_view 	view;
+    t_mouse mouse; 
 }				t_data;
 
 typedef struct s_color
@@ -133,6 +151,8 @@ void draw_line(t_data *data, t_point *p0, t_point *p1);
 void draw_line_with_offset(t_data *data, t_point *p0, t_point *p1);
 void init_line_struct(t_line *line, int p0[2], int p1[2], int vz[2]);
 void init_line(t_line *line, int p0[2], int p1[2], int vz[2]);
+void draw_background(t_data *data, int color);
+void draw_menu_background(t_data *data, int color);
 
 // Line priority and depth sorting
 float calculate_line_depth(t_line_info *line, t_view *view);
@@ -166,5 +186,32 @@ int round_of(float n);
 float float_of(float n);
 float fractional_of(float n);
 float reverse_fractional_of(float n);
+
+// Keyboard controls
+int handle_keypress(int keycode, t_data *data);
+void apply_auto_rotation(t_data *data);
+
+// Mouse controls
+int handle_mouse_press(int button, int x, int y, t_data *data);
+int handle_mouse_release(int button, int x, int y, t_data *data);
+int handle_mouse_move(int x, int y, t_data *data);
+int handle_mouse_scroll(int button, int x, int y, t_data *data);
+
+// Menu display functions
+void display_rotation_info(t_data *img);
+void display_view_info(t_data *img);
+void display_auto_rotation_status(t_data *img);
+void display_menu_header(t_data *img);
+void display_all_menu_info(t_data *img);
+
+// Menu controls display
+void display_basic_controls(t_data *img);
+void display_mouse_controls(t_data *img);
+void display_rendering_controls(t_data *img);
+void display_auto_rotation_controls(t_data *img);
+void display_all_controls(t_data *img);
+
+// Main menu function
+void display_complete_menu(t_data *img);
 
 #endif

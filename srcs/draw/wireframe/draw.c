@@ -6,11 +6,12 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 19:05:41 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 18:43:43 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 18:49:22 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./fdf.h"
+#include "../../libft/libft.h"
 
 void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -59,4 +60,17 @@ void draw_pixel_color(t_data *data, int x, int y, int color, float brightness)
 	
 	int final_color = (r << 16) | (g << 8) | b;
 	my_mlx_pixel_put(data, x, y, final_color);
+}
+
+void draw_background(t_data *data, int color)
+{
+	unsigned int i;
+	unsigned int pixel_count;
+	int *dest;
+
+	i = 0;
+	pixel_count = data->window_height * data->window_width;
+	dest = (int *) data->addr;
+	while (i < pixel_count)
+		dest[i++] = color;
 }

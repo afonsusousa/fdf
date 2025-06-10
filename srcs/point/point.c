@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 16:56:24 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 23:42:47 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 20:16:35 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ void center_coordinates(t_data *data)
 	
 	center_x = data->map->map_width / 2;
 	center_y = data->map->map_height / 2;
-	for (i = 0; i < data->map->points_count; i++)
+	i = 0;
+	while (i < data->map->points_count)
 	{
 		data->map->points[i].x -= center_x;
 		data->map->points[i].y -= center_y;
+		i++;
 	}
 }

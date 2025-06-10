@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:32:10 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 17:05:09 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 20:16:39 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@ void init_line_struct(t_line *line, int p0[2], int p1[2], int vz[2])
 	line->dx = p1[0] - p0[0];
 	line->dy = p1[1] - p0[1];
 	if (fabs(line->dx) < 0.001f)
-		line->gradient = (line->dy > 0) ? 1000.0f : -1000.0f;
+	{
+		if (line->dy > 0)
+			line->gradient = 1000.0f;
+		else
+			line->gradient = -1000.0f;
+	}
 	else
 		line->gradient = line->dy / line->dx;
 	line->xpxl1 = p0[0];

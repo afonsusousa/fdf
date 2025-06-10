@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 16:43:59 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 20:16:44 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,14 @@ void rotate_vector(double vector[3], t_view *view)
 
 void rotate(t_data *data)
 {
-	for (int i = 0; i < data->map->points_count; i++)
+	int i;
+
+	i = 0;
+	while (i < data->map->points_count)
+	{
 		rotate_point(&data->map->points[i], &data->view);
+		i++;
+	}
 	double up_vector[3] = {0.0, 0.0, 1.0};
     rotate_vector(up_vector, &data->view);
     double iso_view[3] = {0.577, 0.577, 0.577};

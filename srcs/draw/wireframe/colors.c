@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:56:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 17:11:35 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 20:11:07 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,4 @@ void set_line_color(t_line *line, t_data *data)
 				data->map->min_z * data->view.scale,
 				data->map->max_z * data->view.scale);
 }
+

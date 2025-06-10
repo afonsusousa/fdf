@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/10 16:20:31 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/10 20:09:04 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,12 @@ GNLDIR = get_next_line
 
 # Source files
 SRCS = srcs/fdf.c \
-       srcs/draw/draw.c \
-       srcs/draw/line.c \
-       srcs/draw/colors.c \
+       srcs/draw/wireframe/draw.c \
+       srcs/draw/wireframe/line.c \
+       srcs/draw/wireframe/colors.c \
+       srcs/gui/menu.c \
+       srcs/gui/menu_display.c \
+       srcs/gui/menu_controls.c \
        srcs/lines/line_priority.c \
        srcs/lines/line_utils.c \
        srcs/lines/line_traversal.c \
@@ -38,7 +41,9 @@ SRCS = srcs/fdf.c \
        srcs/point/point_set.c \
        srcs/transforms/rotate.c \
        srcs/transforms/rotations.c \
-       srcs/utils/float_utils.c
+       srcs/utils/float_utils.c \
+       srcs/keyboard/keyboard.c \
+       srcs/mouse/mouse.c
 
 OBJS = $(SRCS:.c=.o)
 
