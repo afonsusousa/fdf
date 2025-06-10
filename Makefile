@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/10 20:09:04 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/10 21:09:07 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRCS = srcs/fdf.c \
        srcs/gui/menu.c \
        srcs/gui/menu_display.c \
        srcs/gui/menu_controls.c \
+       srcs/gui/axis.c \
+       srcs/gui/axis_utils.c \
        srcs/lines/line_priority.c \
        srcs/lines/line_utils.c \
        srcs/lines/line_traversal.c \

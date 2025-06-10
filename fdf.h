@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 20:09:03 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/10 21:09:05 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_map
     int     points_count;  
 	int		max_z;
 	int		min_z;
+	double	axis[3];
     t_point     *points;
 } t_map;
 
@@ -213,5 +214,15 @@ void display_all_controls(t_data *img);
 
 // Main menu function
 void display_complete_menu(t_data *img);
+
+// Axis display
+void display_axis_info(t_data *img);
+void draw_axis_line(t_data *img, int start[2], int end[2], int color);
+void project_axis_vector(double axis[3], int center[2], int end[2], t_view *view);
+void draw_axis_border(t_data *img, int corner_x, int corner_y, int size);
+void draw_axis_labels(t_data *img, int corner_x, int corner_y, int size);
+void get_axis_position(t_data *img, int *corner_x, int *corner_y, int *size);
+void init_axis_vectors(double x_axis[3], double y_axis[3], double z_axis[3]);
+void draw_axis_vectors(t_data *img, int center[2], t_view *view);
 
 #endif
