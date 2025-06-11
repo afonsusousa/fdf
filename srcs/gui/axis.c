@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:32:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 00:15:08 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/11 03:15:35 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ void	draw_axis_labels(t_data *img, int corner_x, int corner_y, int size)
 		corner_y + 40, 0x0000FF, "Z");
 	if(img->view.top_down)
 	mlx_string_put(img->mlx, img->mlx_win, corner_x + size + 5, 
-		corner_y + 55, 0x00FF00, "TOP_DOWN: YES");
+		corner_y + 55, 0xFF0000, "TOP_DOWN: YES");
 	else 
 		mlx_string_put(img->mlx, img->mlx_win, corner_x + size + 5, 
-		corner_y + 55, 0xFF0000, "TOP_DOWN: NOPE");
+		corner_y + 55, 0x00FF00, "TOP_DOWN: NOPE");
 }
 
 void	get_axis_position(t_data *img, int *corner_x, int *corner_y, int *size)
