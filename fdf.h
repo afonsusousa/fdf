@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 21:16:36 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/11 01:00:01 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,21 @@ float reverse_fractional_of(float n);
 // Keyboard controls
 int handle_keypress(int keycode, t_data *data);
 void apply_auto_rotation(t_data *data);
+
+// Keyboard helper functions
+int handle_exit_keys(int keycode);
+int handle_rotation_keys(int keycode, t_data *data);
+int handle_zoom_keys(int keycode, t_data *data);
+int handle_scale_keys(int keycode, t_data *data);
+int handle_offset_keys(int keycode, t_data *data);
+int handle_reset_keys(int keycode, t_data *data);
+int handle_rendering_keys(int keycode, t_data *data);
+int handle_auto_rotation_keys(int keycode, t_data *data);
+void reset_view(t_data *data);
+void toggle_auto_rotate_x(t_data *data);
+void toggle_auto_rotate_y(t_data *data);
+void toggle_auto_rotate_z(t_data *data);
+void toggle_chaos_mode(t_data *data);
 
 // Mouse controls
 int handle_mouse_press(int button, int x, int y, t_data *data);

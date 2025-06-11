@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:56:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 23:34:57 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/11 00:18:39 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ int get_color_from_z(int z_value, int min_z, int max_z)
 	if (ratio <= 0.5f)
 	{
 		float t = ratio * 2.0f;
-		r = (int)(15 + (150 - 15) * t);    
-		g = (int)(25 + (130 - 25) * t);    
-		b = (int)(180 + (220 - 180) * t);  
+		r = (int)(80 + (140 - 80) * t);    // 80 → 140 (warm purple to lavender)
+		g = (int)(70 + (120 - 70) * t);    // 70 → 120 (gentle purple-blue)
+		b = (int)(200 + (180 - 200) * t);  // 200 → 180 (bright blue to lavender)
 	}
 	else
 	{
 		float t = (ratio - 0.5f) * 2.0f;
-		r = (int)(150 + (220 - 150) * t);  
-		g = (int)(130 + (160 - 130) * t);  
-		b = (int)(220 + (190 - 220) * t);  
+		r = (int)(140 + (255 - 140) * t);  // 140 → 255 (lavender to salmon)
+		g = (int)(120 + (140 - 120) * t);  // 120 → 140 (lavender to salmon)
+		b = (int)(180 + (120 - 180) * t);  // 180 → 120 (lavender to salmon)
 	}
 	return (r << 16) | (g << 8) | b;
 }

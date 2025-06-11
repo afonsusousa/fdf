@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:32:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 23:32:06 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/11 00:15:08 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,16 @@ void	project_axis_vector(double axis[3], int center[2], int end[2], t_view *view
 
 void	draw_axis_border(t_data *img, int corner_x, int corner_y, int size)
 {
-	int	i;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (i < size)
+	y = 0;
+	while (y < size)
 	{
-		draw_pixel_color(img, corner_x + i, corner_y, 0x444444, 1.0f);
-		draw_pixel_color(img, corner_x + i, corner_y + size - 1, 0x444444, 1.0f);
-		draw_pixel_color(img, corner_x, corner_y + i, 0x444444, 1.0f);
-		draw_pixel_color(img, corner_x + size - 1, corner_y + i, 0x444444, 1.0f);
-		i++;
+		x = -1;
+		while (++x < size)
+			draw_pixel_color(img, corner_x + x, corner_y + y, 0xFFFFFF, 1.0f);
+		y++;
 	}
 }
 

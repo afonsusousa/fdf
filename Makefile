@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/10 21:09:07 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/11 01:00:03 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,9 @@ SRCS = srcs/fdf.c \
        srcs/transforms/rotations.c \
        srcs/utils/float_utils.c \
        srcs/keyboard/keyboard.c \
+       srcs/keyboard/keyboard_rotation.c \
+       srcs/keyboard/keyboard_auto.c \
+       srcs/keyboard/keyboard_system.c \
        srcs/mouse/mouse.c
 
 OBJS = $(SRCS:.c=.o)

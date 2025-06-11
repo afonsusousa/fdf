@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 22:59:31 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/11 00:22:32 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int rotate_and_render(t_data *img)
 	// else
 	// 	draw_lines_traversal(img);  // Logic-based traversal
 	
-	draw_menu_background(img, 0xFFAABB);
+	draw_menu_background(img, 0x3a3544);
 	
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
 	
@@ -49,13 +49,15 @@ int rotate_and_render(t_data *img)
 	
 	return (0);
 }
-int	main(void)
+int	main(int argc, char **argv)
 {
 	void	*mlx;
 	void	*mlx_win;
 	t_data	img;
 
-    init_map(&img, "./maps/test_maps/elem2.fdf");
+	if (argc != 2)
+		return (-1);
+    init_map(&img, argv[1]);
 	print_map(&img);
 	map_set_limits(&img);
 	center_coordinates(&img);
