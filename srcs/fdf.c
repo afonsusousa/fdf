@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 00:22:32 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/11 01:43:25 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,15 @@ int animation_frame = 0;
 
 int rotate_and_render(t_data *img)
 {
-	
 	clear_image(img);
-	
 	// Apply auto-rotation if enabled
 	apply_auto_rotation(img);
-	
 	rotate(img);
-	
-	// Choose rendering method based on priority_rendering flag:
-	// if (img->view.priority_rendering)
+	// Choose rendering method based on render_mode:
+	if (img->view.render_mode == RENDER_PRIORITY)
 		draw_lines_priority(img);   // Depth-based priority sorting
-	// else
-	// 	draw_lines_traversal(img);  // Logic-based traversal
-	
+	else if (img->view.render_mode == RENDER_TRAVERSAL)
+		draw_lines_traversal(img);  // Logic-based traversal
 	draw_menu_background(img, 0x3a3544);
 	
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
@@ -69,7 +64,8 @@ int	main(int argc, char **argv)
 	img.view.scale = 0.25;    
 	img.view.zoom = 15;
 	img.view.angle = 0.523599;
-	img.view.priority_rendering = true;
+	img.view.brainfuck_priority = true;
+	img.view.render_mode = RENDER_PRIORITY;
 	img.view.auto_rotate_x = false;
 	img.view.auto_rotate_y = false;
 	img.view.auto_rotate_z = false;

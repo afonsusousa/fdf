@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 00:39:10 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/11 01:08:45 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	display_mouse_controls(t_data *img)
 void	display_rendering_controls(t_data *img)
 {
 	mlx_string_put(img->mlx, img->mlx_win, 20, 175, 0xFFFFFF, 
-		"P-Toggle Priority Rendering");
+		"P-Toggle Priority, M-Render Mode");
 }
 
 void	display_auto_rotation_controls(t_data *img)

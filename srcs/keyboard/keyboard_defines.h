@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 01:00:07 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/11 01:08:45 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define KEY_X			120
 # define KEY_R			114
 # define KEY_P			112
+# define KEY_M			109
 # define KEY_PLUS		43
 # define KEY_EQUAL		61
 # define KEY_NUMPAD_PLUS	65451

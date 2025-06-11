@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 01:00:01 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/11 01:42:40 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ typedef struct s_line
 	int color2;    
 } t_line;
 
+typedef enum e_render_mode
+{
+	RENDER_PRIORITY = 0,
+	RENDER_TRAVERSAL = 1
+}	t_render_mode;
+
 typedef struct s_view
 {
 	int offset_x;
@@ -69,7 +75,8 @@ typedef struct s_view
 	double angle;
 	int zoom;
 	bool top_down;   
-	bool priority_rendering;
+	bool brainfuck_priority;
+	t_render_mode render_mode;
 	bool auto_rotate_x;
 	bool auto_rotate_y;
 	bool auto_rotate_z;
@@ -218,6 +225,7 @@ int handle_mouse_scroll(int button, int x, int y, t_data *data);
 void display_rotation_info(t_data *img);
 void display_view_info(t_data *img);
 void display_auto_rotation_status(t_data *img);
+void display_render_mode(t_data *img);
 void display_menu_header(t_data *img);
 void display_all_menu_info(t_data *img);
 

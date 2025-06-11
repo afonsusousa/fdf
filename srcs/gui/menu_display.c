@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 23:29:03 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/11 01:45:59 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ void	display_view_info(t_data *img)
 	char	view_text[256];
 	char	*priority_status;
 
-	if (img->view.priority_rendering)
+	if (img->view.brainfuck_priority 
+		&& img->view.render_mode == RENDER_PRIORITY)
 		priority_status = "ON";
 	else
 		priority_status = "OFF";
-	sprintf(view_text, "Scale: %.2f  Zoom: %d  Priority: %s", 
+	sprintf(view_text, "Scale: %.2f  Zoom: %d  Brainfuck: %s", 
 		img->view.scale, img->view.zoom, priority_status);
 	mlx_string_put(img->mlx, img->mlx_win, 20, 50, 0xFFFFFF, view_text);
 }
@@ -68,9 +69,24 @@ void	display_auto_rotation_status(t_data *img)
 		auto_rotation_status);
 }
 
+void	display_render_mode(t_data *img)
+{
+	char	render_text[256];
+	char	*mode_name;
+
+	if (img->view.render_mode == RENDER_PRIORITY)
+		mode_name = "PRIORITY";
+	else if (img->view.render_mode == RENDER_TRAVERSAL)
+		mode_name = "TRAVERSAL";
+	else
+		mode_name = "UNKNOWN";
+	sprintf(render_text, "Render Mode: %s", mode_name);
+	mlx_string_put(img->mlx, img->mlx_win, 20, 90, 0xFFFFFF, render_text);
+}
+
 void	display_menu_header(t_data *img)
 {
-	mlx_string_put(img->mlx, img->mlx_win, 20, 100, 0xAAAAAAA, "Controls:");
+	mlx_string_put(img->mlx, img->mlx_win, 20, 120, 0xAAAAAAA, "Controls:");
 }
 
 void	display_all_menu_info(t_data *img)
@@ -78,5 +94,6 @@ void	display_all_menu_info(t_data *img)
 	display_rotation_info(img);
 	display_view_info(img);
 	display_auto_rotation_status(img);
+	display_render_mode(img);
 	display_menu_header(img);
 }
