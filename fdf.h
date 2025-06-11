@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 01:42:40 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/11 02:54:25 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 #include <stdlib.h>
 #include <math.h>
 #include "minilibx-linux/mlx.h"
+
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 typedef struct s_coords
 {
@@ -182,6 +186,8 @@ void set_line_color(t_line *line, t_data *data);
 void draw_pixel_color(t_data *data, int x, int y, int color, float alpha);
 
 // Rotations
+
+double normalize_angle(double angle);
 void rotate_x_coords(double coords[3], double alpha);
 void rotate_y_coords(double coords[3], double beta);
 void rotate_z_coords(double coords[3], double gamma);

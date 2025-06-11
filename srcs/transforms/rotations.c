@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:28:22 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 23:29:22 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/11 02:50:09 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,12 @@ void rotate_z_coords(double coords[3], double gamma)
 	temp_y = coords[1];
 	coords[0] = temp_x * cos_g - temp_y * sin_g;
 	coords[1] = temp_x * sin_g + temp_y * cos_g;
+}
+double normalize_angle(double angle)
+{
+	while (angle >= 2 * M_PI)
+		angle -= 2 * M_PI;
+	while (angle < 0)
+		angle += 2 * M_PI;
+	return (angle);
 }

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 23:36:56 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/11 02:55:02 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void rotate_point(t_point *source, t_view *view)
 
 void rotate_vector(double vector[3], t_view *view)
 {
+	view->alpha = normalize_angle(view->alpha);
+	view->beta = normalize_angle(view->beta);
+	view->gamma = normalize_angle(view->gamma);
     rotate_x_coords(vector, view->alpha);
     rotate_y_coords(vector, view->beta);
     rotate_z_coords(vector, view->gamma);
