@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 03:25:32 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 17:18:22 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,7 @@
 #endif
 
 // Key indices for continuous rotation
-#define KEY_INDEX_W 0
-#define KEY_INDEX_S 1
-#define KEY_INDEX_A 2
-#define KEY_INDEX_D 3
-#define KEY_INDEX_Z 4
-#define KEY_INDEX_X 5
+
 
 typedef struct s_coords
 {
@@ -129,7 +124,7 @@ typedef struct	s_data {
     t_map   *map;
     t_view 	view;
     t_mouse mouse; 
-    int		keys[6];  // Track state of rotation keys: W,S,A,D,Z,X
+    int		keys[14];
 }				t_data;
 
 typedef struct s_color
@@ -212,25 +207,19 @@ float fractional_of(float n);
 float reverse_fractional_of(float n);
 
 // Keyboard controls
+void keyboard_init(t_data *data);
 int handle_keypress(int keycode, t_data *data);
-int handle_keyrelease(int keycode, t_data *data);
+int handle_view_keypress(int keycode, t_data *data);
+int handle_view_keyrelease(int keycode, t_data *data);
 void apply_auto_rotation(t_data *data);
-void apply_continuous_rotation(t_data *data);
+void apply_keys(t_data *data);
 
 // Keyboard helper functions
 int handle_exit_keys(int keycode);
-int handle_rotation_keys(int keycode, t_data *data);
-int handle_zoom_keys(int keycode, t_data *data);
-int handle_scale_keys(int keycode, t_data *data);
-int handle_offset_keys(int keycode, t_data *data);
 int handle_reset_keys(int keycode, t_data *data);
 int handle_rendering_keys(int keycode, t_data *data);
 int handle_auto_rotation_keys(int keycode, t_data *data);
 void reset_view(t_data *data);
-void toggle_auto_rotate_x(t_data *data);
-void toggle_auto_rotate_y(t_data *data);
-void toggle_auto_rotate_z(t_data *data);
-void toggle_chaos_mode(t_data *data);
 
 // Mouse controls
 int handle_mouse_press(int button, int x, int y, t_data *data);

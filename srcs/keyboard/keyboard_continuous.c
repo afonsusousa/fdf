@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:04:14 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 17:33:57 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 17:41:11 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,20 @@ static void	continuous_rotation(t_data *data)
 
 static void	continuous_zoom(t_data *data)
 {
-	double	zoom_step;
+	int zoom_step;
 
 	zoom_step = 1;
 	if (data->keys[KEY_INDEX_PLUS])
 	{
 		data->view.zoom += zoom_step;
-		if(data->view.zoom < 1)
-			data->view.zoom = 1;
+		if(data->view.zoom > 75)
+			data->view.zoom = 75;
 	}
 	if(data->keys[KEY_INDEX_MINUS])
 	{
 		data->view.zoom -= zoom_step;
-		if(data->view.zoom > 100)
-			data->view.zoom = 100;
+		if(data->view.zoom < 5)
+			data->view.zoom = 5;
 	}
 }
 
@@ -72,7 +72,7 @@ static void	continuous_scale(t_data *data)
 
 static void	continuous_shift(t_data *data)
 {
-	double shift_step;
+	int shift_step;
 
 	shift_step = 2;
 	if (data->keys[KEY_INDEX_UP])
