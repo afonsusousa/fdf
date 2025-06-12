@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:32:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 18:22:42 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 19:46:15 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,18 @@ void	draw_axis_labels(t_data *img, int corner_x, int corner_y, int size)
 	else 
 		mlx_string_put(img->mlx, img->mlx_win, corner_x + size + 5, 
 		corner_y + 55, 0x00FF00, "TOP_DOWN: NOPE");
+	if(img->view.left_tilt)
+	mlx_string_put(img->mlx, img->mlx_win, corner_x + size + 5, 
+		corner_y + 70, 0xFF0000, "LEFT_TILT: YES");
+	else 
+		mlx_string_put(img->mlx, img->mlx_win, corner_x + size + 5, 
+		corner_y + 70, 0x00FF00, "LEFT_TILT: NOPE");
+	if(img->view.right_tilt)
+	mlx_string_put(img->mlx, img->mlx_win, corner_x + size + 5, 
+		corner_y + 85, 0xFF0000, "RIGHT_TILT: YES");
+	else 
+		mlx_string_put(img->mlx, img->mlx_win, corner_x + size + 5, 
+		corner_y + 85, 0x00FF00, "RIGHT_TILT: NOPE");
 }
 
 void	get_axis_position(t_data *img, int *corner_x, int *corner_y, int *size)

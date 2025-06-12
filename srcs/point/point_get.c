@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 00:26:11 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 02:59:03 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 20:58:06 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,3 @@ t_point	*get_point(t_data *data, int x, int y)
 	
 	return &data->map->points[y * data->map->map_width + x];
 }
-
