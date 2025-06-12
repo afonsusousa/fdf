@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 18:21:20 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 21:06:08 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,19 @@ typedef struct s_view
 	double alpha;  
 	double beta;   
 	double gamma;  
-	double	axis[3];
 	double scale;
 	double angle;
 	int zoom;
-	bool top_down;   
 	bool brainfuck_priority;
 	t_render_mode render_mode;
 	bool auto_rotate_x;
 	bool auto_rotate_y;
 	bool auto_rotate_z;
 	bool chaos_mode;
+	double	axis[3];
+	bool top_down;   
+	bool left_tilt;
+	bool right_tilt;
 }	t_view;
 
 typedef struct s_map
