@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:04:14 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 16:51:27 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 17:32:26 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,24 @@ static void	continuous_zoom(t_data *data)
 
 	zoom_step = 1;
 	if (data->keys[KEY_INDEX_PLUS])
+	{
 		data->view.zoom += zoom_step;
+		if(data->view.zoom < 1)
+			data->view.zoom = 1;
+	}
 	if(data->keys[KEY_INDEX_MINUS])
+	{
 		data->view.zoom -= zoom_step;
+		if(data->view.zoom > 100)
+			data->view.zoom = 100;
+	}
 }
 
 static void	continuous_scale(t_data *data)
 {
 	double scale_step;
 
-	scale_step = 0.05;
+	scale_step = 0.01;
 	if (data->keys[KEY_INDEX_PGUP])
 	{
 		data->view.scale += scale_step;
@@ -66,17 +74,17 @@ static void	continuous_shift(t_data *data)
 {
 	double shift_step;
 
-	shift_step = 1;
+	shift_step = 2;
 	if (data->keys[KEY_INDEX_UP])
 	{
-		data->view.offset_y += shift_step;
-		if (data->view.offset_y > data->window_height)
-			data->view.offset_y = data->window_height;
+		data->view.offset_y -= shift_step;
+		if (data->view.offset_y > 0)
+			data->view.offset_y = 0;
 	}
 	if (data->keys[KEY_INDEX_DOWN])
 	{
-		data->view.offset_y -= shift_step;
-		if (data->view.offset_y < 0)
+		data->view.offset_y += shift_step;
+		if (data->view.offset_y > data->window_height)
 			data->view.offset_y = data->window_height;
 	}
 	if (data->keys[KEY_INDEX_LEFT])
@@ -87,9 +95,9 @@ static void	continuous_shift(t_data *data)
 	}
 	if (data->keys[KEY_INDEX_RIGHT])
 	{
-		data->view.offset_y += shift_step;
+		data->view.offset_x += shift_step;
 		if (data->view.offset_x > data->window_width)
-			data->view.offset_y = data->window_width;
+			data->view.offset_x = data->window_width;
 	}
 }
 
