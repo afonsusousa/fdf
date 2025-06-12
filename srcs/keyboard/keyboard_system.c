@@ -6,12 +6,12 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 01:42:39 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 17:01:28 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
-#include "keyboard_defines.h"
+#include "keyboard.h"
 
 int	handle_exit_keys(int keycode)
 {

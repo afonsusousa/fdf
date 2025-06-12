@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:56:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 00:18:39 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 15:59:20 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int get_color_from_z(int z_value, int min_z, int max_z)
 		ratio = 0.5f;
 	else
 		ratio = (float)(z_value - min_z) / (float)(max_z - min_z);
-	
 	if (ratio <= 0.5f)
 	{
 		float t = ratio * 2.0f;
