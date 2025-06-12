@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:04:14 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 17:32:26 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 17:33:57 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	continuous_shift(t_data *data)
 	if (data->keys[KEY_INDEX_UP])
 	{
 		data->view.offset_y -= shift_step;
-		if (data->view.offset_y > 0)
+		if (data->view.offset_y < 0)
 			data->view.offset_y = 0;
 	}
 	if (data->keys[KEY_INDEX_DOWN])
