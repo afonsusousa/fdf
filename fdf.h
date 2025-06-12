@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 17:18:22 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:21:20 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_view
 	double alpha;  
 	double beta;   
 	double gamma;  
+	double	axis[3];
 	double scale;
 	double angle;
 	int zoom;
@@ -97,7 +98,6 @@ typedef struct s_map
     int     points_count;  
 	int		max_z;
 	int		min_z;
-	double	axis[3];
     t_point     *points;
 } t_map;
 

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:32:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 03:15:35 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:22:42 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,17 @@ void	draw_axis_line(t_data *img, int start[2], int end[2], int color)
 
 void	project_axis_vector(double axis[3], int center[2], int end[2], t_view *view)
 {
-	double	coords[3];
 	int		scale;
 
 	scale = 30;
-	coords[0] = axis[0] * scale;
-	coords[1] = axis[1] * scale;
-	coords[2] = axis[2] * scale;
-	rotate_x_coords(coords, view->alpha);
-	rotate_y_coords(coords, view->beta);
-	rotate_z_coords(coords, view->gamma);
-	end[0] = center[0] + (int)((coords[0] - coords[1]) * cos(view->angle));
-	end[1] = center[1] + (int)((coords[0] + coords[1]) * sin(view->angle) - coords[2]);
+	view->axis[0] = axis[0] * scale;
+	view->axis[1] = axis[1] * scale;
+	view->axis[2] = axis[2] * scale;
+	rotate_x_coords(view->axis, view->alpha);
+	rotate_y_coords(view->axis, view->beta);
+	rotate_z_coords(view->axis, view->gamma);
+	end[0] = center[0] + (int)((view->axis[0] - view->axis[1]) * cos(view->angle));
+	end[1] = center[1] + (int)((view->axis[0] + view->axis[1]) * sin(view->angle) - view->axis[2]);
 }
 
 void	draw_axis_border(t_data *img, int corner_x, int corner_y, int size)

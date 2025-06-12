@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 17:25:01 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:23:17 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ int	main(int argc, char **argv)
 	img.view.offset_x = (img.window_width + img.menu_width) / 2;
 	img.view.offset_y = img.window_height/2;
 	
-	img.map->axis[0] = 0.0;
-	img.map->axis[1] = 0.0;
-	img.map->axis[2] = 1.0;
+	img.view.axis[0] = 0.0;
+	img.view.axis[1] = 0.0;
+	img.view.axis[2] = 1.0;
 	
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, img.window_width, img.window_height, "amagno-r - FDF");

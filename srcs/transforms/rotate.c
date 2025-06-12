@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 03:19:23 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:25:34 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,8 @@ void rotate(t_data *data)
 		rotate_point(&data->map->points[i], &data->view);
 		i++;
 	}
-	data->map->axis[0] = 0.0;
-	data->map->axis[1] = 0.0;
-	data->map->axis[2] = 1.0;
-	rotate_vector(data->map->axis, &data->view);
-	dot_product = data->map->axis[0] * iso_view[0] + 
-		data->map->axis[1] * iso_view[1] + 
-		data->map->axis[2] * iso_view[2];
+	dot_product = data->view.axis[0] * iso_view[0] + 
+		data->view.axis[1] * iso_view[1] + 
+		data->view.axis[2] * iso_view[2];
 	data->view.top_down = (dot_product > 0.15);
 }
