@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 02:49:56 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 03:33:46 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 void clear_image(t_data *data)
 {
 	(void) data;
-	int background_color = 0x1a1a2e; // Atom One Dark
+	int background_color = 0x1a1a2e; 
 	draw_background(data, background_color);
 }
 int animation_frame = 0;
@@ -28,14 +28,16 @@ int animation_frame = 0;
 int rotate_and_render(t_data *img)
 {
 	clear_image(img);
-	// Apply auto-rotation if enabled
+	
 	apply_auto_rotation(img);
+	
+	apply_continuous_rotation(img);
 	rotate(img);
-	// Choose rendering method based on render_mode:
+	
 	if (img->view.render_mode == RENDER_PRIORITY)
-		draw_lines_priority(img);   // Depth-based priority sorting
+		draw_lines_priority(img);   
 	else if (img->view.render_mode == RENDER_TRAVERSAL)
-		draw_lines_traversal(img);  // Logic-based traversal
+		draw_lines_traversal(img);  
 	draw_menu_background(img, 0x3a3544);
 	
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
@@ -57,10 +59,10 @@ int	main(int argc, char **argv)
 	map_set_limits(&img);
 	center_coordinates(&img);
 	
-	// Set view to the problematic angles for debugging clipping issues
-	img.view.alpha = 67.809;     // Direct radian values
-	img.view.beta = 67.809;      // Direct radian values
-	img.view.gamma = 203.427;    // Direct radian values
+	
+	img.view.alpha = 67.809;     
+	img.view.beta = 67.809;      
+	img.view.gamma = 203.427;    
 	img.view.scale = 0.25;    
 	img.view.zoom = 15;
 	img.view.angle = 0.523599;
@@ -77,7 +79,6 @@ int	main(int argc, char **argv)
 	img.view.offset_x = (img.window_width + img.menu_width) / 2;
 	img.view.offset_y = img.window_height/2;
 	
-	// Initialize axis vector
 	img.map->axis[0] = 0.0;
 	img.map->axis[1] = 0.0;
 	img.map->axis[2] = 1.0;
@@ -90,15 +91,21 @@ int	main(int argc, char **argv)
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
 	
-	// Initialize mouse state
 	img.mouse.is_pressed = 0;
 	img.mouse.button = 0;
 	img.mouse.last_x = 0;
 	img.mouse.last_y = 0;
 	
-	// Set up event hooks
+	img.keys[KEY_INDEX_W] = 0;
+	img.keys[KEY_INDEX_S] = 0;
+	img.keys[KEY_INDEX_A] = 0;
+	img.keys[KEY_INDEX_D] = 0;
+	img.keys[KEY_INDEX_Z] = 0;
+	img.keys[KEY_INDEX_X] = 0;
+	
 	mlx_loop_hook(mlx, rotate_and_render, &img);
-	mlx_key_hook(mlx_win, handle_keypress, &img);
+	mlx_hook(mlx_win, 2, 1L<<0, handle_keypress, &img);    
+	mlx_hook(mlx_win, 3, 1L<<1, handle_keyrelease, &img);  
 	mlx_mouse_hook(mlx_win, handle_mouse_scroll, &img);
 	mlx_hook(mlx_win, 4, 1L<<2, handle_mouse_press, &img);
 	mlx_hook(mlx_win, 5, 1L<<3, handle_mouse_release, &img);

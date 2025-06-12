@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 00:59:57 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 03:32:17 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,59 @@ void	apply_auto_rotation(t_data *data)
 	}
 }
 
-int	handle_rotation_keys(int keycode, t_data *data)
+void	apply_continuous_rotation(t_data *data)
 {
 	double	rotation_step;
 
-	rotation_step = 0.1;
-	if (keycode == KEY_W)
+	rotation_step = 0.01;
+	if (data->keys[KEY_INDEX_W])
 		data->view.alpha -= rotation_step;
-	else if (keycode == KEY_S)
+	if (data->keys[KEY_INDEX_S])
 		data->view.alpha += rotation_step;
-	else if (keycode == KEY_A)
+	if (data->keys[KEY_INDEX_A])
 		data->view.beta -= rotation_step;
-	else if (keycode == KEY_D)
+	if (data->keys[KEY_INDEX_D])
 		data->view.beta += rotation_step;
-	else if (keycode == KEY_Z)
+	if (data->keys[KEY_INDEX_Z])
 		data->view.gamma -= rotation_step;
-	else if (keycode == KEY_X)
+	if (data->keys[KEY_INDEX_X])
 		data->view.gamma += rotation_step;
+}
+
+int	handle_rotation_keys(int keycode, t_data *data)
+{
+	if (keycode == KEY_W)
+		data->keys[KEY_INDEX_W] = 1;
+	else if (keycode == KEY_S)
+		data->keys[KEY_INDEX_S] = 1;
+	else if (keycode == KEY_A)
+		data->keys[KEY_INDEX_A] = 1;
+	else if (keycode == KEY_D)
+		data->keys[KEY_INDEX_D] = 1;
+	else if (keycode == KEY_Z)
+		data->keys[KEY_INDEX_Z] = 1;
+	else if (keycode == KEY_X)
+		data->keys[KEY_INDEX_X] = 1;
 	else
 		return (0);
 	return (1);
+}
+
+int	handle_keyrelease(int keycode, t_data *data)
+{
+	if (keycode == KEY_W)
+		data->keys[KEY_INDEX_W] = 0;
+	else if (keycode == KEY_S)
+		data->keys[KEY_INDEX_S] = 0;
+	else if (keycode == KEY_A)
+		data->keys[KEY_INDEX_A] = 0;
+	else if (keycode == KEY_D)
+		data->keys[KEY_INDEX_D] = 0;
+	else if (keycode == KEY_Z)
+		data->keys[KEY_INDEX_Z] = 0;
+	else if (keycode == KEY_X)
+		data->keys[KEY_INDEX_X] = 0;
+	return (0);
 }
 
 int	handle_zoom_keys(int keycode, t_data *data)

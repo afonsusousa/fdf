@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 19:16:18 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 01:01:46 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 03:25:32 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 int	handle_keypress(int keycode, t_data *data)
 {
 	handle_exit_keys(keycode);
-	if (handle_rotation_keys(keycode, data))
-		return (0);
+	handle_rotation_keys(keycode, data);  // Don't return early for rotation keys
 	if (handle_zoom_keys(keycode, data))
 		return (0);
 	if (handle_scale_keys(keycode, data))

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 02:54:25 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 03:25:32 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
+
+// Key indices for continuous rotation
+#define KEY_INDEX_W 0
+#define KEY_INDEX_S 1
+#define KEY_INDEX_A 2
+#define KEY_INDEX_D 3
+#define KEY_INDEX_Z 4
+#define KEY_INDEX_X 5
 
 typedef struct s_coords
 {
@@ -121,6 +129,7 @@ typedef struct	s_data {
     t_map   *map;
     t_view 	view;
     t_mouse mouse; 
+    int		keys[6];  // Track state of rotation keys: W,S,A,D,Z,X
 }				t_data;
 
 typedef struct s_color
@@ -204,7 +213,9 @@ float reverse_fractional_of(float n);
 
 // Keyboard controls
 int handle_keypress(int keycode, t_data *data);
+int handle_keyrelease(int keycode, t_data *data);
 void apply_auto_rotation(t_data *data);
+void apply_continuous_rotation(t_data *data);
 
 // Keyboard helper functions
 int handle_exit_keys(int keycode);
