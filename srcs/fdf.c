@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 17:22:51 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/12 17:25:01 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,20 @@ void clear_image(t_data *data)
 	int background_color = 0x1a1a2e; 
 	draw_background(data, background_color);
 }
-int animation_frame = 0;
 
 int rotate_and_render(t_data *img)
 {
 	clear_image(img);
-	
 	apply_auto_rotation(img);
 	apply_keys(img);
 	rotate(img);
-	
 	if (img->view.render_mode == RENDER_PRIORITY)
 		draw_lines_priority(img);   
 	else if (img->view.render_mode == RENDER_TRAVERSAL)
 		draw_lines_traversal(img);  
 	draw_menu_background(img, 0x3a3544);
-	
 	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
-	
 	display_complete_menu(img);
-	
 	return (0);
 }
 int	main(int argc, char **argv)
