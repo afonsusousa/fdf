@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/13 00:41:12 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/13 02:53:08 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS = srcs/fdf.c \
        srcs/point/point.c \
        srcs/point/point_get.c \
        srcs/point/point_set.c \
+       srcs/transforms/angles.c \
        srcs/transforms/rotate.c \
        srcs/transforms/rotations.c \
        srcs/transforms/ripple.c \

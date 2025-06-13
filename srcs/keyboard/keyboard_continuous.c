@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:04:14 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 02:38:36 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 02:54:26 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ static void	continuous_rotation(t_data *data)
 
 	rotation_step = 0.01;
 	if (data->keys[KEY_INDEX_W])
-		data->view.alpha = normalize_angle(data->view.alpha - rotation_step);
+		data->view.alpha += rotation_step; 
 	if (data->keys[KEY_INDEX_S])
-		data->view.alpha = normalize_angle(data->view.alpha - rotation_step);
+		data->view.alpha -= rotation_step;
 	if (data->keys[KEY_INDEX_A])
-		data->view.beta = normalize_angle(data->view.alpha - rotation_step);
+		data->view.beta -= rotation_step;
 	if (data->keys[KEY_INDEX_D])
-		data->view.beta = normalize_angle(data->view.alpha + rotation_step);
+		data->view.beta += rotation_step;
 	if (data->keys[KEY_INDEX_Z])
-		data->view.gamma = normalize_angle(data->view.alpha - rotation_step);
+		data->view.gamma -= rotation_step;
 	if (data->keys[KEY_INDEX_X])
-		data->view.gamma = normalize_angle(data->view.alpha + rotation_step);
+		data->view.gamma += rotation_step;
 }
 
 static void	continuous_zoom(t_data *data)

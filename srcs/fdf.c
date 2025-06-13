@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 02:15:04 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 02:52:46 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int rotate_and_render(t_data *data)
 	clear_image(data);
 	apply_auto_rotation(data);
 	apply_keys(data);
+	normalize_angles(data);
 	transform(data);
 	if (data->view.render_mode == RENDER_PRIORITY)
 		draw_lines_priority(data);   

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 01:57:59 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 02:50:49 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,7 @@ void draw_pixel_color(t_data *data, int x, int y, int color, float alpha);
 
 // Rotations
 
-double normalize_angle(double angle);
+void normalize_angles(t_data *data);
 void rotate_x_coords(double coords[3], double alpha);
 void rotate_y_coords(double coords[3], double beta);
 void rotate_z_coords(double coords[3], double gamma);
