@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 00:26:55 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 17:10:54 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 17:25:12 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ static double distance_from(t_point *center, t_point *point)
     int y_delta;
     double distance;
 
-    // Assuming point->x and center->x are original map grid coordinates
     x_delta = point->x - center->x;
     y_delta = point->y - center->y;
-    distance = sqrt((double)(x_delta * x_delta) + (double)(y_delta * y_delta)); // Cast to double before sqrt
+    distance = sqrt((double)(x_delta * x_delta) + (double)(y_delta * y_delta));
     return (distance);
 }
 
