@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 20:28:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 22:02:23 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 22:29:18 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static bool is_digit(int c)
 {
 	return (c >= '0' && c <= '9');
 }
-static int atoi_base(char *nptr) // Assuming base 16 for colors
+static int atoi_base(char *nptr)
 {
     int result;
     int digit_value;
