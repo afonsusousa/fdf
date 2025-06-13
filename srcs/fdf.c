@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 01:53:05 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 02:15:04 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void clear_image(t_data *data)
 
 int rotate_and_render(t_data *data)
 {
-    static const double frame_duration_144_fps = 1.0 / 144.0;
+    static const double frame_duration_144_fps = 1.0 / 60.0;
 
     data->time += frame_duration_144_fps; // Increment time
 	clear_image(data);
