@@ -6,16 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 00:26:11 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 20:58:06 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 20:16:06 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-static inline t_point *get_point_fast(t_point *points, int x, int y, int width)
-{
-	return &points[y * width + x];
-}
 
 t_point	*get_point(t_data *data, int x, int y)
 {
