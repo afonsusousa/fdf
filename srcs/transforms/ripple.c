@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 00:26:55 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 02:18:15 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 02:28:10 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ double distance_from(t_point *center, t_point *point)
 	double distance;
 
 	x_delta = point->x - center->x;
-	y_delta = point->y;
+	y_delta = point->y - center->y;
 	distance = sqrt((x_delta * x_delta) + (y_delta * y_delta));
 	return (distance);
 }
@@ -33,7 +33,7 @@ double ripple_height(t_data *data, t_point *point)
 
 	center = get_point(data, 
 			(data->map->map_width / 2),
-			(data->map->map_height / 3));
+			(data->map->map_height / 2));
 	k = 0.8;
 	angular_freq = 1;
 	amplitude = 1;
