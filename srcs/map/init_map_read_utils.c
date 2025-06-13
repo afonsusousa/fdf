@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 20:28:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 20:50:11 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 22:02:23 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,42 +31,50 @@ static bool is_digit(int c)
 {
 	return (c >= '0' && c <= '9');
 }
-static int atoi_base(char *nptr)
+static int atoi_base(char *nptr) // Assuming base 16 for colors
 {
-	int result;
+    int result;
+    int digit_value;
 
-	result = 0;
-	if(nptr && *nptr == '0' && *(nptr + 1) == 'x')
-		nptr += 2;
-	while (is_valid(*nptr, 16))
-	{
-		if(*nptr >= '0' && *nptr <= '9')
-			result += *nptr - '0';
-		else if(*nptr >= 'A' && *nptr <= 'F')
-			result += *nptr - 'A';
-		else if(*nptr >= 'a' && *nptr <= 'f')
-			result += *nptr - 'a';
-		nptr++;
-	}
-	return (result);
+    result = 0;
+    if (nptr && *nptr == '0' && (*(nptr + 1) == 'x' || *(nptr + 1) == 'X'))
+        nptr += 2;
+    while (is_valid(*nptr, 16))
+    {
+        if (*nptr >= '0' && *nptr <= '9')
+            digit_value = *nptr - '0';
+        else if (*nptr >= 'A' && *nptr <= 'F')
+            digit_value = *nptr - 'A' + 10;
+        else if (*nptr >= 'a' && *nptr <= 'f')
+            digit_value = *nptr - 'a' + 10;
+        else
+            break; 
+        result = result * 16 + digit_value;
+        nptr++;
+    }
+    return (result);
 }
+
 void point_atoi(t_point *point, char *nptr)
 {
-	int	sign;
-	int	result;
+    int	sign;
+    int	result;
 
-	sign = 1;
-	result = 0;
-	while (*nptr == ' ' || (*nptr >= 9 && *nptr <= 13))
-		nptr++;
-	if (*nptr == '+' || *nptr == '-')
-		if (*nptr++ == '-')
-			sign *= -1;
-	while (is_digit(*nptr))
-		result = result * 10 + (*nptr++ - '0');
-	point->z = result * sign;
-	if(*nptr != ',')
-		return ;
-	point->color = atoi_base(nptr);
-	point->paint = true;
+    sign = 1;
+    result = 0;
+    point->paint = false;
+    point->color = 0;   
+    while (*nptr == ' ' || (*nptr >= 9 && *nptr <= 13))
+        nptr++;
+    if (*nptr == '+' || *nptr == '-')
+        if (*nptr++ == '-') 
+            sign *= -1;
+    while (is_digit(*nptr))
+        result = result * 10 + (*nptr++ - '0');
+    point->z = result * sign;
+    if (*nptr != ',') 
+        return;
+    nptr++; 
+    point->color = atoi_base(nptr);
+    point->paint = true;
 }
