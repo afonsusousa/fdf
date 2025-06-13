@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard_continuous.c                              :+:      :+:    :+:   */
+/*   keyboard_smooth.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:04:14 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 02:54:26 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 03:10:14 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
 #include "keyboard.h"
 
-static void	continuous_rotation(t_data *data)
+static void	smooth_rotation(t_data *data)
 {
 	double	rotation_step;
 
@@ -32,7 +32,7 @@ static void	continuous_rotation(t_data *data)
 		data->view.gamma += rotation_step;
 }
 
-static void	continuous_zoom(t_data *data)
+static void	smooth_zoom(t_data *data)
 {
 	int zoom_step;
 
@@ -43,7 +43,7 @@ static void	continuous_zoom(t_data *data)
 		if(data->view.zoom > 75)
 			data->view.zoom = 75;
 	}
-	if(data->keys[KEY_INDEX_MINUS])
+	if (data->keys[KEY_INDEX_MINUS])
 	{
 		data->view.zoom -= zoom_step;
 		if(data->view.zoom < 5)
@@ -51,7 +51,7 @@ static void	continuous_zoom(t_data *data)
 	}
 }
 
-static void	continuous_scale(t_data *data)
+static void	smooth_scale(t_data *data)
 {
 	double scale_step;
 
@@ -70,7 +70,7 @@ static void	continuous_scale(t_data *data)
 	}
 }
 
-static void	continuous_shift(t_data *data)
+static void	smooth_shift(t_data *data)
 {
 	int shift_step;
 
@@ -103,9 +103,9 @@ static void	continuous_shift(t_data *data)
 
 void apply_keys(t_data *data)
 {
-	continuous_rotation(data);
-	continuous_zoom(data);
-	continuous_scale(data);
-	continuous_shift(data);
+	smooth_rotation(data);
+	smooth_zoom(data);
+	smooth_scale(data);
+	smooth_shift(data);
 }
 

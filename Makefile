@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/13 02:53:08 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/13 03:11:09 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ SRCS = srcs/fdf.c \
        srcs/map/init_map_utils.c \
        srcs/point/point.c \
        srcs/point/point_get.c \
-       srcs/point/point_set.c \
        srcs/transforms/angles.c \
        srcs/transforms/rotate.c \
        srcs/transforms/rotations.c \
@@ -51,7 +50,7 @@ SRCS = srcs/fdf.c \
        srcs/keyboard/keyboard_auto.c \
        srcs/keyboard/keyboard_press.c \
        srcs/keyboard/keyboard_release.c \
-       srcs/keyboard/keyboard_continuous.c \
+       srcs/keyboard/keyboard_smooth.c \
        srcs/keyboard/keyboard_system.c \
        srcs/mouse/mouse.c
 
