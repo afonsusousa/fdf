@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 03:35:18 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 21:55:02 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef  struct s_point
     int z;
 	int display[2];
 	int world_3d[3];
+	bool paint;
+	int color;
 } t_point;
 
 typedef struct s_line_info
@@ -153,6 +155,8 @@ void clear_image(t_data *data);
 int rotate_and_render(t_data *img);
 
 // Map initialization
+
+void point_atoi(t_point *point, char *nptr);
 void init_map(t_data *data, char *file_name);
 void map_set_limits(t_data *data);
 void print_map(t_data *data);
@@ -172,8 +176,8 @@ void draw_steep(t_data *data, t_line *line);
 void draw_nonsteep(t_data *data, t_line *line);
 void draw_line(t_data *data, t_point *p0, t_point *p1);
 void draw_line_with_offset(t_data *data, t_point *p0, t_point *p1);
-void init_line_struct(t_line *line, int p0[2], int p1[2], int vz[2]);
-void init_line(t_line *line, int p0[2], int p1[2], int vz[2]);
+void init_line_struct(t_line *line, int p0[2], int p1[2]);
+void init_line(t_data *data, t_line *line, t_point *p0, t_point *p1);
 void draw_background(t_data *data, int color);
 void draw_menu_background(t_data *data, int color);
 
@@ -192,7 +196,7 @@ void draw_lines_traversal(t_data *data);
 // Colors
 int get_color_from_z(int z_value, int min_z, int max_z);
 int interpolate_color(int color1, int color2, float t);
-void set_line_color(t_line *line, t_data *data);
+// void set_line_color(t_line *line, t_data *data, t_point *p0, t_point *p1);
 void draw_pixel_color(t_data *data, int x, int y, int color, float alpha);
 
 // Rotations

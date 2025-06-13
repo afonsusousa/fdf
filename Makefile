@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/13 03:38:52 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/13 20:48:04 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS = srcs/fdf.c \
        srcs/lines/line_traversal.c \
        srcs/map/init_map.c \
        srcs/map/init_map_utils.c \
+       srcs/map/init_map_read_utils.c \
        srcs/point/point.c \
        srcs/point/point_get.c \
        srcs/transforms/angles.c \

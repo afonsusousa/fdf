@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:56:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 15:59:20 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 21:54:42 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ int interpolate_color(int color1, int color2, float t)
 	return (r << 16) | (g << 8) | b;
 }
 
-void set_line_color(t_line *line, t_data *data)
-{
-	line->color1 = get_color_from_z(line->z1 * data->view.scale,
-				data->map->min_z * data->view.scale,
-				data->map->max_z * data->view.scale);
-	line->color2 = get_color_from_z(line->z2 * data->view.scale, 
-				data->map->min_z * data->view.scale,
-				data->map->max_z * data->view.scale);
-}
+// void set_line_color(t_line *line, t_data *data)
+// {
+// 	line->color1 = get_color_from_z(line->z1 * data->view.scale,
+// 				data->map->min_z * data->view.scale,
+// 				data->map->max_z * data->view.scale);
+// 	line->color2 = get_color_from_z(line->z2 * data->view.scale, 
+// 				data->map->min_z * data->view.scale,
+// 				data->map->max_z * data->view.scale);
+// }
 
