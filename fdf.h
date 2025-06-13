@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 02:50:49 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 03:35:18 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ typedef struct s_view
 	bool left_tilt;
 	bool right_tilt;
 	bool ripple;
+	bool wave_x;
+	bool wave_y;
 	t_render_mode render_mode;
 }	t_view;
 
@@ -207,8 +209,8 @@ void rotate_vector(double vector[3], t_view *view);
 void transform(t_data *data);
 
 //Transforms
-double distance_from(t_point *center, t_point *point);
 double ripple_height(t_data *data, t_point *point);
+double wave_height(t_data *data, t_point *point);
 
 // Float utilities
 int integer_of(float n);

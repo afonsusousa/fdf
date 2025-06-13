@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 03:08:19 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 03:40:00 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int	main(int argc, char **argv)
 	img.view.offset_x = (img.window_width + img.menu_width) / 2;
 	img.view.offset_y = img.window_height/2;
 	img.view.ripple = false;
+	img.view.wave_x = false;
+	img.view.wave_y = false;
 	
 	img.view.axis[0] = 0.0;
 	img.view.axis[1] = 0.0;

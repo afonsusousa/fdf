@@ -6,13 +6,13 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 00:26:55 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 02:28:10 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 03:49:07 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-double distance_from(t_point *center, t_point *point)
+static double distance_from(t_point *center, t_point *point)
 {
 	int x_delta;
 	int y_delta;
