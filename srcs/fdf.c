@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 18:23:17 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 01:53:05 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,22 @@ void clear_image(t_data *data)
 	draw_background(data, background_color);
 }
 
-int rotate_and_render(t_data *img)
+int rotate_and_render(t_data *data)
 {
-	clear_image(img);
-	apply_auto_rotation(img);
-	apply_keys(img);
-	rotate(img);
-	if (img->view.render_mode == RENDER_PRIORITY)
-		draw_lines_priority(img);   
-	else if (img->view.render_mode == RENDER_TRAVERSAL)
-		draw_lines_traversal(img);  
-	draw_menu_background(img, 0x3a3544);
-	mlx_put_image_to_window(img->mlx, img->mlx_win, img->img, 0, 0);
-	display_complete_menu(img);
+    static const double frame_duration_144_fps = 1.0 / 144.0;
+
+    data->time += frame_duration_144_fps; // Increment time
+	clear_image(data);
+	apply_auto_rotation(data);
+	apply_keys(data);
+	transform(data);
+	if (data->view.render_mode == RENDER_PRIORITY)
+		draw_lines_priority(data);   
+	else if (data->view.render_mode == RENDER_TRAVERSAL)
+		draw_lines_traversal(data);  
+	draw_menu_background(data, 0x3a3544);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	display_complete_menu(data);
 	return (0);
 }
 int	main(int argc, char **argv)
@@ -53,6 +56,7 @@ int	main(int argc, char **argv)
 	center_coordinates(&img);
 	
 	
+	img.time = 0;
 	img.view.alpha = 67.809;     
 	img.view.beta = 67.809;      
 	img.view.gamma = 203.427;    
@@ -71,6 +75,7 @@ int	main(int argc, char **argv)
 	img.menu_width = img.window_width / img.menu_ratio;
 	img.view.offset_x = (img.window_width + img.menu_width) / 2;
 	img.view.offset_y = img.window_height/2;
+	img.view.ripple = false;
 	
 	img.view.axis[0] = 0.0;
 	img.view.axis[1] = 0.0;

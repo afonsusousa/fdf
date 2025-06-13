@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 17:10:00 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 02:01:00 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	apply_auto_rotation(t_data *data)
 {
 	double	auto_rotation_speed;
 
-	auto_rotation_speed = 0.01;
+	auto_rotation_speed = 0.005;
 	if (data->view.chaos_mode)
 	{
 		data->view.alpha += auto_rotation_speed * 1.3;

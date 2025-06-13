@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 21:06:08 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 01:57:59 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ typedef struct s_view
 	double angle;
 	int zoom;
 	bool brainfuck_priority;
-	t_render_mode render_mode;
 	bool auto_rotate_x;
 	bool auto_rotate_y;
 	bool auto_rotate_z;
@@ -91,6 +90,8 @@ typedef struct s_view
 	bool top_down;   
 	bool left_tilt;
 	bool right_tilt;
+	bool ripple;
+	t_render_mode render_mode;
 }	t_view;
 
 typedef struct s_map
@@ -123,6 +124,7 @@ typedef struct	s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	double	time;
     t_map   *map;
     t_view 	view;
     t_mouse mouse; 
@@ -197,9 +199,16 @@ double normalize_angle(double angle);
 void rotate_x_coords(double coords[3], double alpha);
 void rotate_y_coords(double coords[3], double beta);
 void rotate_z_coords(double coords[3], double gamma);
-void rotate_point(t_point *source, t_view *view);
+void x_transforms(t_data *data, t_point *point, double coords[3]);
+void y_transforms(t_data *data, t_point *point, double coords[3]);
+void z_transforms(t_data *data, t_point *point, double coords[3]);
+void transform_point(t_data *data, t_point *source);
 void rotate_vector(double vector[3], t_view *view);
-void rotate(t_data *data);
+void transform(t_data *data);
+
+//Transforms
+double distance_from(t_point *center, t_point *point);
+double ripple_height(t_data *data, t_point *point);
 
 // Float utilities
 int integer_of(float n);
@@ -217,6 +226,7 @@ void apply_auto_rotation(t_data *data);
 void apply_keys(t_data *data);
 
 // Keyboard helper functions
+int handle_effects_keys(int keycode, t_data *data);
 int handle_exit_keys(int keycode);
 int handle_reset_keys(int keycode, t_data *data);
 int handle_rendering_keys(int keycode, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 16:54:30 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/13 01:54:41 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define KEY_1			49
 # define KEY_2			50
 # define KEY_3			51
+# define KEY_4			52
 # define KEY_0			48
 # define KEY_UP			65362
 # define KEY_DOWN		65364
