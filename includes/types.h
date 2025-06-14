@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 17:48:08 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 18:57:52 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_map
 	int max_z;
 	int min_z;
 	t_point *points;
+	t_line_info *lines;
 }	t_map;
 
 typedef struct s_mouse

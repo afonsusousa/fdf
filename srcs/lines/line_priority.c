@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 03:40:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 17:56:35 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 19:02:39 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,33 @@ int compare_depth(const void *a, const void *b)
 
 void draw_lines_priority(t_data *data)
 {
-	t_line_info *lines;
 	int line_count;
 	int capacity;
 	int i;
 	
+	if(data->map->lines)
+	{
+		free(data->map->lines);
+		data->map->lines = NULL;
+	}
 	capacity = data->map->map_width * data->map->map_height * 2;
-	lines = (t_line_info *)malloc(capacity * sizeof(t_line_info));
-	if (!lines)
+	data->map->lines = (t_line_info *)malloc(capacity * sizeof(t_line_info));
+	if (!data->map->lines)
 		return ;
-	line_count = collect_lines(data, lines);
+	line_count = collect_lines(data, data->map->lines);
 	if (line_count == 0)
-		return free(lines);
+		return free(data->map->lines);
 	i = -1;
 	while (++i < line_count)
-		lines[i].depth = calculate_line_depth(&lines[i], &data->view);
-	qsort(lines, line_count, sizeof(t_line_info), compare_depth);
+		data->map->lines[i].depth = calculate_line_depth(&data->map->lines[i],
+			 &data->view);
+	qsort(data->map->lines, line_count, sizeof(t_line_info), compare_depth);
 	i = -1;
 	while (++i < line_count)
-		draw_line_with_offset(data, lines[i].p0, lines[i].p1);
-	free(lines);
+		draw_line_with_offset(data, data->map->lines[i].p0,
+			data->map->lines[i].p1);
+	free(data->map->lines);
+	data->map->lines = NULL;
 }
 
 void add_line_data(t_line_info *line, t_point *p0, t_point *p1)

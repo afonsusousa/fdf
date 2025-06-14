@@ -6,17 +6,18 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 17:47:44 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 19:09:39 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
 #include "keyboard.h"
 
-int	handle_exit_keys(int keycode)
+int	handle_exit_keys(t_data *data, int keycode)
 {
 	if (keycode == KEY_ESC || keycode == KEY_Q)
 	{
+		free_data(data);	
 		exit(0);
 	}
 	return (0);

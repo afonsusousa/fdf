@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 01:58:22 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 19:11:52 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int main(int argc, char **argv)
 	init_window(&data);
 	init_map(&data, argv[1]);
 	print_map(&data);
+	if (!data.map)
+		return (-1);
 	init_view(&data);
 	init_mouse(&data);
 	keyboard_init(&data);

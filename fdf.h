@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 17:12:06 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 19:09:17 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 #include "includes/view.h"
 
 // Main functions
+void free_data(t_data *data);
 int rotate_and_render(t_data *img);
 void init_view(t_data *data);
 

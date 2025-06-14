@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:32:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 18:37:55 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 19:11:25 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void init_map(t_data *data, char *file_name)
 	int map_file;
 
 	data->map = ft_calloc(1, sizeof(t_map));
+	if (!data->map)
+		return ;
 	map_file = open(file_name, O_RDONLY);
 	if (map_file == -1)
 		return ;
@@ -29,6 +31,8 @@ void init_map(t_data *data, char *file_name)
 	close(map_file);
 	data->map->points_count = data->map->map_width * data->map->map_height;
 	data->map->points = ft_calloc(data->map->points_count, sizeof(t_point));
+	if (!data->map->points)
+		return (free(data->map));
 	map_file = open(file_name, O_RDONLY);
 	read_map_data(data, map_file);
 	close(map_file);

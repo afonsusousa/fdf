@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/14 17:48:32 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/14 19:12:40 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRCS = srcs/fdf.c \
        srcs/transforms/ripple.c \
        srcs/transforms/wave.c \
        srcs/utils/float_utils.c \
+       srcs/utils/free.c \
        srcs/keyboard/keyboard.c \
        srcs/keyboard/keyboard_discrete.c \
        srcs/keyboard/keyboard_init.c \
