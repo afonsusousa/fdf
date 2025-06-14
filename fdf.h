@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 21:55:02 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 01:51:28 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,9 +151,8 @@ typedef struct s_gradient
 // Function prototypes
 
 // Main functions
-void clear_image(t_data *data);
 int rotate_and_render(t_data *img);
-
+void init_view(t_data *data);
 // Map initialization
 
 void point_atoi(t_point *point, char *nptr);
@@ -244,6 +243,8 @@ int handle_mouse_press(int button, int x, int y, t_data *data);
 int handle_mouse_release(int button, int x, int y, t_data *data);
 int handle_mouse_move(int x, int y, t_data *data);
 int handle_mouse_scroll(int button, int x, int y, t_data *data);
+void init_mouse(t_data *data);	
+	
 
 // Menu display functions
 void display_rotation_info(t_data *img);

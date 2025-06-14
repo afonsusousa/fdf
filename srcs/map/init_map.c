@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:32:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 20:16:34 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 01:48:21 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void init_map(t_data *data, char *file_name)
 	map_file = open(file_name, O_RDONLY);
 	read_map_data(data, map_file);
 	close(map_file);
+	map_set_limits(data);
+	center_coordinates(data);
 }
 
 void map_set_limits(t_data *data)

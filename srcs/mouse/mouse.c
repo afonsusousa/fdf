@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 19:24:29 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 03:07:53 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 01:36:00 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,13 @@ int handle_mouse_scroll(int button, int x, int y, t_data *data)
 			data->view.zoom = 1;
 	}
 	return (0);
+}
+
+void init_mouse(t_data *data)
+{
+	data->mouse.is_pressed = 0;
+	data->mouse.button = 0;
+	data->mouse.last_x = 0;
+	data->mouse.last_y = 0;
 }
 
