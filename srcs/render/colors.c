@@ -6,13 +6,13 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:56:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:51:14 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 18:41:22 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
 
-int get_color_from_z(int z_value, int min_z, int max_z)
+int get_color_from_z(t_point *point, int min_z, int max_z)
 {
 	float ratio;
 	int r;
@@ -22,7 +22,7 @@ int get_color_from_z(int z_value, int min_z, int max_z)
 	if (max_z == min_z)
 		ratio = 0.5f;
 	else
-		ratio = (float)(z_value - min_z) / (float)(max_z - min_z);
+		ratio = (float)(point->z - min_z) / (float)(max_z - min_z);
 	if (ratio <= 0.5f)
 	{
 		float t = ratio * 2.0f;
@@ -57,13 +57,18 @@ int interpolate_color(int color1, int color2, float t)
 	return (r << 16) | (g << 8) | b;
 }
 
-// void set_line_color(t_line *line, t_data *data)
-// {
-// 	line->color1 = get_color_from_z(line->z1 * data->view.scale,
-// 				data->map->min_z * data->view.scale,
-// 				data->map->max_z * data->view.scale);
-// 	line->color2 = get_color_from_z(line->z2 * data->view.scale, 
-// 				data->map->min_z * data->view.scale,
-// 				data->map->max_z * data->view.scale);
-// }
+void colorize_points(t_data *data)
+{
+	int i;
 
+	i = 0;
+	while (i < data->map->points_count)
+	{
+		if (!data->map->points[i].paint)
+			data->map->points[i].color = get_color_from_z(
+				&data->map->points[i], 
+				data->map->min_z, 
+				data->map->max_z);
+		i++;
+	}
+}

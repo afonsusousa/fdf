@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:32:10 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:40:24 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 18:36:25 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void init_line_struct(t_line *line, int p0[2], int p1[2])
 
 static bool prepare_line_endpoints(int start[2], int end[2], int z_values[2], bool *steep)
 {
-    bool swapped_for_x_order;
+    bool swapped;
 
-    swapped_for_x_order = false;
+    swapped = false;
     *steep = abs(end[1] - start[1]) > abs(end[0] - start[0]);
     if (*steep)
     {
@@ -46,26 +46,14 @@ static bool prepare_line_endpoints(int start[2], int end[2], int z_values[2], bo
         swap(&start[0], &end[0]);
         swap(&start[1], &end[1]);
         swap(&z_values[0], &z_values[1]);
-        swapped_for_x_order = true;
+        swapped = true;
     }
-    return (swapped_for_x_order);
-}
-
-static void set_line_colors(t_line *line, t_point *p0, t_point *p1,
-                            int z_values[2], bool swapped_for_x_order, t_map *map)
-{
-    line->color1 = get_color_from_z(z_values[0], map->min_z, map->max_z);
-    line->color2 = get_color_from_z(z_values[1], map->min_z, map->max_z);
-    if (p0->paint || p1->paint)
-    {
-        line->color1 = (p0->color * !swapped_for_x_order) + (p1->color * swapped_for_x_order);
-        line->color2 = (p1->color * !swapped_for_x_order) + (p0->color * swapped_for_x_order);
-    }
+    return (swapped);
 }
 
 void init_line(t_data *data, t_line *line, t_point *p0, t_point *p1)
 {
-    bool swapped_for_x_order;
+    bool swapped;
     int start[2];
     int end[2];
     int z_values[2];
@@ -77,7 +65,16 @@ void init_line(t_data *data, t_line *line, t_point *p0, t_point *p1)
     z_values[0] = p0->z;
     z_values[1] = p1->z;
 
-    swapped_for_x_order = prepare_line_endpoints(start, end, z_values, &line->steep);
+    swapped = prepare_line_endpoints(start, end, z_values, &line->steep);
     init_line_struct(line, start, end);
-    set_line_colors(line, p0, p1, z_values, swapped_for_x_order, data->map);
+	if(!swapped)
+	{
+		line->color1 = p0->color;
+    	line->color2 = p1->color;
+	}
+	else
+	{
+		line->color1 = p1->color;
+    	line->color2 = p0->color;
+	}
 }

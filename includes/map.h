@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:40:30 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 18:38:09 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int count_map_width(char **row);
 void get_map_dimensions(t_data *data, int map_file);
 void parse_map_row(t_data *data, char **row, int y);
 void read_map_data(t_data *data, int map_file);
+void colorize_points(t_data *data);
 
 // Point operations
 void init_point(t_point *point, int x, int y, char *value);
