@@ -6,14 +6,14 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 17:44:37 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 17:48:20 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 17:52:27 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
 #include "./keyboard.h"
 
-static void	discrete_rotation(t_data *data)
+void	discrete_rotation(t_data *data)
 {
 	static int last_key_state[6] = {0, 0, 0, 0, 0, 0};
 	if (data->keys[KEY_INDEX_W] && !last_key_state[0])

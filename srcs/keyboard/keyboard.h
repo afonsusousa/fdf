@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 17:48:02 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 17:52:55 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@
 #define KEY_INDEX_DOWN 11
 #define KEY_INDEX_LEFT 12
 #define KEY_INDEX_RIGHT 13
+
+void	discrete_rotation(t_data *data);
 
 #endif
