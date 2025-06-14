@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:57:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 21:54:21 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 15:40:38 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
+#include "../../../fdf.h"
 #include "limits.h"
 #include <math.h>
 

@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 03:40:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 18:34:06 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 15:40:23 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../../fdf.h"
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
@@ -19,7 +19,7 @@ float calculate_line_depth(t_line_info *line, t_view *view)
 {
     double midpoint_z = (line->p0->world_3d[2] + line->p1->world_3d[2]) / 2.0;
     
-    if (view->top_down && view->brainfuck_priority)
+    if (!view->top_down && view->brainfuck_priority)
          return (midpoint_z);  
     return (-midpoint_z);  
 }

@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:28:22 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 02:52:31 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 15:40:28 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../../fdf.h"
 #include <math.h>
 
 void rotate_x_coords(double coords[3], double alpha)

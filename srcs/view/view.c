@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:28:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 01:32:15 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 15:39:39 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../../fdf.h"
 
 void init_view(t_data *data)
 {

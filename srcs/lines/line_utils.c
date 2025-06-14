@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:32:10 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 22:38:46 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 15:40:24 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
+#include "../../fdf.h"
 
 void init_line_struct(t_line *line, int p0[2], int p1[2])
 {

@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 16:56:24 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 20:46:09 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 15:40:27 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../../fdf.h"
 #include "./libft/libft.h"
 
 void init_point(t_point *point, int x, int y, char *value)

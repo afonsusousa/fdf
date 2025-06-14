@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wave.c                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 03:27:25 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:40:37 by amagno-r         ###   ########.fr       */
+/*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/06/14 15:40:35 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../fdf.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-double wave_height(t_data *data, t_point *point)
-{
-	double k;
-	double amplitude;
-	double angular_freq;
-	double distance;
+// Float utilities
+int integer_of(float n);
+int round_of(float n);
+float float_of(float n);
+float fractional_of(float n);
+float reverse_fractional_of(float n);
 
-	k = 0.8;
-	amplitude = 1;
-	angular_freq = 1;
-	distance = 0;
-	if (data->view.wave_x)
-		distance = point->x;
-	else if (data->view.wave_y)
-		distance = point->y;
-	return (amplitude 
-		* sin((k * distance) - (angular_freq * data->time)));
-}
+#endif

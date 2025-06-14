@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 20:28:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 22:29:18 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 15:39:38 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../../fdf.h"
 
 static bool is_valid(int c, int baselen)
 {
