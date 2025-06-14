@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 03:51:59 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 16:55:12 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,18 @@ void z_transforms(t_data *data, t_point *point, double coords[3])
 }
 void transform_point(t_data *data, t_point *point)
 {
-	double coords[3];
-
-	coords[0] = (double)point->x;
-	coords[1] = (double)point->y;
-	coords[2] = (double)point->z * data->view.scale;
+	point->world_3d[0] = (double)point->x;
+	point->world_3d[1] = (double)point->y;
+	point->world_3d[2] = (double)point->z * data->view.scale;
 	
-	x_transforms(data, point, coords);
-	y_transforms(data, point, coords);
-	z_transforms(data, point, coords);
+	x_transforms(data, point, point->world_3d);
+	y_transforms(data, point, point->world_3d);
+	z_transforms(data, point, point->world_3d);
 
-	coords[0] *= data->view.zoom;
-	coords[1] *= data->view.zoom;
-	coords[2] *= data->view.zoom;
-
-	point->world_3d[0] = coords[0];
-	point->world_3d[1] = coords[1];
-	point->world_3d[2] = coords[2];
-	
-	point->display[0] = (int)((coords[0] - coords[1]) * cos(data->view.angle));
-	point->display[1] = (int)((coords[0] + coords[1]) * sin(data->view.angle) - coords[2]);
+	point->world_3d[0] *= data->view.zoom;
+	point->world_3d[1] *= data->view.zoom;
+	point->world_3d[2] *= data->view.zoom;
+	project(data, point);
 }
 
 void transform(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:04:14 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 03:10:14 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 17:45:38 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,10 @@ static void	smooth_shift(t_data *data)
 
 void apply_keys(t_data *data)
 {
-	smooth_rotation(data);
+	if (data->view.view_mode == ISOMETRIC)
+		smooth_rotation(data);
+	else if (data->view.view_mode == ORTOGRAPHIC)
+		discrete_rotation(data);
 	smooth_zoom(data);
 	smooth_scale(data);
 	smooth_shift(data);

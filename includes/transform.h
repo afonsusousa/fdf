@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:40:32 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 17:48:13 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void z_transforms(t_data *data, t_point *point, double coords[3]);
 void transform_point(t_data *data, t_point *source);
 void rotate_vector(double vector[3], t_view *view);
 void transform(t_data *data);
+void project(t_data *data, t_point *point);
 
 // Effect transforms
 double ripple_height(t_data *data, t_point *point);

@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point_get.c                                        :+:      :+:    :+:   */
+/*   view.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 00:26:11 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 16:03:44 by amagno-r         ###   ########.fr       */
+/*   Created: 2025/06/14 16:46:38 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/06/14 17:23:32 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifndef VIEW_H
+# define VIEW_H
 
-t_point	*get_point(t_data *data, int x, int y)
-{
-	if (!data || !data->map || !data->map->points)
-		return (NULL);
-	if (x < 0 || y < 0 || x >= data->map->map_width || y >= data->map->map_height)
-		return (NULL);
-	return &data->map->points[y * data->map->map_width + x];
-}
+#include "../fdf.h"
+
+// Orthographic projection views
+void set_orthographic_view(t_data *data, int view_type);
+void handle_orthographic_rotation(t_data *data, int key_index);
+void ortographic_projection(t_data *data);
+
+#endif

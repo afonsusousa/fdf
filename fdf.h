@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:39:51 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 17:12:06 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #include "includes/controls.h"
 #include "includes/menu.h"
 #include "includes/utils.h"
+#include "includes/view.h"
 
 // Main functions
 int rotate_and_render(t_data *img);
