@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 03:40:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:46:18 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 17:56:35 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ float calculate_line_depth(t_line_info *line, t_view *view)
 {
     double midpoint_z = (line->p0->world_3d[2] + line->p1->world_3d[2]) / 2.0;
     
-    if (!view->top_down && view->render_mode == RENDER_BRAINFUCK_PRIORITY)
+    if (view->top_down && view->render_mode == RENDER_BRAINFUCK_PRIORITY)
          return (midpoint_z);  
-    return (-midpoint_z);  
+    return (-midpoint_z); 
 }
 
 int compare_depth(const void *a, const void *b)
