@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:33:08 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 17:43:18 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 17:51:48 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int rotate_and_render(t_data *data)
 
     data->time += frame_duration_60_fps;
 	clear_image(data);
-	if (data->view.render_mode == ISOMETRIC)
+	if (data->view.view_mode == ISOMETRIC)
 		apply_auto_rotation(data);
 	apply_keys(data);
 	normalize_angles(data);
