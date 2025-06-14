@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:33:08 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:40:39 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 15:54:20 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../fdf.h"
+#include "../../fdf.h"
 
 static void clear_image(t_data *data)
 {
@@ -29,9 +29,9 @@ int rotate_and_render(t_data *data)
 	apply_keys(data);
 	normalize_angles(data);
 	transform(data);
-	if (data->view.render_mode == RENDER_PRIORITY)
+	if (data->view.render_mode != RENDER_TRAVERSAL)
 		draw_lines_priority(data);   
-	else if (data->view.render_mode == RENDER_TRAVERSAL)
+	else 
 		draw_lines_traversal(data);  
 	draw_menu_background(data, 0x3a3544);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);

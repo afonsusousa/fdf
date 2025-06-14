@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:56:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:40:38 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 15:51:14 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../fdf.h"
+#include "../../fdf.h"
 
 int get_color_from_z(int z_value, int min_z, int max_z)
 {

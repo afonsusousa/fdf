@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 01:45:59 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 15:57:02 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,9 @@ void	display_rotation_info(t_data *img)
 void	display_view_info(t_data *img)
 {
 	char	view_text[256];
-	char	*priority_status;
 
-	if (img->view.brainfuck_priority 
-		&& img->view.render_mode == RENDER_PRIORITY)
-		priority_status = "ON";
-	else
-		priority_status = "OFF";
-	sprintf(view_text, "Scale: %.2f  Zoom: %d  Brainfuck: %s", 
-		img->view.scale, img->view.zoom, priority_status);
+	sprintf(view_text, "Scale: %.2f  Zoom: %d", 
+		img->view.scale, img->view.zoom);
 	mlx_string_put(img->mlx, img->mlx_win, 20, 50, 0xFFFFFF, view_text);
 }
 
@@ -76,6 +70,8 @@ void	display_render_mode(t_data *img)
 
 	if (img->view.render_mode == RENDER_PRIORITY)
 		mode_name = "PRIORITY";
+	else if (img->view.render_mode == RENDER_BRAINFUCK_PRIORITY)
+		mode_name = "BRAINF#(K PRIORITY";
 	else if (img->view.render_mode == RENDER_TRAVERSAL)
 		mode_name = "TRAVERSAL";
 	else
@@ -86,7 +82,24 @@ void	display_render_mode(t_data *img)
 
 void	display_menu_header(t_data *img)
 {
-	mlx_string_put(img->mlx, img->mlx_win, 20, 120, 0xAAAAAAA, "Controls:");
+	mlx_string_put(img->mlx, img->mlx_win, 20, 125, 0xAAAAAAA, "Controls:");
+}
+
+void	display_effects_status(t_data *img)
+{
+	char	effects_text[256];
+	char	*effect_name;
+
+	if (img->view.ripple)
+		effect_name = "RIPPLE";
+	else if (img->view.wave_x)
+		effect_name = "WAVE-X";
+	else if (img->view.wave_y)
+		effect_name = "WAVE-Y";
+	else
+		effect_name = "NONE";
+	sprintf(effects_text, "Effects: %s", effect_name);
+	mlx_string_put(img->mlx, img->mlx_win, 20, 105, 0xFFFFFF, effects_text);
 }
 
 void	display_all_menu_info(t_data *img)
@@ -95,5 +108,6 @@ void	display_all_menu_info(t_data *img)
 	display_view_info(img);
 	display_auto_rotation_status(img);
 	display_render_mode(img);
+	display_effects_status(img);
 	display_menu_header(img);
 }

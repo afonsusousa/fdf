@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:40:29 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 15:45:55 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ typedef struct s_line
 typedef enum e_render_mode
 {
 	RENDER_PRIORITY = 0,
-	RENDER_TRAVERSAL = 1
+	RENDER_BRAINFUCK_PRIORITY = 1,
+	RENDER_TRAVERSAL = 2
 }	t_render_mode;
 
 typedef struct s_view
@@ -74,7 +75,6 @@ typedef struct s_view
 	double scale;
 	double angle;
 	int zoom;
-	bool brainfuck_priority;
 	bool auto_rotate_x;
 	bool auto_rotate_y;
 	bool auto_rotate_z;
@@ -126,18 +126,5 @@ typedef struct s_data
 	t_mouse mouse;
 	int keys[14];
 }	t_data;
-
-typedef struct s_color
-{
-	int r;
-	int g;
-	int b;
-}	t_color;
-
-typedef struct s_gradient
-{
-	t_color start_color;
-	t_color end_color;
-}	t_gradient;
 
 #endif
