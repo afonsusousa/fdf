@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:28:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 18:24:02 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 18:44:55 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void init_view(t_data *data)
 	data->view.alpha = 0;     
 	data->view.beta = 0;      
 	data->view.gamma = 0;    
-	data->view.scale = 0.25;    
 	data->view.axis[0] = 0.0;
 	data->view.axis[1] = 0.0;
 	data->view.axis[2] = 1.0;
@@ -31,4 +30,36 @@ void init_view(t_data *data)
 	data->view.ripple = false;
 	data->view.wave_x = false;
 	data->view.wave_y = false;
+	
+	init_optimal_scale(data);
+	if(data->view.scale < 0.02)
+		data->view.scale = 0.02;
+}
+
+void init_optimal_scale(t_data *data)
+{
+	int z_range;
+	int map_size;
+	double base_scale;
+	double z_factor;
+
+	z_range = data->map->max_z - data->map->min_z;
+	map_size = (data->map->map_width + data->map->map_height) / 2;
+	if (map_size > 100)
+		base_scale = 0.08;
+	else if (map_size > 50)
+		base_scale = 0.15;
+	else if (map_size > 20)
+		base_scale = 0.25;
+	else
+		base_scale = 0.4;
+	if (z_range == 0)
+		z_factor = 0.5;
+	else if (z_range <= 5)
+		z_factor = 0.4 + (z_range * 0.1);
+	else if (z_range <= 50)
+		z_factor = 0.9 - ((z_range - 5) * 0.008);
+	else
+		z_factor = 0.54 - ((z_range - 50) * 0.003);
+	data->view.scale = base_scale * z_factor;
 }
