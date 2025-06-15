@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:04:14 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 17:45:38 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 19:18:01 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static void	smooth_shift(t_data *data)
 	int shift_step;
 
 	shift_step = 2;
+
 	if (data->keys[KEY_INDEX_UP])
 	{
 		data->view.offset_y -= shift_step;

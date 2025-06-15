@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:28:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 17:23:29 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 19:27:16 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ void init_view(t_data *data)
 	data->view.render_mode = RENDER_PRIORITY;
 	data->view.view_mode = ISOMETRIC;
 	data->view.ortographic_angle = 0;
-	data->view.auto_rotate_x = false;
-	data->view.auto_rotate_y = false;
-	data->view.auto_rotate_z = false;
-	data->view.chaos_mode = false;
+	data->view.auto_rotate = 0; 
 	data->view.offset_x = (data->window_width + data->menu_width) / 2;
 	data->view.offset_y = data->window_height/2;
 	data->view.ripple = false;

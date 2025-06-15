@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 19:09:39 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 19:24:58 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ void	reset_view(t_data *data)
 	data->view.scale = 1;
 	data->view.offset_x = (data->window_width + data->menu_width) / 2;
 	data->view.offset_y = data->window_height / 2;
-	data->view.auto_rotate_x = false;
-	data->view.auto_rotate_y = false;
-	data->view.auto_rotate_z = false;
-	data->view.chaos_mode = false;
+	data->view.auto_rotate = 0;
 	data->view.ripple = false;
 	data->view.wave_x = false;
 	data->view.wave_y = false;

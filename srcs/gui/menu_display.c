@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:57:02 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/14 19:31:33 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,19 @@ void	display_auto_rotation_status(t_data *img)
 	char	*y_status;
 	char	*z_status;
 
-	if (img->view.chaos_mode)
+	if (img->view.auto_rotate == 8)
 		sprintf(auto_rotation_status, "Auto-Rotation: CHAOS MODE");
 	else
 	{
-		if (img->view.auto_rotate_x)
+		if (img->view.auto_rotate & 4)
 			x_status = "ON";
 		else
 			x_status = "OFF";
-		if (img->view.auto_rotate_y)
+		if (img->view.auto_rotate & 2)
 			y_status = "ON";
 		else
 			y_status = "OFF";
-		if (img->view.auto_rotate_z)
+		if (img->view.auto_rotate & 1)
 			z_status = "ON";
 		else
 			z_status = "OFF";
