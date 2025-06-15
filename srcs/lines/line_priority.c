@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 03:40:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 19:02:39 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 17:01:37 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,6 @@ float calculate_line_depth(t_line_info *line, t_view *view)
     if (view->top_down && view->render_mode == RENDER_BRAINFUCK_PRIORITY)
          return (midpoint_z);  
     return (-midpoint_z); 
-}
-
-int compare_depth(const void *a, const void *b)
-{
-	t_line_info *line_a;
-	t_line_info *line_b;
-	double depth_diff;
-	
-	line_a = (t_line_info *)a;
-	line_b = (t_line_info *)b;
-	
-	depth_diff = line_b->depth - line_a->depth;
-	if (depth_diff > 0)
-		return (1);
-	else if (depth_diff < 0)
-		return (-1);
-	
-	return (0);
 }
 
 void draw_lines_priority(t_data *data)
@@ -64,7 +46,7 @@ void draw_lines_priority(t_data *data)
 	while (++i < line_count)
 		data->map->lines[i].depth = calculate_line_depth(&data->map->lines[i],
 			 &data->view);
-	qsort(data->map->lines, line_count, sizeof(t_line_info), compare_depth);
+	quick_sort_lines(data->map->lines, 0, line_count - 1);
 	i = -1;
 	while (++i < line_count)
 		draw_line_with_offset(data, data->map->lines[i].p0,

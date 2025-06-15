@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/14 19:12:40 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/15 16:42:41 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS = srcs/fdf.c \
        srcs/gui/axis.c \
        srcs/gui/axis_utils.c \
        srcs/lines/line_priority.c \
+       srcs/lines/line_priority_utils.c \
        srcs/lines/line_utils.c \
        srcs/lines/line_traversal.c \
        srcs/map/init_map.c \

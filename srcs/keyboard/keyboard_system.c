@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 19:24:58 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 16:32:59 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	reset_view(t_data *data)
 	data->view.wave_y = false;
 	data->view.render_mode = RENDER_PRIORITY;
 	data->view.view_mode = ISOMETRIC;
-	data->view.ortographic_angle = 0;
 }
 
 int	handle_reset_keys(int keycode, t_data *data)
