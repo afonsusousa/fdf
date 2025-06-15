@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 20:18:38 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 00:33:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_ripple
     double angular_freq;
     double distance;
     double propagation_speed;
+	double time;
 } t_ripple;
 
 typedef struct s_wave
@@ -92,6 +93,8 @@ typedef struct s_wave
 	double propagation_speed_x;
 	double propagation_speed_y;
     double distance;
+	double x_time;
+	double y_time;
 } t_wave;
 
 typedef struct s_view

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:33:08 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 18:22:29 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 00:35:07 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int rotate_and_render(t_data *data)
 {
     static const double frame_duration_60_fps = 1.0 / 60.0;
 
-    data->time += frame_duration_60_fps;
+	data->view.ripple.time += frame_duration_60_fps;
+	data->view.wave.x_time += frame_duration_60_fps;
+	data->view.wave.y_time += frame_duration_60_fps;
 	clear_image(data);
 	if (data->view.view_mode == ISOMETRIC)
 		apply_auto_rotation(data);

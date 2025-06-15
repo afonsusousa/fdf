@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 00:26:55 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 20:29:54 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 00:55:24 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,17 @@
 
 void init_ripple(t_data *data)
 {
-	t_ripple *ripple;
+    t_ripple *ripple;
 
-	ripple = &data->view.ripple;
-	ripple->enabled = false;
-	ripple->amplitude = 1;
-	ripple->k = 0.8;
-	ripple->angular_freq = 1.0 + 
-			((data->map->map_width + data->map->map_height) / 2 ) / 100.0;
-	ripple->propagation_speed = ripple->angular_freq * 2.0;
-	ripple->distance = 0.0;
+    ripple = &data->view.ripple;
+    ripple->time = 0.0;
+    ripple->enabled = false;
+    ripple->amplitude = 1;
+    ripple->k = 0.8;
+    ripple->angular_freq = 1.0 + 
+            ((data->map->map_width + data->map->map_height) / 2 ) / 100.0;
+    ripple->propagation_speed = ripple->angular_freq / ripple->k;
+    ripple->distance = 0.0;
 }
 
 static double distance_from_center(t_data *data, t_point *point)
@@ -49,9 +50,9 @@ double apply_ripple(t_data *data, t_point *point)
     if (ripple->propagation_speed < 2.0)
         ripple->propagation_speed = 2.0;
     ripple->distance = distance_from_center(data, point);
-    if (ripple->distance > ripple->propagation_speed * data->time)
+    if (ripple->distance > ripple->propagation_speed * ripple->time)
         return (0.0);
     return ((double)ripple->amplitude 
         * cos((ripple->k * ripple->distance) 
-		- (ripple->angular_freq * data->time)));
+		- (ripple->angular_freq * ripple->time)));
 }

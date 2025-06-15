@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 20:07:08 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 00:45:37 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,25 +72,19 @@ int handle_effects_keys(int keycode, t_data *data)
 	if (keycode == KEY_4)
 	{
 		data->view.ripple.enabled = !data->view.ripple.enabled;
-		data->view.wave.enabled_x = false;
-		data->view.wave.enabled_y = false;
-		data->time = 0;
+		data->view.ripple.time = 0.0;
 		return (1);
 	}
 	if (keycode == KEY_5)
 	{
 		data->view.wave.enabled_x = !data->view.wave.enabled_x;
-		data->view.wave.enabled_y = false;
-		data->view.ripple.enabled = false;
-		data->time = 0;
+		data->view.wave.x_time = 0.0;
 		return (1);
 	}
 	if (keycode == KEY_6)
 	{
 		data->view.wave.enabled_y = !data->view.wave.enabled_y;
-		data->view.wave.enabled_x = false;
-		data->view.ripple.enabled = false;
-		data->time = 0;
+		data->view.wave.y_time = 0.0;
 		return (1);
 	}
 	return (0);
