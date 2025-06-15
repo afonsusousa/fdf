@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 16:32:59 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 20:07:08 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	reset_view(t_data *data)
 	data->view.offset_x = (data->window_width + data->menu_width) / 2;
 	data->view.offset_y = data->window_height / 2;
 	data->view.auto_rotate = 0;
-	data->view.ripple = false;
-	data->view.wave_x = false;
-	data->view.wave_y = false;
+	data->view.ripple.enabled = false;
+	data->view.wave.enabled_x = false;
+	data->view.wave.enabled_y = false;
 	data->view.render_mode = RENDER_PRIORITY;
 	data->view.view_mode = ISOMETRIC;
 }
@@ -71,25 +71,25 @@ int handle_effects_keys(int keycode, t_data *data)
 {
 	if (keycode == KEY_4)
 	{
-		data->view.ripple = !data->view.ripple;
-		data->view.wave_x = false;
-		data->view.wave_y = false;
+		data->view.ripple.enabled = !data->view.ripple.enabled;
+		data->view.wave.enabled_x = false;
+		data->view.wave.enabled_y = false;
 		data->time = 0;
 		return (1);
 	}
 	if (keycode == KEY_5)
 	{
-		data->view.wave_x = !data->view.wave_x;
-		data->view.wave_y = false;
-		data->view.ripple = false;
+		data->view.wave.enabled_x = !data->view.wave.enabled_x;
+		data->view.wave.enabled_y = false;
+		data->view.ripple.enabled = false;
 		data->time = 0;
 		return (1);
 	}
 	if (keycode == KEY_6)
 	{
-		data->view.wave_y = !data->view.wave_y;
-		data->view.wave_x = false;
-		data->view.ripple = false;
+		data->view.wave.enabled_y = !data->view.wave.enabled_y;
+		data->view.wave.enabled_x = false;
+		data->view.ripple.enabled = false;
 		data->time = 0;
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 17:48:13 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 20:07:08 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void transform(t_data *data);
 void project(t_data *data, t_point *point);
 
 // Effect transforms
-double ripple_height(t_data *data, t_point *point);
-double wave_height(t_data *data, t_point *point);
+
+void init_ripple(t_data *data);
+double apply_ripple(t_data *data, t_point *point);
+void init_wave(t_data *data);
+double apply_wave(t_data *data, t_point *point);
 
 #endif

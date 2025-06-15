@@ -6,12 +6,26 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 00:26:55 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 18:59:50 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 20:12:10 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../fdf.h"
 #include <math.h> // Ensure math.h is included for sqrt and sin
+
+void init_ripple(t_data *data)
+{
+	t_ripple *ripple;
+
+	ripple = &data->view.ripple;
+	ripple->enabled = false;
+	ripple->amplitude = 1;
+	ripple->k = 0.8;
+	ripple->angular_freq = 1.0 + 
+			((data->map->map_width + data->map->map_height) / 2 ) / 100.0;
+	ripple->propagation_speed = ripple->angular_freq * 2.0;
+	ripple->distance = 0.0;
+}
 
 static double distance_from_center(t_data *data, t_point *point)
 {
@@ -25,23 +39,18 @@ static double distance_from_center(t_data *data, t_point *point)
     return (distance);
 }
 
-double ripple_height(t_data *data, t_point *point)
+double apply_ripple(t_data *data, t_point *point)
 {
-    int amplitude;
-    double k;
-    double angular_freq;
-    double dist_to_center;
-    double propagation_speed;
+	t_ripple *ripple;
 
-    k = 0.8;
-    angular_freq = 1.0 + (data->map->map_size / 100.0);
-    amplitude = 1;
-    propagation_speed = angular_freq * 2.0;
-    if (propagation_speed < 2.0)
-        propagation_speed = 2.0;
-    dist_to_center = distance_from_center(data, point);
-    if (dist_to_center > propagation_speed * data->time)
+	ripple = &data->view.ripple;
+    
+    if (ripple->propagation_speed < 2.0)
+        ripple->propagation_speed = 2.0;
+    ripple->distance = distance_from_center(data, point);
+    if (ripple->distance > ripple->propagation_speed * data->time)
         return (0.0);
-    return ((double)amplitude 
-        * sin((k * dist_to_center) - (angular_freq * data->time)));
+    return ((double)ripple->amplitude 
+        * cos((ripple->k * ripple->distance) 
+		- (ripple->angular_freq * data->time)));
 }

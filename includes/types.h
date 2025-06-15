@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 18:54:27 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 20:12:12 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,27 @@ typedef enum e_view_mode
 	ORTOGRAPHIC = 1
 } t_view_mode;
 
+typedef struct s_ripple
+{
+	bool enabled;
+	int amplitude;
+    double k;
+    double angular_freq;
+    double distance;
+    double propagation_speed;
+} t_ripple;
+
+typedef struct s_wave
+{
+	bool enabled_x;
+	bool enabled_y;
+	int amplitude;
+	double k;
+	double angular_freq;
+    double distance;
+	double propagation_speed;
+} t_wave;
+
 typedef struct s_view
 {
 	int offset_x;
@@ -86,9 +107,8 @@ typedef struct s_view
 	bool top_down;
 	bool left_tilt;
 	bool right_tilt;
-	bool ripple;
-	bool wave_x;
-	bool wave_y;
+	t_ripple ripple;
+	t_wave wave;
 	t_render_mode render_mode;
 	t_view_mode view_mode;
 }	t_view;
@@ -100,7 +120,6 @@ typedef struct s_map
 	int points_count;
 	int max_z;
 	int min_z;
-	int map_size;
 	t_point *points;
 	t_point *center;
 	t_line_info *lines;

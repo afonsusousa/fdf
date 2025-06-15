@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 18:21:23 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 20:07:08 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,11 @@ void	display_effects_status(t_data *img)
 	char	effects_text[256];
 	char	*effect_name;
 
-	if (img->view.ripple)
+	if (img->view.ripple.enabled)
 		effect_name = "RIPPLE";
-	else if (img->view.wave_x)
+	else if (img->view.wave.enabled_x)
 		effect_name = "WAVE-X";
-	else if (img->view.wave_y)
+	else if (img->view.wave.enabled_y)
 		effect_name = "WAVE-Y";
 	else
 		effect_name = "NONE";
