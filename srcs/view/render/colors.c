@@ -6,23 +6,24 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:56:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 18:21:34 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 20:37:08 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../fdf.h"
 
-int get_color_from_z(t_point *point, int min_z, int max_z)
+int get_color_from_z(t_data *data, t_point *point)
 {
 	float ratio;
 	int r;
 	int g;
 	int b;
 	
-	if (max_z == min_z)
+	if (data->map->max_z == data->map->min_z)
 		ratio = 0.5f;
 	else
-		ratio = (float)(point->z - min_z) / (float)(max_z - min_z);
+		ratio = (float)(point->z - data->map->min_z) 
+		/ (float)(data->map->max_z - data->map->min_z);
 	if (ratio <= 0.5f)
 	{
 		float t = ratio * 2.0f;
@@ -65,10 +66,8 @@ void colorize_points(t_data *data)
 	while (i < data->map->points_count)
 	{
 		if (!data->map->points[i].paint)
-			data->map->points[i].color = get_color_from_z(
-				&data->map->points[i], 
-				data->map->min_z, 
-				data->map->max_z);
+			data->map->points[i].color = get_color_from_z(data,
+				&data->map->points[i]);
 		i++;
 	}
 }

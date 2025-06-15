@@ -6,48 +6,85 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:35:34 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 16:50:54 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 23:49:18 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../fdf.h"
+#include "../../libft/libft.h"
+#include <stdlib.h>
 
-static void     array_swap(t_line_info *a, t_line_info *b)
+static bool left_right_valid(t_line_info *l, t_line_info *r)
 {
-        t_line_info     t;
-
-        t = *a;
-        *a = *b;
-        *b = t;
+	if (!l || !r)
+	{
+		if (l)
+			free(l);
+		if (r)
+			free(r);
+		return (false);
+	}
+	return (true);
+}
+static void	merge_left(t_line_info arr[], t_line_info *l,
+	t_line_info *r, int *indices)
+{
+	while (indices[0] < indices[3] && indices[1] < indices[4])
+	{
+		if (l[indices[0]].depth >= r[indices[1]].depth)
+			arr[indices[2]++] = l[indices[0]++];
+		else
+			arr[indices[2]++] = r[indices[1]++];
+	}
 }
 
-static int      partition(t_line_info arr[], int low, int high)
+static void	merge_rest(t_line_info arr[], t_line_info *l,
+	t_line_info *r, int *indices)
 {
-        t_line_info     pivot;
-        int     i;
-        int     j;
-
-        pivot = arr[high];
-        i = low - 1;
-        j = low;
-        while (j <= high - 1)
-        {
-            if (arr[j].depth >= pivot.depth)
-                array_swap(&arr[++i], &arr[j]);
-            j++;
-        }
-        array_swap(&arr[i + 1], &arr[high]);
-        return (i + 1);
+	while (indices[0] < indices[3])
+		arr[indices[2]++] = l[indices[0]++];
+	while (indices[1] < indices[4])
+		arr[indices[2]++] = r[indices[1]++];
 }
 
-void    quick_sort_lines(t_line_info arr[], int low, int high)
+static void	merge(t_line_info arr[], int left, int mid, int right)
 {
-        int     pi;
+	int			n[2];
+	int			i;
+	t_line_info	*l;
+	t_line_info	*r;
+	int			indices[5];
 
-        if (low < high)
-        {
-                pi = partition(arr, low, high);
-                quick_sort_lines(arr, low, pi - 1);
-                quick_sort_lines(arr, pi + 1, high);
-        }
+	n[0] = mid - left + 1;
+	n[1] = right - mid;
+	l = malloc(n[0] * sizeof(t_line_info));
+	r = malloc(n[1] * sizeof(t_line_info));
+	if(!left_right_valid(l, r))
+		return ;
+	i = -1;
+	while (++i < n[0])
+		l[i] = arr[left + i];
+	i = -1;
+	while (++i < n[1])
+		r[i] = arr[mid + 1 + i];
+	ft_memset(&indices, 0, 2 * sizeof(int));	
+	indices[2] = left;
+	indices[3] = n[0];
+	indices[4] = n[1];
+	merge_left(arr, l, r, indices);
+	merge_rest(arr, l, r, indices);
+	return (free(l), free(r));
+}
+
+void	merge_sort_lines(t_line_info arr[], int left, int right)
+{
+	int	mid;
+
+	if (left < right)
+	{
+		mid = left + (right - left) / 2;
+		merge_sort_lines(arr, left, mid);
+		merge_sort_lines(arr, mid + 1, right);
+		merge(arr, left, mid, right);
+	}
 }
