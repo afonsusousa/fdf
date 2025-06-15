@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 00:26:55 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 17:25:12 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 18:22:56 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../../fdf.h"
 #include <math.h> // Ensure math.h is included for sqrt and sin
 
 static double distance_from(t_point *center, t_point *point)

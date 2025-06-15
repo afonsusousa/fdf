@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   menu.c                                             :+:      :+:    :+:   */
+/*   angles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/10 20:51:10 by amagno-r         ###   ########.fr       */
+/*   Created: 2025/06/13 02:48:25 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/06/15 18:22:45 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../fdf.h"
-#include "../../minilibx-linux/mlx.h"
+#include "../../../fdf.h"
 
-void	draw_menu_background(t_data *data, int color)
+static void normalize_angle(double *angle)
 {
-	int	x;
-	int	y;
-	
-	y = 0;
-	while (y < data->window_height)
-	{
-		x = 0;
-		while (x < data->menu_width)
-			draw_pixel_color(data, x++, y, color, 1.0f);
-		y++;
-	}
+	while (*angle >= 2 * M_PI)
+		*angle -= 2 * M_PI;
+	while (*angle < 0)
+		*angle += 2 * M_PI;
 }
 
-void	display_complete_menu(t_data *img)
+void normalize_angles(t_data *data)
 {
-	display_all_menu_info(img);
-	display_all_controls(img);
-	display_axis_info(img);
+	normalize_angle(&data->view.alpha);
+	normalize_angle(&data->view.beta);
+	normalize_angle(&data->view.gamma);
 }
+

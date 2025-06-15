@@ -6,12 +6,17 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 19:07:39 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 19:08:26 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 17:35:58 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
+void free_and_null(t_line_info **address)
+{
+	free(*address);
+	*address = NULL;
+}
 void free_data(t_data *data)
 {
 	if (data->map->points)
@@ -19,7 +24,6 @@ void free_data(t_data *data)
 	if (data->map->lines)
 		free(data->map->lines);
 	free(data->map);
-	free(data->mlx);
-	free(data->mlx_win);
-	free(data->img);
+	mlx_destroy_image(data->mlx, data->img);
+	mlx_destroy_window(data->mlx, data->mlx_win);
 }

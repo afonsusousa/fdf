@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   angles.c                                           :+:      :+:    :+:   */
+/*   wave.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 02:48:25 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/13 02:53:23 by amagno-r         ###   ########.fr       */
+/*   Created: 2025/06/13 03:27:25 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/06/15 18:23:16 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fdf.h"
+#include "../../../fdf.h"
 
-static void normalize_angle(double *angle)
+double wave_height(t_data *data, t_point *point)
 {
-	while (*angle >= 2 * M_PI)
-		*angle -= 2 * M_PI;
-	while (*angle < 0)
-		*angle += 2 * M_PI;
-}
+	double k;
+	double amplitude;
+	double angular_freq;
+	double distance;
 
-void normalize_angles(t_data *data)
-{
-	normalize_angle(&data->view.alpha);
-	normalize_angle(&data->view.beta);
-	normalize_angle(&data->view.gamma);
+	k = 0.8;
+	amplitude = 1;
+	angular_freq = 1;
+	distance = 0;
+	if (data->view.wave_x)
+		distance = point->x;
+	else if (data->view.wave_y)
+		distance = point->y;
+	return (amplitude 
+		* sin((k * distance) - (angular_freq * data->time)));
 }
-

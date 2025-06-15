@@ -6,12 +6,12 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 16:43:36 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 17:39:27 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 18:20:47 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../fdf.h"
-#include "../keyboard/keyboard.h"
+#include "../../../fdf.h"
+#include "../../keyboard/keyboard.h"
 
 void set_orthographic_view(t_data *data, int rotation_axis)
 {

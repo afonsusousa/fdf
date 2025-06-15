@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 17:56:00 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 18:23:12 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../../../fdf.h"
 
 void x_transforms(t_data *data, t_point *point, double coords[3])
 {

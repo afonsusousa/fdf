@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 16:50:11 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 16:53:17 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 18:22:51 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../../../fdf.h"
 void project(t_data *data, t_point *point)
 {
 	if(data->view.view_mode == ISOMETRIC)

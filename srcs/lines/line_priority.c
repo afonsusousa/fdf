@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 03:40:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 17:01:37 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 17:36:16 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 
 float calculate_line_depth(t_line_info *line, t_view *view)
 {
-    double midpoint_z = (line->p0->world_3d[2] + line->p1->world_3d[2]) / 2.0;
-    
+    double midpoint_z = ((1 / view->scale) 
+						* (line->p0->world_3d[2] + line->p1->world_3d[2]))
+					 	/ 2.0;
     if (view->top_down && view->render_mode == RENDER_BRAINFUCK_PRIORITY)
          return (midpoint_z);  
     return (-midpoint_z); 
@@ -31,17 +32,14 @@ void draw_lines_priority(t_data *data)
 	int i;
 	
 	if(data->map->lines)
-	{
-		free(data->map->lines);
-		data->map->lines = NULL;
-	}
+		free_and_null(&data->map->lines);
 	capacity = data->map->map_width * data->map->map_height * 2;
 	data->map->lines = (t_line_info *)malloc(capacity * sizeof(t_line_info));
 	if (!data->map->lines)
 		return ;
 	line_count = collect_lines(data, data->map->lines);
 	if (line_count == 0)
-		return free(data->map->lines);
+		return free_and_null(&data->map->lines);
 	i = -1;
 	while (++i < line_count)
 		data->map->lines[i].depth = calculate_line_depth(&data->map->lines[i],
@@ -51,8 +49,7 @@ void draw_lines_priority(t_data *data)
 	while (++i < line_count)
 		draw_line_with_offset(data, data->map->lines[i].p0,
 			data->map->lines[i].p1);
-	free(data->map->lines);
-	data->map->lines = NULL;
+	free_and_null(&data->map->lines);
 }
 
 void add_line_data(t_line_info *line, t_point *p0, t_point *p1)

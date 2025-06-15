@@ -6,12 +6,12 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 19:05:41 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:53:18 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 18:22:07 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
-#include "../libft/libft.h"
+#include "../../../fdf.h"
+#include "../../libft/libft.h"
 
 void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {

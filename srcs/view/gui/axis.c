@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:32:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 16:04:59 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 18:21:09 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../fdf.h"
+#include "../../../fdf.h"
 
 void	draw_axis_line(t_data *img, int start[2], int end[2], int color)
 {

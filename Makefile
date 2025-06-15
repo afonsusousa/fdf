@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/15 16:42:41 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/15 18:25:49 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,15 +25,15 @@ GNLDIR = get_next_line
 
 # Source files
 SRCS = srcs/fdf.c \
-       srcs/render/draw.c \
-       srcs/render/line.c \
-       srcs/render/colors.c \
-       srcs/render/render.c \
-       srcs/gui/menu.c \
-       srcs/gui/menu_display.c \
-       srcs/gui/menu_controls.c \
-       srcs/gui/axis.c \
-       srcs/gui/axis_utils.c \
+       srcs/view/render/draw.c \
+       srcs/view/render/line.c \
+       srcs/view/render/colors.c \
+       srcs/view/render/render.c \
+       srcs/view/gui/menu.c \
+       srcs/view/gui/menu_display.c \
+       srcs/view/gui/menu_controls.c \
+       srcs/view/gui/axis.c \
+       srcs/view/gui/axis_utils.c \
        srcs/lines/line_priority.c \
        srcs/lines/line_priority_utils.c \
        srcs/lines/line_utils.c \
@@ -44,12 +44,13 @@ SRCS = srcs/fdf.c \
        srcs/mouse/mouse.c \
        srcs/point/point.c \
        srcs/point/point_get.c \
-       srcs/transforms/angles.c \
-       srcs/transforms/project.c \
-       srcs/transforms/transform.c \
-       srcs/transforms/rotations.c \
-       srcs/transforms/ripple.c \
-       srcs/transforms/wave.c \
+       srcs/view/transforms/angles.c \
+       srcs/view/transforms/project.c \
+       srcs/view/transforms/transform.c \
+       srcs/view/transforms/rotations.c \
+       srcs/view/transforms/ripple.c \
+       srcs/view/transforms/wave.c \
+       srcs/view/transforms/ortographic.c \
        srcs/utils/float_utils.c \
        srcs/utils/free.c \
        srcs/keyboard/keyboard.c \
@@ -60,8 +61,7 @@ SRCS = srcs/fdf.c \
        srcs/keyboard/keyboard_release.c \
        srcs/keyboard/keyboard_smooth.c \
        srcs/keyboard/keyboard_system.c \
-       srcs/view/view.c \
-       srcs/view/ortographic.c 
+       srcs/view/view.c 
 
 OBJS = $(SRCS:.c=.o)
 

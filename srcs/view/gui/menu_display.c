@@ -6,12 +6,12 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 19:31:33 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 18:21:23 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../fdf.h"
-#include "../../minilibx-linux/mlx.h"
+#include "../../../fdf.h"
+#include "../../../minilibx-linux/mlx.h"
 #include <stdio.h>
 
 

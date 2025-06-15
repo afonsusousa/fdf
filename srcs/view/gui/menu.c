@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wave.c                                             :+:      :+:    :+:   */
+/*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 03:27:25 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:40:37 by amagno-r         ###   ########.fr       */
+/*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/06/15 18:21:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../fdf.h"
+#include "../../../fdf.h"
+#include "../../../minilibx-linux/mlx.h"
 
-double wave_height(t_data *data, t_point *point)
+void	draw_menu_background(t_data *data, int color)
 {
-	double k;
-	double amplitude;
-	double angular_freq;
-	double distance;
+	int	x;
+	int	y;
+	
+	y = 0;
+	while (y < data->window_height)
+	{
+		x = 0;
+		while (x < data->menu_width)
+			draw_pixel_color(data, x++, y, color, 1.0f);
+		y++;
+	}
+}
 
-	k = 0.8;
-	amplitude = 1;
-	angular_freq = 1;
-	distance = 0;
-	if (data->view.wave_x)
-		distance = point->x;
-	else if (data->view.wave_y)
-		distance = point->y;
-	return (amplitude 
-		* sin((k * distance) - (angular_freq * data->time)));
+void	display_complete_menu(t_data *img)
+{
+	display_all_menu_info(img);
+	display_all_controls(img);
+	display_axis_info(img);
 }
