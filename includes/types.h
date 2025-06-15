@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 20:12:12 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/15 20:18:38 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,11 @@ typedef struct s_wave
 	bool enabled_y;
 	int amplitude;
 	double k;
-	double angular_freq;
+	double angular_freq_x;
+	double angular_freq_y;
+	double propagation_speed_x;
+	double propagation_speed_y;
     double distance;
-	double propagation_speed;
 } t_wave;
 
 typedef struct s_view
