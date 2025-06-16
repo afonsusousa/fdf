@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 19:24:29 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 23:00:39 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 03:08:50 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	handle_mouse_move(int x, int y, t_data *data)
 	else
 	{
 		data->view.beta += delta_x * 0.005;
-		data->view.alpha += delta_y * 0.005;
+		data->view.alpha -= delta_y * 0.005;
 	}
 	data->mouse.last_x = x - data->menu_width;
 	data->mouse.last_y = y;
