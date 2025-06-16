@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./fdf.h"
 #include "../libft/libft.h"
+#include "./fdf.h"
 
 char	*get_next_line(int fd);
 
-int count_map_width(char **row)
+int	count_map_width(char **row)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	while (row[x])
@@ -28,11 +28,11 @@ int count_map_width(char **row)
 	return (x);
 }
 
-void get_map_dimensions(t_data *data, int map_file)
+void	get_map_dimensions(t_data *data, int map_file)
 {
-	char *map_row;
-	char **row;
-	int height;
+	char	*map_row;
+	char	**row;
+	int		height;
 
 	map_row = get_next_line(map_file);
 	if (!map_row)
@@ -52,10 +52,10 @@ void get_map_dimensions(t_data *data, int map_file)
 	}
 	data->map->map_height = height;
 }
-void parse_map_row(t_data *data, char **row, int y)
+void	parse_map_row(t_data *data, char **row, int y)
 {
-	int x;
-	t_point *point;
+	int		x;
+	t_point	*point;
 
 	x = 0;
 	while (row[x] && x < data->map->map_width)
@@ -67,7 +67,7 @@ void parse_map_row(t_data *data, char **row, int y)
 	}
 }
 
-void read_map_data(t_data *data, int map_file)
+void	read_map_data(t_data *data, int map_file)
 {
 	char *map_row;
 	char **row;

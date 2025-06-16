@@ -16,7 +16,8 @@ t_point	*get_point(t_data *data, int x, int y)
 {
 	if (!data || !data->map || !data->map->points)
 		return (NULL);
-	if (x < 0 || y < 0 || x >= data->map->map_width || y >= data->map->map_height)
+	if (x < 0 || y < 0 || x >= data->map->map_width
+		|| y >= data->map->map_height)
 		return (NULL);
-	return &data->map->points[y * data->map->map_width + x];
+	return (&data->map->points[y * data->map->map_width + x]);
 }

@@ -12,14 +12,14 @@
 
 #include "../../fdf.h"
 #include "../libft/libft.h"
-#include <limits.h>
-#include <unistd.h>
 #include <fcntl.h>
+#include <limits.h>
 #include <stdio.h>
+#include <unistd.h>
 
-void init_map(t_data *data, char *file_name)
+void	init_map(t_data *data, char *file_name)
 {
-	int map_file;
+	int	map_file;
 
 	data->map = ft_calloc(1, sizeof(t_map));
 	if (!data->map)
@@ -41,51 +41,49 @@ void init_map(t_data *data, char *file_name)
 	center_coordinates(data);
 }
 
-void map_set_limits(t_data *data)
+void	map_set_limits(t_data *data)
 {
-    int min;
-    int max;
-    int x, y;
-    t_point *current;
+	int		min;
+	int		max;
+	t_point	*current;
 
-    if (!data || !data->map)
-        return;
-
-    min = INT_MAX;
-    max = INT_MIN;
-    
-    y = 0;
-    while (y < data->map->map_height)
-    {
-        x = 0;
-        while (x < data->map->map_width)
-        {
-            current = get_point(data, x, y);
-            if (current)
-            {
-                if(current->z < min)
-                    min = current->z;
-                if(current->z > max)
-                    max = current->z;
-            }
-            x++;
-        }
-        y++;
-    }
-    data->map->min_z = min;
-    data->map->max_z = max;
+	int x, y;
+	if (!data || !data->map)
+		return ;
+	min = INT_MAX;
+	max = INT_MIN;
+	y = 0;
+	while (y < data->map->map_height)
+	{
+		x = 0;
+		while (x < data->map->map_width)
+		{
+			current = get_point(data, x, y);
+			if (current)
+			{
+				if (current->z < min)
+					min = current->z;
+				if (current->z > max)
+					max = current->z;
+			}
+			x++;
+		}
+		y++;
+	}
+	data->map->min_z = min;
+	data->map->max_z = max;
 }
 #include <stdio.h>
-void print_map(t_data *data)
-{
-	int x, y;
-	t_point *current;
 
+void	print_map(t_data *data)
+{
+	t_point	*current;
+
+	int x, y;
 	if (!data || !data->map)
-		return;
-	
-	printf("Map dimensions: %d x %d\n", data->map->map_width, data->map->map_height);
-	
+		return ;
+	printf("Map dimensions: %d x %d\n", data->map->map_width,
+		data->map->map_height);
 	y = 0;
 	while (y < data->map->map_height)
 	{

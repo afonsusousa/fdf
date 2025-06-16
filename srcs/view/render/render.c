@@ -12,16 +12,18 @@
 
 #include "../../../fdf.h"
 
-static void clear_image(t_data *data)
+static void	clear_image(t_data *data)
 {
-	(void) data;
-	int background_color = 0x1a1a2e; 
+	int	background_color;
+
+	(void)data;
+	background_color = 0x1a1a2e;
 	draw_background(data, background_color);
 }
 
-int rotate_and_render(t_data *data)
+int	rotate_and_render(t_data *data)
 {
-    static const double frame_duration_60_fps = 1.0 / 60.0;
+	static const double frame_duration_60_fps = 1.0 / 60.0;
 
 	data->view.ripple.time += frame_duration_60_fps;
 	data->view.wave.x_time += frame_duration_60_fps;
@@ -33,9 +35,9 @@ int rotate_and_render(t_data *data)
 	normalize_angles(data);
 	transform(data);
 	if (data->view.render_mode != RENDER_TRAVERSAL)
-		draw_lines_priority(data);   
-	else 
-		draw_lines_traversal(data);  
+		draw_lines_priority(data);
+	else
+		draw_lines_traversal(data);
 	draw_menu_background(data, 0x3a3544);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 	display_complete_menu(data);

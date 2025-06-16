@@ -12,12 +12,12 @@
 
 #include "../fdf.h"
 
-void free_and_null(t_line_info **address)
+void	free_and_null(t_line_info **address)
 {
 	free(*address);
 	*address = NULL;
 }
-void free_data(t_data *data)
+void	free_data(t_data *data)
 {
 	if (data->map->points)
 		free(data->map->points);

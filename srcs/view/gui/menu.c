@@ -17,7 +17,7 @@ void	draw_menu_background(t_data *data, int color)
 {
 	int	x;
 	int	y;
-	
+
 	y = 0;
 	while (y < data->window_height)
 	{

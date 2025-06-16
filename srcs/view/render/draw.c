@@ -13,56 +13,60 @@
 #include "../../../fdf.h"
 #include "../../libft/libft.h"
 
-void my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
 	if (x < 0 || y < 0 || x >= 1920 || y >= 1080)
-		return;
+		return ;
 	if (!data || !data->addr)
-		return;
-
+		return ;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
-void draw_pixel(t_data *data, int x, int y, float brightness)
+void	draw_pixel(t_data *data, int x, int y, float brightness)
 {
-	int color;
+	int	color;
+	int	gray_value;
 
 	if (x < 0 || y < 0 || x >= 1920 || y >= 1080)
-		return;
+		return ;
 	if (!data)
-		return;
+		return ;
 	if (brightness < 0.0f)
 		brightness = 0.0f;
 	if (brightness > 1.0f)
 		brightness = 1.0f;
-	int gray_value = (int)(brightness * 255);
+	gray_value = (int)(brightness * 255);
 	color = gray_value << 16 | gray_value << 8 | gray_value;
 	my_mlx_pixel_put(data, x, y, color);
 }
 
-void draw_pixel_color(t_data *data, int x, int y, int color, float brightness)
+void	draw_pixel_color(t_data *data, int x, int y, int color,
+		float brightness)
 {
+	int	r;
+	int	g;
+	int	b;
+	int	final_color;
+
 	if (x < 0 || y < 0 || x >= 1920 || y >= 1080)
-		return;
+		return ;
 	if (!data)
-		return;
+		return ;
 	if (brightness < 0.0f)
 		brightness = 0.0f;
 	if (brightness > 1.0f)
 		brightness = 1.0f;
-	
-	int r = ((color >> 16) & 0xFF) * brightness;
-	int g = ((color >> 8) & 0xFF) * brightness;
-	int b = (color & 0xFF) * brightness;
-	
-	int final_color = (r << 16) | (g << 8) | b;
+	r = ((color >> 16) & 0xFF) * brightness;
+	g = ((color >> 8) & 0xFF) * brightness;
+	b = (color & 0xFF) * brightness;
+	final_color = (r << 16) | (g << 8) | b;
 	my_mlx_pixel_put(data, x, y, final_color);
 }
 
-void draw_background(t_data *data, int color)
+void	draw_background(t_data *data, int color)
 {
 	unsigned int i;
 	unsigned int pixel_count;
@@ -70,7 +74,7 @@ void draw_background(t_data *data, int color)
 
 	i = 0;
 	pixel_count = data->window_height * data->window_width;
-	dest = (int *) data->addr;
+	dest = (int *)data->addr;
 	while (i < pixel_count)
 		dest[i++] = color;
 }

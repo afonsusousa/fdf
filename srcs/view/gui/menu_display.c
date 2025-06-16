@@ -6,31 +6,54 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 00:37:17 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 02:01:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../fdf.h"
+#include "../../../libft/libft.h"
 #include "../../../minilibx-linux/mlx.h"
 #include <stdio.h>
-
 
 void	display_rotation_info(t_data *img)
 {
 	char	rotation_text[256];
+	char	*gamma_str;
+	char	*alpha_str;
+	char	*beta_str;
 
-	sprintf(rotation_text, "Gamma: %.3f  Alpha: %.3f  Beta: %.3f", 
-		img->view.gamma, img->view.alpha, img->view.beta);
-	mlx_string_put(img->mlx, img->mlx_win, 20, 30, 0xFFFFFF, rotation_text);
+	gamma_str = ft_itoa((int)(img->view.gamma * 180.0 / M_PI));
+	alpha_str = ft_itoa((int)(img->view.alpha * 180.0 / M_PI));
+	beta_str = ft_itoa((int)(img->view.beta * 180.0 / M_PI));
+	ft_strlcpy(rotation_text, "Gamma: ", sizeof(rotation_text));
+	ft_strlcat(rotation_text, gamma_str, sizeof(rotation_text));
+	ft_strlcat(rotation_text, "'  Alpha: ", sizeof(rotation_text));
+	ft_strlcat(rotation_text, alpha_str, sizeof(rotation_text));
+	ft_strlcat(rotation_text, "'  Beta: ", sizeof(rotation_text));
+	ft_strlcat(rotation_text, beta_str, sizeof(rotation_text));
+	ft_strlcat(rotation_text, "'", sizeof(rotation_text));
+	mlx_string_put(img->mlx, img->mlx_win, 15, 30, 0xFFFFFF, rotation_text);
+	free(gamma_str);
+	free(alpha_str);
+	free(beta_str);
 }
-
 void	display_view_info(t_data *img)
 {
 	char	view_text[256];
+	char	*zoom_str;
+	char	*scale_str;
+	int		scale_percent;
 
-	sprintf(view_text, "Scale: %.2f  Zoom: %d", 
-		img->view.scale, img->view.zoom);
-	mlx_string_put(img->mlx, img->mlx_win, 20, 50, 0xFFFFFF, view_text);
+	scale_percent = (int)(img->view.scale * 100);
+	zoom_str = ft_itoa(img->view.zoom);
+	scale_str = ft_itoa(scale_percent);
+	ft_strlcpy(view_text, "Scale: ", sizeof(view_text));
+	ft_strlcat(view_text, scale_str, sizeof(view_text));
+	ft_strlcat(view_text, "%  Zoom: ", sizeof(view_text));
+	ft_strlcat(view_text, zoom_str, sizeof(view_text));
+	mlx_string_put(img->mlx, img->mlx_win, 15, 45, 0xFFFFFF, view_text);
+	free(zoom_str);
+	free(scale_str);
 }
 
 void	display_auto_rotation_status(t_data *img)
@@ -41,7 +64,10 @@ void	display_auto_rotation_status(t_data *img)
 	char	*z_status;
 
 	if (img->view.auto_rotate == 8)
-		sprintf(auto_rotation_status, "Auto-Rotation: CHAOS MODE");
+	{
+		ft_strlcpy(auto_rotation_status, "Auto-Rotation: CHAOS MODE",
+			sizeof(auto_rotation_status));
+	}
 	else
 	{
 		if (img->view.auto_rotate & 4)
@@ -56,10 +82,18 @@ void	display_auto_rotation_status(t_data *img)
 			z_status = "ON";
 		else
 			z_status = "OFF";
-		sprintf(auto_rotation_status, "Auto-Rotation: X:%s Y:%s Z:%s", 
-			x_status, y_status, z_status);
+		ft_strlcpy(auto_rotation_status, "Auto-Rotation: X:",
+			sizeof(auto_rotation_status));
+		ft_strlcat(auto_rotation_status, x_status,
+			sizeof(auto_rotation_status));
+		ft_strlcat(auto_rotation_status, " Y:", sizeof(auto_rotation_status));
+		ft_strlcat(auto_rotation_status, y_status,
+			sizeof(auto_rotation_status));
+		ft_strlcat(auto_rotation_status, " Z:", sizeof(auto_rotation_status));
+		ft_strlcat(auto_rotation_status, z_status,
+			sizeof(auto_rotation_status));
 	}
-	mlx_string_put(img->mlx, img->mlx_win, 20, 70, 0xFFFFFF, 
+	mlx_string_put(img->mlx, img->mlx_win, 15, 60, 0xFFFFFF,
 		auto_rotation_status);
 }
 
@@ -76,30 +110,50 @@ void	display_render_mode(t_data *img)
 		mode_name = "TRAVERSAL";
 	else
 		mode_name = "UNKNOWN";
-	sprintf(render_text, "Render Mode: %s", mode_name);
-	mlx_string_put(img->mlx, img->mlx_win, 20, 90, 0xFFFFFF, render_text);
+	ft_strlcpy(render_text, "Render Mode: ", sizeof(render_text));
+	ft_strlcat(render_text, mode_name, sizeof(render_text));
+	mlx_string_put(img->mlx, img->mlx_win, 15, 75, 0xFFFFFF, render_text);
 }
 
 void	display_menu_header(t_data *img)
 {
-	mlx_string_put(img->mlx, img->mlx_win, 20, 125, 0xAAAAAAA, "Controls:");
+	mlx_string_put(img->mlx, img->mlx_win, 10, 115, 0xFF8C7A, "Controls:");
 }
 
 void	display_effects_status(t_data *img)
 {
 	char	effects_text[256];
-	char	*effect_name;
+	char	active_effects[128];
+	int		has_effects;
 
+	has_effects = 0;
+	active_effects[0] = '\0';
 	if (img->view.ripple.enabled)
-		effect_name = "RIPPLE";
-	else if (img->view.wave.enabled_x)
-		effect_name = "WAVE-X";
-	else if (img->view.wave.enabled_y)
-		effect_name = "WAVE-Y";
-	else
-		effect_name = "NONE";
-	sprintf(effects_text, "Effects: %s", effect_name);
-	mlx_string_put(img->mlx, img->mlx_win, 20, 105, 0xFFFFFF, effects_text);
+	{
+		if (has_effects)
+			ft_strlcat(active_effects, " + ", sizeof(active_effects));
+		ft_strlcat(active_effects, "RIPPLE", sizeof(active_effects));
+		has_effects = 1;
+	}
+	if (img->view.wave.enabled_x)
+	{
+		if (has_effects)
+			ft_strlcat(active_effects, " + ", sizeof(active_effects));
+		ft_strlcat(active_effects, "WAVE-X", sizeof(active_effects));
+		has_effects = 1;
+	}
+	if (img->view.wave.enabled_y)
+	{
+		if (has_effects)
+			ft_strlcat(active_effects, " + ", sizeof(active_effects));
+		ft_strlcat(active_effects, "WAVE-Y", sizeof(active_effects));
+		has_effects = 1;
+	}
+	if (!has_effects)
+		ft_strlcpy(active_effects, "NONE", sizeof(active_effects));
+	ft_strlcpy(effects_text, "Effects: ", sizeof(effects_text));
+	ft_strlcat(effects_text, active_effects, sizeof(effects_text));
+	mlx_string_put(img->mlx, img->mlx_win, 15, 90, 0xFFFFFF, effects_text);
 }
 
 void	display_all_menu_info(t_data *img)

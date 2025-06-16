@@ -13,7 +13,7 @@
 #include "../../fdf.h"
 #include "./libft/libft.h"
 
-void init_point(t_point *point, int x, int y, char *value)
+void	init_point(t_point *point, int x, int y, char *value)
 {
 	point->paint = false;
 	point->x = x;
@@ -26,12 +26,12 @@ void init_point(t_point *point, int x, int y, char *value)
 	point->world_3d[2] = (double)point->z;
 }
 
-void center_coordinates(t_data *data)
+void	center_coordinates(t_data *data)
 {
 	int center_x;
 	int center_y;
 	int i;
-	
+
 	center_x = data->map->map_width / 2;
 	center_y = data->map->map_height / 2;
 	data->map->center = get_point(data, center_x, center_y);

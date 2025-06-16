@@ -11,27 +11,28 @@
 /* ************************************************************************** */
 
 #include "../../fdf.h"
-#include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-float calculate_line_depth(t_line_info *line, t_view *view)
+float	calculate_line_depth(t_line_info *line, t_view *view)
 {
-    double midpoint_z = ((1 / view->scale) 
-						* (line->p0->world_3d[2] + line->p1->world_3d[2]))
-					 	/ 2.0;
-    if (view->top_down && view->render_mode == RENDER_BRAINFUCK_PRIORITY)
-         return (midpoint_z);  
-    return (-midpoint_z); 
+	double	midpoint_z;
+
+	midpoint_z = ((1 / view->scale) * (line->p0->world_3d[2]
+				+ line->p1->world_3d[2])) / 2.0;
+	if (view->top_down && view->render_mode == RENDER_BRAINFUCK_PRIORITY)
+		return (midpoint_z);
+	return (-midpoint_z);
 }
 
-void draw_lines_priority(t_data *data)
+void	draw_lines_priority(t_data *data)
 {
-	int line_count;
-	int capacity;
-	int i;
-	
-	if(data->map->lines)
+	int	line_count;
+	int	capacity;
+	int	i;
+
+	if (data->map->lines)
 		free_and_null(&data->map->lines);
 	capacity = data->map->map_width * data->map->map_height * 2;
 	data->map->lines = (t_line_info *)malloc(capacity * sizeof(t_line_info));
@@ -39,11 +40,11 @@ void draw_lines_priority(t_data *data)
 		return ;
 	line_count = collect_lines(data, data->map->lines);
 	if (line_count == 0)
-		return free_and_null(&data->map->lines);
+		return (free_and_null(&data->map->lines));
 	i = -1;
 	while (++i < line_count)
 		data->map->lines[i].depth = calculate_line_depth(&data->map->lines[i],
-			 &data->view);
+				&data->view);
 	merge_sort_lines(data->map->lines, 0, line_count - 1);
 	i = -1;
 	while (++i < line_count)
@@ -52,19 +53,19 @@ void draw_lines_priority(t_data *data)
 	free_and_null(&data->map->lines);
 }
 
-void add_line_data(t_line_info *line, t_point *p0, t_point *p1)
+void	add_line_data(t_line_info *line, t_point *p0, t_point *p1)
 {
 	line->p0 = p0;
 	line->p1 = p1;
 }
 
-int collect_horizontal_lines(t_data *data, t_line_info *lines)
+int	collect_horizontal_lines(t_data *data, t_line_info *lines)
 {
-	int x;
-	int y;
-	int line_index;
-	t_point *current;
-	t_point *right;
+	int		x;
+	int		y;
+	int		line_index;
+	t_point	*current;
+	t_point	*right;
 
 	line_index = 0;
 	y = 0;
@@ -87,13 +88,13 @@ int collect_horizontal_lines(t_data *data, t_line_info *lines)
 	return (line_index);
 }
 
-int collect_vertical_lines(t_data *data, t_line_info *lines, int start)
+int	collect_vertical_lines(t_data *data, t_line_info *lines, int start)
 {
-	int x;
-	int y;
-	int line_index;
-	t_point *current;
-	t_point *down;
+	int		x;
+	int		y;
+	int		line_index;
+	t_point	*current;
+	t_point	*down;
 
 	line_index = start;
 	y = 0;
@@ -116,12 +117,11 @@ int collect_vertical_lines(t_data *data, t_line_info *lines, int start)
 	return (line_index);
 }
 
-int collect_lines(t_data *data, t_line_info *lines)
+int	collect_lines(t_data *data, t_line_info *lines)
 {
-	int line_count;
+	int	line_count;
 
 	line_count = collect_horizontal_lines(data, lines);
 	line_count = collect_vertical_lines(data, lines, line_count);
 	return (line_count);
 }
-

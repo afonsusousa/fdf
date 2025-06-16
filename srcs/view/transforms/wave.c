@@ -12,9 +12,9 @@
 
 #include "../../../fdf.h"
 
-void init_wave(t_data *data)
+void	init_wave(t_data *data)
 {
-	t_wave *wave;
+	t_wave	*wave;
 
 	wave = &data->view.wave;
 	wave->enabled_x = false;
@@ -27,9 +27,9 @@ void init_wave(t_data *data)
 	wave->propagation_speed_y = wave->angular_freq_y / wave->k;
 }
 
-static double apply_wave_x(t_data *data, t_point *point)
+static double	apply_wave_x(t_data *data, t_point *point)
 {
-	t_wave *wave;
+	t_wave	*wave;
 
 	wave = &data->view.wave;
 	if (!wave->enabled_x)
@@ -37,14 +37,13 @@ static double apply_wave_x(t_data *data, t_point *point)
 	wave->distance = point->y + (data->map->map_height / 2);
 	if (wave->distance > wave->propagation_speed_x * wave->x_time)
 		return (0.0);
-	return (wave->amplitude 
-		* sin((wave->k * wave->distance) 
-		- (wave->angular_freq_x * wave->x_time)));
+	return (wave->amplitude * sin((wave->k * wave->distance)
+			- (wave->angular_freq_x * wave->x_time)));
 }
 
-static double apply_wave_y(t_data *data, t_point *point)
+static double	apply_wave_y(t_data *data, t_point *point)
 {
-	t_wave *wave;
+	t_wave	*wave;
 
 	wave = &data->view.wave;
 	if (!wave->enabled_y)
@@ -52,16 +51,15 @@ static double apply_wave_y(t_data *data, t_point *point)
 	wave->distance = point->x + (data->map->map_width / 2);
 	if (wave->distance > wave->propagation_speed_y * wave->y_time)
 		return (0.0);
-	return (wave->amplitude 
-		* sin((wave->k * wave->distance) 
-		- (wave->angular_freq_y * wave->y_time)));
+	return (wave->amplitude * sin((wave->k * wave->distance)
+			- (wave->angular_freq_y * wave->y_time)));
 }
 
-double apply_wave(t_data *data, t_point *point)
+double	apply_wave(t_data *data, t_point *point)
 {
-	double wave_x;
-	double wave_y;
-	int active_waves;
+	double	wave_x;
+	double	wave_y;
+	int		active_waves;
 
 	if (!data->view.wave.enabled_x && !data->view.wave.enabled_y)
 		return (0.0);

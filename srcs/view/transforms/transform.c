@@ -12,19 +12,19 @@
 
 #include "../../../fdf.h"
 
-void x_transforms(t_data *data, t_point *point, double coords[3])
+void	x_transforms(t_data *data, t_point *point, double coords[3])
 {
-	(void) point;
+	(void)point;
 	rotate_x_coords(coords, data->view.alpha);
 }
 
-void y_transforms(t_data *data, t_point *point, double coords[3])
+void	y_transforms(t_data *data, t_point *point, double coords[3])
 {
-	(void) point;
+	(void)point;
 	rotate_y_coords(coords, data->view.beta);
 }
 
-void z_transforms(t_data *data, t_point *point, double coords[3])
+void	z_transforms(t_data *data, t_point *point, double coords[3])
 {
 	if (data->view.ripple.enabled)
 		coords[2] += apply_ripple(data, point);
@@ -32,23 +32,21 @@ void z_transforms(t_data *data, t_point *point, double coords[3])
 		coords[2] += apply_wave(data, point);
 	rotate_z_coords(coords, data->view.gamma);
 }
-void transform_point(t_data *data, t_point *point)
+void	transform_point(t_data *data, t_point *point)
 {
 	point->world_3d[0] = (double)point->x;
 	point->world_3d[1] = (double)point->y;
 	point->world_3d[2] = (double)point->z * data->view.scale;
-	
 	x_transforms(data, point, point->world_3d);
 	y_transforms(data, point, point->world_3d);
 	z_transforms(data, point, point->world_3d);
-
 	point->world_3d[0] *= data->view.zoom;
 	point->world_3d[1] *= data->view.zoom;
 	point->world_3d[2] *= data->view.zoom;
 	project(data, point);
 }
 
-void transform(t_data *data)
+void	transform(t_data *data)
 {
 	int i;
 	double iso_view[3] = {0.577, 0.577, 0.577};
@@ -59,15 +57,13 @@ void transform(t_data *data)
 		transform_point(data, &data->map->points[i]);
 		i++;
 	}
-	dot_product = data->view.axis[0] * iso_view[0] +
-				  data->view.axis[1] * iso_view[1] +
-				  data->view.axis[2] * iso_view[2];
+	dot_product = data->view.axis[0] * iso_view[0] + data->view.axis[1]
+		* iso_view[1] + data->view.axis[2] * iso_view[2];
 	data->view.top_down = !(dot_product > 0.15);
-	dot_product = data->view.axis[0] * iso_view[0] +
-				  data->view.axis[1] * iso_view[1];
+	dot_product = data->view.axis[0] * iso_view[0] + data->view.axis[1]
+		* iso_view[1];
 	data->view.left_tilt = !(dot_product > 0.15);
-	dot_product = 0 +
-				  data->view.axis[1] * iso_view[1] +
-				  data->view.axis[2] * iso_view[2];
+	dot_product = 0 + data->view.axis[1] * iso_view[1] + data->view.axis[2]
+		* iso_view[2];
 	data->view.right_tilt = !(dot_product > 0.15);
 }

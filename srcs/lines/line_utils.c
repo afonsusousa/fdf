@@ -12,69 +12,69 @@
 
 #include "../../fdf.h"
 
-void init_line_struct(t_line *line, int p0[2], int p1[2])
+void	init_line_struct(t_line *line, int p0[2], int p1[2])
 {
-    line->dx = p1[0] - p0[0];
-    line->dy = p1[1] - p0[1];
-    if (fabs(line->dx) < 0.001f)
-    {
-        if (line->dy > 0)
-            line->gradient = 1000.0f;
-        else
-            line->gradient = -1000.0f;
-    }
-    else
-        line->gradient = line->dy / line->dx;
-    line->xpxl1 = p0[0];
-    line->xpxl2 = p1[0];
-    line->intersectY = (float)p0[1];
+	line->dx = p1[0] - p0[0];
+	line->dy = p1[1] - p0[1];
+	if (fabs(line->dx) < 0.001f)
+	{
+		if (line->dy > 0)
+			line->gradient = 1000.0f;
+		else
+			line->gradient = -1000.0f;
+	}
+	else
+		line->gradient = line->dy / line->dx;
+	line->xpxl1 = p0[0];
+	line->xpxl2 = p1[0];
+	line->intersectY = (float)p0[1];
 }
 
-static bool prepare_line_endpoints(int start[2], int end[2], int z_values[2], bool *steep)
+static bool	prepare_line_endpoints(int start[2], int end[2], int z_values[2],
+		bool *steep)
 {
-    bool swapped;
+	bool	swapped;
 
-    swapped = false;
-    *steep = abs(end[1] - start[1]) > abs(end[0] - start[0]);
-    if (*steep)
-    {
-        swap(&start[0], &start[1]);
-        swap(&end[0], &end[1]);
-    }
-    if (start[0] > end[0])
-    {
-        swap(&start[0], &end[0]);
-        swap(&start[1], &end[1]);
-        swap(&z_values[0], &z_values[1]);
-        swapped = true;
-    }
-    return (swapped);
+	swapped = false;
+	*steep = abs(end[1] - start[1]) > abs(end[0] - start[0]);
+	if (*steep)
+	{
+		swap(&start[0], &start[1]);
+		swap(&end[0], &end[1]);
+	}
+	if (start[0] > end[0])
+	{
+		swap(&start[0], &end[0]);
+		swap(&start[1], &end[1]);
+		swap(&z_values[0], &z_values[1]);
+		swapped = true;
+	}
+	return (swapped);
 }
 
-void init_line(t_data *data, t_line *line, t_point *p0, t_point *p1)
+void	init_line(t_data *data, t_line *line, t_point *p0, t_point *p1)
 {
-    bool swapped;
-    int start[2];
-    int end[2];
-    int z_values[2];
+	bool	swapped;
+	int		start[2];
+	int		end[2];
+	int		z_values[2];
 
-    start[0] = p0->display[0] + data->view.offset_x;
-    start[1] = p0->display[1] + data->view.offset_y;
-    end[0] = p1->display[0] + data->view.offset_x;
-    end[1] = p1->display[1] + data->view.offset_y;
-    z_values[0] = p0->z;
-    z_values[1] = p1->z;
-
-    swapped = prepare_line_endpoints(start, end, z_values, &line->steep);
-    init_line_struct(line, start, end);
-	if(!swapped)
+	start[0] = p0->display[0] + data->view.offset_x;
+	start[1] = p0->display[1] + data->view.offset_y;
+	end[0] = p1->display[0] + data->view.offset_x;
+	end[1] = p1->display[1] + data->view.offset_y;
+	z_values[0] = p0->z;
+	z_values[1] = p1->z;
+	swapped = prepare_line_endpoints(start, end, z_values, &line->steep);
+	init_line_struct(line, start, end);
+	if (!swapped)
 	{
 		line->color1 = p0->color;
-    	line->color2 = p1->color;
+		line->color2 = p1->color;
 	}
 	else
 	{
 		line->color1 = p1->color;
-    	line->color2 = p0->color;
+		line->color2 = p0->color;
 	}
 }

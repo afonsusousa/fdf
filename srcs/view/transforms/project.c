@@ -11,15 +11,17 @@
 /* ************************************************************************** */
 
 #include "../../../fdf.h"
-void project(t_data *data, t_point *point)
+
+void	project(t_data *data, t_point *point)
 {
-	if(data->view.view_mode == ISOMETRIC)
-	{	point->display[0] = (int)((point->world_3d[0] - point->world_3d[1]) 
-							* cos(data->view.angle));
-		point->display[1] = (int)((point->world_3d[0] + point->world_3d[1]) 
-							* sin(data->view.angle) - point->world_3d[2]);
+	if (data->view.view_mode == ISOMETRIC)
+	{
+		point->display[0] = (int)((point->world_3d[0] - point->world_3d[1])
+				* cos(data->view.angle));
+		point->display[1] = (int)((point->world_3d[0] + point->world_3d[1])
+				* sin(data->view.angle) - point->world_3d[2]);
 	}
-	else if(data->view.view_mode == ORTOGRAPHIC)
+	else if (data->view.view_mode == ORTOGRAPHIC)
 	{
 		point->display[0] = point->world_3d[0];
 		point->display[1] = point->world_3d[1];

@@ -13,10 +13,9 @@
 #include "../../../fdf.h"
 #include "../../keyboard/keyboard.h"
 
-void set_orthographic_view(t_data *data, int rotation_axis)
+void	set_orthographic_view(t_data *data, int rotation_axis)
 {
 	double rotation_step = M_PI / 2.0; // 90 degrees
-	
 	if (rotation_axis == 0) // W key - Rotate around X axis (pitch up)
 		data->view.alpha += rotation_step;
 	else if (rotation_axis == 1) // S key - Rotate around X axis (pitch down)
@@ -43,11 +42,10 @@ void set_orthographic_view(t_data *data, int rotation_axis)
 		data->view.gamma += 2 * M_PI;
 }
 
-void handle_orthographic_rotation(t_data *data, int key_index)
+void	handle_orthographic_rotation(t_data *data, int key_index)
 {
 	if (data->view.view_mode != ORTOGRAPHIC)
-		return;
-	
+		return ;
 	if (key_index == 0) // W key - Pitch up (rotate around X axis)
 		set_orthographic_view(data, 0);
 	else if (key_index == 1) // S key - Pitch down (rotate around X axis)
@@ -62,7 +60,7 @@ void handle_orthographic_rotation(t_data *data, int key_index)
 		set_orthographic_view(data, 5);
 }
 
-void ortographic_projection(t_data *data)
+void	ortographic_projection(t_data *data)
 {
 	if (data->view.view_mode == ISOMETRIC)
 		data->view.view_mode = ORTOGRAPHIC;

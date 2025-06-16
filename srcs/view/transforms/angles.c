@@ -12,7 +12,7 @@
 
 #include "../../../fdf.h"
 
-static void normalize_angle(double *angle)
+static void	normalize_angle(double *angle)
 {
 	while (*angle >= 2 * M_PI)
 		*angle -= 2 * M_PI;
@@ -20,10 +20,9 @@ static void normalize_angle(double *angle)
 		*angle += 2 * M_PI;
 }
 
-void normalize_angles(t_data *data)
+void	normalize_angles(t_data *data)
 {
 	normalize_angle(&data->view.alpha);
 	normalize_angle(&data->view.beta);
 	normalize_angle(&data->view.gamma);
 }
-

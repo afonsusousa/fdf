@@ -13,13 +13,13 @@
 #include "../../../fdf.h"
 #include <math.h>
 
-void rotate_x_coords(double coords[3], double alpha)
+void	rotate_x_coords(double coords[3], double alpha)
 {
-	double cos_a;
-	double sin_a;
-	double temp_y;
-	double temp_z;
-	
+	double	cos_a;
+	double	sin_a;
+	double	temp_y;
+	double	temp_z;
+
 	cos_a = cos(alpha);
 	sin_a = sin(alpha);
 	temp_y = coords[1];
@@ -28,13 +28,13 @@ void rotate_x_coords(double coords[3], double alpha)
 	coords[2] = temp_y * sin_a + temp_z * cos_a;
 }
 
-void rotate_y_coords(double coords[3], double beta)
+void	rotate_y_coords(double coords[3], double beta)
 {
-	double cos_b;
-	double sin_b;
-	double temp_x;
-	double temp_z;
-	
+	double	cos_b;
+	double	sin_b;
+	double	temp_x;
+	double	temp_z;
+
 	cos_b = cos(beta);
 	sin_b = sin(beta);
 	temp_x = coords[0];
@@ -43,13 +43,13 @@ void rotate_y_coords(double coords[3], double beta)
 	coords[2] = -temp_x * sin_b + temp_z * cos_b;
 }
 
-void rotate_z_coords(double coords[3], double gamma)
+void	rotate_z_coords(double coords[3], double gamma)
 {
-	double cos_g;
-	double sin_g;
-	double temp_x;
-	double temp_y;
-	
+	double	cos_g;
+	double	sin_g;
+	double	temp_x;
+	double	temp_y;
+
 	cos_g = cos(gamma);
 	sin_g = sin(gamma);
 	temp_x = coords[0];
@@ -57,4 +57,3 @@ void rotate_z_coords(double coords[3], double gamma)
 	coords[0] = temp_x * cos_g - temp_y * sin_g;
 	coords[1] = temp_x * sin_g + temp_y * cos_g;
 }
-

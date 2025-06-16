@@ -14,7 +14,7 @@
 #include "../../libft/libft.h"
 #include <stdlib.h>
 
-static bool left_right_valid(t_line_info *l, t_line_info *r)
+static bool	left_right_valid(t_line_info *l, t_line_info *r)
 {
 	if (!l || !r)
 	{
@@ -26,8 +26,8 @@ static bool left_right_valid(t_line_info *l, t_line_info *r)
 	}
 	return (true);
 }
-static void	merge_left(t_line_info arr[], t_line_info *l,
-	t_line_info *r, int *indices)
+static void	merge_left(t_line_info arr[], t_line_info *l, t_line_info *r,
+		int *indices)
 {
 	while (indices[0] < indices[3] && indices[1] < indices[4])
 	{
@@ -38,8 +38,8 @@ static void	merge_left(t_line_info arr[], t_line_info *l,
 	}
 }
 
-static void	merge_rest(t_line_info arr[], t_line_info *l,
-	t_line_info *r, int *indices)
+static void	merge_rest(t_line_info arr[], t_line_info *l, t_line_info *r,
+		int *indices)
 {
 	while (indices[0] < indices[3])
 		arr[indices[2]++] = l[indices[0]++];
@@ -59,7 +59,7 @@ static void	merge(t_line_info arr[], int left, int mid, int right)
 	n[1] = right - mid;
 	l = malloc(n[0] * sizeof(t_line_info));
 	r = malloc(n[1] * sizeof(t_line_info));
-	if(!left_right_valid(l, r))
+	if (!left_right_valid(l, r))
 		return ;
 	i = -1;
 	while (++i < n[0])
@@ -67,7 +67,7 @@ static void	merge(t_line_info arr[], int left, int mid, int right)
 	i = -1;
 	while (++i < n[1])
 		r[i] = arr[mid + 1 + i];
-	ft_memset(&indices, 0, 2 * sizeof(int));	
+	ft_memset(&indices, 0, 2 * sizeof(int));
 	indices[2] = left;
 	indices[3] = n[0];
 	indices[4] = n[1];
@@ -78,7 +78,7 @@ static void	merge(t_line_info arr[], int left, int mid, int right)
 
 void	merge_sort_lines(t_line_info arr[], int left, int right)
 {
-	int	mid;
+	int mid;
 
 	if (left < right)
 	{

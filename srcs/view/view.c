@@ -12,12 +12,11 @@
 
 #include "../../fdf.h"
 
-
-void init_view(t_data *data)
+void	init_view(t_data *data)
 {
-	data->view.alpha = 0;     
-	data->view.beta = 0;      
-	data->view.gamma = 0;    
+	data->view.alpha = 0;
+	data->view.beta = 0;
+	data->view.gamma = 0;
 	data->view.axis[0] = 0.0;
 	data->view.axis[1] = 0.0;
 	data->view.axis[2] = 1.0;
@@ -25,22 +24,22 @@ void init_view(t_data *data)
 	data->view.angle = 0.523599;
 	data->view.render_mode = RENDER_PRIORITY;
 	data->view.view_mode = ISOMETRIC;
-	data->view.auto_rotate = 0; 
+	data->view.auto_rotate = 0;
 	data->view.offset_x = (data->window_width + data->menu_width) / 2;
-	data->view.offset_y = data->window_height/2;
+	data->view.offset_y = data->window_height / 2;
 	init_ripple(data);
 	init_wave(data);
 	init_optimal_scale(data);
-	if(data->view.scale < 0.02)
+	if (data->view.scale < 0.02)
 		data->view.scale = 0.02;
 }
 
-void init_optimal_scale(t_data *data)
+void	init_optimal_scale(t_data *data)
 {
-	int z_range;
-	int map_size;
-	double base_scale;
-	double z_factor;
+	int		z_range;
+	int		map_size;
+	double	base_scale;
+	double	z_factor;
 
 	z_range = data->map->max_z - data->map->min_z;
 	map_size = (data->map->map_width + data->map->map_height) / 2;

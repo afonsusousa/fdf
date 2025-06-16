@@ -11,16 +11,15 @@
 /* ************************************************************************** */
 
 #include "../../fdf.h"
-#define MOUSE_LEFT_BUTTON	1
-#define MOUSE_RIGHT_BUTTON	3
-#define MOUSE_SCROLL_UP		4
-#define MOUSE_SCROLL_DOWN	5
+#define MOUSE_LEFT_BUTTON 1
+#define MOUSE_RIGHT_BUTTON 3
+#define MOUSE_SCROLL_UP 4
+#define MOUSE_SCROLL_DOWN 5
 
-int handle_mouse_press(int button, int x, int y, t_data *data)
+int	handle_mouse_press(int button, int x, int y, t_data *data)
 {
 	if (x < data->menu_width)
 		return (0);
-	
 	data->mouse.is_pressed = 1;
 	data->mouse.last_x = x - data->menu_width;
 	data->mouse.last_y = y;
@@ -28,7 +27,7 @@ int handle_mouse_press(int button, int x, int y, t_data *data)
 	return (0);
 }
 
-int handle_mouse_release(int button, int x, int y, t_data *data)
+int	handle_mouse_release(int button, int x, int y, t_data *data)
 {
 	(void)button;
 	(void)x;
@@ -37,16 +36,16 @@ int handle_mouse_release(int button, int x, int y, t_data *data)
 	return (0);
 }
 
-int handle_mouse_move(int x, int y, t_data *data)
+int	handle_mouse_move(int x, int y, t_data *data)
 {
-	int delta_x;
-	int delta_y;
-	
+	int	delta_x;
+	int	delta_y;
+
 	if (!data->mouse.is_pressed)
 		return (0);
 	if (x < data->menu_width)
 	{
-		data->mouse.is_pressed = 0; 
+		data->mouse.is_pressed = 0;
 		return (0);
 	}
 	delta_x = (x - data->menu_width) - data->mouse.last_x;
@@ -66,7 +65,7 @@ int handle_mouse_move(int x, int y, t_data *data)
 	return (0);
 }
 
-int handle_mouse_scroll(int button, int x, int y, t_data *data)
+int	handle_mouse_scroll(int button, int x, int y, t_data *data)
 {
 	(void)y;
 	if (x < data->menu_width)
@@ -86,11 +85,10 @@ int handle_mouse_scroll(int button, int x, int y, t_data *data)
 	return (0);
 }
 
-void init_mouse(t_data *data)
+void	init_mouse(t_data *data)
 {
 	data->mouse.is_pressed = 0;
 	data->mouse.button = 0;
 	data->mouse.last_x = 0;
 	data->mouse.last_y = 0;
 }
-
