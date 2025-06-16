@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 23:34:46 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 00:32:00 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ float float_of(float n);
 float fractional_of(float n);
 float reverse_fractional_of(float n);
 
-// quick_sort
-void    merge_sort_lines(t_line_info arr[], int low, int high);
+// merge_sort
+bool    merge_sort_lines(t_line_info arr[], int low, int high);
 
 
 #endif

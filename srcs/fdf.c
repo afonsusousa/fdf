@@ -6,11 +6,12 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 03:02:52 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 00:23:49 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minilibx-linux/mlx.h"
+#include "../libft/libft.h"
 #include "fdf.h"
 #include <math.h>
 #include <stdio.h>
@@ -35,9 +36,16 @@ void	init_window(t_data *data)
 	data->menu_ratio = 6;
 	data->menu_width = data->window_width / data->menu_ratio;
 	data->mlx = mlx_init();
+	if (!data->mlx)
+		exit(1);
 	data->mlx_win = mlx_new_window(data->mlx, data->window_width,
 			data->window_height, "amagno-r - FDF");
-	data->img = mlx_new_image(data->mlx, 1920, 1080);
+	if (!data->mlx_win)
+		exit(1);
+	data->img = mlx_new_image(data->mlx, data->window_width, 
+			data->window_height);
+	if (!data->img)
+		exit(1);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 }
@@ -48,6 +56,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (-1);
+	ft_memset(&data, 0, sizeof(t_data));
 	data.time = 0;
 	init_window(&data);
 	init_map(&data, argv[1]);

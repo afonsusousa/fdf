@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:35:34 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 02:43:23 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 00:29:01 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	merge_rest(t_line_info arr[], t_line_info *l, t_line_info *r,
 		arr[indices[2]++] = r[indices[1]++];
 }
 
-static void	merge(t_line_info arr[], int left, int mid, int right)
+static bool	merge(t_line_info arr[], int left, int mid, int right)
 {
 	int			n[2];
 	int			i;
@@ -61,7 +61,7 @@ static void	merge(t_line_info arr[], int left, int mid, int right)
 	l = malloc(n[0] * sizeof(t_line_info));
 	r = malloc(n[1] * sizeof(t_line_info));
 	if (!left_right_valid(l, r))
-		return ;
+		return (false);
 	i = -1;
 	while (++i < n[0])
 		l[i] = arr[left + i];
@@ -74,18 +74,22 @@ static void	merge(t_line_info arr[], int left, int mid, int right)
 	indices[4] = n[1];
 	merge_left(arr, l, r, indices);
 	merge_rest(arr, l, r, indices);
-	return (free(l), free(r));
+	return (free(l), free(r), true);
 }
 
-void	merge_sort_lines(t_line_info arr[], int left, int right)
+bool	merge_sort_lines(t_line_info arr[], int left, int right)
 {
 	int	mid;
 
 	if (left < right)
 	{
 		mid = left + (right - left) / 2;
-		merge_sort_lines(arr, left, mid);
-		merge_sort_lines(arr, mid + 1, right);
-		merge(arr, left, mid, right);
+		if (!merge_sort_lines(arr, left, mid))
+			return (false);
+		if (!merge_sort_lines(arr, mid + 1, right))
+			return (false);
+		if (!merge(arr, left, mid, right))
+			return (false);
 	}
+	return (true);
 }

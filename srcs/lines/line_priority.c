@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 03:40:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 18:37:25 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 00:32:02 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,16 @@ void	draw_lines_priority(t_data *data)
 	capacity = data->map->map_width * data->map->map_height * 2;
 	data->map->lines = (t_line_info *)malloc(capacity * sizeof(t_line_info));
 	if (!data->map->lines)
-		return ;
+		return free_data(data);
 	line_count = collect_lines(data, data->map->lines);
 	if (line_count == 0)
-		return (free_and_null(&data->map->lines));
+		return (free_and_null(&data->map->lines), free_data(data));
 	i = -1;
 	while (++i < line_count)
 		data->map->lines[i].depth = calculate_line_depth(&data->map->lines[i],
 				&data->view);
-	merge_sort_lines(data->map->lines, 0, line_count - 1);
+	if (!merge_sort_lines(data->map->lines, 0, line_count - 1))
+		return (free_data(data));
 	i = -1;
 	while (++i < line_count)
 		draw_line_with_offset(data, data->map->lines[i].p0,
