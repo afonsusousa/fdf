@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 19:05:41 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 18:22:07 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 02:56:56 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	draw_pixel_color(t_data *data, int x, int y, int color,
 
 void	draw_background(t_data *data, int color)
 {
-	unsigned int i;
-	unsigned int pixel_count;
-	int *dest;
+	unsigned int	i;
+	unsigned int	pixel_count;
+	int				*dest;
 
 	i = 0;
 	pixel_count = data->window_height * data->window_width;

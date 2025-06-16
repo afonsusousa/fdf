@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 00:26:55 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 00:55:24 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 02:58:57 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static double	distance_from_center(t_data *data, t_point *point)
 
 double	apply_ripple(t_data *data, t_point *point)
 {
-	t_ripple *ripple;
+	t_ripple	*ripple;
 
 	ripple = &data->view.ripple;
 	if (!ripple->enabled)

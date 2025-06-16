@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 20:28:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:39:38 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 02:51:36 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static bool	is_digit(int c)
 {
 	return (c >= '0' && c <= '9');
 }
+
 static int	atoi_base(char *nptr)
 {
 	int	result;
@@ -60,8 +61,8 @@ static int	atoi_base(char *nptr)
 
 void	point_atoi(t_point *point, char *nptr)
 {
-	int sign;
-	int result;
+	int	sign;
+	int	result;
 
 	sign = 1;
 	result = 0;

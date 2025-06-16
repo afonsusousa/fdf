@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 00:30:16 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 02:58:44 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	z_transforms(t_data *data, t_point *point, double coords[3])
 		coords[2] += apply_wave(data, point);
 	rotate_z_coords(coords, data->view.gamma);
 }
+
 void	transform_point(t_data *data, t_point *point)
 {
 	point->world_3d[0] = (double)point->x;
@@ -48,9 +49,10 @@ void	transform_point(t_data *data, t_point *point)
 
 void	transform(t_data *data)
 {
-	int i;
-	double iso_view[3] = {0.577, 0.577, 0.577};
-	double dot_product;
+	int		i;
+	double	iso_view[3] = {0.577, 0.577, 0.577};
+	double	dot_product;
+
 	i = 0;
 	while (i < data->map->points_count)
 	{

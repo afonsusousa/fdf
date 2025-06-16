@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 19:30:16 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 03:02:15 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static int	handle_rotation_keypress(int keycode, t_data *data)
 		return (0);
 	return (1);
 }
+
 static int	handle_zoom_keypress(int keycode, t_data *data)
 {
 	if (keycode == KEY_PLUS || keycode == KEY_NUMPAD_PLUS)
@@ -63,6 +64,7 @@ static int	handle_zoom_keypress(int keycode, t_data *data)
 		return (0);
 	return (1);
 }
+
 static int	handle_scale_keypress(int keycode, t_data *data)
 {
 	if (keycode == KEY_PGUP)
@@ -73,6 +75,7 @@ static int	handle_scale_keypress(int keycode, t_data *data)
 		return (0);
 	return (1);
 }
+
 static int	handle_shift_keypress(int keycode, t_data *data)
 {
 	if (keycode == KEY_UP)

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:56:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 02:25:22 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 02:56:01 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	get_color_from_z(t_data *data, t_point *point)
 	int		r;
 	int		g;
 	int		b;
-	float	t;
 
 	if (data->map->max_z == data->map->min_z)
 		ratio = 0.5f;
@@ -27,17 +26,15 @@ int	get_color_from_z(t_data *data, t_point *point)
 				- data->map->min_z);
 	if (ratio <= 0.5f)
 	{
-		t = ratio * 2.0f;
-		r = (int)(80 + (140 - 80) * t);
-		g = (int)(70 + (120 - 70) * t);
-		b = (int)(200 + (180 - 200) * t);
+		r = (int)(80 + (140 - 80) * ratio * 2.0f);
+		g = (int)(70 + (120 - 70) * ratio * 2.0f);
+		b = (int)(200 + (180 - 200) * ratio * 2.0f);
 	}
 	else
 	{
-		t = (ratio - 0.5f) * 2.0f;
-		r = (int)(140 + (255 - 140) * t);
-		g = (int)(120 + (140 - 120) * t);
-		b = (int)(180 + (120 - 180) * t);
+		r = (int)(140 + (255 - 140) * ratio * 2.0f);
+		g = (int)(120 + (140 - 120) * ratio * 2.0f);
+		b = (int)(180 + (120 - 180) * ratio * 2.0f);
 	}
 	return ((r << 16) | (g << 8) | b);
 }
@@ -62,7 +59,7 @@ int	interpolate_color(int color1, int color2, float t)
 
 void	colorize_points(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->map->points_count)

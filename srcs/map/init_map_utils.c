@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:35:55 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/09 23:42:11 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 02:51:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,16 @@ void	get_map_dimensions(t_data *data, int map_file)
 	}
 	free(map_row);
 	height = 1;
-	while ((map_row = get_next_line(map_file)))
+	map_row = get_next_line(map_file);
+	while (map_row)
 	{
 		free(map_row);
+		map_row = get_next_line(map_file);
 		height++;
 	}
 	data->map->map_height = height;
 }
+
 void	parse_map_row(t_data *data, char **row, int y)
 {
 	int		x;
@@ -69,12 +72,13 @@ void	parse_map_row(t_data *data, char **row, int y)
 
 void	read_map_data(t_data *data, int map_file)
 {
-	char *map_row;
-	char **row;
-	int y;
+	char	*map_row;
+	char	**row;
+	int		y;
 
 	y = 0;
-	while ((map_row = get_next_line(map_file)))
+	map_row = get_next_line(map_file);
+	while (map_row)
 	{
 		row = ft_split(map_row, ' ');
 		if (row)
@@ -83,6 +87,7 @@ void	read_map_data(t_data *data, int map_file)
 			free(row);
 		}
 		free(map_row);
+		map_row = get_next_line(map_file);
 		y++;
 	}
 }

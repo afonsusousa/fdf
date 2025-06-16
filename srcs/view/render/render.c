@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:33:08 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 00:35:07 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 02:57:17 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	clear_image(t_data *data)
 
 int	rotate_and_render(t_data *data)
 {
-	static const double frame_duration_60_fps = 1.0 / 60.0;
+	static const double	frame_duration_60_fps = 1.0 / 60.0;
 
 	data->view.ripple.time += frame_duration_60_fps;
 	data->view.wave.x_time += frame_duration_60_fps;

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:17:22 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/12 17:27:08 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 03:01:14 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static int	handle_zoom_keyrelease(int keycode, t_data *data)
 		data->keys[KEY_INDEX_MINUS] = 0;
 	return (0);
 }
+
 static int	handle_scale_keyrelease(int keycode, t_data *data)
 {
 	if (keycode == KEY_PGUP)
@@ -46,6 +47,7 @@ static int	handle_scale_keyrelease(int keycode, t_data *data)
 		data->keys[KEY_INDEX_PGDOWN] = 0;
 	return (0);
 }
+
 static int	handle_shift_keyrelease(int keycode, t_data *data)
 {
 	if (keycode == KEY_UP)

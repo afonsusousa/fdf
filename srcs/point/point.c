@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 16:56:24 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 18:55:15 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 02:52:19 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	init_point(t_point *point, int x, int y, char *value)
 
 void	center_coordinates(t_data *data)
 {
-	int center_x;
-	int center_y;
-	int i;
+	int	center_x;
+	int	center_y;
+	int	i;
 
 	center_x = data->map->map_width / 2;
 	center_y = data->map->map_height / 2;

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 16:07:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/11 03:13:34 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 02:44:18 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 void	draw_lines_traversal(t_data *data)
 {
-	int x, y;
-	int x_dir, y_dir;
+	int	x;
+	int	y;
+	int	x_dir;
+	int	y_dir;
+
 	if (data->view.gamma > M_PI)
 	{
 		x_dir = -2 * (data->view.alpha > M_PI) + 1;

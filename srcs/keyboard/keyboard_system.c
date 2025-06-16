@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 00:45:37 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 03:02:26 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	handle_exit_keys(t_data *data, int keycode)
 	}
 	return (0);
 }
+
 void	reset_view(t_data *data)
 {
 	data->view.alpha = 0.0;

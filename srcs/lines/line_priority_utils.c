@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/15 16:35:34 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 23:49:18 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 02:43:23 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static bool	left_right_valid(t_line_info *l, t_line_info *r)
 	}
 	return (true);
 }
+
 static void	merge_left(t_line_info arr[], t_line_info *l, t_line_info *r,
 		int *indices)
 {
@@ -78,7 +79,7 @@ static void	merge(t_line_info arr[], int left, int mid, int right)
 
 void	merge_sort_lines(t_line_info arr[], int left, int right)
 {
-	int mid;
+	int	mid;
 
 	if (left < right)
 	{

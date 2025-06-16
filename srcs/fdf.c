@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 19:11:52 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 03:02:52 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 void	fdf_hooks(t_data *data)
 {
@@ -42,6 +41,7 @@ void	init_window(t_data *data)
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 }
+
 int	main(int argc, char **argv)
 {
 	t_data	data;

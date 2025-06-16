@@ -6,14 +6,14 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 17:52:55 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 02:41:19 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEYBOARD_DEFINES_H
-# define KEYBOARD_DEFINES_H
+#ifndef KEYBOARD_H
+# define KEYBOARD_H
 
-#include "../../fdf.h"
+# include "../../fdf.h"
 
 # define KEY_ESC		65307
 # define KEY_Q			113
@@ -45,20 +45,20 @@
 # define KEY_PGUP		65365
 # define KEY_PGDOWN		65366
 
-#define KEY_INDEX_W 0
-#define KEY_INDEX_S 1
-#define KEY_INDEX_A 2
-#define KEY_INDEX_D 3
-#define KEY_INDEX_Z 4
-#define KEY_INDEX_X 5
-#define KEY_INDEX_PLUS 6
-#define KEY_INDEX_MINUS 7
-#define KEY_INDEX_PGUP 8
-#define KEY_INDEX_PGDOWN 9
-#define KEY_INDEX_UP 10
-#define KEY_INDEX_DOWN 11
-#define KEY_INDEX_LEFT 12
-#define KEY_INDEX_RIGHT 13
+# define KEY_INDEX_W 0
+# define KEY_INDEX_S 1
+# define KEY_INDEX_A 2
+# define KEY_INDEX_D 3
+# define KEY_INDEX_Z 4
+# define KEY_INDEX_X 5
+# define KEY_INDEX_PLUS 6
+# define KEY_INDEX_MINUS 7
+# define KEY_INDEX_PGUP 8
+# define KEY_INDEX_PGDOWN 9
+# define KEY_INDEX_UP 10
+# define KEY_INDEX_DOWN 11
+# define KEY_INDEX_LEFT 12
+# define KEY_INDEX_RIGHT 13
 
 void	discrete_rotation(t_data *data);
 

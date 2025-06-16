@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:32:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 19:44:36 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 03:03:34 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ void	init_map(t_data *data, char *file_name)
 
 void	map_set_limits(t_data *data)
 {
+	int		x;
+	int		y;
 	int		min;
 	int		max;
 	t_point	*current;
 
-	int x, y;
 	if (!data || !data->map)
 		return ;
 	min = INT_MAX;
@@ -73,13 +74,13 @@ void	map_set_limits(t_data *data)
 	data->map->min_z = min;
 	data->map->max_z = max;
 }
-#include <stdio.h>
 
 void	print_map(t_data *data)
 {
+	int		x;
+	int		y;
 	t_point	*current;
 
-	int x, y;
 	if (!data || !data->map)
 		return ;
 	printf("Map dimensions: %d x %d\n", data->map->map_width,
