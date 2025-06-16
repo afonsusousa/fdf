@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 19:07:39 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 00:30:35 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 00:51:22 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	free_data(t_data *data)
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	mlx_destroy_display(data->mlx);
-	free(data->mlx);
+	if (data->mlx)
+		free(data->mlx);
 	exit(0);
 }
