@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 03:02:15 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 18:36:40 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,13 @@ static int	handle_rotation_keypress(int keycode, t_data *data)
 	return (1);
 }
 
-static int	handle_zoom_keypress(int keycode, t_data *data)
+static int	handle_zoom_scale_keypress(int keycode, t_data *data)
 {
 	if (keycode == KEY_PLUS || keycode == KEY_NUMPAD_PLUS)
 		data->keys[KEY_INDEX_PLUS] = 1;
 	else if (keycode == KEY_MINUS)
 		data->keys[KEY_INDEX_MINUS] = 1;
-	else
-		return (0);
-	return (1);
-}
-
-static int	handle_scale_keypress(int keycode, t_data *data)
-{
-	if (keycode == KEY_PGUP)
+	else if (keycode == KEY_PGUP)
 		data->keys[KEY_INDEX_PGUP] = 1;
 	else if (keycode == KEY_PGDOWN)
 		data->keys[KEY_INDEX_PGDOWN] = 1;
@@ -94,8 +87,7 @@ static int	handle_shift_keypress(int keycode, t_data *data)
 int	handle_view_keypress(int keycode, t_data *data)
 {
 	handle_rotation_keypress(keycode, data);
-	handle_zoom_keypress(keycode, data);
-	handle_scale_keypress(keycode, data);
+	handle_zoom_scale_keypress(keycode, data);
 	handle_shift_keypress(keycode, data);
 	return (1);
 }
