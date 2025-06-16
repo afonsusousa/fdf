@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 02:59:48 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 20:07:42 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,4 @@ void	display_effects_controls(t_data *img)
 		"4 - Ripple Effect");
 	mlx_string_put(img->mlx, img->mlx_win, 15, 480, 0xFFFFFF, "5 - Wave X");
 	mlx_string_put(img->mlx, img->mlx_win, 15, 495, 0xFFFFFF, "6 - Wave Y");
-}
-
-void	display_all_controls(t_data *img)
-{
-	display_basic_controls(img);
-	display_mouse_controls(img);
-	display_rendering_controls(img);
-	display_auto_rotation_controls(img);
-	display_effects_controls(img);
-	mlx_string_put(img->mlx, img->mlx_win, 10, 520, 0xFF8C7A, "SYSTEM:");
-	mlx_string_put(img->mlx, img->mlx_win, 15, 535, 0xFFFFFF, "R - Reset View");
-	mlx_string_put(img->mlx, img->mlx_win, 15, 550, 0xFFFFFF, "Q - Quit");
 }

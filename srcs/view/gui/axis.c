@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:32:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 18:21:09 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 20:06:59 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,27 @@
 
 void	draw_axis_line(t_data *img, int start[2], int end[2], int color)
 {
-	int		dx;
-	int		dy;
 	int		steps;
 	int		i;
-	float	x_inc;
-	float	y_inc;
-	float	x;
-	float	y;
+	float	increment[2];
+	float	pos[2];
+	t_color	pixel_color;
 
-	dx = end[0] - start[0];
-	dy = end[1] - start[1];
-	if (abs(dx) > abs(dy))
-		steps = abs(dx);
-	else
-		steps = abs(dy);
-	x_inc = (float)dx / steps;
-	y_inc = (float)dy / steps;
-	x = start[0];
-	y = start[1];
+	pixel_color.color = color;
+	pixel_color.brightness = 1.0f;
+	calculate_line_params(start, end, &steps, increment);
+	pos[0] = start[0];
+	pos[1] = start[1];
 	i = -1;
 	while (++i <= steps)
 	{
-		if (x >= 0 && x < img->window_width && y >= 0 && y < img->window_height)
-			draw_pixel_color(img, (int)x, (int)y, color, 1.0f);
-		x += x_inc;
-		y += y_inc;
+		if (pos[0] >= 0 && pos[0] < img->window_width && pos[1] >= 0
+			&& pos[1] < img->window_height)
+		{
+			draw_pixel_color(img, (int)pos[0], (int)pos[1], &pixel_color);
+		}
+		pos[0] += increment[0];
+		pos[1] += increment[1];
 	}
 }
 
@@ -63,15 +58,20 @@ void	project_axis_vector(double axis[3], int center[2], int end[2],
 
 void	draw_axis_border(t_data *img, int corner_x, int corner_y, int size)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	t_color	pixel_color;
 
+	pixel_color.color = 0xFFFFFF;
+	pixel_color.brightness = 1.0f;
 	y = 0;
 	while (y < size)
 	{
 		x = -1;
 		while (++x < size)
-			draw_pixel_color(img, corner_x + x, corner_y + y, 0xFFFFFF, 1.0f);
+		{
+			draw_pixel_color(img, corner_x + x, corner_y + y, &pixel_color);
+		}
 		y++;
 	}
 }

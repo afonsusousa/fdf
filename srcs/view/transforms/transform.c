@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 02:58:44 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:44:25 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,12 @@ void	transform_point(t_data *data, t_point *point)
 void	transform(t_data *data)
 {
 	int		i;
-	double	iso_view[3] = {0.577, 0.577, 0.577};
+	double	iso_view[3];
 	double	dot_product;
 
+	iso_view[0] = 0.577;
+	iso_view[1] = 0.577;
+	iso_view[2] = 0.577;
 	i = 0;
 	while (i < data->map->points_count)
 	{

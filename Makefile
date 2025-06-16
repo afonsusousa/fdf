@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/15 18:25:49 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/16 19:55:24 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,12 @@ GNLDIR = get_next_line
 SRCS = srcs/fdf.c \
        srcs/view/render/draw.c \
        srcs/view/render/line.c \
+       srcs/view/render/line_utils.c \
        srcs/view/render/colors.c \
        srcs/view/render/render.c \
        srcs/view/gui/menu.c \
        srcs/view/gui/menu_display.c \
+       srcs/view/gui/menu_display_utils.c \
        srcs/view/gui/menu_controls.c \
        srcs/view/gui/axis.c \
        srcs/view/gui/axis_utils.c \

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:57:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 18:22:22 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:54:06 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,21 @@
 #include "limits.h"
 #include <math.h>
 
-void	swap(int *a, int *b)
-{
-	int	temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
 void	draw_steep(t_data *data, t_line *line)
 {
-	int		x;
-	float	y_fract;
-	float	y_rfract;
-	int		y_pixel;
-	int		current_color;
+	int				x;
+	t_pixel_values	pixels;
+	t_color			pixel_color;
 
 	x = line->xpxl1;
 	while (x <= line->xpxl2)
 	{
-		y_pixel = integer_of(line->intersectY);
-		y_fract = fractional_of(line->intersectY);
-		y_rfract = reverse_fractional_of(line->intersectY);
-		if ((line->xpxl2 - line->xpxl1) == 0)
-			current_color = interpolate_color(line->color1, line->color2, 0.0f);
-		else
-			current_color = interpolate_color(line->color1, line->color2,
-					(float)(x - line->xpxl1) / (float)(line->xpxl2
-						- line->xpxl1));
-		draw_pixel_color(data, y_pixel, x, current_color, y_rfract);
-		draw_pixel_color(data, y_pixel + 1, x, current_color, y_fract);
+		calculate_pixel_values(line, &pixels);
+		pixel_color.color = get_interpolated_color(line, x);
+		pixel_color.brightness = pixels.y_rfract;
+		draw_pixel_color(data, pixels.y_pixel, x, &pixel_color);
+		pixel_color.brightness = pixels.y_fract;
+		draw_pixel_color(data, pixels.y_pixel + 1, x, &pixel_color);
 		line->intersectY += line->gradient;
 		x++;
 	}
@@ -52,26 +36,19 @@ void	draw_steep(t_data *data, t_line *line)
 
 void	draw_nonsteep(t_data *data, t_line *line)
 {
-	int		x;
-	float	y_fract;
-	float	y_rfract;
-	int		y_pixel;
-	int		current_color;
+	int				x;
+	t_pixel_values	pixels;
+	t_color			pixel_color;
 
 	x = line->xpxl1;
 	while (x <= line->xpxl2)
 	{
-		y_pixel = integer_of(line->intersectY);
-		y_fract = fractional_of(line->intersectY);
-		y_rfract = reverse_fractional_of(line->intersectY);
-		if ((line->xpxl2 - line->xpxl1) == 0)
-			current_color = interpolate_color(line->color1, line->color2, 0.0f);
-		else
-			current_color = interpolate_color(line->color1, line->color2,
-					(float)(x - line->xpxl1) / (float)(line->xpxl2
-						- line->xpxl1));
-		draw_pixel_color(data, x, y_pixel, current_color, y_rfract);
-		draw_pixel_color(data, x, y_pixel + 1, current_color, y_fract);
+		calculate_pixel_values(line, &pixels);
+		pixel_color.color = get_interpolated_color(line, x);
+		pixel_color.brightness = pixels.y_rfract;
+		draw_pixel_color(data, x, pixels.y_pixel, &pixel_color);
+		pixel_color.brightness = pixels.y_fract;
+		draw_pixel_color(data, x, pixels.y_pixel + 1, &pixel_color);
 		line->intersectY += line->gradient;
 		x++;
 	}

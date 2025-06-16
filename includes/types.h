@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 19:14:31 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:52:19 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,10 +162,24 @@ typedef struct s_data
 	int keys[14];
 }	t_data;
 
+typedef struct s_axis_params
+{
+	double	*axis;
+	int		end[2];
+	int		color;
+} t_axis_params;
+
 typedef struct s_color
 {
 	int		color;
 	float	brightness;
 } t_color;
+
+typedef struct s_pixel_values
+{
+	int		y_pixel;
+	float	y_fract;
+	float	y_rfract;
+} t_pixel_values;
 
 #endif

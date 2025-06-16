@@ -6,12 +6,28 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 16:43:36 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 02:57:42 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 20:13:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../fdf.h"
 #include "../../keyboard/keyboard.h"
+
+static void	normalize_orto_angles(t_data *data)
+{
+	while (data->view.alpha > 2 * M_PI)
+		data->view.alpha -= 2 * M_PI;
+	while (data->view.alpha < -2 * M_PI)
+		data->view.alpha += 2 * M_PI;
+	while (data->view.beta > 2 * M_PI)
+		data->view.beta -= 2 * M_PI;
+	while (data->view.beta < -2 * M_PI)
+		data->view.beta += 2 * M_PI;
+	while (data->view.gamma > 2 * M_PI)
+		data->view.gamma -= 2 * M_PI;
+	while (data->view.gamma < -2 * M_PI)
+		data->view.gamma += 2 * M_PI;
+}
 
 void	set_orthographic_view(t_data *data, int rotation_axis)
 {
@@ -30,18 +46,7 @@ void	set_orthographic_view(t_data *data, int rotation_axis)
 		data->view.gamma += rotation_step;
 	else if (rotation_axis == 5)
 		data->view.gamma -= rotation_step;
-	while (data->view.alpha > 2 * M_PI)
-		data->view.alpha -= 2 * M_PI;
-	while (data->view.alpha < -2 * M_PI)
-		data->view.alpha += 2 * M_PI;
-	while (data->view.beta > 2 * M_PI)
-		data->view.beta -= 2 * M_PI;
-	while (data->view.beta < -2 * M_PI)
-		data->view.beta += 2 * M_PI;
-	while (data->view.gamma > 2 * M_PI)
-		data->view.gamma -= 2 * M_PI;
-	while (data->view.gamma < -2 * M_PI)
-		data->view.gamma += 2 * M_PI;
+	normalize_orto_angles(data);
 }
 
 void	handle_orthographic_rotation(t_data *data, int key_index)

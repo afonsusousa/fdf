@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:32:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 03:03:34 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:48:27 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,31 @@ void	init_map(t_data *data, char *file_name)
 	center_coordinates(data);
 }
 
-void	map_set_limits(t_data *data)
+void	process_row_limits(t_data *data, int y, int *min, int *max)
 {
 	int		x;
-	int		y;
-	int		min;
-	int		max;
 	t_point	*current;
+
+	x = 0;
+	while (x < data->map->map_width)
+	{
+		current = get_point(data, x, y);
+		if (current)
+		{
+			if (current->z < *min)
+				*min = current->z;
+			if (current->z > *max)
+				*max = current->z;
+		}
+		x++;
+	}
+}
+
+void	map_set_limits(t_data *data)
+{
+	int	y;
+	int	min;
+	int	max;
 
 	if (!data || !data->map)
 		return ;
@@ -56,30 +74,34 @@ void	map_set_limits(t_data *data)
 	y = 0;
 	while (y < data->map->map_height)
 	{
-		x = 0;
-		while (x < data->map->map_width)
-		{
-			current = get_point(data, x, y);
-			if (current)
-			{
-				if (current->z < min)
-					min = current->z;
-				if (current->z > max)
-					max = current->z;
-			}
-			x++;
-		}
+		process_row_limits(data, y, &min, &max);
 		y++;
 	}
 	data->map->min_z = min;
 	data->map->max_z = max;
 }
 
-void	print_map(t_data *data)
+void	print_map_row(t_data *data, int y)
 {
 	int		x;
-	int		y;
 	t_point	*current;
+
+	x = 0;
+	while (x < data->map->map_width)
+	{
+		current = get_point(data, x, y);
+		if (current)
+			printf("%3d ", current->z);
+		else
+			printf("  0 ");
+		x++;
+	}
+	printf("\n");
+}
+
+void	print_map(t_data *data)
+{
+	int	y;
 
 	if (!data || !data->map)
 		return ;
@@ -88,17 +110,7 @@ void	print_map(t_data *data)
 	y = 0;
 	while (y < data->map->map_height)
 	{
-		x = 0;
-		while (x < data->map->map_width)
-		{
-			current = get_point(data, x, y);
-			if (current)
-				printf("%3d ", current->z);
-			else
-				printf("  0 ");
-			x++;
-		}
-		printf("\n");
+		print_map_row(data, y);
 		y++;
 	}
 }

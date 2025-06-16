@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 19:05:41 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 02:56:56 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:42:26 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ void	draw_pixel(t_data *data, int x, int y, float brightness)
 	my_mlx_pixel_put(data, x, y, color);
 }
 
-void	draw_pixel_color(t_data *data, int x, int y, int color,
-		float brightness)
+void	draw_pixel_color(t_data *data, int x, int y, t_color *color)
 {
 	int	r;
 	int	g;
@@ -53,15 +52,15 @@ void	draw_pixel_color(t_data *data, int x, int y, int color,
 
 	if (x < 0 || y < 0 || x >= 1920 || y >= 1080)
 		return ;
-	if (!data)
+	if (!data || !color)
 		return ;
-	if (brightness < 0.0f)
-		brightness = 0.0f;
-	if (brightness > 1.0f)
-		brightness = 1.0f;
-	r = ((color >> 16) & 0xFF) * brightness;
-	g = ((color >> 8) & 0xFF) * brightness;
-	b = (color & 0xFF) * brightness;
+	if (color->brightness < 0.0f)
+		color->brightness = 0.0f;
+	if (color->brightness > 1.0f)
+		color->brightness = 1.0f;
+	r = ((color->color >> 16) & 0xFF) * color->brightness;
+	g = ((color->color >> 8) & 0xFF) * color->brightness;
+	b = (color->color & 0xFF) * color->brightness;
 	final_color = (r << 16) | (g << 8) | b;
 	my_mlx_pixel_put(data, x, y, final_color);
 }

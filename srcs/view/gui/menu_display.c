@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 03:00:19 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 20:03:51 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,28 +71,9 @@ void	display_auto_rotation_status(t_data *img)
 	}
 	else
 	{
-		if (img->view.auto_rotate & 4)
-			x_status = "ON";
-		else
-			x_status = "OFF";
-		if (img->view.auto_rotate & 2)
-			y_status = "ON";
-		else
-			y_status = "OFF";
-		if (img->view.auto_rotate & 1)
-			z_status = "ON";
-		else
-			z_status = "OFF";
-		ft_strlcpy(auto_rotation_status, "Auto-Rotation: X:",
-			sizeof(auto_rotation_status));
-		ft_strlcat(auto_rotation_status, x_status,
-			sizeof(auto_rotation_status));
-		ft_strlcat(auto_rotation_status, " Y:", sizeof(auto_rotation_status));
-		ft_strlcat(auto_rotation_status, y_status,
-			sizeof(auto_rotation_status));
-		ft_strlcat(auto_rotation_status, " Z:", sizeof(auto_rotation_status));
-		ft_strlcat(auto_rotation_status, z_status,
-			sizeof(auto_rotation_status));
+		set_rotation_status_strings(img, &x_status, &y_status, &z_status);
+		build_rotation_status_text(auto_rotation_status, x_status,
+			y_status, z_status);
 	}
 	mlx_string_put(img->mlx, img->mlx_win, 15, 60, 0xFFFFFF,
 		auto_rotation_status);
@@ -116,53 +97,13 @@ void	display_render_mode(t_data *img)
 	mlx_string_put(img->mlx, img->mlx_win, 15, 75, 0xFFFFFF, render_text);
 }
 
-void	display_menu_header(t_data *img)
-{
-	mlx_string_put(img->mlx, img->mlx_win, 10, 115, 0xFF8C7A, "Controls:");
-}
-
 void	display_effects_status(t_data *img)
 {
 	char	effects_text[256];
 	char	active_effects[128];
-	int		has_effects;
 
-	has_effects = 0;
-	active_effects[0] = '\0';
-	if (img->view.ripple.enabled)
-	{
-		if (has_effects)
-			ft_strlcat(active_effects, " + ", sizeof(active_effects));
-		ft_strlcat(active_effects, "RIPPLE", sizeof(active_effects));
-		has_effects = 1;
-	}
-	if (img->view.wave.enabled_x)
-	{
-		if (has_effects)
-			ft_strlcat(active_effects, " + ", sizeof(active_effects));
-		ft_strlcat(active_effects, "WAVE-X", sizeof(active_effects));
-		has_effects = 1;
-	}
-	if (img->view.wave.enabled_y)
-	{
-		if (has_effects)
-			ft_strlcat(active_effects, " + ", sizeof(active_effects));
-		ft_strlcat(active_effects, "WAVE-Y", sizeof(active_effects));
-		has_effects = 1;
-	}
-	if (!has_effects)
-		ft_strlcpy(active_effects, "NONE", sizeof(active_effects));
+	build_effects_string(img, active_effects);
 	ft_strlcpy(effects_text, "Effects: ", sizeof(effects_text));
 	ft_strlcat(effects_text, active_effects, sizeof(effects_text));
 	mlx_string_put(img->mlx, img->mlx_win, 15, 90, 0xFFFFFF, effects_text);
-}
-
-void	display_all_menu_info(t_data *img)
-{
-	display_rotation_info(img);
-	display_view_info(img);
-	display_auto_rotation_status(img);
-	display_render_mode(img);
-	display_effects_status(img);
-	display_menu_header(img);
 }
