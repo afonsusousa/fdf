@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 22:07:14 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 00:52:56 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ int	handle_effects_keys(int keycode, t_data *data)
 		return (1);
 	}
 	if (keycode == KEY_7)
+	{
 		data->view.dvd = !data->view.dvd;
+		return (1);
+	}
 	return (0);
 }
