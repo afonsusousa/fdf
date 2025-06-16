@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 00:23:49 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 00:48:20 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init_window(t_data *data)
 			data->window_height, "amagno-r - FDF");
 	if (!data->mlx_win)
 		exit(1);
-	data->img = mlx_new_image(data->mlx, data->window_width, 
+	data->img = mlx_new_image(data->mlx, data->window_width,
 			data->window_height);
 	if (!data->img)
 		exit(1);

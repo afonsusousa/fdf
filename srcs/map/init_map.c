@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:32:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 00:25:14 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 00:48:41 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_map(t_data *data, char *file_name)
 		return (free_data(data));
 	map_file = open(file_name, O_RDONLY);
 	if (map_file == -1)
-		return free_data(data);
+		return (free_data(data));
 	get_map_dimensions(data, map_file);
 	close(map_file);
 	data->map->points_count = data->map->map_width * data->map->map_height;
