@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:56:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 03:06:30 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 18:45:34 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	get_color_from_z(t_data *data, t_point *point)
 	}
 	else
 	{
-		r = (int)(140 + (255 - 140) * (ratio - 0.5f)  * 2.0f);
+		r = (int)(140 + (255 - 140) * (ratio - 0.5f) * 2.0f);
 		g = (int)(120 + (140 - 120) * (ratio - 0.5f) * 2.0f);
 		b = (int)(180 + (120 - 180) * (ratio - 0.5f) * 2.0f);
 	}
