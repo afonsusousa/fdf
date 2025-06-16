@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 00:33:29 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:14:31 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,11 @@ typedef struct s_view
 	double scale;
 	double angle;
 	int zoom;
-	int auto_rotate;	
+	int auto_rotate;
+	int shift_step;
+	int zoom_step;
+	double rotation_step;
+	double scale_step;
 	double axis[3];
 	bool top_down;
 	bool left_tilt;
@@ -157,5 +161,11 @@ typedef struct s_data
 	t_mouse mouse;
 	int keys[14];
 }	t_data;
+
+typedef struct s_color
+{
+	int		color;
+	float	brightness;
+} t_color;
 
 #endif
