@@ -88,7 +88,7 @@ static int	handle_shift_keypress(int keycode, t_data *data)
 	return (1);
 }
 
-int handle_view_keypress(int keycode, t_data *data)
+int	handle_view_keypress(int keycode, t_data *data)
 {
 	handle_rotation_keypress(keycode, data);
 	handle_zoom_keypress(keycode, data);
@@ -96,11 +96,3 @@ int handle_view_keypress(int keycode, t_data *data)
 	handle_shift_keypress(keycode, data);
 	return (1);
 }
-
-
-
-
-
-
-
-

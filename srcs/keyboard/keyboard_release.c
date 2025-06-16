@@ -59,7 +59,7 @@ static int	handle_shift_keyrelease(int keycode, t_data *data)
 	return (0);
 }
 
-int handle_view_keyrelease(int key_code, t_data *data)
+int	handle_view_keyrelease(int key_code, t_data *data)
 {
 	handle_rotation_keyrelease(key_code, data);
 	handle_zoom_keyrelease(key_code, data);

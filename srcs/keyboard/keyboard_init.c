@@ -14,7 +14,7 @@
 #include "../../libft/libft.h"
 #include "keyboard.h"
 
-void keyboard_init(t_data *data)
+void	keyboard_init(t_data *data)
 {
 	data->keys[KEY_INDEX_W] = 0;
 	data->keys[KEY_INDEX_S] = 0;
@@ -23,7 +23,7 @@ void keyboard_init(t_data *data)
 	data->keys[KEY_INDEX_Z] = 0;
 	data->keys[KEY_INDEX_X] = 0;
 	data->keys[KEY_INDEX_PLUS] = 0;
-	data->keys[KEY_INDEX_MINUS] = 0; 
+	data->keys[KEY_INDEX_MINUS] = 0;
 	data->keys[KEY_INDEX_PGUP] = 0;
 	data->keys[KEY_INDEX_PGDOWN] = 0;
 	data->keys[KEY_INDEX_UP] = 0;
@@ -31,4 +31,3 @@ void keyboard_init(t_data *data)
 	data->keys[KEY_INDEX_LEFT] = 0;
 	data->keys[KEY_INDEX_RIGHT] = 0;
 }
-

@@ -18,7 +18,6 @@ static void	toggle_auto_rotate_x(t_data *data)
 	data->view.auto_rotate ^= 4;
 	if (data->view.auto_rotate & 8)
 		data->view.auto_rotate ^= 8;
-
 }
 
 static void	toggle_auto_rotate_y(t_data *data)
@@ -43,7 +42,7 @@ static void	toggle_chaos_mode(t_data *data)
 		data->view.auto_rotate = 8;
 }
 
-int handle_auto_rotation_keys(int keycode, t_data *data)
+int	handle_auto_rotation_keys(int keycode, t_data *data)
 {
 	if (keycode == KEY_1)
 		toggle_auto_rotate_x(data);

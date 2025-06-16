@@ -19,7 +19,7 @@ static void	smooth_rotation(t_data *data)
 
 	rotation_step = 0.01;
 	if (data->keys[KEY_INDEX_W])
-		data->view.alpha += rotation_step; 
+		data->view.alpha += rotation_step;
 	if (data->keys[KEY_INDEX_S])
 		data->view.alpha -= rotation_step;
 	if (data->keys[KEY_INDEX_A])
@@ -34,26 +34,26 @@ static void	smooth_rotation(t_data *data)
 
 static void	smooth_zoom(t_data *data)
 {
-	int zoom_step;
+	int	zoom_step;
 
 	zoom_step = 1;
 	if (data->keys[KEY_INDEX_PLUS])
 	{
 		data->view.zoom += zoom_step;
-		if(data->view.zoom > 75)
+		if (data->view.zoom > 75)
 			data->view.zoom = 75;
 	}
 	if (data->keys[KEY_INDEX_MINUS])
 	{
 		data->view.zoom -= zoom_step;
-		if(data->view.zoom < 5)
+		if (data->view.zoom < 5)
 			data->view.zoom = 5;
 	}
 }
 
 static void	smooth_scale(t_data *data)
 {
-	double scale_step;
+	double	scale_step;
 
 	scale_step = 0.005;
 	if (data->keys[KEY_INDEX_PGUP])
@@ -72,10 +72,9 @@ static void	smooth_scale(t_data *data)
 
 static void	smooth_shift(t_data *data)
 {
-	int shift_step;
+	int	shift_step;
 
 	shift_step = 2;
-
 	if (data->keys[KEY_INDEX_UP])
 	{
 		data->view.offset_y -= shift_step;
@@ -102,7 +101,7 @@ static void	smooth_shift(t_data *data)
 	}
 }
 
-void apply_keys(t_data *data)
+void	apply_keys(t_data *data)
 {
 	if (data->view.view_mode == ISOMETRIC)
 		smooth_rotation(data);
@@ -112,4 +111,3 @@ void apply_keys(t_data *data)
 	smooth_scale(data);
 	smooth_shift(data);
 }
-

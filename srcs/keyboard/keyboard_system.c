@@ -17,7 +17,7 @@ int	handle_exit_keys(t_data *data, int keycode)
 {
 	if (keycode == KEY_ESC || keycode == KEY_Q)
 	{
-		free_data(data);	
+		free_data(data);
 		exit(0);
 	}
 	return (0);
@@ -67,7 +67,7 @@ int	handle_rendering_keys(int keycode, t_data *data)
 	return (0);
 }
 
-int handle_effects_keys(int keycode, t_data *data)
+int	handle_effects_keys(int keycode, t_data *data)
 {
 	if (keycode == KEY_4)
 	{
