@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 20:07:08 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 22:02:40 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void init_ripple(t_data *data);
 double apply_ripple(t_data *data, t_point *point);
 void init_wave(t_data *data);
 double apply_wave(t_data *data, t_point *point);
+void dvd(t_data *data);
 
 #endif

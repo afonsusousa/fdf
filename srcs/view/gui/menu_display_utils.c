@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:00:00 by asousa            #+#    #+#             */
-/*   Updated: 2025/06/16 20:10:36 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 22:18:48 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,32 +41,29 @@ void	build_rotation_status_text(char *auto_rotation_status,
 	ft_strlcat(auto_rotation_status, z_status, 256);
 }
 
-void	build_effects_string(t_data *img, char *active_effects)
+void	build_effects_string(t_data *img, char *effects)
 {
-	int	has_effects;
-
-	has_effects = 0;
-	active_effects[0] = '\0';
+	effects[0] = '\0';
 	if (img->view.ripple.enabled)
 	{
-		ft_strlcat(active_effects, " + ", 128 * has_effects);
-		ft_strlcat(active_effects, "RIPPLE", 128);
-		has_effects = 1;
+		ft_strlcat(effects, " + ", 128 * (ft_strlen(effects) != 0));
+		ft_strlcat(effects, "RIPPLE", 128);
 	}
 	if (img->view.wave.enabled_x)
 	{
-		ft_strlcat(active_effects, " + ", 128 * has_effects);
-		ft_strlcat(active_effects, "WAVE-X", 128);
-		has_effects = 1;
+		ft_strlcat(effects, " + ", 128 * (ft_strlen(effects) != 0));
+		ft_strlcat(effects, "WAVE-X", 128);
 	}
 	if (img->view.wave.enabled_y)
 	{
-		ft_strlcat(active_effects, " + ", 128 * has_effects);
-		ft_strlcat(active_effects, "WAVE-Y", 128);
-		has_effects = 1;
+		ft_strlcat(effects, " + ", 128 * (ft_strlen(effects) != 0));
+		ft_strlcat(effects, "WAVE-Y", 128);
 	}
-	if (!has_effects)
-		ft_strlcpy(active_effects, "NONE", 128);
+	if (img->view.dvd)
+	{
+		ft_strlcat(effects, " + ", 128 * (ft_strlen(effects) != 0));
+		ft_strlcat(effects, "DVD", 128);
+	}
 }
 
 void	display_all_menu_info(t_data *img)

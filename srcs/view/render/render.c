@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:33:08 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 02:57:17 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 22:05:40 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	rotate_and_render(t_data *data)
 	clear_image(data);
 	if (data->view.view_mode == ISOMETRIC)
 		apply_auto_rotation(data);
+	if (data->view.dvd)
+		dvd(data);
 	apply_keys(data);
 	normalize_angles(data);
 	transform(data);

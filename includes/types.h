@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 19:52:19 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 22:05:06 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,12 @@ typedef struct s_view
 	int zoom_step;
 	double rotation_step;
 	double scale_step;
+	double auto_rotation_speed;
 	double axis[3];
 	bool top_down;
 	bool left_tilt;
 	bool right_tilt;
+	bool dvd;
 	t_ripple ripple;
 	t_wave wave;
 	t_render_mode render_mode;

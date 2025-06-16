@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 18:36:40 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/16 21:01:00 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,20 @@
 
 void	apply_auto_rotation(t_data *data)
 {
-	double	auto_rotation_speed;
-
-	auto_rotation_speed = 0.005;
 	if (data->view.auto_rotate == 8)
 	{
-		data->view.alpha += auto_rotation_speed * 1.3;
-		data->view.beta += auto_rotation_speed * 1.1;
-		data->view.gamma += auto_rotation_speed * 1.3;
+		data->view.alpha += data->view.auto_rotation_speed * 1.3;
+		data->view.beta += data->view.auto_rotation_speed * 1.1;
+		data->view.gamma += data->view.auto_rotation_speed * 1.3;
 	}
 	else
 	{
 		if (data->view.auto_rotate & 4)
-			data->view.alpha += auto_rotation_speed;
+			data->view.alpha += data->view.auto_rotation_speed;
 		if (data->view.auto_rotate & 2)
-			data->view.beta += auto_rotation_speed;
+			data->view.beta += data->view.auto_rotation_speed;
 		if (data->view.auto_rotate & 1)
-			data->view.gamma += auto_rotation_speed;
+			data->view.gamma += data->view.auto_rotation_speed;
 	}
 }
 
