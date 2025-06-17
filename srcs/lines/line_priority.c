@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 03:40:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 15:24:21 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:42:04 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	collect_horizontal_lines(t_data *data, t_line_info *lines)
 		{
 			curr = get_point(data, x, y);
 			r = get_point(data, x + 1, y);
-			if (curr && r && in_screen(data, curr) && in_screen(data, r))
+			if (curr && r && (in_screen(data, curr) || in_screen(data, r)))
 			{
 				lines[line_index].p0 = curr;
 				lines[line_index].p1 = r;
@@ -99,7 +99,7 @@ int	collect_vertical_lines(t_data *data, t_line_info *lines, int start)
 		{
 			curr = get_point(data, x, y);
 			d = get_point(data, x, y + 1);
-			if (curr && d && in_screen(data, curr) && in_screen(data, d))
+			if (curr && d && (in_screen(data, curr) || in_screen(data, d)))
 			{
 				lines[line_index].p0 = curr;
 				lines[line_index].p1 = d;

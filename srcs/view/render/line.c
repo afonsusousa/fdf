@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:57:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 03:25:43 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:42:27 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	draw_line_screen_only(t_data *data, t_point *p0, t_point *p1)
 	t_line	line;
 
 	init_line(data, &line, p0, p1);
-	if ((in_screen(data, p0) && in_screen(data, p1)))
+	if ((in_screen(data, p0) || in_screen(data, p1)))
 	{
 		if (line.steep)
 			draw_steep(data, &line);
