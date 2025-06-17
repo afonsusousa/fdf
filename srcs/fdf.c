@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 00:50:27 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 03:19:22 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ void	fdf_hooks(t_data *data)
 
 void	init_window(t_data *data)
 {
-	data->window_height = 1080;
-	data->window_width = 1920;
-	data->menu_ratio = 6;
-	data->menu_width = data->window_width / data->menu_ratio;
+	data->w_height = 1080;
+	data->w_width = 1920;
+	data->m_ratio = 6;
+	data->m_width = data->w_width / data->m_ratio;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		exit(1);
-	data->mlx_win = mlx_new_window(data->mlx, data->window_width,
-			data->window_height, "amagno-r - FDF");
+	data->mlx_win = mlx_new_window(data->mlx, data->w_width,
+			data->w_height, "amagno-r - FDF");
 	if (!data->mlx_win)
 		free_data(data);
-	data->img = mlx_new_image(data->mlx, data->window_width,
-			data->window_height);
+	data->img = mlx_new_image(data->mlx, data->w_width,
+			data->w_height);
 	if (!data->img)
 		free_data(data);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,

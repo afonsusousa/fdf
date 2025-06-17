@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 16:07:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 19:40:19 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 03:23:17 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void	draw_lines_traversal(t_data *data)
 		while (x < data->map->map_width && x >= 0)
 		{
 			if (x != data->map->map_width - 1)
-				draw_line_with_offset(data, get_point(data, x, y),
+				draw_line_screen_only(data, get_point(data, x, y),
 					get_point(data, x + 1, y));
 			if (y != data->map->map_height - 1)
-				draw_line_with_offset(data, get_point(data, x, y),
+				draw_line_screen_only(data, get_point(data, x, y),
 					get_point(data, x, y + 1));
 			x += x_dir;
 		}

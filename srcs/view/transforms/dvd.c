@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 21:54:30 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 22:12:25 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 03:19:22 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ void	dvd(t_data *data)
 		data->view.offset_y = 0;
 		dir_vector[1] = 1;
 	}
-	if (data->view.offset_y > data->window_height)
+	if (data->view.offset_y > data->w_height)
 	{
-		data->view.offset_y = data->window_height;
+		data->view.offset_y = data->w_height;
 		dir_vector[1] = -1;
 	}
-	if (data->view.offset_x < data->menu_width + 1)
+	if (data->view.offset_x < data->m_width + 1)
 	{
-		data->view.offset_x = data->menu_width + 1;
+		data->view.offset_x = data->m_width + 1;
 		dir_vector[0] = 1;
 	}
-	if (data->view.offset_x > data->window_width)
+	if (data->view.offset_x > data->w_width)
 	{
-		data->view.offset_x = data->window_width;
+		data->view.offset_x = data->w_width;
 		dir_vector[0] = -1;
 	}
 	data->view.offset_x += dir_vector[0] * data->view.shift_step;

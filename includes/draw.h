@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 19:54:06 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 03:24:20 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void calculate_pixel_values(t_line *line, t_pixel_values *pixels);
 int get_interpolated_color(t_line *line, int x);
 void draw_steep(t_data *data, t_line *line);
 void draw_nonsteep(t_data *data, t_line *line);
-void draw_line(t_data *data, t_point *p0, t_point *p1);
+void draw_line_screen_only(t_data *data, t_point *p0, t_point *p1);
 void draw_line_with_offset(t_data *data, t_point *p0, t_point *p1);
 void init_line_struct(t_line *line, int p0[2], int p1[2]);
 void init_line(t_data *data, t_line *line, t_point *p0, t_point *p1);

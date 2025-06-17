@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 19:05:41 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 19:42:26 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 03:19:08 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	draw_background(t_data *data, int color)
 	int				*dest;
 
 	i = 0;
-	pixel_count = data->window_height * data->window_width;
+	pixel_count = data->w_height * data->w_width;
 	dest = (int *)data->addr;
 	while (i < pixel_count)
 		dest[i++] = color;

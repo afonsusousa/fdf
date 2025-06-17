@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 19:55:24 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 03:19:22 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	draw_menu_background(t_data *data, int color)
 	pixel_color.color = color;
 	pixel_color.brightness = 1.0f;
 	y = 0;
-	while (y < data->window_height)
+	while (y < data->w_height)
 	{
 		x = 0;
-		while (x < data->menu_width)
+		while (x < data->m_width)
 			draw_pixel_color(data, x++, y, &pixel_color);
 		y++;
 	}

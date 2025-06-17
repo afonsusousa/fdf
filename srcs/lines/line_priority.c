@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 03:40:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 00:47:49 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 03:17:43 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int	collect_horizontal_lines(t_data *data, t_line_info *lines)
 	int		x;
 	int		y;
 	int		line_index;
-	t_point	*current;
-	t_point	*right;
+	t_point	*curr;
+	t_point	*r;
 
 	line_index = 0;
 	y = 0;
@@ -69,12 +69,12 @@ int	collect_horizontal_lines(t_data *data, t_line_info *lines)
 		x = -1;
 		while (++x < data->map->map_width - 1)
 		{
-			current = get_point(data, x, y);
-			right = get_point(data, x + 1, y);
-			if (current && right)
+			curr = get_point(data, x, y);
+			r = get_point(data, x + 1, y);
+			if (curr && r && in_screen(data, curr) && in_screen(data, r))
 			{
-				lines[line_index].p0 = current;
-				lines[line_index].p1 = right;
+				lines[line_index].p0 = curr;
+				lines[line_index].p1 = r;
 				line_index++;
 			}
 		}
@@ -88,8 +88,8 @@ int	collect_vertical_lines(t_data *data, t_line_info *lines, int start)
 	int		x;
 	int		y;
 	int		line_index;
-	t_point	*current;
-	t_point	*down;
+	t_point	*curr;
+	t_point	*d;
 
 	line_index = start;
 	y = 0;
@@ -98,12 +98,12 @@ int	collect_vertical_lines(t_data *data, t_line_info *lines, int start)
 		x = -1;
 		while (++x < data->map->map_width)
 		{
-			current = get_point(data, x, y);
-			down = get_point(data, x, y + 1);
-			if (current && down)
+			curr = get_point(data, x, y);
+			d = get_point(data, x, y + 1);
+			if (curr && d && in_screen(data, curr) && in_screen(data, d))
 			{
-				lines[line_index].p0 = current;
-				lines[line_index].p1 = down;
+				lines[line_index].p0 = curr;
+				lines[line_index].p1 = d;
 				line_index++;
 			}
 		}

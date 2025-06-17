@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:32:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 20:06:59 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 03:19:22 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	draw_axis_line(t_data *img, int start[2], int end[2], int color)
 	i = -1;
 	while (++i <= steps)
 	{
-		if (pos[0] >= 0 && pos[0] < img->window_width && pos[1] >= 0
-			&& pos[1] < img->window_height)
+		if (pos[0] >= 0 && pos[0] < img->w_width && pos[1] >= 0
+			&& pos[1] < img->w_height)
 		{
 			draw_pixel_color(img, (int)pos[0], (int)pos[1], &pixel_color);
 		}
@@ -106,7 +106,7 @@ void	draw_axis_labels(t_data *img, int corner_x, int corner_y, int size)
 
 void	get_axis_position(t_data *img, int *corner_x, int *corner_y, int *size)
 {
-	*size = img->menu_width / 3;
-	*corner_x = img->menu_width / 3;
-	*corner_y = 7 * (img->window_height / 9);
+	*size = img->m_width / 3;
+	*corner_x = img->m_width / 3;
+	*corner_y = 7 * (img->w_height / 9);
 }

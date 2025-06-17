@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:57:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 19:54:06 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 03:25:43 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,18 @@ void	draw_nonsteep(t_data *data, t_line *line)
 	}
 }
 
-void	draw_line(t_data *data, t_point *p0, t_point *p1)
+void	draw_line_screen_only(t_data *data, t_point *p0, t_point *p1)
 {
 	t_line	line;
 
 	init_line(data, &line, p0, p1);
-	if (line.steep)
-		draw_steep(data, &line);
-	else
-		draw_nonsteep(data, &line);
+	if ((in_screen(data, p0) && in_screen(data, p1)))
+	{
+		if (line.steep)
+			draw_steep(data, &line);
+		else
+			draw_nonsteep(data, &line);
+	}
 }
 
 void	draw_line_with_offset(t_data *data, t_point *p0, t_point *p1)

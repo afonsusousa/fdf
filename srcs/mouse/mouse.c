@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 19:24:29 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 03:08:50 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 03:19:22 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 int	handle_mouse_press(int button, int x, int y, t_data *data)
 {
-	if (x < data->menu_width)
+	if (x < data->m_width)
 		return (0);
 	data->mouse.is_pressed = 1;
-	data->mouse.last_x = x - data->menu_width;
+	data->mouse.last_x = x - data->m_width;
 	data->mouse.last_y = y;
 	data->mouse.button = button;
 	return (0);
@@ -43,12 +43,12 @@ int	handle_mouse_move(int x, int y, t_data *data)
 
 	if (!data->mouse.is_pressed)
 		return (0);
-	if (x < data->menu_width)
+	if (x < data->m_width)
 	{
 		data->mouse.is_pressed = 0;
 		return (0);
 	}
-	delta_x = (x - data->menu_width) - data->mouse.last_x;
+	delta_x = (x - data->m_width) - data->mouse.last_x;
 	delta_y = y - data->mouse.last_y;
 	if (data->view.view_mode == ORTOGRAPHIC)
 	{
@@ -60,7 +60,7 @@ int	handle_mouse_move(int x, int y, t_data *data)
 		data->view.beta += delta_x * 0.005;
 		data->view.alpha -= delta_y * 0.005;
 	}
-	data->mouse.last_x = x - data->menu_width;
+	data->mouse.last_x = x - data->m_width;
 	data->mouse.last_y = y;
 	return (0);
 }
@@ -68,7 +68,7 @@ int	handle_mouse_move(int x, int y, t_data *data)
 int	handle_mouse_scroll(int button, int x, int y, t_data *data)
 {
 	(void)y;
-	if (x < data->menu_width)
+	if (x < data->m_width)
 		return (0);
 	if (button == MOUSE_SCROLL_UP)
 	{

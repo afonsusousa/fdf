@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 16:46:38 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/15 19:57:41 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 03:13:39 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,8 @@ void init_optimal_scale(t_data *data);
 void set_orthographic_view(t_data *data, int view_type);
 void handle_orthographic_rotation(t_data *data, int key_index);
 void ortographic_projection(t_data *data);
+
+// Point
+bool in_screen(t_data *data, t_point *point);
 
 #endif

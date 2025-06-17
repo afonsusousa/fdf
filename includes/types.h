@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 22:05:06 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 03:20:38 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_view
 	double gamma;
 	double scale;
 	double angle;
-	int zoom;
+	int	zoom;
 	int auto_rotate;
 	int shift_step;
 	int zoom_step;
@@ -150,10 +150,10 @@ typedef struct s_data
 	void *mlx_win;
 	void *img;
 	char *addr;
-	int window_height;
-	int window_width;
-	int menu_ratio;
-	int menu_width;
+	int w_height;
+	int w_width;
+	int m_ratio;
+	int m_width;
 	int bits_per_pixel;
 	int line_length;
 	int endian;
