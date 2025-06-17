@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 16:56:24 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 21:00:04 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 21:36:14 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	center_coordinates(t_data *data)
 
 bool	in_screen(t_data *data, t_point *point)
 {
-	return (data->map->points_count > 10000
+	return (data->map->points_count < 10000
 		||(((point->display[0] + data->view.off_x)
 		> (data->m_width - data->view.zoom))
 		&& (point->display[0] + data->view.off_x)
