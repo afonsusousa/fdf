@@ -13,18 +13,18 @@
 #ifndef VIEW_H
 # define VIEW_H
 
-#include "../fdf.h"
+# include "../fdf.h"
 
 // View initialization
-void init_view(t_data *data);
-void init_optimal_scale(t_data *data);
+void	init_view(t_data *data);
+void	init_optimal_scale(t_data *data);
 
 // Orthographic projection views
-void set_orthographic_view(t_data *data, int view_type);
-void handle_orthographic_rotation(t_data *data, int key_index);
-void ortographic_projection(t_data *data);
+void	set_orthographic_view(t_data *data, int view_type);
+void	handle_orthographic_rotation(t_data *data, int key_index);
+void	ortographic_projection(t_data *data);
 
 // Point
-bool in_screen(t_data *data, t_point *point);
+bool	in_screen(t_data *data, t_point *point);
 
 #endif

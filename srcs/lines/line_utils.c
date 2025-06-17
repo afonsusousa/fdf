@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:32:10 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 17:53:42 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 18:09:00 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_line_struct(t_line *line, int p0[2], int p1[2])
 		line->gradient = line->dy / line->dx;
 	line->xpxl1 = p0[0];
 	line->xpxl2 = p1[0];
-	line->intersectY = (float)p0[1];
+	line->intersect_y = (float)p0[1];
 }
 
 static bool	prepare_line_endpoints(int start[2], int end[2], int z_values[2],

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:28:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 17:53:42 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 18:22:21 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	init_view(t_data *data)
 	data->view.axis[2] = 1.0;
 	data->view.zoom = 15;
 	data->view.angle = 0.523599;
-	data->view.rotation_step = 0.01;
-	data->view.zoom_step = 1;
-	data->view.scale_step = 0.005;
-	data->view.shift_step = 2;
+	data->view.r_step = 0.01;
+	data->view.z_step = 1;
+	data->view.sc_step = 0.005;
+	data->view.sh_step = 2;
 	data->view.auto_rotation_speed = 0.005;
 	data->view.render_mode = RENDER_PRIORITY;
 	data->view.view_mode = ISOMETRIC;

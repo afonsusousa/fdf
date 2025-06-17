@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 10:00:00 by asousa            #+#    #+#             */
-/*   Updated: 2025/06/16 20:15:00 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 18:09:00 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	swap(int *a, int *b)
 
 void	calculate_pixel_values(t_line *line, t_pixel_values *pixels)
 {
-	pixels->y_pixel = integer_of(line->intersectY);
-	pixels->y_fract = fractional_of(line->intersectY);
-	pixels->y_rfract = reverse_fractional_of(line->intersectY);
+	pixels->y_pixel = integer_of(line->intersect_y);
+	pixels->y_fract = fractional_of(line->intersect_y);
+	pixels->y_rfract = reverse_fractional_of(line->intersect_y);
 }
 
 int	get_interpolated_color(t_line *line, int x)

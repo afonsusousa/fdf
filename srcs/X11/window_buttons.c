@@ -6,13 +6,13 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 15:43:45 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 15:46:31 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 18:07:56 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-int handle_close_button(t_data *data)
+int	handle_close_button(t_data *data)
 {
 	free_data(data);
 	return (0);

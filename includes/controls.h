@@ -13,33 +13,33 @@
 #ifndef CONTROLS_H
 # define CONTROLS_H
 
-#include "types.h"
+# include "types.h"
 
 // Keyboard controls
-void keyboard_init(t_data *data);
-int handle_keypress(int keycode, t_data *data);
-int handle_view_keypress(int keycode, t_data *data);
-int handle_view_keyrelease(int keycode, t_data *data);
-void apply_auto_rotation(t_data *data);
-void apply_keys(t_data *data);
+void	keyboard_init(t_data *data);
+int		handle_keypress(int keycode, t_data *data);
+int		handle_view_keypress(int keycode, t_data *data);
+int		handle_view_keyrelease(int keycode, t_data *data);
+void	apply_auto_rotation(t_data *data);
+void	apply_keys(t_data *data);
 void	discrete_rotation(t_data *data);
 
 // Keyboard helper functions
-int handle_effects_keys(int keycode, t_data *data);
-int handle_exit_keys(t_data *data, int keycode);
-int handle_reset_keys(int keycode, t_data *data);
-int handle_rendering_keys(int keycode, t_data *data);
-int handle_auto_rotation_keys(int keycode, t_data *data);
-void reset_view(t_data *data);
+int		handle_effects_keys(int keycode, t_data *data);
+int		handle_exit_keys(t_data *data, int keycode);
+int		handle_reset_keys(int keycode, t_data *data);
+int		handle_rendering_keys(int keycode, t_data *data);
+int		handle_auto_rotation_keys(int keycode, t_data *data);
+void	reset_view(t_data *data);
 
 // Window event handlers
-int handle_close_button(t_data *data);
+int		handle_close_button(t_data *data);
 
 // Mouse controls
-int handle_mouse_press(int button, int x, int y, t_data *data);
-int handle_mouse_release(int button, int x, int y, t_data *data);
-int handle_mouse_move(int x, int y, t_data *data);
-int handle_mouse_scroll(int button, int x, int y, t_data *data);
-void init_mouse(t_data *data);
+int		handle_mouse_press(int button, int x, int y, t_data *data);
+int		handle_mouse_release(int button, int x, int y, t_data *data);
+int		handle_mouse_move(int x, int y, t_data *data);
+int		handle_mouse_scroll(int button, int x, int y, t_data *data);
+void	init_mouse(t_data *data);
 
 #endif

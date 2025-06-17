@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:57:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 17:42:27 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 18:09:00 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_steep(t_data *data, t_line *line)
 		draw_pixel_color(data, pixels.y_pixel, x, &pixel_color);
 		pixel_color.brightness = pixels.y_fract;
 		draw_pixel_color(data, pixels.y_pixel + 1, x, &pixel_color);
-		line->intersectY += line->gradient;
+		line->intersect_y += line->gradient;
 		x++;
 	}
 }
@@ -49,7 +49,7 @@ void	draw_nonsteep(t_data *data, t_line *line)
 		draw_pixel_color(data, x, pixels.y_pixel, &pixel_color);
 		pixel_color.brightness = pixels.y_fract;
 		draw_pixel_color(data, x, pixels.y_pixel + 1, &pixel_color);
-		line->intersectY += line->gradient;
+		line->intersect_y += line->gradient;
 		x++;
 	}
 }
