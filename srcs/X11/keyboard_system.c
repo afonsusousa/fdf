@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 15:44:47 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 18:06:18 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int	handle_exit_keys(t_data *data, int keycode)
 	return (0);
 }
 
-
-
 void	reset_view(t_data *data)
 {
 	data->view.alpha = 0.0;
@@ -32,8 +30,8 @@ void	reset_view(t_data *data)
 	data->view.gamma = 0.0;
 	data->view.zoom = 15;
 	data->view.scale = 1.0;
-	data->view.offset_x = (data->w_width + data->m_width) / 2;
-	data->view.offset_y = data->w_height / 2;
+	data->view.off_x = (data->w_width + data->m_width) / 2;
+	data->view.off_y = data->w_height / 2;
 	data->view.auto_rotate = 0;
 	data->view.ripple.enabled = false;
 	data->view.wave.enabled_x = false;

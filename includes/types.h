@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 15:16:36 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:53:43 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ typedef struct s_wave
 
 typedef struct s_view
 {
-	int offset_x;
-	int offset_y;
+	int off_x;
+	int off_y;
 	double alpha;
 	double beta;
 	double gamma;

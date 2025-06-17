@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:32:10 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 18:36:25 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:53:42 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void	init_line(t_data *data, t_line *line, t_point *p0, t_point *p1)
 	int		end[2];
 	int		z_values[2];
 
-	start[0] = p0->display[0] + data->view.offset_x;
-	start[1] = p0->display[1] + data->view.offset_y;
-	end[0] = p1->display[0] + data->view.offset_x;
-	end[1] = p1->display[1] + data->view.offset_y;
+	start[0] = p0->display[0] + data->view.off_x;
+	start[1] = p0->display[1] + data->view.off_y;
+	end[0] = p1->display[0] + data->view.off_x;
+	end[1] = p1->display[1] + data->view.off_y;
 	z_values[0] = p0->z;
 	z_values[1] = p1->z;
 	swapped = prepare_line_endpoints(start, end, z_values, &line->steep);

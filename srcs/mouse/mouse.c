@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 19:24:29 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 03:19:22 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:53:42 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	handle_mouse_move(int x, int y, t_data *data)
 	delta_y = y - data->mouse.last_y;
 	if (data->view.view_mode == ORTOGRAPHIC)
 	{
-		data->view.offset_x += delta_x;
-		data->view.offset_y += delta_y;
+		data->view.off_x += delta_x;
+		data->view.off_y += delta_y;
 	}
 	else
 	{

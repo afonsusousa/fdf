@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:04:14 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 03:19:22 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:59:05 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static void	smooth_zoom(t_data *data)
 	if (data->keys[KEY_INDEX_MINUS])
 	{
 		data->view.zoom -= data->view.zoom_step;
-		if (data->view.zoom < 1)
-			data->view.zoom = 1;
+		if (data->view.zoom < 2)
+			data->view.zoom = 2;
 	}
 }
 
@@ -65,27 +65,27 @@ static void	smooth_shift(t_data *data)
 {
 	if (data->keys[KEY_INDEX_UP])
 	{
-		data->view.offset_y -= data->view.shift_step;
-		if (data->view.offset_y < 0)
-			data->view.offset_y = 0;
+		data->view.off_y -= data->view.shift_step * log10(data->view.zoom);
+		if (data->view.off_y < 0)
+			data->view.off_y = 0;
 	}
 	if (data->keys[KEY_INDEX_DOWN])
 	{
-		data->view.offset_y += data->view.shift_step;
-		if (data->view.offset_y > data->w_height)
-			data->view.offset_y = data->w_height;
+		data->view.off_y += data->view.shift_step * log10(data->view.zoom);
+		if (data->view.off_y > data->w_height)
+			data->view.off_y = data->w_height;
 	}
 	if (data->keys[KEY_INDEX_LEFT])
 	{
-		data->view.offset_x -= data->view.shift_step;
-		if (data->view.offset_x < data->m_width + 1)
-			data->view.offset_x = data->m_width + 1;
+		data->view.off_x -= data->view.shift_step * log10(data->view.zoom);
+		if (data->view.off_x < data->m_width + 1)
+			data->view.off_x = data->m_width + 1;
 	}
 	if (data->keys[KEY_INDEX_RIGHT])
 	{
-		data->view.offset_x += data->view.shift_step;
-		if (data->view.offset_x > data->w_width)
-			data->view.offset_x = data->w_width;
+		data->view.off_x += data->view.shift_step * log10(data->view.zoom);
+		if (data->view.off_x > data->w_width)
+			data->view.off_x = data->w_width;
 	}
 }
 

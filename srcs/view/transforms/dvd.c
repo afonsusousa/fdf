@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 21:54:30 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 15:12:11 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:55:07 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 void	dvd(t_data *data)
 {
-	static int	dir_vector[2] = {1, 1};
+	static int	dir[2] = {1, 1};
 
-	if (data->view.offset_y < 0)
+	if (data->view.off_y < 0)
 	{
-		data->view.offset_y = 0;
-		dir_vector[1] = 1;
+		data->view.off_y = 0;
+		dir[1] = 1;
 	}
-	if (data->view.offset_y > data->w_height)
+	if (data->view.off_y > data->w_height)
 	{
-		data->view.offset_y = data->w_height;
-		dir_vector[1] = -1;
+		data->view.off_y = data->w_height;
+		dir[1] = -1;
 	}
-	if (data->view.offset_x < data->m_width + 1)
+	if (data->view.off_x < data->m_width + 1)
 	{
-		data->view.offset_x = data->m_width + 1;
-		dir_vector[0] = 1;
+		data->view.off_x = data->m_width + 1;
+		dir[0] = 1;
 	}
-	if (data->view.offset_x > data->w_width)
+	if (data->view.off_x > data->w_width)
 	{
-		data->view.offset_x = data->w_width;
-		dir_vector[0] = -1;
+		data->view.off_x = data->w_width;
+		dir[0] = -1;
 	}
-	data->view.offset_x += dir_vector[0] * data->view.shift_step;
-	data->view.offset_y += dir_vector[1] * data->view.shift_step;
+	data->view.off_x += dir[0] * data->view.shift_step * log10(data->view.zoom);
+	data->view.off_y += dir[1] * data->view.shift_step * log10(data->view.zoom);
 }
