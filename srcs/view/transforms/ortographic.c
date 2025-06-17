@@ -6,12 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 16:43:36 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 20:13:29 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 15:47:00 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../fdf.h"
-#include "../../keyboard/keyboard.h"
 
 static void	normalize_orto_angles(t_data *data)
 {

@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/16 22:03:49 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/17 15:44:36 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,14 +56,15 @@ SRCS = srcs/fdf.c \
        srcs/view/transforms/ortographic.c \
        srcs/utils/float_utils.c \
        srcs/utils/free.c \
-       srcs/keyboard/keyboard.c \
-       srcs/keyboard/keyboard_discrete.c \
-       srcs/keyboard/keyboard_init.c \
-       srcs/keyboard/keyboard_auto.c \
-       srcs/keyboard/keyboard_press.c \
-       srcs/keyboard/keyboard_release.c \
-       srcs/keyboard/keyboard_smooth.c \
-       srcs/keyboard/keyboard_system.c \
+       srcs/X11/keyboard.c \
+       srcs/X11/keyboard_discrete.c \
+       srcs/X11/keyboard_init.c \
+       srcs/X11/keyboard_auto.c \
+       srcs/X11/keyboard_press.c \
+       srcs/X11/keyboard_release.c \
+       srcs/X11/keyboard_smooth.c \
+       srcs/X11/keyboard_system.c \
+       srcs/X11/window_buttons.c \
        srcs/view/view.c 
 
 OBJS = $(SRCS:.c=.o)

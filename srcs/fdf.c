@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 03:19:22 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 15:41:15 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	fdf_hooks(t_data *data)
 	mlx_loop_hook(data->mlx, rotate_and_render, data);
 	mlx_hook(data->mlx_win, 2, 1L << 0, handle_keypress, data);
 	mlx_hook(data->mlx_win, 3, 1L << 1, handle_view_keyrelease, data);
+	mlx_hook(data->mlx_win, 17, 1L << 17, handle_close_button, data);
 	mlx_mouse_hook(data->mlx_win, handle_mouse_scroll, data);
 	mlx_hook(data->mlx_win, 4, 1L << 2, handle_mouse_press, data);
 	mlx_hook(data->mlx_win, 5, 1L << 3, handle_mouse_release, data);
