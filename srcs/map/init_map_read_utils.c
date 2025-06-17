@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 20:28:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 02:51:36 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 15:25:08 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 static bool	is_valid(int c, int baselen)
 {
-	char	*lcbase;
-	char	*ucbase;
-	int		i;
+	static const char	*lcbase = "0123456789abcdef";
+	static const char	*ucbase = "0123456789ABCDEF";
+	int					i;
 
-	lcbase = "0123456789abcdef";
-	ucbase = "0123456789ABCDEF";
 	i = 0;
 	while (i < baselen)
 	{

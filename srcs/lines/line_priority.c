@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 03:40:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 03:17:43 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/17 15:24:21 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,12 @@ float	calculate_line_depth(t_line_info *line, t_view *view)
 void	draw_lines_priority(t_data *data)
 {
 	int	line_count;
-	int	capacity;
 	int	i;
 
 	if (data->map->lines)
 		free_and_null(&data->map->lines);
-	capacity = data->map->map_width * data->map->map_height * 2;
-	data->map->lines = (t_line_info *)malloc(capacity * sizeof(t_line_info));
+	data->map->lines = (t_line_info *)malloc(data->map->line_capacity
+			* sizeof(t_line_info));
 	if (!data->map->lines)
 		return (free_data(data));
 	line_count = collect_lines(data, data->map->lines);
