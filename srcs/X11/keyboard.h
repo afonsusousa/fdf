@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/18 21:07:14 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/18 21:40:02 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@
 # define KEY_INDEX_X 5
 # define KEY_INDEX_PLUS 6
 # define KEY_INDEX_MINUS 7
-# define KEY_INDEX_B 14
-# define KEY_INDEX_N 15
-# define KEY_INDEX_PGUP 8
-# define KEY_INDEX_PGDOWN 9
-# define KEY_INDEX_UP 10
-# define KEY_INDEX_DOWN 11
-# define KEY_INDEX_LEFT 12
-# define KEY_INDEX_RIGHT 13
+# define KEY_INDEX_B 8
+# define KEY_INDEX_N 9
+# define KEY_INDEX_PGUP 10
+# define KEY_INDEX_PGDOWN 11
+# define KEY_INDEX_UP 12
+# define KEY_INDEX_DOWN 13
+# define KEY_INDEX_LEFT 14
+# define KEY_INDEX_RIGHT 15
 
 void smooth_bend(t_data *data);
 

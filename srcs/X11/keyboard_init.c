@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:55:45 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 15:39:40 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/18 21:39:36 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	keyboard_init(t_data *data)
 	data->keys[KEY_INDEX_D] = 0;
 	data->keys[KEY_INDEX_Z] = 0;
 	data->keys[KEY_INDEX_X] = 0;
+	data->keys[KEY_INDEX_N] = 0;
+	data->keys[KEY_INDEX_B] = 0;
 	data->keys[KEY_INDEX_PLUS] = 0;
 	data->keys[KEY_INDEX_MINUS] = 0;
 	data->keys[KEY_INDEX_PGUP] = 0;
