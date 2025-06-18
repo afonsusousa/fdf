@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 18:21:49 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/18 21:09:28 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,13 @@ typedef struct s_view
 	double			scale;
 	double			angle;
 	int				zoom;
+	float			range;
 	int				auto_rotate;
 	int				sh_step;
 	int				z_step;
 	double			r_step;
 	double			sc_step;
+	double			rg_step;
 	double			auto_rotation_speed;
 	double			axis[3];
 	bool			top_down;
@@ -162,7 +164,7 @@ typedef struct s_data
 	t_map			*map;
 	t_view			view;
 	t_mouse			mouse;
-	int				keys[14];
+	int				keys[16];
 }					t_data;
 
 typedef struct s_axis_params

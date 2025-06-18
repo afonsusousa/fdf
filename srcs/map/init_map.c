@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:32:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 15:29:57 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/18 20:49:16 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,14 @@ void	print_map(t_data *data)
 
 	if (!data || !data->map)
 		return ;
-	printf("Map dimensions: %d x %d\n", data->map->map_width,
-		data->map->map_height);
+		
 	y = 0;
 	while (y < data->map->map_height)
 	{
 		print_map_row(data, y);
 		y++;
 	}
+	printf("Map dimensions: %d x %d\n []", data->map->map_width,
+		data->map->map_height);
+	printf("Max_Z: %d Min_Z %d\n", data->map->max_z, data->map->min_z);
 }

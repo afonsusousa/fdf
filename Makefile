@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/17 15:44:36 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/18 21:08:13 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = fdf
 
 # Compiler and flags
-CC = cc
+CC = clang
 CFLAGS = -Wall -Wextra -Werror -g
 INCLUDES = -I. -I./libft -I./minilibx-linux -I./get_next_line
 
@@ -47,6 +47,7 @@ SRCS = srcs/fdf.c \
        srcs/point/point.c \
        srcs/point/point_get.c \
        srcs/view/transforms/angles.c \
+       srcs/view/transforms/bend.c \
        srcs/view/transforms/dvd.c \
        srcs/view/transforms/project.c \
        srcs/view/transforms/transform.c \
@@ -63,6 +64,7 @@ SRCS = srcs/fdf.c \
        srcs/X11/keyboard_press.c \
        srcs/X11/keyboard_release.c \
        srcs/X11/keyboard_smooth.c \
+       srcs/X11/keyboard_smooth_effects.c \
        srcs/X11/keyboard_system.c \
        srcs/X11/window_buttons.c \
        srcs/view/view.c 

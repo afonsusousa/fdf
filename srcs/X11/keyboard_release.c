@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:17:22 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 03:01:14 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/18 21:06:07 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ static int	handle_shift_keyrelease(int keycode, t_data *data)
 		data->keys[KEY_INDEX_RIGHT] = 0;
 	return (0);
 }
+static int handle_bend_keyrelease(int keycode, t_data *data)
+{
+	if (keycode == KEY_B)
+		data->keys[KEY_INDEX_B] = 0;
+	else if (keycode == KEY_N)
+		data->keys[KEY_INDEX_N] = 0;
+	return (0);
+}
 
 int	handle_view_keyrelease(int key_code, t_data *data)
 {
@@ -67,5 +75,6 @@ int	handle_view_keyrelease(int key_code, t_data *data)
 	handle_zoom_keyrelease(key_code, data);
 	handle_scale_keyrelease(key_code, data);
 	handle_shift_keyrelease(key_code, data);
+	handle_bend_keyrelease(key_code, data);
 	return (1);
 }

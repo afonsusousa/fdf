@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 16:04:14 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 18:22:21 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/18 21:10:17 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	smooth_zoom(t_data *data)
 	}
 }
 
-static void	smooth_scale(t_data *data)
+static void smooth_scale(t_data *data)
 {
 	if (data->keys[KEY_INDEX_PGUP])
 	{
@@ -95,6 +95,7 @@ void	apply_keys(t_data *data)
 		smooth_rotation(data);
 	else if (data->view.view_mode == ORTOGRAPHIC)
 		discrete_rotation(data);
+	smooth_bend(data);
 	smooth_zoom(data);
 	smooth_scale(data);
 	smooth_shift(data);

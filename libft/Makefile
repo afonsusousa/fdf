@@ -61,8 +61,8 @@ OBJS = $(SRCS:.c=.o)
 
 OBJSBONUS = $(BONUS:.c=.o)
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CC = clang
+CFLAGS = -fPIE -Wall -Wextra -Werror
 RM = rm -f
 
 all: $(NAME)

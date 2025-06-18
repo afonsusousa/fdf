@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:28:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 18:22:21 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/18 21:18:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@ void	init_view(t_data *data)
 	data->view.alpha = 0;
 	data->view.beta = 0;
 	data->view.gamma = 0;
+	data->view.zoom = 75;
+	data->view.range = 0.0;
 	data->view.axis[0] = 0.0;
 	data->view.axis[1] = 0.0;
 	data->view.axis[2] = 1.0;
-	data->view.zoom = 15;
 	data->view.angle = 0.523599;
 	data->view.r_step = 0.01;
 	data->view.z_step = 1;
 	data->view.sc_step = 0.005;
 	data->view.sh_step = 2;
+	data->view.rg_step = 0.0001;
 	data->view.auto_rotation_speed = 0.005;
 	data->view.render_mode = RENDER_PRIORITY;
 	data->view.view_mode = ISOMETRIC;
@@ -36,34 +38,29 @@ void	init_view(t_data *data)
 	init_ripple(data);
 	init_wave(data);
 	init_optimal_scale(data);
-	if (data->view.scale < 0.02)
-		data->view.scale = 0.02;
 }
 
 void	init_optimal_scale(t_data *data)
 {
-	int		z_range;
-	int		map_size;
-	double	base_scale;
-	double	z_factor;
+	int		max_z;
+	double	scale;
 
-	z_range = data->map->max_z - data->map->min_z;
-	map_size = (data->map->map_width + data->map->map_height) / 2;
-	if (map_size > 100)
-		base_scale = 0.08;
-	else if (map_size > 50)
-		base_scale = 0.15;
-	else if (map_size > 20)
-		base_scale = 0.25;
+	max_z = abs(data->map->max_z);
+	if (abs(data->map->min_z) > max_z)
+		max_z = abs(data->map->min_z);
+	if (max_z == 0)
+		scale = 0.8;
+	else if (max_z <= 5)
+		scale = 0.6;
+	else if (max_z <= 10)
+		scale = 0.4;
+	else if (max_z <= 25)
+		scale = 0.3;
+	else if (max_z <= 50)
+		scale = 0.2;
+	else if (max_z <= 100)
+		scale = 0.12;
 	else
-		base_scale = 0.4;
-	if (z_range == 0)
-		z_factor = 0.5;
-	else if (z_range <= 5)
-		z_factor = 0.4 + (z_range * 0.1);
-	else if (z_range <= 50)
-		z_factor = 0.9 - ((z_range - 5) * 0.008);
-	else
-		z_factor = 0.54 - ((z_range - 50) * 0.003);
-	data->view.scale = base_scale * z_factor;
+		scale = 0.06;
+	data->view.scale = scale;
 }
