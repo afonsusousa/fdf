@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard_system.c                                  :+:      :+:    :+:   */
+/*   system.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/18 20:07:58 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 00:33:13 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../fdf.h"
-#include "keyboard.h"
+#include "../../../fdf.h"
+#include "../keyboard.h"
 
 int	handle_exit_keys(t_data *data, int keycode)
 {

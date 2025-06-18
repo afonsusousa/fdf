@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/18 21:40:02 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 00:42:42 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,45 @@
 # define KEY_INDEX_LEFT 14
 # define KEY_INDEX_RIGHT 15
 
-void smooth_bend(t_data *data);
+// Function declarations
+
+// Initialization
+void	keyboard_init(t_data *data);
+
+// Discrete action handlers
+int		handle_exit_keys(t_data *data, int keycode);
+int		handle_reset_keys(int keycode, t_data *data);
+int		handle_rendering_keys(int keycode, t_data *data);
+int		handle_effects_keys(int keycode, t_data *data);
+int		handle_auto_rotation_keys(int keycode, t_data *data);
+void	reset_view(t_data *data);
+
+// Smooth motion handlers - keypress
+int		handle_rotation_keypress(int keycode, t_data *data);
+int		handle_shift_keypress(int keycode, t_data *data);
+int		handle_zoom_keypress(int keycode, t_data *data);
+int		handle_scale_keypress(int keycode, t_data *data);
+int		handle_bend_keypress(int keycode, t_data *data);
+
+// Smooth motion handlers - keyrelease
+int		handle_rotation_keyrelease(int keycode, t_data *data);
+int		handle_shift_keyrelease(int keycode, t_data *data);
+int		handle_zoom_keyrelease(int keycode, t_data *data);
+int		handle_scale_keyrelease(int keycode, t_data *data);
+int		handle_bend_keyrelease(int keycode, t_data *data);
+
+// Smooth motion application functions
+void	smooth_rotation(t_data *data);
+void	smooth_shift(t_data *data);
+void	smooth_zoom(t_data *data);
+void	smooth_scale(t_data *data);
+void	smooth_bend(t_data *data);
+void	auto_rotation(t_data *data);
+
+// Discrete rotation functions
+void	discrete_rotation(t_data *data);
+
+// Window handlers
+int		handle_close_button(t_data *data);
 
 #endif

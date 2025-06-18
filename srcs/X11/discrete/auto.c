@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard_auto.c                                    :+:      :+:    :+:   */
+/*   auto.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/14 19:34:22 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 00:34:00 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../fdf.h"
-#include "keyboard.h"
+#include "../../../fdf.h"
+#include "../keyboard.h"
 
 static void	toggle_auto_rotate_x(t_data *data)
 {

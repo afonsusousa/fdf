@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 15:46:20 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 00:42:00 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 // Keyboard controls
 void	keyboard_init(t_data *data);
 int		handle_keypress(int keycode, t_data *data);
-int		handle_view_keypress(int keycode, t_data *data);
-int		handle_view_keyrelease(int keycode, t_data *data);
-void	apply_auto_rotation(t_data *data);
-void	apply_keys(t_data *data);
+int		handle_keypress(int keycode, t_data *data);
+int		handle_keyrelease(int keycode, t_data *data);
+void	auto_rotation(t_data *data);
+void	apply_smooth_keys(t_data *data);
 void	discrete_rotation(t_data *data);
 
 // Keyboard helper functions

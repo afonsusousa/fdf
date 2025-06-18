@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard_discrete.c                                :+:      :+:    :+:   */
+/*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 17:44:37 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 03:01:48 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 00:32:57 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../fdf.h"
-#include "./keyboard.h"
+#include "../../../fdf.h"
+#include "../keyboard.h"
 
 void	discrete_rotation(t_data *data)
 {
