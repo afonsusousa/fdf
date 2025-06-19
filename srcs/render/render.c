@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:33:08 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 00:49:28 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 02:15:41 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../fdf.h"
+#include "fdf.h"
 
 static void	clear_image(t_data *data)
 {

@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/19 00:52:12 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/19 02:12:50 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,49 +25,49 @@ GNLDIR = get_next_line
 
 # Source files
 SRCS = srcs/fdf.c \
-       srcs/view/render/draw.c \
-       srcs/view/render/line.c \
-       srcs/view/render/line_utils.c \
-       srcs/view/render/colors.c \
-       srcs/view/render/render.c \
-       srcs/view/gui/menu.c \
-       srcs/view/gui/menu_display.c \
-       srcs/view/gui/menu_display_utils.c \
-       srcs/view/gui/menu_controls.c \
-       srcs/view/gui/axis.c \
-       srcs/view/gui/axis_utils.c \
-       srcs/lines/line_priority.c \
-       srcs/lines/line_priority_utils.c \
-       srcs/lines/line_utils.c \
-       srcs/lines/line_traversal.c \
+       srcs/render/render.c \
+       srcs/render/draw.c \
+       srcs/render/colors.c \
+       srcs/render/view.c \
+       srcs/render/lines/drawing/line.c \
+       srcs/render/lines/drawing/line_utils.c \
+       srcs/render/lines/drawing/float_utils.c \
+       srcs/render/lines/sorting/line_priority.c \
+       srcs/render/lines/sorting/line_priority_utils.c \
+       srcs/render/lines/sorting/line_utils.c \
+       srcs/render/lines/sorting/line_traversal.c \
+       srcs/gui/menu.c \
+       srcs/gui/menu_display.c \
+       srcs/gui/menu_display_utils.c \
+       srcs/gui/menu_controls.c \
+       srcs/gui/axis.c \
+       srcs/gui/axis_utils.c \
        srcs/map/init_map.c \
        srcs/map/init_map_utils.c \
        srcs/map/init_map_read_utils.c \
-       srcs/mouse/mouse.c \
-       srcs/point/point.c \
-       srcs/point/point_get.c \
-       srcs/view/transforms/angles.c \
-       srcs/view/transforms/bend.c \
-       srcs/view/transforms/dvd.c \
-       srcs/view/transforms/project.c \
-       srcs/view/transforms/transform.c \
-       srcs/view/transforms/rotations.c \
-       srcs/view/transforms/ripple.c \
-       srcs/view/transforms/wave.c \
-       srcs/view/transforms/ortographic.c \
-       srcs/utils/float_utils.c \
+       srcs/points/point.c \
+       srcs/points/point_get.c \
+       srcs/transforms/angles.c \
+       srcs/transforms/bend.c \
+       srcs/transforms/dvd.c \
+       srcs/transforms/project.c \
+       srcs/transforms/transform.c \
+       srcs/transforms/rotations.c \
+       srcs/transforms/ripple.c \
+       srcs/transforms/wave.c \
+       srcs/transforms/ortographic.c \
        srcs/utils/free.c \
-       srcs/X11/keyboard.c \
-       srcs/X11/smooth/bend.c \
-       srcs/X11/smooth/scale.c \
-       srcs/X11/smooth/zoom.c \
-       srcs/X11/smooth/shift.c \
-       srcs/X11/smooth/rotations.c \
-       srcs/X11/discrete/window.c \
-       srcs/X11/discrete/system.c \
-       srcs/X11/discrete/rotation.c \
-       srcs/X11/discrete/auto.c \
-       srcs/view/view.c 
+       srcs/X11/mouse/mouse.c \
+       srcs/X11/keyboard/keyboard.c \
+       srcs/X11/keyboard/smooth/bend.c \
+       srcs/X11/keyboard/smooth/scale.c \
+       srcs/X11/keyboard/smooth/zoom.c \
+       srcs/X11/keyboard/smooth/shift.c \
+       srcs/X11/keyboard/smooth/rotations.c \
+       srcs/X11/keyboard/discrete/window.c \
+       srcs/X11/keyboard/discrete/system.c \
+       srcs/X11/keyboard/discrete/rotation.c \
+       srcs/X11/keyboard/discrete/auto.c  
 
 OBJS = $(SRCS:.c=.o)
 

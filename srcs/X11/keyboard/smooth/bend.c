@@ -6,11 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 00:08:20 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 00:55:21 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 02:19:55 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../fdf.h"
+#include "fdf.h"
 #include "../keyboard.h"
 
 int handle_bend_keypress(int keycode, t_data *data)

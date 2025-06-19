@@ -6,12 +6,10 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 00:36:12 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 02:22:47 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minilibx-linux/mlx.h"
-#include "../libft/libft.h"
 #include "fdf.h"
 #include <math.h>
 #include <stdio.h>
