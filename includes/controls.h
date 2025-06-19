@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 00:49:36 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 01:39:24 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		handle_exit_keys(t_data *data, int keycode);
 int		handle_reset_keys(int keycode, t_data *data);
 int		handle_rendering_keys(int keycode, t_data *data);
 int		handle_auto_rotation_keys(int keycode, t_data *data);
-void	reset_view(t_data *data);
 
 // Window event handlers
 int		handle_close_button(t_data *data);

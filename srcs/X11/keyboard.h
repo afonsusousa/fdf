@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 00:50:59 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 01:39:16 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int		handle_reset_keys(int keycode, t_data *data);
 int		handle_rendering_keys(int keycode, t_data *data);
 int		handle_effects_keys(int keycode, t_data *data);
 int		handle_auto_rotation_keys(int keycode, t_data *data);
-void	reset_view(t_data *data);
 
 // Smooth motion handlers - keypress
 int		handle_rotation_keypress(int keycode, t_data *data);

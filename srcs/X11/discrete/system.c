@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 00:33:13 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 01:38:36 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,11 @@ int	handle_exit_keys(t_data *data, int keycode)
 	return (0);
 }
 
-void	reset_view(t_data *data)
-{
-	data->view.alpha = 0.0;
-	data->view.beta = 0.0;
-	data->view.gamma = 0.0;
-	data->view.zoom = 75;
-	data->view.off_x = (data->w_width + data->m_width) / 2;
-	data->view.off_y = data->w_height / 2;
-	data->view.auto_rotate = 0;
-	data->view.ripple.enabled = false;
-	data->view.wave.enabled_x = false;
-	data->view.wave.enabled_y = false;
-	data->view.dvd = false;
-	data->view.render_mode = RENDER_PRIORITY;
-	data->view.view_mode = ISOMETRIC;
-	init_optimal_scale(data);
-}
-
 int	handle_reset_keys(int keycode, t_data *data)
 {
 	if (keycode == KEY_R)
 	{
-		reset_view(data);
+		init_view(data);
 		return (1);
 	}
 	return (0);

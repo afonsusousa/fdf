@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 03:24:20 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 01:53:17 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ void	draw_menu_background(t_data *data, int color);
 
 // Line priority and depth sorting
 float	calculate_line_depth(t_line_info *line, t_view *view);
-int		compare_depth(const void *a, const void *b);
 void	draw_lines_priority(t_data *data);
-void	add_line_data(t_line_info *line, t_point *p0, t_point *p1);
 int		collect_horizontal_lines(t_data *data, t_line_info *lines);
 int		collect_vertical_lines(t_data *data, t_line_info *lines, int start);
 int		collect_lines(t_data *data, t_line_info *lines);

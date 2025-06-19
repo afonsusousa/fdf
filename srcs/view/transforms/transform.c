@@ -6,31 +6,23 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 01:21:23 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 01:28:45 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../fdf.h"
-
-void	z_transforms(t_data *data, t_point *point)
-{
-	if (data->view.bend)
-		bend(data, point);
-	if (data->view.ripple.enabled)
-		ripple(data, point);
-	if (data->view.wave.enabled_x || data->view.wave.enabled_y)
-		wave(data, point);
-}
 
 void	transform_point(t_data *data, t_point *point)
 {
 	point->world_3d[0] = (double)point->x;
 	point->world_3d[1] = (double)point->y;
 	point->world_3d[2] = (double)point->z * data->view.scale;
-	z_transforms(data, point);
+	bend(data, point);
 	rotate_x_coords(point->world_3d, data->view.alpha);
 	rotate_y_coords(point->world_3d, data->view.beta);
 	rotate_z_coords(point->world_3d, data->view.gamma);
+	ripple(data, point);
+	wave(data, point);
 	point->world_3d[0] *= data->view.zoom;
 	point->world_3d[1] *= data->view.zoom;
 	point->world_3d[2] *= data->view.zoom;
