@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 00:59:21 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 01:21:32 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,6 @@ typedef struct s_view
 	double			auto_rotation_speed;
 	double			axis[3];
 	bool			top_down;
-	bool			left_tilt;
-	bool			right_tilt;
 	bool			dvd;
 	t_ripple		ripple;
 	t_wave			wave;

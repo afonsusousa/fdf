@@ -6,33 +6,20 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 00:56:12 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 01:21:23 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../fdf.h"
 
-void	x_transforms(t_data *data, t_point *point, double coords[3])
-{
-	(void)point;
-	rotate_x_coords(coords, data->view.alpha);
-}
-
-void	y_transforms(t_data *data, t_point *point, double coords[3])
-{
-	(void)point;
-	rotate_y_coords(coords, data->view.beta);
-}
-
-void	z_transforms(t_data *data, t_point *point, double coords[3])
+void	z_transforms(t_data *data, t_point *point)
 {
 	if (data->view.bend)
 		bend(data, point);
 	if (data->view.ripple.enabled)
-		coords[2] += apply_ripple(data, point);
+		ripple(data, point);
 	if (data->view.wave.enabled_x || data->view.wave.enabled_y)
-		coords[2] += apply_wave(data, point);
-	rotate_z_coords(coords, data->view.gamma);
+		wave(data, point);
 }
 
 void	transform_point(t_data *data, t_point *point)
@@ -40,9 +27,10 @@ void	transform_point(t_data *data, t_point *point)
 	point->world_3d[0] = (double)point->x;
 	point->world_3d[1] = (double)point->y;
 	point->world_3d[2] = (double)point->z * data->view.scale;
-	x_transforms(data, point, point->world_3d);
-	y_transforms(data, point, point->world_3d);
-	z_transforms(data, point, point->world_3d);
+	z_transforms(data, point);
+	rotate_x_coords(point->world_3d, data->view.alpha);
+	rotate_y_coords(point->world_3d, data->view.beta);
+	rotate_z_coords(point->world_3d, data->view.gamma);
 	point->world_3d[0] *= data->view.zoom;
 	point->world_3d[1] *= data->view.zoom;
 	point->world_3d[2] *= data->view.zoom;
@@ -64,10 +52,4 @@ void	transform(t_data *data)
 	dot_product = data->view.axis[0] * iso_view[0] + data->view.axis[1]
 		* iso_view[1] + data->view.axis[2] * iso_view[2];
 	data->view.top_down = !(dot_product > 0.15);
-	dot_product = data->view.axis[0] * iso_view[0] + data->view.axis[1]
-		* iso_view[1];
-	data->view.left_tilt = !(dot_product > 0.15);
-	dot_product = 0 + data->view.axis[1] * iso_view[1] + data->view.axis[2]
-		* iso_view[2];
-	data->view.right_tilt = !(dot_product > 0.15);
 }

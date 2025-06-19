@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 00:26:55 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 02:58:57 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 01:17:37 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,19 @@ static double	distance_from_center(t_data *data, t_point *point)
 	return (distance);
 }
 
-double	apply_ripple(t_data *data, t_point *point)
+void	ripple(t_data *data, t_point *point)
 {
 	t_ripple	*ripple;
 
 	ripple = &data->view.ripple;
 	if (!ripple->enabled)
-		return (0.0);
+		return ;
 	if (ripple->propagation_speed < 2.0)
 		ripple->propagation_speed = 2.0;
 	ripple->distance = distance_from_center(data, point);
 	if (ripple->distance > ripple->propagation_speed * ripple->time)
-		return (0.0);
-	return ((double)ripple->amplitude * cos((ripple->k * ripple->distance)
+		return ;
+	point->world_3d[2] += (double)(ripple->amplitude 
+			* cos((ripple->k * ripple->distance)
 			- (ripple->angular_freq * ripple->time)));
 }

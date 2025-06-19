@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 03:27:25 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 00:55:14 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 01:20:05 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,46 +27,40 @@ void	init_wave(t_data *data)
 	wave->propagation_speed_y = wave->angular_freq_y / wave->k;
 }
 
-static double	apply_wave_x(t_data *data, t_point *point)
+static void	apply_wave_x(t_data *data, t_point *point)
 {
 	t_wave	*wave;
 
 	wave = &data->view.wave;
 	if (!wave->enabled_x)
-		return (0.0);
+		return ;
 	wave->distance = point->y + (data->map->map_height / 2);
 	if (wave->distance > wave->propagation_speed_x * wave->x_time)
-		return (0.0);
-	return (wave->amplitude * sin((wave->k * wave->distance)
-			- (wave->angular_freq_x * wave->x_time)));
+		return ;
+	point->world_3d[2] += (double )((wave->amplitude 
+			* sin((wave->k * wave->distance)
+			- (wave->angular_freq_x * wave->x_time))));
 }
 
-static double	apply_wave_y(t_data *data, t_point *point)
+static void	apply_wave_y(t_data *data, t_point *point)
 {
 	t_wave	*wave;
 
 	wave = &data->view.wave;
 	if (!wave->enabled_y)
-		return (0.0);
+		return ;
 	wave->distance = point->x + (data->map->map_width / 2);
 	if (wave->distance > wave->propagation_speed_y * wave->y_time)
-		return (0.0);
-	return (wave->amplitude * sin((wave->k * wave->distance)
+		return ;
+	point->world_3d[2] += (double )(wave->amplitude 
+			* sin((wave->k * wave->distance)
 			- (wave->angular_freq_y * wave->y_time)));
 }
 
-double	apply_wave(t_data *data, t_point *point)
+void	wave(t_data *data, t_point *point)
 {
-	double	wave_x;
-	double	wave_y;
-	int		active_waves;
-
 	if (!data->view.wave.enabled_x && !data->view.wave.enabled_y)
-		return (0.0);
-	wave_x = apply_wave_x(data, point);
-	wave_y = apply_wave_y(data, point);
-	active_waves = data->view.wave.enabled_x + data->view.wave.enabled_y;
-	if (active_waves != 0)
-		return (wave_x + wave_y);
-	return (wave_x * wave_y);
+		return ;
+	apply_wave_x(data, point);
+	apply_wave_y(data, point);
 }
