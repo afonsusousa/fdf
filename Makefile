@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/19 00:31:30 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/19 00:52:12 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,6 @@ SRCS = srcs/fdf.c \
        srcs/utils/float_utils.c \
        srcs/utils/free.c \
        srcs/X11/keyboard.c \
-       srcs/X11/keyboard_init.c \
        srcs/X11/smooth/bend.c \
        srcs/X11/smooth/scale.c \
        srcs/X11/smooth/zoom.c \

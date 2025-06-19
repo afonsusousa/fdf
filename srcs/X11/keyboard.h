@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 00:42:42 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 00:50:59 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@
 # define KEY_INDEX_RIGHT 15
 
 // Function declarations
-
-// Initialization
-void	keyboard_init(t_data *data);
 
 // Discrete action handlers
 int		handle_exit_keys(t_data *data, int keycode);

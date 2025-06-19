@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/18 21:09:28 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 00:59:21 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ typedef struct s_view
 	double			scale;
 	double			angle;
 	int				zoom;
-	float			range;
+	float			brange;
+	bool			bend;
 	int				auto_rotate;
 	int				sh_step;
 	int				z_step;

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 00:08:20 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 00:44:36 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 00:55:21 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,18 @@ void smooth_bend(t_data *data)
 {
 	if (data->keys[KEY_INDEX_B])
 	{
-		data->view.range += data->view.rg_step;
-		if (data->view.range > 0.1)
-			data->view.range = 0.1;
+		data->view.bend = true;
+		data->view.brange += data->view.rg_step;
+		if (data->view.brange > 0.1)
+			data->view.brange = 0.1;
 	}
 	if (data->keys[KEY_INDEX_N])
 	{
-		data->view.range -= data->view.rg_step;
-		if (data->view.range < 0.0001)
-			data->view.range = -0.0001;
+		data->view.brange -= data->view.rg_step;
+		if (data->view.brange < 0.0001)
+		{
+			data->view.brange = 0.0001;
+			data->view.bend = false;
+		}
 	}
 }

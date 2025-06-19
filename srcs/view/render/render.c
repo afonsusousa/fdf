@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:33:08 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 00:45:01 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 00:49:28 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	rotate_and_render(t_data *data)
 	clear_image(data);
 	if (data->view.dvd)
 		dvd(data);
-	apply_smooth_keys(data);
+	apply_keys(data);
 	normalize_angles(data);
 	transform(data);
 	if (data->view.render_mode != RENDER_TRAVERSAL)

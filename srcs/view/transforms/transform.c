@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/18 21:08:27 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 00:56:12 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	y_transforms(t_data *data, t_point *point, double coords[3])
 
 void	z_transforms(t_data *data, t_point *point, double coords[3])
 {
-	bend(data, point);
+	if (data->view.bend)
+		bend(data, point);
 	if (data->view.ripple.enabled)
 		coords[2] += apply_ripple(data, point);
 	if (data->view.wave.enabled_x || data->view.wave.enabled_y)
