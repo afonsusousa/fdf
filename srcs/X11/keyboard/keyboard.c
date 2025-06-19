@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 19:16:18 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:20:28 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:54:39 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	apply_keys(t_data *data)
 		return (discrete_rotation(data));
 	smooth_rotation(data);
 	smooth_scale(data);
-	smooth_bend(data);
-	if (data->view.view_mode == ISOMETRIC)
+	if (data->view.view_mode != SPHERICAL)
+		smooth_bend(data);
+	if (data->view.view_mode != ORTOGRAPHIC)
 		auto_rotation(data);
 }

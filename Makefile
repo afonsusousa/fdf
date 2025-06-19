@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/19 02:12:50 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/19 17:39:29 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRCS = srcs/fdf.c \
        srcs/transforms/ripple.c \
        srcs/transforms/wave.c \
        srcs/transforms/ortographic.c \
+       srcs/transforms/geo.c \
        srcs/utils/free.c \
        srcs/X11/mouse/mouse.c \
        srcs/X11/keyboard/keyboard.c \

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:19:16 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:54:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,22 @@ int	handle_rendering_keys(int keycode, t_data *data)
 		data->view.render_mode = (data->view.render_mode + 1) % 3;
 		return (1);
 	}
+	else if (keycode == KEY_I)
+	{
+		data->view.view_mode = ISOMETRIC;
+		return (1);
+	}
 	else if (keycode == KEY_O)
 	{
+		data->view.view_mode = ORTOGRAPHIC;
 		data->view.alpha = 0.0;
 		data->view.beta = 0.0;
 		data->view.gamma = 0.0;
-		ortographic_projection(data);
+		return (1);
+	}
+	else if (keycode == KEY_G)
+	{
+		data->view.view_mode = SPHERICAL;
 		return (1);
 	}
 	return (0);

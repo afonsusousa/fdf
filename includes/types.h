@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 01:21:32 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:53:25 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_point
 	int				z;
 	int				display[2];
 	double			world_3d[3];
+	double			globe_2d[2];
 	bool			paint;
 	int				color;
 }					t_point;
@@ -68,7 +69,8 @@ typedef enum e_render_mode
 typedef enum e_view_mode
 {
 	ISOMETRIC = 0,
-	ORTOGRAPHIC = 1
+	ORTOGRAPHIC = 1,
+	SPHERICAL = 2
 }					t_view_mode;
 
 typedef struct s_ripple
@@ -133,6 +135,7 @@ typedef struct s_map
 	int				line_capacity;
 	int				max_z;
 	int				min_z;
+	float			radius;
 	t_point			*points;
 	t_point			*center;
 	t_line_info		*lines;

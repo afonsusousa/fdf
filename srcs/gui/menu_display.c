@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:17:39 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:22:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,22 @@ void	display_effects_status(t_data *img)
 	ft_strlcpy(effects_text, "Effects: ", sizeof(effects_text));
 	ft_strlcat(effects_text, active_effects, sizeof(effects_text));
 	mlx_string_put(img->mlx, img->mlx_win, 15, 90, 0xFFFFFF, effects_text);
+}
+
+void	display_view_mode(t_data *img)
+{
+	char	view_mode_text[256];
+	char	*mode_name;
+
+	if (img->view.view_mode == ISOMETRIC)
+		mode_name = "ISOMETRIC";
+	else if (img->view.view_mode == ORTOGRAPHIC)
+		mode_name = "ORTHOGRAPHIC";
+	else if (img->view.view_mode == SPHERICAL)
+		mode_name = "SPHERICAL";
+	else
+		mode_name = "UNKNOWN";
+	ft_strlcpy(view_mode_text, "View Mode: ", sizeof(view_mode_text));
+	ft_strlcat(view_mode_text, mode_name, sizeof(view_mode_text));
+	mlx_string_put(img->mlx, img->mlx_win, 15, 105, 0xFFFFFF, view_mode_text);
 }

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 01:28:38 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:53:19 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,9 @@ void	init_wave(t_data *data);
 void	wave(t_data *data, t_point *point);
 void	dvd(t_data *data);
 void	bend(t_data *data, t_point *point);
+
+// Spherical projection
+void	polarize_points(t_map *map);
+void	spherize(t_point *point, t_data *data);
 
 #endif

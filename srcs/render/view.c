@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:28:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:15:54 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:50:34 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_view(t_data *data)
 	data->view.alpha = 0;
 	data->view.beta = 0;
 	data->view.gamma = 0;
-	data->view.zoom = 75;
+	data->view.zoom = 25;
 	data->view.bend = false;
 	data->view.brange = 0.0;
 	data->view.axis[0] = 0.0;

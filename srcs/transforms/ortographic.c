@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 16:43:36 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:18:16 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:53:45 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,4 @@ void	handle_orthographic_rotation(t_data *data, int key_index)
 		set_orthographic_view(data, 4);
 	else if (key_index == 5)
 		set_orthographic_view(data, 5);
-}
-
-void	ortographic_projection(t_data *data)
-{
-	if (data->view.view_mode == ISOMETRIC)
-		data->view.view_mode = ORTOGRAPHIC;
-	else
-		data->view.view_mode = ISOMETRIC;
 }

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:31:12 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:27:37 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,33 +37,35 @@ void	display_rendering_controls(t_data *img)
 {
 	mlx_string_put(img->mlx, img->mlx_win, 10, 295, 0xFF8C7A, "RENDERING:");
 	mlx_string_put(img->mlx, img->mlx_win, 15, 310, 0xFFFFFF,
-		"P - Priority Mode");
+		"I - Isometric");
 	mlx_string_put(img->mlx, img->mlx_win, 15, 325, 0xFFFFFF,
-		"M - Render Mode");
-	mlx_string_put(img->mlx, img->mlx_win, 15, 340, 0xFFFFFF,
 		"O - Orthographic");
+	mlx_string_put(img->mlx, img->mlx_win, 15, 340, 0xFFFFFF,
+		"G - Spherical");
+	mlx_string_put(img->mlx, img->mlx_win, 15, 355, 0xFFFFFF,
+		"M - Render Mode");
 }
 
 void	display_auto_rotation_controls(t_data *img)
 {
-	mlx_string_put(img->mlx, img->mlx_win, 10, 365, 0xFF8C7A, "AUTO ROTATION:");
-	mlx_string_put(img->mlx, img->mlx_win, 15, 380, 0xFFFFFF,
-		"1 - Toggle X Axis");
+	mlx_string_put(img->mlx, img->mlx_win, 10, 380, 0xFF8C7A, "AUTO ROTATION:");
 	mlx_string_put(img->mlx, img->mlx_win, 15, 395, 0xFFFFFF,
-		"2 - Toggle Y Axis");
+		"1 - Toggle X Axis");
 	mlx_string_put(img->mlx, img->mlx_win, 15, 410, 0xFFFFFF,
+		"2 - Toggle Y Axis");
+	mlx_string_put(img->mlx, img->mlx_win, 15, 425, 0xFFFFFF,
 		"3 - Toggle Z Axis");
-	mlx_string_put(img->mlx, img->mlx_win, 15, 425, 0xFFFFFF, "0 - Chaos Mode");
+	mlx_string_put(img->mlx, img->mlx_win, 15, 440, 0xFFFFFF, "0 - Chaos Mode");
 }
 
 void	display_effects_controls(t_data *img)
 {
-    mlx_string_put(img->mlx, img->mlx_win, 10, 450, 0xFF8C7A, "EFFECTS:");
-    mlx_string_put(img->mlx, img->mlx_win, 15, 465, 0xFFFFFF,
+    mlx_string_put(img->mlx, img->mlx_win, 10, 465, 0xFF8C7A, "EFFECTS:");
+    mlx_string_put(img->mlx, img->mlx_win, 15, 480, 0xFFFFFF,
         "4 - Ripple Effect");
-    mlx_string_put(img->mlx, img->mlx_win, 15, 480, 0xFFFFFF, "5 - Wave X");
-    mlx_string_put(img->mlx, img->mlx_win, 15, 495, 0xFFFFFF, "6 - Wave Y");
-    mlx_string_put(img->mlx, img->mlx_win, 15, 510, 0xFFFFFF, "7 - DVD");
-    mlx_string_put(img->mlx, img->mlx_win, 15, 525, 0xFFFFFF,
+    mlx_string_put(img->mlx, img->mlx_win, 15, 495, 0xFFFFFF, "5 - Wave X");
+    mlx_string_put(img->mlx, img->mlx_win, 15, 510, 0xFFFFFF, "6 - Wave Y");
+    mlx_string_put(img->mlx, img->mlx_win, 15, 525, 0xFFFFFF, "7 - DVD");
+    mlx_string_put(img->mlx, img->mlx_win, 15, 540, 0xFFFFFF,
 		"B/N - Bend/Unbend");
 }

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:18:35 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:53:56 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	transform_point(t_data *data, t_point *point)
 	point->world_3d[0] = (double)point->x;
 	point->world_3d[1] = (double)point->y;
 	point->world_3d[2] = (double)point->z * data->view.scale;
+	spherize(point, data);
 	bend(data, point);
 	rotate_x_coords(point->world_3d, data->view.alpha);
 	rotate_y_coords(point->world_3d, data->view.beta);

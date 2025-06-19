@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:32:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/18 20:49:16 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 18:23:45 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init_map(t_data *data, char *file_name)
 	close(map_file);
 	map_set_limits(data);
 	colorize_points(data);
+	polarize_points(data->map);
 	center_coordinates(data);
 }
 
