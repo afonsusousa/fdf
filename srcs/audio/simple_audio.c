@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 23:45:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/20 01:24:05 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 02:30:01 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	simple_frequency_analysis(t_data *data)
 void set_point_audio_scale(t_data *data, t_point *point)
 {
 	int bucket_index;
+	int normalized_x;
 	float audio_multiplier;
 	static double last_analysis_time = 0.0;
 	double current_time = data->time;
@@ -103,11 +104,22 @@ void set_point_audio_scale(t_data *data, t_point *point)
 		simple_frequency_analysis(data);
 		last_analysis_time = current_time;
 	}
-	int normalized_x = point->x + (data->map->map_width / 2);
-	bucket_index = (normalized_x * 5) / data->map->map_width;
+	if (data->view.view_mode == ISOMETRIC)
+	{
+		float distance = sqrt((point->x * point->x) 
+						+ (point->y * point->y));
+		bucket_index = (int)((distance / data->map->max_distance) * 4.9f);
+	}
+	else
+	{
+		normalized_x = point->x + (data->map->map_width / 2);
+		bucket_index = (normalized_x * 5) / data->map->map_width;
+	}
+	
 	if (bucket_index < 0) bucket_index = 0;
 	if (bucket_index >= 5) bucket_index = 4;
-	audio_multiplier = 1.0 + (data->audio.buckets[bucket_index] * data->audio.scale_multiplier);
+	audio_multiplier = data->view.scale + (data->audio.buckets[bucket_index] 
+		* data->audio.scale_multiplier);
 	audio_multiplier = fmax(0.1, fmin(audio_multiplier, 3.0));
 	point->scale = audio_multiplier;
 }
@@ -118,31 +130,9 @@ void	process_audio_samples(int16_t *samples, int sample_count, t_data *data)
 	int copy_count = fmin(sample_count, data->audio.buffer_size);
 	
 	pthread_mutex_lock(&data->audio.audio_mutex);
-	
 	for (i = 0; i < copy_count; i++)
 	{
 		data->audio.audio_samples[i] = (float)samples[i] / 32768.0f;
 	}
-	
 	pthread_mutex_unlock(&data->audio.audio_mutex);
-}
-
-void	increase_audio_sensitivity(t_data *data)
-{
-	data->audio.scale_multiplier = fmin(data->audio.scale_multiplier + 0.05, 1.0);  // Smaller increments and max
-	printf("Audio sensitivity: %.2f\n", data->audio.scale_multiplier);
-}
-
-void	decrease_audio_sensitivity(t_data *data)
-{
-	data->audio.scale_multiplier = fmax(data->audio.scale_multiplier - 0.05, 0.01);  // Smaller increments and min
-	printf("Audio sensitivity: %.2f\n", data->audio.scale_multiplier);
-}
-
-void	reset_audio_settings(t_data *data)
-{
-	data->audio.scale_multiplier = 0.2;  // Reset to smaller default
-	data->audio.scale_base = 1.0;
-	data->view.scale = 1.0;
-	printf("Audio settings reset\n");
 }

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 23:26:16 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 01:58:03 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,6 @@ int	handle_effects_keys(int keycode, t_data *data)
 			stop_pipewire_audio(data);
 			toggle_audio_reactive(data);
 		}
-		return (1);
-	}
-	if (keycode == KEY_9)
-	{
-		increase_audio_sensitivity(data);
-		return (1);
-	}
-	if (keycode == KEY_0)
-	{
-		decrease_audio_sensitivity(data);
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/20 01:24:21 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 02:28:07 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ typedef struct s_map
 	int				line_capacity;
 	int				max_z;
 	int				min_z;
+	float			max_distance;
 	float			radius;
 	t_point			*points;
 	t_point			*center;
