@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:33:08 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:15:41 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 01:22:37 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	rotate_and_render(t_data *data)
 {
 	static const double	frame_duration_60_fps = 1.0 / 60.0;
 
+	data->time += frame_duration_60_fps;
 	data->view.ripple.time += frame_duration_60_fps;
 	data->view.wave.x_time += frame_duration_60_fps;
 	data->view.wave.y_time += frame_duration_60_fps;

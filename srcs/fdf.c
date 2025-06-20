@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:22:47 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/19 23:13:46 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	main(int argc, char **argv)
 	if (!data.map)
 		return (-1);
 	init_view(&data);
+	init_audio(&data);
 	init_mouse(&data);
 	keyboard_init(&data);
 	fdf_hooks(&data);

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 18:53:56 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 01:22:59 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	transform_point(t_data *data, t_point *point)
 {
 	point->world_3d[0] = (double)point->x;
 	point->world_3d[1] = (double)point->y;
-	point->world_3d[2] = (double)point->z * data->view.scale;
-	spherize(point, data);
+	point->world_3d[2] = (double)point->z * point->scale;
 	bend(data, point);
+	ripple(data, point);
+	wave(data, point);
+	spherize(point, data);
 	rotate_x_coords(point->world_3d, data->view.alpha);
 	rotate_y_coords(point->world_3d, data->view.beta);
 	rotate_z_coords(point->world_3d, data->view.gamma);
-	ripple(data, point);
-	wave(data, point);
 	point->world_3d[0] *= data->view.zoom;
 	point->world_3d[1] *= data->view.zoom;
 	point->world_3d[2] *= data->view.zoom;
@@ -39,6 +39,7 @@ void	transform(t_data *data)
 	i = 0;
 	while (i < data->map->points_count)
 	{
+		set_point_audio_scale(data, &data->map->points[i]);
 		transform_point(data, &data->map->points[i]);
 		i++;
 	}

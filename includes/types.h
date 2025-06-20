@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 18:53:25 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 01:24:21 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TYPES_H
 
 # include <stdbool.h>
+# include <pthread.h>
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -33,6 +34,7 @@ typedef struct s_point
 	int				display[2];
 	double			world_3d[3];
 	double			globe_2d[2];
+	float			scale;
 	bool			paint;
 	int				color;
 }					t_point;
@@ -149,6 +151,21 @@ typedef struct s_mouse
 	int				last_y;
 }					t_mouse;
 
+typedef struct s_audio
+{
+	bool			enabled;
+	bool			connected;
+	float			*fft_buffer;
+	float			*audio_samples;
+	int				buffer_size;
+	int				sample_rate;
+	float			buckets[5];	
+	float			scale_multiplier;
+	float			scale_base;
+	pthread_t		audio_thread;
+	pthread_mutex_t	audio_mutex;
+}					t_audio;
+
 typedef struct s_data
 {
 	void			*mlx;
@@ -166,6 +183,7 @@ typedef struct s_data
 	t_map			*map;
 	t_view			view;
 	t_mouse			mouse;
+	t_audio			audio;
 	int				keys[16];
 }					t_data;
 

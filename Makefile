@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/19 17:39:29 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/19 23:26:15 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = fdf
 # Compiler and flags
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -g
-INCLUDES = -I. -I./libft -I./minilibx-linux -I./get_next_line
+INCLUDES = -I. -I./libft -I./minilibx-linux -I./get_next_line -I/usr/include/pipewire-0.3 -I/usr/include/spa-0.2
 
 # Directories
 LIBFTDIR = libft
@@ -57,6 +57,8 @@ SRCS = srcs/fdf.c \
        srcs/transforms/wave.c \
        srcs/transforms/ortographic.c \
        srcs/transforms/geo.c \
+       srcs/audio/simple_audio.c \
+       srcs/audio/pipewire_audio.c \
        srcs/utils/free.c \
        srcs/X11/mouse/mouse.c \
        srcs/X11/keyboard/keyboard.c \
@@ -75,7 +77,7 @@ OBJS = $(SRCS:.c=.o)
 # Libraries
 LIBFT = $(LIBFTDIR)/libft.a
 MLX = $(MLXDIR)/libmlx.a
-MLXFLAGS = -lXext -lX11 -lm
+MLXFLAGS = -lXext -lX11 -lm -lpipewire-0.3 -pthread
 
 # Get Next Line files
 GNL_SRCS = $(GNLDIR)/get_next_line.c \

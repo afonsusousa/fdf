@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 00:26:55 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 19:29:38 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 01:22:52 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,20 @@ static double	distance_from_center(t_data *data, t_point *point)
 	{
 		x_delta = point->x - data->map->center->x;
 		y_delta = point->y - data->map->center->y;
-		
+		distance = sqrt((double)(x_delta * x_delta) + (double)(y_delta * y_delta));
 	}
 	else
 	{
-		x_delta = point->globe_2d[0] * data->map->radius;
-		y_delta = point->globe_2d[1] * data->map->radius;	
+		double center_x = 0.0; 
+		double center_y = 0.0;
+		double center_z = 0.0;
+		
+		double dx = point->world_3d[0] - center_x;
+		double dy = point->world_3d[1] - center_y;
+		double dz = point->world_3d[2] - center_z;
+		
+		distance = sqrt(dx * dx + dy * dy + dz * dz);
 	}
-	distance = sqrt((double)(x_delta * x_delta) + (double)(y_delta * y_delta));
 	return (distance);
 }
 
