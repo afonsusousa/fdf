@@ -6,12 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:17:27 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:51:09 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "minilibx-linux/mlx.h"
 
 void	draw_menu_background(t_data *data, int color)
 {

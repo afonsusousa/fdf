@@ -6,15 +6,16 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 18:55:42 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:53:18 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "minilibx-linux/mlx.h"
-# include "libft.h"
+# include "lib/minilibx-linux/mlx.h"
+# include "lib/libft/libft.h"
+# include "lib/ft_printf/ft_printf.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>

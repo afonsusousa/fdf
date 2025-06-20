@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/19 17:39:29 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/20 18:54:36 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,13 @@ NAME = fdf
 # Compiler and flags
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -g
-INCLUDES = -I. -I./libft -I./minilibx-linux -I./get_next_line
+INCLUDES = -I. -I./lib/libft -I./lib/minilibx-linux -I./lib/get_next_line -I./lib/ft_printf
 
 # Directories
-LIBFTDIR = libft
-MLXDIR = minilibx-linux
-GNLDIR = get_next_line
+LIBFTDIR = lib/libft
+MLXDIR = lib/minilibx-linux
+GNLDIR = lib/get_next_line
+PRINTFDIR = lib/ft_printf/
 
 # Source files
 SRCS = srcs/fdf.c \
@@ -82,6 +83,21 @@ GNL_SRCS = $(GNLDIR)/get_next_line.c \
            $(GNLDIR)/get_next_line_utils.c
 GNL_OBJS = $(GNL_SRCS:.c=.o)
 
+# Get Printf file
+PRINTF_SRCS = 	$(PRINTFDIR)ft_printf.c \
+				$(PRINTFDIR)ft_printf_utils_address.c \
+				$(PRINTFDIR)ft_printf_utils.c \
+				$(PRINTFDIR)ft_printf_utils_flags.c \
+				$(PRINTFDIR)ft_printf_utils_putchar.c \
+				$(PRINTFDIR)ft_printf_utils_puthex.c \
+				$(PRINTFDIR)ft_printf_utils_putnbr.c \
+				$(PRINTFDIR)ft_printf_utils_putn.c \
+				$(PRINTFDIR)ft_printf_utils_puts.c \
+				$(PRINTFDIR)ft_printf_utils_putunbr.c \
+				$(PRINTFDIR)ft_printf_utils_strs.c
+				
+PRINTF_OBJS = $(PRINTF_SRCS:.c=.o)
+
 # Colors for output
 RED = \033[0;31m
 GREEN = \033[0;32m
@@ -92,9 +108,9 @@ RESET = \033[0m
 # Rules
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MLX) $(OBJS) $(GNL_OBJS)
+$(NAME): $(LIBFT) $(MLX) $(OBJS) $(GNL_OBJS) $(PRINTF_OBJS)
 	@echo "$(BLUE)Linking $(NAME)...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(LIBFT) $(MLX) $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(PRINTF_OBJS) $(LIBFT) $(MLX) $(MLXFLAGS) -o $(NAME)
 	@echo "$(GREEN)✓ $(NAME) compiled successfully!$(RESET)"
 
 %.o: %.c

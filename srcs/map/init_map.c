@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:32:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/20 18:00:10 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:31:48 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,12 @@ void	print_map_row(t_data *data, int y)
 	{
 		current = get_point(data, x, y);
 		if (current)
-			printf("%3d ", current->z);
+			ft_printf("%3d ", current->z);
 		else
-			printf("  0 ");
+			ft_printf("  0 ");
 		x++;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 void	print_map(t_data *data)
@@ -116,7 +116,7 @@ void	print_map(t_data *data)
 		print_map_row(data, y);
 		y++;
 	}
-	printf("Map dimensions: %d x %d\n []", data->map->map_width,
-		data->map->map_height);
-	printf("Max_Z: %d Min_Z %d\n", data->map->max_z, data->map->min_z);
+	ft_printf("Map dimensions: %d x %d [%d POINTS]\n", data->map->map_width,
+		data->map->map_height, data->map->map_height * data->map->map_width);
+	ft_printf("Max_Z: %d Min_Z %d\n", data->map->max_z, data->map->min_z);
 }
