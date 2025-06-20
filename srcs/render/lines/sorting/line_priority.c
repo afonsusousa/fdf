@@ -6,13 +6,12 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 03:40:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:16:54 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 23:08:25 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 float	calculate_line_depth(t_line_info *line, t_view *view)

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:32:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/20 18:31:48 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 23:08:08 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "../libft/libft.h"
 #include <fcntl.h>
 #include <limits.h>
-#include <stdio.h>
 #include <unistd.h>
 
 void	init_map(t_data *data, char *file_name)
