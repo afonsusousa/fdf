@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/20 19:40:46 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/20 23:12:29 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,12 +119,14 @@ clean:
 	@echo "$(RED)Cleaning object files...$(RESET)"
 	@rm -f $(OBJS) $(GNL_OBJS)
 	@make -C $(LIBFTDIR) clean --no-print-directory
+	@make -C $(PRINTFDIR) clean --no-print-directory
 	@make -C $(MLXDIR) clean --no-print-directory
 
 fclean: clean
 	@echo "$(RED)Cleaning $(NAME)...$(RESET)"
 	@rm -f $(NAME)
 	@make -C $(LIBFTDIR) fclean --no-print-directory
+	@make -C $(PRINTFDIR) fclean --no-print-directory
 
 re: fclean all
 
