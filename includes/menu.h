@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 18:22:22 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 23:10:24 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	display_rotation_info(t_data *img);
 void	display_view_info(t_data *img);
 void	display_auto_rotation_status(t_data *img);
 void	display_render_mode(t_data *img);
-void	display_view_mode(t_data *img);
 void	display_effects_status(t_data *img);
 void	display_all_menu_info(t_data *img);
 
