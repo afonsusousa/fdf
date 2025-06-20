@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 18:22:29 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:05:26 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	display_auto_rotation_status(t_data *img)
 	else
 	{
 		set_rotation_status_strings(img, &x_status, &y_status, &z_status);
-		build_rotation_status_text(auto_rotation_status, x_status,
-			y_status, z_status);
+		build_rotation_status_text(auto_rotation_status, x_status, y_status,
+			z_status);
 	}
 	mlx_string_put(img->mlx, img->mlx_win, 15, 60, 0xFFFFFF,
 		auto_rotation_status);
@@ -100,18 +100,13 @@ void	display_effects_status(t_data *img)
 {
 	char	effects_text[256];
 	char	active_effects[128];
+	char	view_mode_text[256];
+	char	*mode_name;
 
 	build_effects_string(img, active_effects);
 	ft_strlcpy(effects_text, "Effects: ", sizeof(effects_text));
 	ft_strlcat(effects_text, active_effects, sizeof(effects_text));
 	mlx_string_put(img->mlx, img->mlx_win, 15, 90, 0xFFFFFF, effects_text);
-}
-
-void	display_view_mode(t_data *img)
-{
-	char	view_mode_text[256];
-	char	*mode_name;
-
 	if (img->view.view_mode == ISOMETRIC)
 		mode_name = "ISOMETRIC";
 	else if (img->view.view_mode == ORTOGRAPHIC)

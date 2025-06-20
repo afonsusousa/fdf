@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 00:26:55 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 19:29:38 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:02:30 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@ static double	distance_from_center(t_data *data, t_point *point)
 	{
 		x_delta = point->x - data->map->center->x;
 		y_delta = point->y - data->map->center->y;
-		
 	}
 	else
 	{
 		x_delta = point->globe_2d[0] * data->map->radius;
-		y_delta = point->globe_2d[1] * data->map->radius;	
+		y_delta = point->globe_2d[1] * data->map->radius;
 	}
 	distance = sqrt((double)(x_delta * x_delta) + (double)(y_delta * y_delta));
 	return (distance);
@@ -60,7 +59,7 @@ void	ripple(t_data *data, t_point *point)
 	ripple->distance = distance_from_center(data, point);
 	if (ripple->distance > ripple->propagation_speed * ripple->time)
 		return ;
-	point->world_3d[2] += (double)(ripple->amplitude 
-			* cos((ripple->k * ripple->distance)
-			- (ripple->angular_freq * ripple->time)));
+	point->world_3d[2] += (double)(ripple->amplitude * cos((ripple->k
+					* ripple->distance) - (ripple->angular_freq
+					* ripple->time)));
 }

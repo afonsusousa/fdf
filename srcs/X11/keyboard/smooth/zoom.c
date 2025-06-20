@@ -6,12 +6,12 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 00:07:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:20:22 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:08:02 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "../keyboard.h"
+#include "fdf.h"
 
 int	handle_zoom_keypress(int keycode, t_data *data)
 {

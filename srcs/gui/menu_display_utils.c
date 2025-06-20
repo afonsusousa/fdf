@@ -29,8 +29,8 @@ void	set_rotation_status_strings(t_data *img, char **x_status,
 		*z_status = "OFF";
 }
 
-void	build_rotation_status_text(char *auto_rotation_status,
-		char *x_status, char *y_status, char *z_status)
+void	build_rotation_status_text(char *auto_rotation_status, char *x_status,
+		char *y_status, char *z_status)
 {
 	ft_strlcpy(auto_rotation_status, "Auto-Rotation: X:", 256);
 	ft_strlcat(auto_rotation_status, x_status, 256);

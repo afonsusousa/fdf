@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:32:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 18:23:45 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:00:10 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ void	print_map(t_data *data)
 
 	if (!data || !data->map)
 		return ;
-		
 	y = 0;
 	while (y < data->map->map_height)
 	{

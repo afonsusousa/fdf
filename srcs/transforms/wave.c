@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 03:27:25 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:18:42 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:01:43 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static void	apply_wave_x(t_data *data, t_point *point)
 	wave->distance = point->y + (data->map->map_height / 2);
 	if (wave->distance > wave->propagation_speed_x * wave->x_time)
 		return ;
-	point->world_3d[2] += (double )((wave->amplitude 
-			* sin((wave->k * wave->distance)
-			- (wave->angular_freq_x * wave->x_time))));
+	point->world_3d[2] += (double)((wave->amplitude * sin((wave->k
+						* wave->distance) - (wave->angular_freq_x
+						* wave->x_time))));
 }
 
 static void	apply_wave_y(t_data *data, t_point *point)
@@ -52,9 +52,8 @@ static void	apply_wave_y(t_data *data, t_point *point)
 	wave->distance = point->x + (data->map->map_width / 2);
 	if (wave->distance > wave->propagation_speed_y * wave->y_time)
 		return ;
-	point->world_3d[2] += (double )(wave->amplitude 
-			* sin((wave->k * wave->distance)
-			- (wave->angular_freq_y * wave->y_time)));
+	point->world_3d[2] += (double)(wave->amplitude * sin((wave->k
+					* wave->distance) - (wave->angular_freq_y * wave->y_time)));
 }
 
 void	wave(t_data *data, t_point *point)

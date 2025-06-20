@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:23:40 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 18:43:54 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:02:08 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,16 @@
 
 void	spherize(t_point *point, t_data *data)
 {
-	float radius;
+	float	radius;
 
 	if (data->view.view_mode != SPHERICAL)
 		return ;
 	radius = data->map->radius + (point->z * data->view.scale);
-	point->world_3d[0] = radius 
-		* cos(point->globe_2d[0]) 
-		* cos( point->globe_2d[1]);
-	point->world_3d[1] = radius 
-		* cos(point->globe_2d[0]) 
-		* sin( point->globe_2d[1]);
-	point->world_3d[2] = radius 
-		* sin(point->globe_2d[0]);
+	point->world_3d[0] = radius * cos(point->globe_2d[0])
+		* cos(point->globe_2d[1]);
+	point->world_3d[1] = radius * cos(point->globe_2d[0])
+		* sin(point->globe_2d[1]);
+	point->world_3d[2] = radius * sin(point->globe_2d[0]);
 }
 
 void	polarize_points(t_map *map)
@@ -42,9 +39,9 @@ void	polarize_points(t_map *map)
 	i = 0;
 	while (i < map->points_count)
 	{
-		map->points[i].globe_2d[1] = (map->points[i].x - map->map_width / 2.0) 
+		map->points[i].globe_2d[1] = (map->points[i].x - map->map_width / 2.0)
 			* steps_x;
-		map->points[i].globe_2d[0] = (map->points[i].y - map->map_height / 2.0) 
+		map->points[i].globe_2d[0] = (map->points[i].y - map->map_height / 2.0)
 			* steps_y;
 		i++;
 	}

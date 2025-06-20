@@ -6,12 +6,12 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 00:06:33 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:20:17 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:07:52 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "../keyboard.h"
+#include "fdf.h"
 
 int	handle_shift_keypress(int keycode, t_data *data)
 {
@@ -27,6 +27,7 @@ int	handle_shift_keypress(int keycode, t_data *data)
 		return (0);
 	return (1);
 }
+
 int	handle_shift_keyrelease(int keycode, t_data *data)
 {
 	if (keycode == KEY_UP)

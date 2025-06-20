@@ -6,12 +6,12 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 00:07:52 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:20:11 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/20 18:08:10 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "../keyboard.h"
+#include "fdf.h"
 
 int	handle_scale_keypress(int keycode, t_data *data)
 {
@@ -33,7 +33,7 @@ int	handle_scale_keyrelease(int keycode, t_data *data)
 	return (0);
 }
 
-void smooth_scale(t_data *data)
+void	smooth_scale(t_data *data)
 {
 	if (data->keys[KEY_INDEX_PGUP])
 	{

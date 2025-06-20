@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "../keyboard.h"
+#include "fdf.h"
 
-int handle_bend_keypress(int keycode, t_data *data)
+int	handle_bend_keypress(int keycode, t_data *data)
 {
 	if (keycode == KEY_B)
 		data->keys[KEY_INDEX_B] = 1;
@@ -24,7 +24,7 @@ int handle_bend_keypress(int keycode, t_data *data)
 	return (1);
 }
 
-int handle_bend_keyrelease(int keycode, t_data *data)
+int	handle_bend_keyrelease(int keycode, t_data *data)
 {
 	if (keycode == KEY_B)
 		data->keys[KEY_INDEX_B] = 0;
@@ -33,7 +33,7 @@ int handle_bend_keyrelease(int keycode, t_data *data)
 	return (0);
 }
 
-void smooth_bend(t_data *data)
+void	smooth_bend(t_data *data)
 {
 	if (data->keys[KEY_INDEX_B])
 	{
