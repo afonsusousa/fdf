@@ -16,7 +16,10 @@ void	transform_point(t_data *data, t_point *point)
 {
 	point->world_3d[0] = (double)point->x;
 	point->world_3d[1] = (double)point->y;
-	point->world_3d[2] = (double)point->z * data->view.scale;
+	if (point->world_3d[2])
+		point->world_3d[2] = (double)point->z * data->view.scale;
+	else
+		point->world_3d[2] = (double)point->z;
 	spherize(point, data);
 	bend(data, point);
 	rotate_x_coords(point->world_3d, data->view.alpha);

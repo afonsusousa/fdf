@@ -15,7 +15,8 @@
 
 int	handle_zoom_keypress(int keycode, t_data *data)
 {
-	if (keycode == KEY_PLUS || keycode == KEY_NUMPAD_PLUS)
+	if (keycode == KEY_PLUS || keycode == KEY_NUMPAD_PLUS
+		|| keycode == KEY_EQUAL)
 		data->keys[KEY_INDEX_PLUS] = 1;
 	else if (keycode == KEY_MINUS)
 		data->keys[KEY_INDEX_MINUS] = 1;
@@ -26,7 +27,8 @@ int	handle_zoom_keypress(int keycode, t_data *data)
 
 int	handle_zoom_keyrelease(int keycode, t_data *data)
 {
-	if (keycode == KEY_PLUS || keycode == KEY_NUMPAD_PLUS)
+	if (keycode == KEY_PLUS || keycode == KEY_NUMPAD_PLUS
+		|| keycode == KEY_EQUAL)
 		data->keys[KEY_INDEX_PLUS] = 0;
 	else if (keycode == KEY_MINUS)
 		data->keys[KEY_INDEX_MINUS] = 0;
