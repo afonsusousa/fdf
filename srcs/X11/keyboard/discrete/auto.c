@@ -44,6 +44,8 @@ static void	toggle_chaos_mode(t_data *data)
 
 int	handle_auto_rotation_keys(int keycode, t_data *data)
 {
+	if (data->view.view_mode == ORTOGRAPHIC)
+		return (1);
 	if (keycode == KEY_1)
 		toggle_auto_rotate_x(data);
 	else if (keycode == KEY_2)
