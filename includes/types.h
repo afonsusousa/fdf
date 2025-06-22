@@ -112,12 +112,6 @@ typedef struct s_view
 	float			brange;
 	bool			bend;
 	int				auto_rotate;
-	int				sh_step;
-	int				z_step;
-	double			r_step;
-	double			sc_step;
-	double			rg_step;
-	double			auto_rotation_speed;
 	double			axis[3];
 	bool			top_down;
 	bool			dvd;
@@ -166,7 +160,7 @@ typedef struct s_data
 	t_map			*map;
 	t_view			view;
 	t_mouse			mouse;
-	int				keys[16];
+	bool			keys[16];
 }					t_data;
 
 typedef struct s_axis_params

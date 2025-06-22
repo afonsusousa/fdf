@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
+#    By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/20 23:12:29 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/22 20:43:58 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,8 @@ SRCS = srcs/fdf.c \
        srcs/X11/keyboard/discrete/window.c \
        srcs/X11/keyboard/discrete/system.c \
        srcs/X11/keyboard/discrete/rotation.c \
-       srcs/X11/keyboard/discrete/auto.c  
+       srcs/X11/keyboard/discrete/auto.c \
+       srcs/X11/keyboard/discrete/effects.c
 
 OBJS = $(SRCS:.c=.o)
 

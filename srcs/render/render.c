@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:33:08 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:15:41 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/22 20:49:46 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,26 @@ static void	clear_image(t_data *data)
 	draw_background(data, background_color);
 }
 
+static void	update_times(t_data *data)
+{
+	static const double	frame_duration = FRAME_DURATION;
+
+	if (data->view.ripple.enabled)
+		data->view.ripple.time += frame_duration;
+	if (data->view.ripple.enabled)
+		data->view.wave.x_time += frame_duration;
+	if (data->view.ripple.enabled)
+		data->view.wave.y_time += frame_duration;
+}
+
 int	rotate_and_render(t_data *data)
 {
-	static const double	frame_duration_60_fps = 1.0 / 60.0;
-
-	data->view.ripple.time += frame_duration_60_fps;
-	data->view.wave.x_time += frame_duration_60_fps;
-	data->view.wave.y_time += frame_duration_60_fps;
 	clear_image(data);
 	if (data->view.dvd)
 		dvd(data);
 	apply_keys(data);
 	normalize_angles(data);
+	update_times(data);
 	transform(data);
 	if (data->view.render_mode != RENDER_TRAVERSAL)
 		draw_lines_priority(data);

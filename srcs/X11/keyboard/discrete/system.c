@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   system.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 18:54:29 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/22 20:38:02 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,34 +56,6 @@ int	handle_rendering_keys(int keycode, t_data *data)
 	else if (keycode == KEY_G)
 	{
 		data->view.view_mode = SPHERICAL;
-		return (1);
-	}
-	return (0);
-}
-
-int	handle_effects_keys(int keycode, t_data *data)
-{
-	if (keycode == KEY_4)
-	{
-		data->view.ripple.enabled = !data->view.ripple.enabled;
-		data->view.ripple.time = 0.0;
-		return (1);
-	}
-	if (keycode == KEY_5)
-	{
-		data->view.wave.enabled_x = !data->view.wave.enabled_x;
-		data->view.wave.x_time = 0.0;
-		return (1);
-	}
-	if (keycode == KEY_6)
-	{
-		data->view.wave.enabled_y = !data->view.wave.enabled_y;
-		data->view.wave.y_time = 0.0;
-		return (1);
-	}
-	if (keycode == KEY_7)
-	{
-		data->view.dvd = !data->view.dvd;
 		return (1);
 	}
 	return (0);

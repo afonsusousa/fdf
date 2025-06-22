@@ -16,9 +16,9 @@
 int	handle_bend_keypress(int keycode, t_data *data)
 {
 	if (keycode == KEY_B)
-		data->keys[KEY_INDEX_B] = 1;
+		data->keys[KEY_INDEX_B] = true;
 	else if (keycode == KEY_N)
-		data->keys[KEY_INDEX_N] = 1;
+		data->keys[KEY_INDEX_N] = true;
 	else
 		return (0);
 	return (1);
@@ -27,9 +27,9 @@ int	handle_bend_keypress(int keycode, t_data *data)
 int	handle_bend_keyrelease(int keycode, t_data *data)
 {
 	if (keycode == KEY_B)
-		data->keys[KEY_INDEX_B] = 0;
+		data->keys[KEY_INDEX_B] = false;
 	else if (keycode == KEY_N)
-		data->keys[KEY_INDEX_N] = 0;
+		data->keys[KEY_INDEX_N] = false;
 	return (0);
 }
 
@@ -38,13 +38,13 @@ void	smooth_bend(t_data *data)
 	if (data->keys[KEY_INDEX_B])
 	{
 		data->view.bend = true;
-		data->view.brange += data->view.rg_step;
+		data->view.brange += RANGE_STEP;
 		if (data->view.brange > 0.1)
 			data->view.brange = 0.1;
 	}
 	if (data->keys[KEY_INDEX_N])
 	{
-		data->view.brange -= data->view.rg_step;
+		data->view.brange -= RANGE_STEP;
 		if (data->view.brange < 0.0001)
 		{
 			data->view.brange = 0.0001;

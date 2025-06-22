@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dvd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 21:54:30 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 18:21:49 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/22 20:45:03 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ void	dvd(t_data *data)
 		data->view.off_x = data->w_width;
 		dir[0] = -1;
 	}
-	data->view.off_x += dir[0] * data->view.sh_step * log10(data->view.zoom);
-	data->view.off_y += dir[1] * data->view.sh_step * log10(data->view.zoom);
+	data->view.off_x += dir[0] * SHIFT_STEP * log10(data->view.zoom);
+	data->view.off_y += dir[1] * SHIFT_STEP * log10(data->view.zoom);
 }

@@ -16,9 +16,9 @@
 int	handle_scale_keypress(int keycode, t_data *data)
 {
 	if (keycode == KEY_PGUP)
-		data->keys[KEY_INDEX_PGUP] = 1;
+		data->keys[KEY_INDEX_PGUP] = true;
 	else if (keycode == KEY_PGDOWN)
-		data->keys[KEY_INDEX_PGDOWN] = 1;
+		data->keys[KEY_INDEX_PGDOWN] = true;
 	else
 		return (0);
 	return (1);
@@ -27,9 +27,9 @@ int	handle_scale_keypress(int keycode, t_data *data)
 int	handle_scale_keyrelease(int keycode, t_data *data)
 {
 	if (keycode == KEY_PGUP)
-		data->keys[KEY_INDEX_PGUP] = 0;
+		data->keys[KEY_INDEX_PGUP] = false;
 	else if (keycode == KEY_PGDOWN)
-		data->keys[KEY_INDEX_PGDOWN] = 0;
+		data->keys[KEY_INDEX_PGDOWN] = false;
 	return (0);
 }
 
@@ -37,13 +37,13 @@ void	smooth_scale(t_data *data)
 {
 	if (data->keys[KEY_INDEX_PGUP])
 	{
-		data->view.scale += data->view.sc_step;
+		data->view.scale += SCALE_STEP;
 		if (data->view.scale > 5.0)
 			data->view.scale = 5.0;
 	}
 	if (data->keys[KEY_INDEX_PGDOWN])
 	{
-		data->view.scale -= data->view.sc_step;
+		data->view.scale -= SCALE_STEP;
 		if (data->view.scale < 0.05)
 			data->view.scale = 0.05;
 	}

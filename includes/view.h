@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   view.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 16:46:38 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/20 18:50:54 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/22 20:51:02 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 # define VIEW_H
 
 # include "../fdf.h"
+
+# define ROTATION_STEP 0.01
+# define ZOOM_STEP 1
+# define SCALE_STEP 0.005
+# define SHIFT_STEP 2
+# define RANGE_STEP 0.0001
+# define AUTO_ROTATION_SPEED 0.005
+
+// 1 / 60 [60fps]
+# define FRAME_DURATION  0.01666666
 
 // View initialization
 void	init_view(t_data *data);

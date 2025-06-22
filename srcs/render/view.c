@@ -24,12 +24,6 @@ void	init_view(t_data *data)
 	data->view.axis[1] = 0.0;
 	data->view.axis[2] = 1.0;
 	data->view.angle = 0.523599;
-	data->view.r_step = 0.01;
-	data->view.z_step = 1;
-	data->view.sc_step = 0.005;
-	data->view.sh_step = 2;
-	data->view.rg_step = 0.0001;
-	data->view.auto_rotation_speed = 0.005;
 	data->view.render_mode = RENDER_PRIORITY;
 	data->view.view_mode = ISOMETRIC;
 	data->view.auto_rotate = 0;
