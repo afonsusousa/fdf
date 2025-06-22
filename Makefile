@@ -14,7 +14,7 @@
 NAME = fdf
 
 # Compiler and flags
-CC = clang
+CC = cc
 CFLAGS = -fPIE -Wall -Wextra -Werror -g 
 INCLUDES = -I. -I./lib/libft -I./lib/minilibx-linux -I./lib/get_next_line -I./lib/ft_printf
 

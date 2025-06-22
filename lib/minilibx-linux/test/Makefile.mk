@@ -5,7 +5,7 @@ INCLIB=$(INC)/../lib
 
 UNAME := $(shell uname)
 
-CFLAGS= -I$(INC) -O3 -I.. -g -Wno-incompatible-pointer-types -Wno-int-conversion -Wno-implicit-function-declaration -std=gnu89 -fPIE
+CFLAGS= -I$(INC) -O3 -I.. -g 
 
 NAME= mlx-test
 SRC = main.c
@@ -21,7 +21,7 @@ else ifeq ($(UNAME), FreeBSD)
 	CC = clang
 else
 	#Linux and others...
-	CC	= clang
+	CC	= cc
 	LFLAGS += -lbsd
 endif
 
