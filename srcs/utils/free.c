@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 19:07:39 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 00:51:22 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/22 21:38:58 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@ void	free_data(t_data *data)
 	if (data->map->lines)
 		free(data->map->lines);
 	free(data->map);
-	mlx_destroy_image(data->mlx, data->img);
-	mlx_destroy_window(data->mlx, data->mlx_win);
-	mlx_destroy_display(data->mlx);
+	if (data->mlx && data->img)
+		mlx_destroy_image(data->mlx, data->img);
+	if (data->mlx && data->mlx_win)
+		mlx_destroy_window(data->mlx, data->mlx_win);
+	if (data->mlx)
+		mlx_destroy_display(data->mlx);
 	if (data->mlx)
 		free(data->mlx);
 	exit(0);

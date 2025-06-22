@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/20 23:09:16 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/22 21:39:36 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,19 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (argc != 2)
+	if (argc == 1)
+	{
+		ft_printf("No file specified.\n");
 		return (-1);
+	}
+	else if (argc != 2)
+		ft_printf("Too many files specified... Opening first...\n");
 	ft_memset(&data, 0, sizeof(t_data));
-	data.time = 0;
-	init_window(&data);
 	init_map(&data, argv[1]);
-	print_map(&data);
 	if (!data.map)
 		return (-1);
+	print_map(&data);
+	init_window(&data);
 	init_view(&data);
 	init_mouse(&data);
 	keyboard_init(&data);
