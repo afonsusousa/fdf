@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+         #
+#    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/22 20:43:58 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/22 22:07:01 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = fdf
 
 # Compiler and flags
-CC = cc
+CC = clang
 CFLAGS = -fPIE -Wall -Wextra -Werror -g 
 INCLUDES = -I. -I./lib/libft -I./lib/minilibx-linux -I./lib/get_next_line -I./lib/ft_printf
 

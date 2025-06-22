@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/22 21:00:31 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/22 22:16:07 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_view
 	double			gamma;
 	double			scale;
 	double			angle;
+	//TODO : BETTER ZOOM
 	int				zoom;
 	float			brange;
 	bool			bend;
@@ -129,6 +130,7 @@ typedef struct s_map
 	int				line_capacity;
 	int				max_z;
 	int				min_z;
+	//TODOS: CHANGEABLE RADIUS
 	float			radius;
 	t_point			*points;
 	t_point			*center;
@@ -160,6 +162,7 @@ typedef struct s_data
 	t_map			*map;
 	t_view			view;
 	t_mouse			mouse;
+	//TODO: keys into BITWISE FLAGS
 	bool			keys[16];
 }					t_data;
 
