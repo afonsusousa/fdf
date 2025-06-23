@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 23:45:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/23 02:25:16 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/23 02:53:08 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,20 @@ void	toggle_audio_reactive(t_data *data)
 	}
 }
 
+void	apply_equalizer(float *raw_value, int band)
+{
+	if (band == 0) 
+		*raw_value *= 2.0f;      // Boost sub-bass (20-80Hz) for deep bass lines
+	else if (band == 1) 
+		*raw_value *= 1.8f;      // Boost bass/kick (80-250Hz) for drums
+	else if (band == 2) 
+		*raw_value *= 1.5f;      // Boost low-mid (250-1kHz) for vocal warmth
+	else if (band == 3) 
+		*raw_value *= 1.3f;      // Boost mid (1-4kHz) for vocal presence
+	else if (band == 4) 
+		*raw_value *= 0.9f;      // Slightly reduce treble (4-20kHz) for smoothness
+}
+
 void	simple_frequency_analysis(t_data *data)
 {
 	int i, band;
@@ -88,7 +102,6 @@ void	simple_frequency_analysis(t_data *data)
 	int band_ranges[6] = {0, 4, 12, 35, 120, 512};
 	static float smoothed_buckets[5] = {0.0f}; // Static for persistence
 	float smoothing_factor = 0.2f; // Lower = smoother, higher = more responsive
-	
 	pthread_mutex_lock(&data->audio.audio_mutex);
 	for (band = 0; band < 5; band++)
 	{
@@ -102,14 +115,10 @@ void	simple_frequency_analysis(t_data *data)
 		}
 		if (count[band] > 0)
 		{
-			float raw_value = sqrt(sum[band] / count[band]);
-			if (band == 0) raw_value *= 2.0f;      // Boost sub-bass (20-80Hz) for deep bass lines
-			else if (band == 1) raw_value *= 1.8f; // Boost bass/kick (80-250Hz) for drums
-			else if (band == 2) raw_value *= 1.5f; // Boost low-mid (250-1kHz) for vocal warmth
-			else if (band == 3) raw_value *= 1.3f; // Boost mid (1-4kHz) for vocal presence
-			else if (band == 4) raw_value *= 0.9f; // Slightly reduce treble (4-20kHz) for smoothness
+			float value = sqrt(sum[band] / count[band]);
+			apply_equalizer(&value, band);
 			smoothed_buckets[band] = smoothed_buckets[band] * (1.0f - smoothing_factor) + 
-									 raw_value * smoothing_factor;
+									 value * smoothing_factor;
 			data->audio.buckets[band] = smoothed_buckets[band];
 		}
 		else
@@ -152,7 +161,6 @@ void set_point_audio_scale(t_data *data, t_point *point)
 		normalized_x = point->x + (data->map->map_width / 2);
 		bucket_index = (normalized_x * 5) / data->map->map_width;
 	}
-	
 	if (bucket_index < 0) bucket_index = 0;
 	if (bucket_index >= 5) bucket_index = 4;
 	audio_multiplier = data->view.scale + (data->audio.buckets[bucket_index] 
