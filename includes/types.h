@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/22 22:16:07 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/23 01:45:26 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TYPES_H
 
 # include <stdbool.h>
+# include <pthread.h>
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -35,6 +36,7 @@ typedef struct s_point
 	double			globe_2d[2];
 	bool			paint;
 	int				color;
+	float			scale;
 }					t_point;
 
 typedef struct s_line_info
@@ -130,6 +132,7 @@ typedef struct s_map
 	int				line_capacity;
 	int				max_z;
 	int				min_z;
+	int				max_distance;
 	//TODOS: CHANGEABLE RADIUS
 	float			radius;
 	t_point			*points;
@@ -144,6 +147,21 @@ typedef struct s_mouse
 	int				last_x;
 	int				last_y;
 }					t_mouse;
+
+typedef struct s_audio
+{
+	bool			enabled;
+	bool			connected;
+	float			*fft_buffer;
+	float			*audio_samples;
+	int				buffer_size;
+	int				sample_rate;
+	float			buckets[5];	
+	float			scale_multiplier;
+	float			scale_base;
+	pthread_t		audio_thread;
+	pthread_mutex_t	audio_mutex;
+}					t_audio;
 
 typedef struct s_data
 {
@@ -162,6 +180,7 @@ typedef struct s_data
 	t_map			*map;
 	t_view			view;
 	t_mouse			mouse;
+	t_audio			audio;
 	//TODO: keys into BITWISE FLAGS
 	bool			keys[16];
 }					t_data;

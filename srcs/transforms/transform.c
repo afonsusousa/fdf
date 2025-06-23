@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/20 01:30:05 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/23 01:44:57 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	transform(t_data *data)
 	i = 0;
 	while (i < data->map->points_count)
 	{
+		set_point_audio_scale(&data->map->points[i]);
 		transform_point(data, &data->map->points[i]);
 		i++;
 	}
