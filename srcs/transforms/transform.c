@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:29:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/23 01:44:57 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/23 02:05:15 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@ void	transform_point(t_data *data, t_point *point)
 {
 	point->world_3d[0] = (double)point->x;
 	point->world_3d[1] = (double)point->y;
-	if (point->world_3d[2])
-		point->world_3d[2] = (double)point->z * data->view.scale;
-	else
-		point->world_3d[2] = (double)point->z;
+	point->world_3d[2] = (double)point->z * point->scale;
 	spherize(point, data);
 	bend(data, point);
 	rotate_x_coords(point->world_3d, data->view.alpha);
@@ -42,7 +39,7 @@ void	transform(t_data *data)
 	i = 0;
 	while (i < data->map->points_count)
 	{
-		set_point_audio_scale(&data->map->points[i]);
+		set_point_audio_scale(data, &data->map->points[i]);
 		transform_point(data, &data->map->points[i]);
 		i++;
 	}

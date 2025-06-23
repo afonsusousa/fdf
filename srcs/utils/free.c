@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 19:07:39 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/22 21:38:58 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/23 01:56:40 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	free_and_null(t_line_info **address)
 
 void	free_data(t_data *data)
 {
+	cleanup_audio(data);
 	if (data->map->points)
 		free(data->map->points);
 	if (data->map->lines)

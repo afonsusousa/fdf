@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:33:08 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/23 01:28:26 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/23 02:04:02 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static void	update_times(t_data *data)
 		data->view.wave.x_time += frame_duration;
 	if (data->view.wave.enabled_y)
 		data->view.wave.y_time += frame_duration;
+	if (data->audio.enabled)
+		data->time += frame_duration;
 }
 
 int	rotate_and_render(t_data *data)

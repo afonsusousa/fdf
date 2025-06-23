@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/22 22:07:01 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/23 01:52:04 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,10 @@ NAME = fdf
 
 # Compiler and flags
 CC = clang
-CFLAGS = -fPIE -Wall -Wextra -Werror -g 
+CFLAGS = -fPIE -Wall -Wextra -Werror -g
 INCLUDES = -I. -I./lib/libft -I./lib/minilibx-linux -I./lib/get_next_line -I./lib/ft_printf
+PIPEWIRE_CFLAGS = -I/usr/include/pipewire-0.3 -I/usr/include/spa-0.2 -D_REENTRANT
+PIPEWIRE_LIBS = -lpipewire-0.3
 
 # Directories
 LIBFTDIR = lib/libft
@@ -70,7 +72,9 @@ SRCS = srcs/fdf.c \
        srcs/X11/keyboard/discrete/system.c \
        srcs/X11/keyboard/discrete/rotation.c \
        srcs/X11/keyboard/discrete/auto.c \
-       srcs/X11/keyboard/discrete/effects.c
+       srcs/X11/keyboard/discrete/effects.c \
+       srcs/audio/pipewire_audio.c \
+       srcs/audio/simple_audio.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -78,7 +82,7 @@ OBJS = $(SRCS:.c=.o)
 LIBFT = $(LIBFTDIR)/libft.a
 PRINTF = $(PRINTFDIR)/libftprintf.a
 MLX = $(MLXDIR)/libmlx.a
-MLXFLAGS = -lXext -lX11 -lm
+MLXFLAGS = -lXext -lX11 -lm $(PIPEWIRE_LIBS)
 
 # Get Next Line files
 GNL_SRCS = $(GNLDIR)/get_next_line.c \
@@ -102,7 +106,7 @@ $(NAME): $(LIBFT) $(MLX) $(PRINTF) $(OBJS) $(GNL_OBJS)
 
 %.o: %.c
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) $(PIPEWIRE_CFLAGS) -c $< -o $@
 
 $(LIBFT):
 	@echo "$(BLUE)Building libft...$(RESET)"

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:32:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/20 23:08:08 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/23 01:47:24 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,10 @@ void	map_set_limits(t_data *data)
 	}
 	data->map->min_z = min;
 	data->map->max_z = max;
+	data->map->max_distance = sqrt((data->map->map_width / 2) 
+							* (data->map->map_width / 2) 
+							+ (data->map->map_height / 2) 
+							* (data->map->map_height / 2));
 }
 
 void	print_map_row(t_data *data, int y)

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/23 01:45:26 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/23 01:59:23 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ typedef struct s_audio
 	float			scale_base;
 	pthread_t		audio_thread;
 	pthread_mutex_t	audio_mutex;
+	void			*pw_loop;
 }					t_audio;
 
 typedef struct s_data

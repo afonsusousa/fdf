@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 23:55:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/23 01:42:46 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/23 02:00:51 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void *pipewire_audio_thread(void *arg)
 		data->audio.connected = false;
 		return NULL;
 	}
+	data->audio.pw_loop = pw_data.loop;
 	props = pw_properties_new(
 		PW_KEY_MEDIA_TYPE, "Audio",
 		PW_KEY_MEDIA_CATEGORY, "Capture",
@@ -144,6 +145,16 @@ void stop_pipewire_audio(t_data *data)
 {
 	if (!data->audio.connected)
 		return;
+	
 	data->audio.connected = false;
+	
+	// Signal the PipeWire loop to quit
+	if (data->audio.pw_loop)
+		pw_main_loop_quit((struct pw_main_loop *)data->audio.pw_loop);
+	
+	// Now safely join the thread
 	pthread_join(data->audio.audio_thread, NULL);
+	
+	// Clear the loop pointer
+	data->audio.pw_loop = NULL;
 }

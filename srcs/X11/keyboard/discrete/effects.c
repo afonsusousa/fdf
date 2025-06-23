@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   effects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 20:37:51 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/22 20:49:33 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/23 02:04:35 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ int	handle_effects_keys(int keycode, t_data *data)
 	if (keycode == KEY_7)
 	{
 		data->view.dvd = !data->view.dvd;
+		return (1);
+	}
+	if (keycode == KEY_8)
+	{
+		toggle_audio_reactive(data);
+		data->time = 0;
 		return (1);
 	}
 	return (0);
