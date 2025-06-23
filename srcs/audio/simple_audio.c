@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 23:45:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/23 03:14:59 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/23 03:16:49 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	apply_equalizer(float *raw_value, int band)
 		*raw_value *= 0.9f;
 }
 
-void	apply_smoothing(float new_value, int band, t_data *data)
+void	apply_eq_smoothing(float new_value, int band, t_data *data)
 {
 	static float smoothed_buckets[5] = {0.0f};
 	float smoothing_factor;
