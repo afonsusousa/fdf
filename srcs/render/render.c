@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:33:08 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/22 20:49:46 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/23 01:28:26 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	update_times(t_data *data)
 
 	if (data->view.ripple.enabled)
 		data->view.ripple.time += frame_duration;
-	if (data->view.ripple.enabled)
+	if (data->view.wave.enabled_x)
 		data->view.wave.x_time += frame_duration;
-	if (data->view.ripple.enabled)
+	if (data->view.wave.enabled_y)
 		data->view.wave.y_time += frame_duration;
 }
 
