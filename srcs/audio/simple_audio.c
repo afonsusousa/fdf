@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 23:45:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/23 03:16:49 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/23 03:26:10 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_audio(t_data *data)
 	data->audio.buffer_size = 1024;
 	data->audio.sample_rate = 44100;
 	data->audio.scale_base = data->view.scale;
-	data->audio.scale_multiplier = 0.5;  // Much smaller multiplier to match
+	data->audio.scale_multiplier = 0.8;  // Much smaller multiplier to match
 	for (i = 0; i < 5; i++)
 		data->audio.buckets[i] = 0.0;
 	data->audio.fft_buffer = malloc(sizeof(float) * data->audio.buffer_size);
@@ -106,6 +106,7 @@ void	apply_eq_smoothing(float new_value, int band, t_data *data)
 void	decay_bucket(int band, t_data *data)
 {
 	static float smoothed_buckets[5] = {0.0f};
+	
 	smoothed_buckets[band] *= 0.95f;
 	data->audio.buckets[band] = smoothed_buckets[band];
 }
@@ -114,10 +115,12 @@ void	simple_frequency_analysis(t_data *data)
 {
 	int i, band;
 	float sample;
-	float sum[5] = {0.0};
-	int count[5] = {0};
-	int band_ranges[6] = {0, 4, 12, 35, 120, 512};
+	float sum[5];
+	int count[5];
+	const int band_ranges[6] = {0, 4, 12, 35, 120, 512};
 	
+	ft_memset(sum, 0, 5 * sizeof(float));
+	ft_memset(count, 0, 5 * sizeof(int));
 	pthread_mutex_lock(&data->audio.audio_mutex);
 	band = -1;
 	while (++band < 5)
