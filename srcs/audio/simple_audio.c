@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 23:45:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/24 19:56:58 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/25 02:56:32 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_audio(t_data *data)
 	data->audio.sample_rate = 44100;
 	data->audio.scale_base = data->view.scale;
 	data->audio.scale_multiplier = 0.8;
-	ft_memset(data->audio.buckets, 0, 5);
+	ft_memset(data->audio.buckets, 0, 8);
 	data->audio.audio_samples = malloc(sizeof(float) * data->audio.buffer_size);
 	if (!data->audio.audio_samples)
 		return;
@@ -70,21 +70,27 @@ void	toggle_audio_reactive(t_data *data)
 void	apply_equalizer(float *raw_value, int band)
 {
 	if (band == 0) 
-		*raw_value *= 2.2f;
+		*raw_value *= 2.0f;    // Deep sub-bass (20-50Hz)
 	else if (band == 1) 
-		*raw_value *= 2.5f;
+		*raw_value *= 2.5f;    // Sub-kick (50-100Hz) - Maximum punch
 	else if (band == 2) 
-		*raw_value *= 1.3f;
+		*raw_value *= 2.2f;    // Kick fundamental (100-200Hz)
 	else if (band == 3) 
-		*raw_value *= 1.8f;
+		*raw_value *= 1.4f;    // Low-mid warmth (200-500Hz)
 	else if (band == 4) 
-		*raw_value *= 1.4f;
+		*raw_value *= 1.9f;    // Vocal presence (500-1.2kHz)
+	else if (band == 5) 
+		*raw_value *= 1.8f;    // Vocal clarity (1.2-2.5kHz)
+	else if (band == 6) 
+		*raw_value *= 1.5f;    // High-mid sparkle (2.5-5kHz)
+	else if (band == 7) 
+		*raw_value *= 1.3f;    // Air and brilliance (5-10kHz)
 }
 
 void	apply_eq_smoothing(float new_value, int band, t_data *data)
 {
-	static float smoothed_buckets[5] = {0.0f};
-	const float smoothing_factor = 0.15f;
+	static float smoothed_buckets[8] = {0.0f};
+	const float smoothing_factor = 0.075f;
 
 	apply_equalizer(&new_value, band);
 	smoothed_buckets[band] = smoothed_buckets[band] * (1.0f - smoothing_factor) + 
@@ -94,7 +100,7 @@ void	apply_eq_smoothing(float new_value, int band, t_data *data)
 
 void	decay_bucket(int band, t_data *data)
 {
-	static float smoothed_buckets[5] = {0.0f};
+	static float smoothed_buckets[8] = {0.0f};
 	
 	smoothed_buckets[band] *= 0.95f;
 	data->audio.buckets[band] = smoothed_buckets[band];
@@ -104,15 +110,15 @@ void	simple_frequency_analysis(t_data *data)
 {
 	int i, band;
 	float sample;
-	float sum[5];
-	int count[5];
-	const int band_ranges[6] = {0, 6, 20, 48, 128, 512};
+	float sum[8];
+	int count[8];
+	const int band_ranges[9] = {0, 5, 10, 20, 42, 85, 170, 300, 512};
 	
-	ft_memset(sum, 0, 5 * sizeof(float));
-	ft_memset(count, 0, 5 * sizeof(int));
+	ft_memset(sum, 0, 8 * sizeof(float));
+	ft_memset(count, 0, 8 * sizeof(int));
 	pthread_mutex_lock(&data->audio.audio_mutex);
 	band = -1;
-	while (++band < 5)
+	while (++band < 8)
 	{
 		i = band_ranges[band] - 1;
 		while (++i < band_ranges[band + 1] && i < data->audio.buffer_size)
@@ -138,14 +144,14 @@ int	calculate_audio_bucket_index(t_data *data, t_point *point)
 	{
 		distance = sqrt((point->x * point->x) 
 						+ (point->y * point->y));
-		bucket_index = (int)((distance / data->map->max_distance) * 4.9f);
+		bucket_index = (int)((distance / data->map->max_distance) * 7.9f);
 	}
 	else
-		bucket_index = (abs(point->x) * 5) / (data->map->map_width / 2);
+		bucket_index = 8 - (abs(point->x) * 8) / (data->map->map_width / 2);
 	if (bucket_index < 0)
 		bucket_index = 0;
-	if (bucket_index >= 5)
-		bucket_index = 4;
+	if (bucket_index >= 8)
+		bucket_index = 7;
 	return (bucket_index);
 }
 

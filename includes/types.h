@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/24 19:37:06 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/25 02:29:10 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ typedef struct s_audio
 	float			*audio_samples;
 	int				buffer_size;
 	int				sample_rate;
-	float			buckets[5];	
+	float			buckets[8];	
 	float			scale_multiplier;
 	float			scale_base;
 	pthread_t		audio_thread;
