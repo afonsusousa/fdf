@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 23:40:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/23 01:42:27 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/25 22:20:53 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,9 @@ void	set_point_audio_scale(t_data *data, t_point *point);
 // PipeWire integration
 bool	start_pipewire_audio(t_data *data);
 void	stop_pipewire_audio(t_data *data);
+
+// PulseAudio integration
+bool	start_pulse_audio(t_data *data);
+void	stop_pulse_audio(t_data *data);
 
 #endif

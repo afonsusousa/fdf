@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 23:45:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/25 02:56:32 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/25 22:18:07 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	init_audio(t_data *data)
 
 void	cleanup_audio(t_data *data)
 {
-	stop_pipewire_audio(data);
+	// stop_pipewire_audio(data);
+	stop_pulse_audio(data);
 	if (data->audio.audio_samples)
 	{
 		free(data->audio.audio_samples);
@@ -50,7 +51,8 @@ void	toggle_audio_reactive(t_data *data)
 		data->audio.scale_base = data->view.scale;
 		if (!data->audio.connected)
 		{
-			if (start_pipewire_audio(data))
+			// if (start_pipewire_audio(data))
+			if (start_pulse_audio(data))
 				data->audio.connected = true;
 			else
 				data->audio.enabled = false;
@@ -61,7 +63,8 @@ void	toggle_audio_reactive(t_data *data)
 		data->view.scale = data->audio.scale_base;
 		if (data->audio.connected)
 		{
-			stop_pipewire_audio(data);
+			// stop_pipewire_audio(data);
+			stop_pulse_audio(data);
 			data->audio.connected = false;
 		}
 	}
@@ -112,7 +115,7 @@ void	simple_frequency_analysis(t_data *data)
 	float sample;
 	float sum[8];
 	int count[8];
-	const int band_ranges[9] = {0, 5, 10, 20, 42, 85, 170, 300, 512};
+	const int band_ranges[9] = {0, 8, 10, 20, 42, 85, 170, 300, 512};
 	
 	ft_memset(sum, 0, 8 * sizeof(float));
 	ft_memset(count, 0, 8 * sizeof(int));

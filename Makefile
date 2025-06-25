@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/23 01:52:04 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/25 22:21:57 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ SRCS = srcs/fdf.c \
        srcs/X11/keyboard/discrete/auto.c \
        srcs/X11/keyboard/discrete/effects.c \
        srcs/audio/pipewire_audio.c \
+       srcs/audio/pulseaudio.c \
        srcs/audio/simple_audio.c
 
 OBJS = $(SRCS:.c=.o)
@@ -82,7 +83,7 @@ OBJS = $(SRCS:.c=.o)
 LIBFT = $(LIBFTDIR)/libft.a
 PRINTF = $(PRINTFDIR)/libftprintf.a
 MLX = $(MLXDIR)/libmlx.a
-MLXFLAGS = -lXext -lX11 -lm $(PIPEWIRE_LIBS)
+MLXFLAGS = -lXext -lX11 -lm $(PIPEWIRE_LIBS) -lpulse-simple -lpulse
 
 # Get Next Line files
 GNL_SRCS = $(GNLDIR)/get_next_line.c \
