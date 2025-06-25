@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 23:45:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/25 22:18:07 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/25 22:37:13 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_audio(t_data *data)
 {
 	data->audio.enabled = false;
 	data->audio.connected = false;
+	data->audio.terminate = false;
 	data->audio.pw_loop = NULL;
 	data->audio.buffer_size = 1024;
 	data->audio.sample_rate = 44100;

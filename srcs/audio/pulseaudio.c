@@ -19,10 +19,10 @@ void *pulse_audio_thread(void *arg)
 	int16_t buf[buffer_size];
 	int error;
 	
-	/* Sample format for 44.1kHz stereo 16-bit */
-	static const pa_sample_spec ss = {
+	/* Sample format for configured sample rate stereo 16-bit */
+	pa_sample_spec ss = {
 		.format = PA_SAMPLE_S16LE,
-		.rate = 44100,
+		.rate = data->audio.sample_rate,
 		.channels = 2
 	};
 	
@@ -31,16 +31,18 @@ void *pulse_audio_thread(void *arg)
 		.fragsize = buffer_size * sizeof(int16_t)
 	};
 	
-	/* Connect to default PulseAudio sink monitor */
+	/* Connect to default PulseAudio sink monitor for system audio capture */
 	pulse_stream = pa_simple_new(NULL, "FDF Audio Visualizer", PA_STREAM_RECORD, 
-								NULL, "Audio for FDF", &ss, NULL, &pb, &error);
+								"@DEFAULT_MONITOR@", "Audio for FDF", &ss, NULL, &pb, &error);
 	
 	if (!pulse_stream) {
 		printf("PulseAudio connection failed: %s\n", pa_strerror(error));
+		data->audio.connected = false;
 		pulse_running = false;
 		return NULL;
 	}
 	
+	data->audio.connected = true;
 	printf("PulseAudio connected successfully\n");
 	
 	while (pulse_running && !data->audio.terminate) {
@@ -60,6 +62,7 @@ void *pulse_audio_thread(void *arg)
 		pulse_stream = NULL;
 	}
 	
+	data->audio.connected = false;
 	pulse_running = false;
 	printf("PulseAudio thread terminated\n");
 	return NULL;
@@ -67,7 +70,7 @@ void *pulse_audio_thread(void *arg)
 
 bool start_pulse_audio(t_data *data)
 {
-	if (pulse_running) {
+	if (data->audio.connected) {
 		printf("PulseAudio already running\n");
 		return true;
 	}
@@ -84,7 +87,7 @@ bool start_pulse_audio(t_data *data)
 	/* Give thread time to initialize */
 	usleep(100000); // 100ms
 	
-	if (!pulse_running) {
+	if (!data->audio.connected) {
 		printf("PulseAudio thread failed to start\n");
 		return false;
 	}
@@ -95,12 +98,13 @@ bool start_pulse_audio(t_data *data)
 
 void stop_pulse_audio(t_data *data)
 {
-	if (!pulse_running) {
+	if (!data->audio.connected) {
 		return;
 	}
 	
 	printf("Stopping PulseAudio...\n");
 	data->audio.terminate = true;
+	data->audio.connected = false;
 	pulse_running = false;
 	
 	/* Wait for thread to finish */
