@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 03:33:23 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/26 04:01:46 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/26 04:20:58 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	*pulse_audio_thread(void *arg)
 			data->audio.buffer_size * sizeof(int16_t), &error) >= 0)
 	{
 		process_audio_samples(buf, data->audio.buffer_size, data);
-		usleep(10000);
 	}
 	if (data->audio.pulse.stream)
 	{

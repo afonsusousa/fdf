@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 23:45:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/26 03:46:24 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/26 04:22:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	toggle_audio_reactive(t_data *data)
 void	apply_eq_smoothing(float new_value, int band, t_audio *audio)
 {
 	static float	smoothed_buckets[8] = {0.0f};
-	const float		smoothing_factor = 0.075f;
+	const float		smoothing_factor = 0.07f;
 
 	if (band == 0)
 		new_value *= 2.0f;
