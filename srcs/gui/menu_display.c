@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/26 20:36:14 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/26 20:38:56 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	display_rotation_info(t_data *data)
 {
 	char	rotation_text[256];
-	char **strs[3];
+	char *strs[3];
 
 	strs[0] = ft_itoa((int)(data->view.gamma * 180.0 / M_PI));
 	strs[1] = ft_itoa((int)(data->view.alpha * 180.0 / M_PI));

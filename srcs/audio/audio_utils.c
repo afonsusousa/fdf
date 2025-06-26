@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 03:28:45 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/26 03:47:51 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/26 21:08:05 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_audio(t_data *data)
 	data->audio.buffer_size = 1024;
 	data->audio.sample_rate = 44100;
 	data->audio.scale_base = data->view.scale;
-	data->audio.scale_multiplier = 0.8;
+	data->audio.scale_multiplier = 0.5 + log10(data->map->radius);
 	ft_memcpy(data->audio.band_ranges, temp_ranges, sizeof(temp_ranges));
 	ft_memset(data->audio.buckets, 0, 8);
 	data->audio.audio_samples = malloc(sizeof(float) * data->audio.buffer_size);
@@ -56,7 +56,7 @@ int	calculate_audio_bucket_index(t_data *data, t_point *point)
 		bucket_index = (int)((distance / data->map->max_distance) * 7.9f);
 	}
 	else
-		bucket_index = 8 - (abs(point->x) * 8) / (data->map->map_width / 2);
+		bucket_index = 7 - (abs(point->x) * 8) / (data->map->map_width / 2);
 	if (bucket_index < 0)
 		bucket_index = 0;
 	if (bucket_index >= 8)
