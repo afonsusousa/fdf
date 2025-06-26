@@ -6,14 +6,14 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 20:37:51 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/23 02:04:35 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/26 04:06:39 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "../keyboard.h"
 
-int	handle_effects_keys(int keycode, t_data *data)
+static int	handle_wave_keys(int keycode, t_data *data)
 {
 	if (keycode == KEY_4)
 	{
@@ -33,6 +33,13 @@ int	handle_effects_keys(int keycode, t_data *data)
 		data->view.wave.y_time = 0.0;
 		return (1);
 	}
+	return (0);
+}
+
+int	handle_effects_keys(int keycode, t_data *data)
+{
+	if (handle_wave_keys(keycode, data))
+		return (1);
 	if (keycode == KEY_7)
 	{
 		data->view.dvd = !data->view.dvd;

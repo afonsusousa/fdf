@@ -83,10 +83,9 @@ void	map_set_limits(t_data *data)
 	}
 	data->map->min_z = min;
 	data->map->max_z = max;
-	data->map->max_distance = sqrt((data->map->map_width / 2) 
-							* (data->map->map_width / 2) 
-							+ (data->map->map_height / 2) 
-							* (data->map->map_height / 2));
+	data->map->max_distance = sqrt((data->map->map_width / 2)
+			* (data->map->map_width / 2) + (data->map->map_height / 2)
+			* (data->map->map_height / 2));
 }
 
 void	print_map_row(t_data *data, int y)

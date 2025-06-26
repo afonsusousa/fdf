@@ -1,119 +1,112 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pulseaudio.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/26 03:33:23 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/06/26 04:01:46 by amagno-r         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
+#include <pthread.h>
 #include <pulse/error.h>
 #include <pulse/pulseaudio.h>
 #include <pulse/simple.h>
-#include <pthread.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
 
-static pa_simple *pulse_stream = NULL;
-static pthread_t pulse_thread;
-static bool pulse_running = false;
-
-void *pulse_audio_thread(void *arg)
+static bool	init_pulse_stream(t_data *data)
 {
-	t_data *data = (t_data *)arg;
-	uint16_t buffer_size = data->audio.buffer_size;
-	int16_t buf[buffer_size];
-	int error;
-	
-	/* Sample format for configured sample rate stereo 16-bit */
-	pa_sample_spec ss = {
-		.format = PA_SAMPLE_S16LE,
-		.rate = data->audio.sample_rate,
-		.channels = 2
-	};
-	
-	pa_buffer_attr pb = {
-		.maxlength = (uint32_t)-1,
-		.fragsize = buffer_size * sizeof(int16_t)
-	};
-	
-	/* Connect to default PulseAudio sink monitor for system audio capture */
-	pulse_stream = pa_simple_new(NULL, "FDF Audio Visualizer", PA_STREAM_RECORD, 
-								"@DEFAULT_MONITOR@", "Audio for FDF", &ss, NULL, &pb, &error);
-	
-	if (!pulse_stream) {
-		printf("PulseAudio connection failed: %s\n", pa_strerror(error));
+	pa_sample_spec	ss;
+	pa_buffer_attr	pb;
+	int				error;
+
+	ss.format = PA_SAMPLE_S16LE;
+	ss.rate = data->audio.sample_rate;
+	ss.channels = 1;
+	pb.maxlength = (uint32_t)-1;
+	pb.fragsize = data->audio.buffer_size * sizeof(int16_t);
+	data->audio.pulse.stream = pa_simple_new(NULL, "FDF Audio Visualizer",
+			PA_STREAM_RECORD, "@DEFAULT_MONITOR@", "Audio for FDF", &ss, NULL,
+			&pb, &error);
+	if (!data->audio.pulse.stream)
+	{
 		data->audio.connected = false;
-		pulse_running = false;
-		return NULL;
+		data->audio.pulse.running = false;
+		return (false);
 	}
-	
 	data->audio.connected = true;
-	printf("PulseAudio connected successfully\n");
-	
-	while (pulse_running && !data->audio.terminate) {
-		if (pa_simple_read(pulse_stream, buf, sizeof(buf), &error) < 0) {
-			printf("PulseAudio read error: %s\n", pa_strerror(error));
-			break;
-		}
-		
-		/* Process audio samples for FDF */
-		process_audio_samples(buf, buffer_size, data);
-		
-		usleep(10000); // 10ms sleep to prevent CPU overload
+	return (true);
+}
+
+void	*pulse_audio_thread(void *arg)
+{
+	t_data	*data;
+	int16_t	*buf;
+	int		error;
+
+	data = (t_data *)arg;
+	buf = malloc(data->audio.buffer_size * sizeof(int16_t));
+	if (!buf)
+		return (NULL);
+	if (!init_pulse_stream(data))
+		return (free(buf), NULL);
+	while (data->audio.pulse.running && !data->audio.terminate
+		&& pa_simple_read((pa_simple *)data->audio.pulse.stream, buf,
+			data->audio.buffer_size * sizeof(int16_t), &error) >= 0)
+	{
+		process_audio_samples(buf, data->audio.buffer_size, data);
+		usleep(10000);
 	}
-	
-	if (pulse_stream) {
-		pa_simple_free(pulse_stream);
-		pulse_stream = NULL;
+	if (data->audio.pulse.stream)
+	{
+		pa_simple_free((pa_simple *)data->audio.pulse.stream);
+		data->audio.pulse.stream = NULL;
 	}
-	
 	data->audio.connected = false;
-	pulse_running = false;
-	printf("PulseAudio thread terminated\n");
-	return NULL;
+	data->audio.pulse.running = false;
+	return (free(buf), NULL);
 }
 
-bool start_pulse_audio(t_data *data)
+bool	start_pulse_audio(t_data *data)
 {
-	if (data->audio.connected) {
-		printf("PulseAudio already running\n");
-		return true;
+	if (data->audio.connected)
+	{
+		ft_printf("PulseAudio already running\n");
+		return (true);
 	}
-	
 	data->audio.terminate = false;
-	pulse_running = true;
-	
-	if (pthread_create(&pulse_thread, NULL, pulse_audio_thread, data) != 0) {
-		printf("Failed to create PulseAudio thread\n");
-		pulse_running = false;
-		return false;
+	data->audio.pulse.running = true;
+	if (pthread_create(&data->audio.pulse.thread, NULL, pulse_audio_thread,
+			data) != 0)
+	{
+		ft_printf("Failed to create PulseAudio thread\n");
+		data->audio.pulse.running = false;
+		return (false);
 	}
-	
-	/* Give thread time to initialize */
-	usleep(100000); // 100ms
-	
-	if (!data->audio.connected) {
-		printf("PulseAudio thread failed to start\n");
-		return false;
+	usleep(100000);
+	if (!data->audio.connected)
+	{
+		ft_printf("PulseAudio thread failed to start\n");
+		return (false);
 	}
-	
-	printf("PulseAudio started successfully\n");
-	return true;
+	return (true);
 }
 
-void stop_pulse_audio(t_data *data)
+void	stop_pulse_audio(t_data *data)
 {
-	if (!data->audio.connected) {
-		return;
-	}
-	
-	printf("Stopping PulseAudio...\n");
+	if (!data->audio.connected)
+		return ;
 	data->audio.terminate = true;
 	data->audio.connected = false;
-	pulse_running = false;
-	
-	/* Wait for thread to finish */
-	pthread_join(pulse_thread, NULL);
-	
-	if (pulse_stream) {
-		pa_simple_free(pulse_stream);
-		pulse_stream = NULL;
+	data->audio.pulse.running = false;
+	pthread_join(data->audio.pulse.thread, NULL);
+	if (data->audio.pulse.stream)
+	{
+		pa_simple_free((pa_simple *)data->audio.pulse.stream);
+		data->audio.pulse.stream = NULL;
 	}
-	
-	printf("PulseAudio stopped\n");
 }

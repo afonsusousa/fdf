@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/25 22:21:57 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/26 04:09:15 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,6 @@ NAME = fdf
 CC = clang
 CFLAGS = -fPIE -Wall -Wextra -Werror -g
 INCLUDES = -I. -I./lib/libft -I./lib/minilibx-linux -I./lib/get_next_line -I./lib/ft_printf
-PIPEWIRE_CFLAGS = -I/usr/include/pipewire-0.3 -I/usr/include/spa-0.2 -D_REENTRANT
-PIPEWIRE_LIBS = -lpipewire-0.3
 
 # Directories
 LIBFTDIR = lib/libft
@@ -73,9 +71,9 @@ SRCS = srcs/fdf.c \
        srcs/X11/keyboard/discrete/rotation.c \
        srcs/X11/keyboard/discrete/auto.c \
        srcs/X11/keyboard/discrete/effects.c \
-       srcs/audio/pipewire_audio.c \
        srcs/audio/pulseaudio.c \
-       srcs/audio/simple_audio.c
+       srcs/audio/audio_utils.c \
+       srcs/audio/audio.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -83,7 +81,8 @@ OBJS = $(SRCS:.c=.o)
 LIBFT = $(LIBFTDIR)/libft.a
 PRINTF = $(PRINTFDIR)/libftprintf.a
 MLX = $(MLXDIR)/libmlx.a
-MLXFLAGS = -lXext -lX11 -lm $(PIPEWIRE_LIBS) -lpulse-simple -lpulse
+MLXFLAGS = -lXext -lX11 -lm
+PULSEFLAGS = -lpulse-simple -lpulse
 
 # Get Next Line files
 GNL_SRCS = $(GNLDIR)/get_next_line.c \
@@ -102,7 +101,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(PRINTF) $(OBJS) $(GNL_OBJS)
 	@echo "$(BLUE)Linking $(NAME)...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) $(PULSEFLAGS) -o $(NAME)
 	@echo "$(GREEN)✓ $(NAME) compiled successfully!$(RESET)"
 
 %.o: %.c

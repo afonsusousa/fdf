@@ -23,7 +23,7 @@
 # define AUTO_ROTATION_SPEED 0.005
 
 // 1 / 60 [60fps]
-# define FRAME_DURATION  0.01666666
+# define FRAME_DURATION 0.01666666
 
 // View initialization
 void	init_view(t_data *data);

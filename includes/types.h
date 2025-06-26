@@ -6,15 +6,15 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/25 22:37:13 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/26 03:40:53 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 
-# include <stdbool.h>
 # include <pthread.h>
+# include <stdbool.h>
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -110,7 +110,7 @@ typedef struct s_view
 	double			gamma;
 	double			scale;
 	double			angle;
-	//TODO : BETTER ZOOM
+	// TODO : BETTER ZOOM
 	int				zoom;
 	float			brange;
 	bool			bend;
@@ -133,7 +133,7 @@ typedef struct s_map
 	int				max_z;
 	int				min_z;
 	int				max_distance;
-	//TODOS: CHANGEABLE RADIUS
+	// TODOS: CHANGEABLE RADIUS
 	float			radius;
 	t_point			*points;
 	t_point			*center;
@@ -148,6 +148,13 @@ typedef struct s_mouse
 	int				last_y;
 }					t_mouse;
 
+typedef struct s_pulse_state
+{
+	void			*stream;
+	pthread_t		thread;
+	bool			running;
+}					t_pulse_state;
+
 typedef struct s_audio
 {
 	bool			enabled;
@@ -156,12 +163,13 @@ typedef struct s_audio
 	float			*audio_samples;
 	int				buffer_size;
 	int				sample_rate;
-	float			buckets[8];	
+	float			buckets[8];
+	int				band_ranges[9];
 	float			scale_multiplier;
 	float			scale_base;
 	pthread_t		audio_thread;
 	pthread_mutex_t	audio_mutex;
-	void			*pw_loop;
+	t_pulse_state	pulse;
 }					t_audio;
 
 typedef struct s_data
@@ -182,7 +190,7 @@ typedef struct s_data
 	t_view			view;
 	t_mouse			mouse;
 	t_audio			audio;
-	//TODO: keys into BITWISE FLAGS
+	// TODO: keys into BITWISE FLAGS
 	bool			keys[16];
 }					t_data;
 
