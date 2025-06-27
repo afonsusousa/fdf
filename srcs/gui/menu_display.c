@@ -15,7 +15,7 @@
 void	display_rotation_info(t_data *data)
 {
 	char	rotation_text[256];
-	char *strs[3];
+	char	*strs[3];
 
 	strs[0] = ft_itoa((int)(data->view.gamma * 180.0 / M_PI));
 	strs[1] = ft_itoa((int)(data->view.alpha * 180.0 / M_PI));

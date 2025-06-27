@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 19:07:39 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/26 20:32:58 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/27 02:13:14 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	free_strs(char **strs, int n)
 			free(strs[i]);
 }
 
+#ifdef AUDIO
+
 void	free_data(t_data *data)
 {
 	cleanup_audio(data);
@@ -46,3 +48,23 @@ void	free_data(t_data *data)
 		free(data->mlx);
 	exit(0);
 }
+#else
+
+void	free_data(t_data *data)
+{
+	if (data->map->points)
+		free(data->map->points);
+	if (data->map->lines)
+		free(data->map->lines);
+	free(data->map);
+	if (data->mlx && data->img)
+		mlx_destroy_image(data->mlx, data->img);
+	if (data->mlx && data->mlx_win)
+		mlx_destroy_window(data->mlx, data->mlx_win);
+	if (data->mlx)
+		mlx_destroy_display(data->mlx);
+	if (data->mlx)
+		free(data->mlx);
+	exit(0);
+}
+#endif

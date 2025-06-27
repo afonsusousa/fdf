@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/26 04:09:15 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/06/27 02:34:30 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ SRCS = srcs/fdf.c \
        srcs/gui/menu_display.c \
        srcs/gui/menu_display_utils.c \
        srcs/gui/menu_controls.c \
+       srcs/gui/menu_controls_effects.c \
+       srcs/gui/menu_controls_system.c \
        srcs/gui/axis.c \
        srcs/gui/axis_utils.c \
        srcs/map/init_map.c \
@@ -70,12 +72,14 @@ SRCS = srcs/fdf.c \
        srcs/X11/keyboard/discrete/system.c \
        srcs/X11/keyboard/discrete/rotation.c \
        srcs/X11/keyboard/discrete/auto.c \
-       srcs/X11/keyboard/discrete/effects.c \
-       srcs/audio/pulseaudio.c \
+       srcs/X11/keyboard/discrete/effects.c
+       
+AUDIO_SRCS = srcs/audio/pulseaudio.c \
        srcs/audio/audio_utils.c \
        srcs/audio/audio.c
 
 OBJS = $(SRCS:.c=.o)
+AUDIO_OBJS = $(AUDIO_SRCS:.c=.o)
 
 # Libraries
 LIBFT = $(LIBFTDIR)/libft.a
@@ -101,12 +105,12 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(PRINTF) $(OBJS) $(GNL_OBJS)
 	@echo "$(BLUE)Linking $(NAME)...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) $(PULSEFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) -o $(NAME)
 	@echo "$(GREEN)✓ $(NAME) compiled successfully!$(RESET)"
 
 %.o: %.c
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDES) $(PIPEWIRE_CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):
 	@echo "$(BLUE)Building libft...$(RESET)"
@@ -120,9 +124,15 @@ $(MLX):
 	@echo "$(BLUE)Building minilibx...$(RESET)"
 	@make -C $(MLXDIR) --no-print-directory
 
+audio: CFLAGS += -DAUDIO
+audio: clean $(LIBFT) $(MLX) $(PRINTF) $(OBJS) $(AUDIO_OBJS) $(GNL_OBJS)
+	@echo "$(BLUE)Linking with audio support...$(RESET)"
+	@$(CC) $(CFLAGS) $(OBJS) $(AUDIO_OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) $(PULSEFLAGS) -o $(NAME)
+	@echo "$(GREEN)✓ $(NAME) compiled successfully with audio support!$(RESET)"
+
 clean:
 	@echo "$(RED)Cleaning object files...$(RESET)"
-	@rm -f $(OBJS) $(GNL_OBJS)
+	@rm -f $(OBJS) $(AUDIO_OBJS) $(GNL_OBJS)
 	@make -C $(LIBFTDIR) clean --no-print-directory
 	@make -C $(PRINTFDIR) clean --no-print-directory
 	@make -C $(MLXDIR) clean --no-print-directory

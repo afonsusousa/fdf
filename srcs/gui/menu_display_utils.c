@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 10:00:00 by asousa            #+#    #+#             */
-/*   Updated: 2025/06/26 20:44:34 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/27 02:22:40 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,4 @@ void	display_all_menu_info(t_data *img)
 	display_render_mode(img);
 	display_effects_status(img);
 	mlx_string_put(img->mlx, img->mlx_win, 5, 125, 0xFF8C7A, "Controls:");
-}
-
-void	display_all_controls(t_data *img)
-{
-	display_basic_controls(img);
-	display_mouse_controls(img);
-	display_rendering_controls(img);
-	display_auto_rotation_controls(img);
-	display_effects_controls(img);
-	mlx_string_put(img->mlx, img->mlx_win, 10, 580, 0xFF8C7A, "SYSTEM:");
-	mlx_string_put(img->mlx, img->mlx_win, 15, 595, 0xFFFFFF, "R - Reset View");
-	mlx_string_put(img->mlx, img->mlx_win, 15, 610, 0xFFFFFF, "Q - Quit");
 }

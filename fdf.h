@@ -6,16 +6,16 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/23 01:44:37 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/27 02:00:55 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "lib/minilibx-linux/mlx.h"
-# include "lib/libft/libft.h"
 # include "lib/ft_printf/ft_printf.h"
+# include "lib/libft/libft.h"
+# include "lib/minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
@@ -32,7 +32,9 @@
 # include "includes/types.h"
 # include "includes/utils.h"
 # include "includes/view.h"
-# include "includes/audio.h"
+# ifdef AUDIO
+#  include "includes/audio.h"
+# endif
 
 // Main functions
 void	free_data(t_data *data);

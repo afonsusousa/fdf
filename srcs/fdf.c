@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/23 01:56:43 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/27 02:11:19 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	init_window(t_data *data)
 			&data->line_length, &data->endian);
 }
 
+#ifdef AUDIO
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -71,3 +73,28 @@ int	main(int argc, char **argv)
 	init_audio(&data);
 	fdf_hooks(&data);
 }
+#else
+
+int	main(int argc, char **argv)
+{
+	t_data	data;
+
+	if (argc == 1)
+	{
+		ft_printf("No file specified.\n");
+		return (-1);
+	}
+	else if (argc != 2)
+		ft_printf("Too many files specified... Opening first...\n");
+	ft_memset(&data, 0, sizeof(t_data));
+	init_map(&data, argv[1]);
+	if (!data.map)
+		return (-1);
+	print_map(&data);
+	init_window(&data);
+	init_view(&data);
+	init_mouse(&data);
+	keyboard_init(&data);
+	fdf_hooks(&data);
+}
+#endif

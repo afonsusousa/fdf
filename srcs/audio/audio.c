@@ -76,11 +76,11 @@ void	decay_bucket(int band, t_audio *audio)
 
 void	simple_frequency_analysis(t_audio *audio)
 {
-	int			i;
-	int			band;
-	float		sample;
-	float		sum[8];
-	int			count[8];
+	int		i;
+	int		band;
+	float	sample;
+	float	sum[8];
+	int		count[8];
 
 	ft_memset(sum, 0, 8 * sizeof(float));
 	ft_memset(count, 0, 8 * sizeof(int));
