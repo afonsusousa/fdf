@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 03:28:45 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/27 02:02:42 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/06/27 03:05:23 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	init_audio(t_data *data)
 	data->audio.audio_samples = malloc(sizeof(float) * data->audio.buffer_size);
 	if (!data->audio.audio_samples)
 		return ;
+	ft_memset(&data->audio.audio_samples, 0, sizeof(float)
+		* data->audio.buffer_size);
 	pthread_mutex_init(&data->audio.audio_mutex, NULL);
 	data->audio.pulse.stream = NULL;
 	data->audio.pulse.running = false;
