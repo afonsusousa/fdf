@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/04 21:18:43 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:47:39 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ typedef struct s_map
 	int				max_z;
 	int				min_z;
 	int				max_distance;
-	// TODOS: CHANGEABLE RADIUS
 	float			radius;
 	t_point			*points;
 	t_point			*center;
@@ -147,6 +146,8 @@ typedef struct s_mouse
 	int				last_x;
 	int				last_y;
 }					t_mouse;
+
+# ifdef AUDIO
 
 typedef struct s_pulse_state
 {
@@ -191,9 +192,32 @@ typedef struct s_data
 	t_view			view;
 	t_mouse			mouse;
 	t_audio			audio;
-	// TODO: keys into BITWISE FLAGS
 	bool			keys[16];
 }					t_data;
+
+# else
+
+typedef struct s_data
+{
+	void			*mlx;
+	void			*mlx_win;
+	void			*img;
+	char			*addr;
+	int				w_height;
+	int				w_width;
+	int				m_ratio;
+	int				m_width;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	double			time;
+	t_map			*map;
+	t_view			view;
+	t_mouse			mouse;
+	bool			keys[16];
+}					t_data;
+
+# endif
 
 typedef struct s_axis_params
 {

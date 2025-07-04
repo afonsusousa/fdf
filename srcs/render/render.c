@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:33:08 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/26 04:03:46 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:46:52 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	clear_image(t_data *data)
 	draw_background(data, background_color);
 }
 
+#ifdef AUDIO
+
 static void	update_times(t_data *data)
 {
 	static const double	frame_duration = FRAME_DURATION;
@@ -34,6 +36,21 @@ static void	update_times(t_data *data)
 	if (data->audio.enabled)
 		data->time += frame_duration;
 }
+
+#else
+
+static void	update_times(t_data *data)
+{
+	static const double	frame_duration = FRAME_DURATION;
+
+	if (data->view.ripple.enabled)
+		data->view.ripple.time += frame_duration;
+	if (data->view.wave.enabled_x)
+		data->view.wave.x_time += frame_duration;
+	if (data->view.wave.enabled_y)
+		data->view.wave.y_time += frame_duration;
+}
+#endif
 
 int	rotate_and_render(t_data *data)
 {
