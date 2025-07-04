@@ -15,7 +15,7 @@ NAME = fdf
 
 # Compiler and flags
 CC = clang
-CFLAGS = -fPIE -Wall -Wextra -Werror -g
+CFLAGS = -O3 -fPIE -Wall -Wextra -Werror -g
 INCLUDES = -I. -I./lib/libft -I./lib/minilibx-linux -I./lib/get_next_line -I./lib/ft_printf
 
 # Directories

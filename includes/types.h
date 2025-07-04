@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/26 03:40:53 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:18:43 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ typedef struct s_pulse_state
 	void			*stream;
 	pthread_t		thread;
 	bool			running;
+	bool			thread_created;
 }					t_pulse_state;
 
 typedef struct s_audio

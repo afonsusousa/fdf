@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 03:28:45 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/01 19:30:41 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:18:47 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_audio(t_data *data)
 	pthread_mutex_init(&data->audio.audio_mutex, NULL);
 	data->audio.pulse.stream = NULL;
 	data->audio.pulse.running = false;
+	data->audio.pulse.thread_created = false;
 }
 
 void	cleanup_audio(t_data *data)
