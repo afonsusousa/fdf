@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/26 20:38:56 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/06 22:28:54 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	display_view_info(t_data *data)
 	int		scale_percent;
 
 	scale_percent = (int)(data->view.scale * 100);
-	strs[0] = ft_itoa(data->view.zoom);
-	strs[1] = ft_itoa(scale_percent);
+	strs[0] = ft_itoa(scale_percent);
+	strs[1] = ft_itoa(data->view.zoom);
 	if (!strs[0] || !strs[1])
 		return (free_strs(strs, 2), free_data(data));
 	ft_strlcpy(view_text, "Scale: ", sizeof(view_text));

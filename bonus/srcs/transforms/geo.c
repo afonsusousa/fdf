@@ -6,12 +6,14 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:23:40 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/23 02:09:22 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/06 22:27:04 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
+
+#ifdef AUDIO
 
 void	spherize(t_point *point, t_data *data)
 {
@@ -26,6 +28,24 @@ void	spherize(t_point *point, t_data *data)
 		* sin(point->globe_2d[1]);
 	point->world_3d[2] = radius * sin(point->globe_2d[0]);
 }
+
+#else
+
+void	spherize(t_point *point, t_data *data)
+{
+	float	radius;
+
+	if (data->view.view_mode != SPHERICAL)
+		return ;
+	radius = data->map->radius + (point->z * data->view.scale);
+	point->world_3d[0] = radius * cos(point->globe_2d[0])
+		* cos(point->globe_2d[1]);
+	point->world_3d[1] = radius * cos(point->globe_2d[0])
+		* sin(point->globe_2d[1]);
+	point->world_3d[2] = radius * sin(point->globe_2d[0]);
+}
+
+#endif
 
 void	polarize_points(t_map *map)
 {
