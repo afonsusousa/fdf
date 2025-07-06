@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/27 02:00:55 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/06 22:21:12 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <unistd.h>
 
 // Include modular headers
+# include "includes/audio.h"
 # include "includes/controls.h"
 # include "includes/draw.h"
 # include "includes/map.h"
@@ -32,9 +33,6 @@
 # include "includes/types.h"
 # include "includes/utils.h"
 # include "includes/view.h"
-# ifdef AUDIO
-#  include "includes/audio.h"
-# endif
 
 // Main functions
 void	free_data(t_data *data);

@@ -6,17 +6,24 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/06/27 02:34:30 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/07/06 22:23:17 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Program name
+# Program names
 NAME = fdf
+BONUS_NAME = fdf_bonus
 
 # Compiler and flags
 CC = clang
 CFLAGS = -O3 -fPIE -Wall -Wextra -Werror -g
-INCLUDES = -I. -I./lib/libft -I./lib/minilibx-linux -I./lib/get_next_line -I./lib/ft_printf
+
+# Base includes for libraries
+BASE_INCLUDES = -I. -I./lib/libft -I./lib/minilibx-linux -I./lib/get_next_line -I./lib/ft_printf
+
+# Separate includes for mandatory and bonus
+MANDATORY_INCLUDES = $(BASE_INCLUDES) -I./mandatory
+BONUS_INCLUDES = $(BASE_INCLUDES) -I./bonus -I./bonus/includes
 
 # Directories
 LIBFTDIR = lib/libft
@@ -24,61 +31,86 @@ MLXDIR = lib/minilibx-linux
 GNLDIR = lib/get_next_line
 PRINTFDIR = lib/ft_printf/
 
-# Source files
-SRCS = srcs/fdf.c \
-       srcs/render/render.c \
-       srcs/render/draw.c \
-       srcs/render/colors.c \
-       srcs/render/view.c \
-       srcs/render/lines/drawing/line.c \
-       srcs/render/lines/drawing/line_utils.c \
-       srcs/render/lines/drawing/float_utils.c \
-       srcs/render/lines/sorting/line_priority.c \
-       srcs/render/lines/sorting/line_priority_utils.c \
-       srcs/render/lines/sorting/line_utils.c \
-       srcs/render/lines/sorting/line_traversal.c \
-       srcs/gui/menu.c \
-       srcs/gui/menu_display.c \
-       srcs/gui/menu_display_utils.c \
-       srcs/gui/menu_controls.c \
-       srcs/gui/menu_controls_effects.c \
-       srcs/gui/menu_controls_system.c \
-       srcs/gui/axis.c \
-       srcs/gui/axis_utils.c \
-       srcs/map/init_map.c \
-       srcs/map/init_map_utils.c \
-       srcs/map/init_map_read_utils.c \
-       srcs/points/point.c \
-       srcs/points/point_get.c \
-       srcs/transforms/angles.c \
-       srcs/transforms/bend.c \
-       srcs/transforms/dvd.c \
-       srcs/transforms/project.c \
-       srcs/transforms/transform.c \
-       srcs/transforms/rotations.c \
-       srcs/transforms/ripple.c \
-       srcs/transforms/wave.c \
-       srcs/transforms/ortographic.c \
-       srcs/transforms/geo.c \
-       srcs/utils/free.c \
-       srcs/X11/mouse/mouse.c \
-       srcs/X11/keyboard/keyboard.c \
-       srcs/X11/keyboard/smooth/bend.c \
-       srcs/X11/keyboard/smooth/scale.c \
-       srcs/X11/keyboard/smooth/zoom.c \
-       srcs/X11/keyboard/smooth/shift.c \
-       srcs/X11/keyboard/smooth/rotations.c \
-       srcs/X11/keyboard/discrete/window.c \
-       srcs/X11/keyboard/discrete/system.c \
-       srcs/X11/keyboard/discrete/rotation.c \
-       srcs/X11/keyboard/discrete/auto.c \
-       srcs/X11/keyboard/discrete/effects.c
-       
-AUDIO_SRCS = srcs/audio/pulseaudio.c \
-       srcs/audio/audio_utils.c \
-       srcs/audio/audio.c
+# Mandatory source files
+MANDATORY_SRCS = mandatory/srcs/fdf.c \
+                 mandatory/srcs/render/render.c \
+                 mandatory/srcs/render/draw.c \
+                 mandatory/srcs/render/colors.c \
+                 mandatory/srcs/render/view.c \
+                 mandatory/srcs/render/lines/drawing/line.c \
+                 mandatory/srcs/render/lines/drawing/line_utils.c \
+                 mandatory/srcs/render/lines/drawing/float_utils.c \
+                 mandatory/srcs/render/lines/sorting/line_priority.c \
+                 mandatory/srcs/render/lines/sorting/line_priority_utils.c \
+                 mandatory/srcs/render/lines/sorting/line_utils.c \
+                 mandatory/srcs/render/project.c \
+                 mandatory/srcs/render/rotations.c \
+                 mandatory/srcs/map/init_map.c \
+                 mandatory/srcs/map/init_map_utils.c \
+                 mandatory/srcs/map/init_map_read_utils.c \
+                 mandatory/srcs/points/point.c \
+                 mandatory/srcs/points/point_get.c \
+                 mandatory/srcs/utils/free.c \
+                 mandatory/srcs/X11/x11.c
 
-OBJS = $(SRCS:.c=.o)
+# Bonus source files  
+BONUS_SRCS = bonus/srcs/fdf.c \
+             bonus/srcs/render/render.c \
+             bonus/srcs/render/draw.c \
+             bonus/srcs/render/colors.c \
+             bonus/srcs/render/view.c \
+             bonus/srcs/render/lines/drawing/line.c \
+             bonus/srcs/render/lines/drawing/line_utils.c \
+             bonus/srcs/render/lines/drawing/float_utils.c \
+             bonus/srcs/render/lines/sorting/line_priority.c \
+             bonus/srcs/render/lines/sorting/line_priority_utils.c \
+             bonus/srcs/render/lines/sorting/line_utils.c \
+             bonus/srcs/render/lines/sorting/line_traversal.c \
+             bonus/srcs/gui/menu.c \
+             bonus/srcs/gui/menu_display.c \
+             bonus/srcs/gui/menu_display_utils.c \
+             bonus/srcs/gui/menu_controls.c \
+             bonus/srcs/gui/menu_controls_effects.c \
+             bonus/srcs/gui/menu_controls_system.c \
+             bonus/srcs/gui/axis.c \
+             bonus/srcs/gui/axis_utils.c \
+             bonus/srcs/map/init_map.c \
+             bonus/srcs/map/init_map_utils.c \
+             bonus/srcs/map/init_map_read_utils.c \
+             bonus/srcs/points/point.c \
+             bonus/srcs/points/point_get.c \
+             bonus/srcs/transforms/angles.c \
+             bonus/srcs/transforms/bend.c \
+             bonus/srcs/transforms/dvd.c \
+             bonus/srcs/transforms/project.c \
+             bonus/srcs/transforms/transform.c \
+             bonus/srcs/transforms/rotations.c \
+             bonus/srcs/transforms/ripple.c \
+             bonus/srcs/transforms/wave.c \
+             bonus/srcs/transforms/ortographic.c \
+             bonus/srcs/transforms/geo.c \
+             bonus/srcs/utils/free.c \
+             bonus/srcs/X11/mouse/mouse.c \
+             bonus/srcs/X11/keyboard/keyboard.c \
+             bonus/srcs/X11/keyboard/smooth/bend.c \
+             bonus/srcs/X11/keyboard/smooth/scale.c \
+             bonus/srcs/X11/keyboard/smooth/zoom.c \
+             bonus/srcs/X11/keyboard/smooth/shift.c \
+             bonus/srcs/X11/keyboard/smooth/rotations.c \
+             bonus/srcs/X11/keyboard/discrete/window.c \
+             bonus/srcs/X11/keyboard/discrete/system.c \
+             bonus/srcs/X11/keyboard/discrete/rotation.c \
+             bonus/srcs/X11/keyboard/discrete/auto.c \
+             bonus/srcs/X11/keyboard/discrete/effects.c \
+          
+
+# Audio source files (bonus only)
+AUDIO_SRCS =  bonus/srcs/audio/audio_utils.c \
+              bonus/srcs/audio/audio.c \
+              bonus/srcs/audio/pulseaudio.c
+
+MANDATORY_OBJS = $(MANDATORY_SRCS:.c=.o)
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 AUDIO_OBJS = $(AUDIO_SRCS:.c=.o)
 
 # Libraries
@@ -103,66 +135,99 @@ RESET = \033[0m
 # Rules
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MLX) $(PRINTF) $(OBJS) $(GNL_OBJS)
-	@echo "$(BLUE)Linking $(NAME)...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) -o $(NAME)
-	@echo "$(GREEN)✓ $(NAME) compiled successfully!$(RESET)"
+# Mandatory version
+$(NAME): $(LIBFT) $(MLX) $(PRINTF) $(MANDATORY_OBJS) $(GNL_OBJS)
+	@echo "$(BLUE)Linking mandatory $(NAME)...$(RESET)"
+	@$(CC) $(CFLAGS) $(MANDATORY_OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) -o $(NAME)
+	@echo "$(GREEN)✓ Mandatory $(NAME) compiled successfully!$(RESET)"
+
+# Bonus version
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME): $(LIBFT) $(MLX) $(PRINTF) $(BONUS_OBJS) $(GNL_OBJS)
+	@echo "$(BLUE)Linking bonus $(BONUS_NAME)...$(RESET)"
+	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) -o $(BONUS_NAME)
+	@echo "$(GREEN)✓ Bonus $(BONUS_NAME) compiled successfully!$(RESET)"
+
+# Bonus with audio
+audio: CFLAGS += -DAUDIO
+audio: $(LIBFT) $(MLX) $(PRINTF) $(BONUS_OBJS) $(AUDIO_OBJS) $(GNL_OBJS)
+	@echo "$(BLUE)Linking bonus with audio support...$(RESET)"
+	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(AUDIO_OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) $(PULSEFLAGS) -o $(BONUS_NAME)
+	@echo "$(GREEN)✓ Bonus with audio compiled successfully!$(RESET)"
+
+# Compilation rules
+mandatory/%.o: mandatory/%.c
+	@echo "$(YELLOW)Compiling mandatory $<...$(RESET)"
+	@$(CC) $(CFLAGS) $(MANDATORY_INCLUDES) -c $< -o $@
+
+bonus/%.o: bonus/%.c
+	@echo "$(YELLOW)Compiling bonus $<...$(RESET)"
+	@$(CC) $(CFLAGS) $(BONUS_INCLUDES) -c $< -o $@
 
 %.o: %.c
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) $(BASE_INCLUDES) -c $< -o $@
 
 $(LIBFT):
 	@echo "$(BLUE)Building libft...$(RESET)"
 	@make -C $(LIBFTDIR) --no-print-directory
 
 $(PRINTF):
-	@echo "$(BLUE)Building libft...$(RESET)"
+	@echo "$(BLUE)Building ft_printf...$(RESET)"
 	@make -C $(PRINTFDIR) --no-print-directory
 	
 $(MLX):
 	@echo "$(BLUE)Building minilibx...$(RESET)"
 	@make -C $(MLXDIR) --no-print-directory
 
-audio: CFLAGS += -DAUDIO
-audio: clean $(LIBFT) $(MLX) $(PRINTF) $(OBJS) $(AUDIO_OBJS) $(GNL_OBJS)
-	@echo "$(BLUE)Linking with audio support...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) $(AUDIO_OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) $(PULSEFLAGS) -o $(NAME)
-	@echo "$(GREEN)✓ $(NAME) compiled successfully with audio support!$(RESET)"
-
 clean:
 	@echo "$(RED)Cleaning object files...$(RESET)"
-	@rm -f $(OBJS) $(AUDIO_OBJS) $(GNL_OBJS)
+	@rm -f $(MANDATORY_OBJS) $(BONUS_OBJS) $(AUDIO_OBJS) $(GNL_OBJS)
 	@make -C $(LIBFTDIR) clean --no-print-directory
 	@make -C $(PRINTFDIR) clean --no-print-directory
 	@make -C $(MLXDIR) clean --no-print-directory
 
 fclean: clean
-	@echo "$(RED)Cleaning $(NAME)...$(RESET)"
-	@rm -f $(NAME)
+	@echo "$(RED)Cleaning executables...$(RESET)"
+	@rm -f $(NAME) $(BONUS_NAME)
 	@make -C $(LIBFTDIR) fclean --no-print-directory
 	@make -C $(PRINTFDIR) fclean --no-print-directory
 
 re: fclean all
 
-# Test with a sample map
+re_bonus: fclean bonus
+
+# Test targets
 test: $(NAME)
-	@echo "$(GREEN)Running test with 42.fdf...$(RESET)"
+	@echo "$(GREEN)Running mandatory test with 42.fdf...$(RESET)"
 	@./$(NAME) maps/test_maps/42.fdf
 
-# Debug version
+test_bonus: $(BONUS_NAME)
+	@echo "$(GREEN)Running bonus test with 42.fdf...$(RESET)"
+	@./$(BONUS_NAME) maps/test_maps/42.fdf
+
+# Debug versions
 debug: CFLAGS += -fsanitize=address -g3
 debug: $(NAME)
+
+debug_bonus: CFLAGS += -fsanitize=address -g3
+debug_bonus: $(BONUS_NAME)
 
 # Help
 help:
 	@echo "$(BLUE)Available targets:$(RESET)"
-	@echo "  all       - Build the project"
-	@echo "  clean     - Remove object files"
-	@echo "  fclean    - Remove object files and executable"
-	@echo "  re        - Rebuild the project"
-	@echo "  test      - Run test with sample map"
-	@echo "  debug     - Build with debug flags"
-	@echo "  help      - Show this help"
+	@echo "  all          - Build mandatory version"
+	@echo "  bonus        - Build bonus version"
+	@echo "  audio        - Build bonus version with audio"
+	@echo "  clean        - Remove object files"
+	@echo "  fclean       - Remove object files and executables"
+	@echo "  re           - Rebuild mandatory version"
+	@echo "  re_bonus     - Rebuild bonus version"
+	@echo "  test         - Run mandatory test"
+	@echo "  test_bonus   - Run bonus test"
+	@echo "  debug        - Build mandatory with debug flags"
+	@echo "  debug_bonus  - Build bonus with debug flags"
+	@echo "  help         - Show this help"
 
-.PHONY: all clean fclean re test debug help
+.PHONY: all bonus audio clean fclean re re_bonus test test_bonus debug debug_bonus help
