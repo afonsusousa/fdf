@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/07/07 18:25:21 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/07/07 18:35:33 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,13 +125,6 @@ GNL_SRCS = $(GNLDIR)/get_next_line.c \
            $(GNLDIR)/get_next_line_utils.c
 GNL_OBJS = $(GNL_SRCS:.c=.o)
 
-# Colors for output
-RED = \033[0;31m
-GREEN = \033[0;32m
-YELLOW = \033[0;33m
-BLUE = \033[0;34m
-RESET = \033[0m
-
 # Rules
 all: $(NAME)
 
@@ -149,14 +142,12 @@ $(BONUS_NAME): $(LIBFT) $(MLX) $(PRINTF) $(BONUS_OBJS) $(GNL_OBJS)
 	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) -o $(BONUS_NAME)
 	@echo "$(GREEN)✓ Bonus $(BONUS_NAME) compiled successfully!$(RESET)"
 
-# Bonus with audio
 audio: CFLAGS += -DAUDIO
 audio: $(LIBFT) $(MLX) $(PRINTF) $(BONUS_OBJS) $(AUDIO_OBJS) $(GNL_OBJS)
 	@echo "$(BLUE)Linking bonus with audio support...$(RESET)"
 	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(AUDIO_OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) $(PULSEFLAGS) -o $(BONUS_NAME)
 	@echo "$(GREEN)✓ Bonus with audio compiled successfully!$(RESET)"
 
-# Compilation rules
 mandatory/%.o: mandatory/%.c
 	@echo "$(YELLOW)Compiling mandatory $<...$(RESET)"
 	@$(CC) $(CFLAGS) $(MANDATORY_INCLUDES) -c $< -o $@
@@ -213,21 +204,5 @@ debug: $(NAME)
 
 debug_bonus: CFLAGS += -fsanitize=address -g3
 debug_bonus: $(BONUS_NAME)
-
-# Help
-help:
-	@echo "$(BLUE)Available targets:$(RESET)"
-	@echo "  all          - Build mandatory version"
-	@echo "  bonus        - Build bonus version"
-	@echo "  audio        - Build bonus version with audio"
-	@echo "  clean        - Remove object files"
-	@echo "  fclean       - Remove object files and executables"
-	@echo "  re           - Rebuild mandatory version"
-	@echo "  re_bonus     - Rebuild bonus version"
-	@echo "  test         - Run mandatory test"
-	@echo "  test_bonus   - Run bonus test"
-	@echo "  debug        - Build mandatory with debug flags"
-	@echo "  debug_bonus  - Build bonus with debug flags"
-	@echo "  help         - Show this help"
 
 .PHONY: all bonus audio clean fclean re re_bonus test test_bonus debug debug_bonus help
