@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/07/06 22:23:17 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/07/07 18:25:21 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,60 +54,60 @@ MANDATORY_SRCS = mandatory/srcs/fdf.c \
                  mandatory/srcs/X11/x11.c
 
 # Bonus source files  
-BONUS_SRCS = bonus/srcs/fdf.c \
-             bonus/srcs/render/render.c \
-             bonus/srcs/render/draw.c \
-             bonus/srcs/render/colors.c \
-             bonus/srcs/render/view.c \
-             bonus/srcs/render/lines/drawing/line.c \
-             bonus/srcs/render/lines/drawing/line_utils.c \
-             bonus/srcs/render/lines/drawing/float_utils.c \
-             bonus/srcs/render/lines/sorting/line_priority.c \
-             bonus/srcs/render/lines/sorting/line_priority_utils.c \
-             bonus/srcs/render/lines/sorting/line_utils.c \
-             bonus/srcs/render/lines/sorting/line_traversal.c \
-             bonus/srcs/gui/menu.c \
-             bonus/srcs/gui/menu_display.c \
-             bonus/srcs/gui/menu_display_utils.c \
-             bonus/srcs/gui/menu_controls.c \
-             bonus/srcs/gui/menu_controls_effects.c \
-             bonus/srcs/gui/menu_controls_system.c \
-             bonus/srcs/gui/axis.c \
-             bonus/srcs/gui/axis_utils.c \
-             bonus/srcs/map/init_map.c \
-             bonus/srcs/map/init_map_utils.c \
-             bonus/srcs/map/init_map_read_utils.c \
-             bonus/srcs/points/point.c \
-             bonus/srcs/points/point_get.c \
-             bonus/srcs/transforms/angles.c \
-             bonus/srcs/transforms/bend.c \
-             bonus/srcs/transforms/dvd.c \
-             bonus/srcs/transforms/project.c \
-             bonus/srcs/transforms/transform.c \
-             bonus/srcs/transforms/rotations.c \
-             bonus/srcs/transforms/ripple.c \
-             bonus/srcs/transforms/wave.c \
-             bonus/srcs/transforms/ortographic.c \
-             bonus/srcs/transforms/geo.c \
-             bonus/srcs/utils/free.c \
-             bonus/srcs/X11/mouse/mouse.c \
-             bonus/srcs/X11/keyboard/keyboard.c \
-             bonus/srcs/X11/keyboard/smooth/bend.c \
-             bonus/srcs/X11/keyboard/smooth/scale.c \
-             bonus/srcs/X11/keyboard/smooth/zoom.c \
-             bonus/srcs/X11/keyboard/smooth/shift.c \
-             bonus/srcs/X11/keyboard/smooth/rotations.c \
-             bonus/srcs/X11/keyboard/discrete/window.c \
-             bonus/srcs/X11/keyboard/discrete/system.c \
-             bonus/srcs/X11/keyboard/discrete/rotation.c \
-             bonus/srcs/X11/keyboard/discrete/auto.c \
-             bonus/srcs/X11/keyboard/discrete/effects.c \
+BONUS_SRCS = bonus/srcs/fdf_bonus.c \
+             bonus/srcs/render/render_bonus.c \
+             bonus/srcs/render/draw_bonus.c \
+             bonus/srcs/render/colors_bonus.c \
+             bonus/srcs/render/view_bonus.c \
+             bonus/srcs/render/lines/drawing/line_bonus.c \
+             bonus/srcs/render/lines/drawing/line_utils_bonus.c \
+             bonus/srcs/render/lines/drawing/float_utils_bonus.c \
+             bonus/srcs/render/lines/sorting/line_priority_bonus.c \
+             bonus/srcs/render/lines/sorting/line_priority_utils_bonus.c \
+             bonus/srcs/render/lines/sorting/line_utils_bonus.c \
+             bonus/srcs/render/lines/sorting/line_traversal_bonus.c \
+             bonus/srcs/gui/menu_bonus.c \
+             bonus/srcs/gui/menu_display_bonus.c \
+             bonus/srcs/gui/menu_display_utils_bonus.c \
+             bonus/srcs/gui/menu_controls_bonus.c \
+             bonus/srcs/gui/menu_controls_effects_bonus.c \
+             bonus/srcs/gui/menu_controls_system_bonus.c \
+             bonus/srcs/gui/axis_bonus.c \
+             bonus/srcs/gui/axis_utils_bonus.c \
+             bonus/srcs/map/init_map_bonus.c \
+             bonus/srcs/map/init_map_utils_bonus.c \
+             bonus/srcs/map/init_map_read_utils_bonus.c \
+             bonus/srcs/points/point_bonus.c \
+             bonus/srcs/points/point_get_bonus.c \
+             bonus/srcs/transforms/angles_bonus.c \
+             bonus/srcs/transforms/bend_bonus.c \
+             bonus/srcs/transforms/dvd_bonus.c \
+             bonus/srcs/transforms/project_bonus.c \
+             bonus/srcs/transforms/transform_bonus.c \
+             bonus/srcs/transforms/rotations_bonus.c \
+             bonus/srcs/transforms/ripple_bonus.c \
+             bonus/srcs/transforms/wave_bonus.c \
+             bonus/srcs/transforms/ortographic_bonus.c \
+             bonus/srcs/transforms/geo_bonus.c \
+             bonus/srcs/utils/free_bonus.c \
+             bonus/srcs/X11/mouse/mouse_bonus.c \
+             bonus/srcs/X11/keyboard/keyboard_bonus.c \
+             bonus/srcs/X11/keyboard/smooth/bend_bonus.c \
+             bonus/srcs/X11/keyboard/smooth/scale_bonus.c \
+             bonus/srcs/X11/keyboard/smooth/zoom_bonus.c \
+             bonus/srcs/X11/keyboard/smooth/shift_bonus.c \
+             bonus/srcs/X11/keyboard/smooth/rotations_bonus.c \
+             bonus/srcs/X11/keyboard/discrete/window_bonus.c \
+             bonus/srcs/X11/keyboard/discrete/system_bonus.c \
+             bonus/srcs/X11/keyboard/discrete/rotation_bonus.c \
+             bonus/srcs/X11/keyboard/discrete/auto_bonus.c \
+             bonus/srcs/X11/keyboard/discrete/effects_bonus.c \
           
 
 # Audio source files (bonus only)
-AUDIO_SRCS =  bonus/srcs/audio/audio_utils.c \
-              bonus/srcs/audio/audio.c \
-              bonus/srcs/audio/pulseaudio.c
+AUDIO_SRCS =  bonus/srcs/audio/audio_utils_bonus.c \
+              bonus/srcs/audio/audio_bonus.c \
+              bonus/srcs/audio/pulseaudio_bonus.c
 
 MANDATORY_OBJS = $(MANDATORY_SRCS:.c=.o)
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)

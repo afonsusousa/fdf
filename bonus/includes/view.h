@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   view.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 16:46:38 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/22 20:51:02 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/07 18:26:48 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VIEW_H
 # define VIEW_H
 
-# include "../fdf.h"
+# include "../fdf_bonus.h"
 
 # define ROTATION_STEP 0.01
 # define ZOOM_STEP 1
