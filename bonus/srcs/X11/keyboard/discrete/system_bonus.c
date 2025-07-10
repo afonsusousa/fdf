@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/10 18:27:29 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 19:17:57 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,19 @@ int	handle_reset_keys(int keycode, t_data *data)
 	return (0);
 }
 
-int	handle_rendering_keys(int keycode, t_data *data)
+static int	handle_rendering_algo(int keycode, t_data *data)
 {
 	if (keycode == KEY_M)
 	{
 		data->view.render_mode = (data->view.render_mode + 1) % 3;
 		return (1);
 	}
-	else if (keycode == KEY_I)
+	return (0);
+}
+
+int	handle_rendering_keys(int keycode, t_data *data)
+{
+	if (keycode == KEY_I)
 	{
 		data->view.view_mode = ISOMETRIC;
 		return (1);
@@ -63,5 +68,5 @@ int	handle_rendering_keys(int keycode, t_data *data)
 		data->view.view_mode = CYLINDRICAL;
 		return (1);
 	}
-	return (0);
+	return (handle_rendering_algo(keycode, data));
 }

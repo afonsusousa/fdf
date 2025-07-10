@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:57:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/07 18:26:48 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 19:21:28 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "limits.h"
 #include <math.h>
 
-void	draw_steep(t_data *data, t_line *line)
+static void	draw_steep(t_data *data, t_line *line)
 {
 	int				x;
 	t_pixel_values	pixels;
@@ -34,7 +34,7 @@ void	draw_steep(t_data *data, t_line *line)
 	}
 }
 
-void	draw_nonsteep(t_data *data, t_line *line)
+static void	draw_nonsteep(t_data *data, t_line *line)
 {
 	int				x;
 	t_pixel_values	pixels;

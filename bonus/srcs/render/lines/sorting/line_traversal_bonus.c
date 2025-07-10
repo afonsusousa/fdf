@@ -6,14 +6,14 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 16:07:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/07 18:26:48 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 19:28:16 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 #include <math.h>
 
-void	set_traversal_directions(t_data *data, int *x_dir, int *y_dir, int *y)
+static void	set_directions(t_data *data, int *x_dir, int *y_dir, int *y)
 {
 	if (data->view.gamma > M_PI)
 	{
@@ -42,7 +42,7 @@ void	draw_lines_traversal(t_data *data)
 	int	x_dir;
 	int	y_dir;
 
-	set_traversal_directions(data, &x_dir, &y_dir, &y);
+	set_directions(data, &x_dir, &y_dir, &y);
 	while (y < data->map->map_height && y >= 0)
 	{
 		if (x_dir > 0)
