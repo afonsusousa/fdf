@@ -6,7 +6,7 @@
 #    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/07/07 18:35:33 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/07/10 20:09:55 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CFLAGS = -O3 -fPIE -Wall -Wextra -Werror -g
 BASE_INCLUDES = -I. -I./lib/libft -I./lib/minilibx-linux -I./lib/get_next_line -I./lib/ft_printf
 
 # Separate includes for mandatory and bonus
-MANDATORY_INCLUDES = $(BASE_INCLUDES) -I./mandatory
+MANDATORY_INCLUDES = $(BASE_INCLUDES) -I./mandatory -I./mandatory/includes
 BONUS_INCLUDES = $(BASE_INCLUDES) -I./bonus -I./bonus/includes
 
 # Directories
@@ -88,7 +88,7 @@ BONUS_SRCS = bonus/srcs/fdf_bonus.c \
              bonus/srcs/transforms/ripple_bonus.c \
              bonus/srcs/transforms/wave_bonus.c \
              bonus/srcs/transforms/ortographic_bonus.c \
-             bonus/srcs/transforms/geo_bonus.c \
+             bonus/srcs/transforms/polar_bonus.c \
              bonus/srcs/utils/free_bonus.c \
              bonus/srcs/X11/mouse/mouse_bonus.c \
              bonus/srcs/X11/keyboard/keyboard_bonus.c \
@@ -130,57 +130,57 @@ all: $(NAME)
 
 # Mandatory version
 $(NAME): $(LIBFT) $(MLX) $(PRINTF) $(MANDATORY_OBJS) $(GNL_OBJS)
-	@echo "$(BLUE)Linking mandatory $(NAME)...$(RESET)"
+	@echo "Linking mandatory $(NAME)..."
 	@$(CC) $(CFLAGS) $(MANDATORY_OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) -o $(NAME)
-	@echo "$(GREEN)✓ Mandatory $(NAME) compiled successfully!$(RESET)"
+	@echo "✓ Mandatory $(NAME) compiled successfully!"
 
 # Bonus version
 bonus: $(BONUS_NAME)
 
 $(BONUS_NAME): $(LIBFT) $(MLX) $(PRINTF) $(BONUS_OBJS) $(GNL_OBJS)
-	@echo "$(BLUE)Linking bonus $(BONUS_NAME)...$(RESET)"
+	@echo "Linking bonus $(BONUS_NAME)..."
 	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) -o $(BONUS_NAME)
-	@echo "$(GREEN)✓ Bonus $(BONUS_NAME) compiled successfully!$(RESET)"
+	@echo "✓ Bonus $(BONUS_NAME) compiled successfully!"
 
 audio: CFLAGS += -DAUDIO
 audio: $(LIBFT) $(MLX) $(PRINTF) $(BONUS_OBJS) $(AUDIO_OBJS) $(GNL_OBJS)
-	@echo "$(BLUE)Linking bonus with audio support...$(RESET)"
+	@echo "Linking bonus with audio support..."
 	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(AUDIO_OBJS) $(GNL_OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLXFLAGS) $(PULSEFLAGS) -o $(BONUS_NAME)
-	@echo "$(GREEN)✓ Bonus with audio compiled successfully!$(RESET)"
+	@echo "✓ Bonus with audio compiled successfully!"
 
 mandatory/%.o: mandatory/%.c
-	@echo "$(YELLOW)Compiling mandatory $<...$(RESET)"
+	@echo "Compiling mandatory $<..."
 	@$(CC) $(CFLAGS) $(MANDATORY_INCLUDES) -c $< -o $@
 
 bonus/%.o: bonus/%.c
-	@echo "$(YELLOW)Compiling bonus $<...$(RESET)"
+	@echo "Compiling bonus $<..."
 	@$(CC) $(CFLAGS) $(BONUS_INCLUDES) -c $< -o $@
 
 %.o: %.c
-	@echo "$(YELLOW)Compiling $<...$(RESET)"
+	@echo "Compiling $<..."
 	@$(CC) $(CFLAGS) $(BASE_INCLUDES) -c $< -o $@
 
 $(LIBFT):
-	@echo "$(BLUE)Building libft...$(RESET)"
+	@echo "Building libft..."
 	@make -C $(LIBFTDIR) --no-print-directory
 
 $(PRINTF):
-	@echo "$(BLUE)Building ft_printf...$(RESET)"
+	@echo "Building ft_printf..."
 	@make -C $(PRINTFDIR) --no-print-directory
 	
 $(MLX):
-	@echo "$(BLUE)Building minilibx...$(RESET)"
+	@echo "Building minilibx..."
 	@make -C $(MLXDIR) --no-print-directory
 
 clean:
-	@echo "$(RED)Cleaning object files...$(RESET)"
+	@echo "Cleaning object files..."
 	@rm -f $(MANDATORY_OBJS) $(BONUS_OBJS) $(AUDIO_OBJS) $(GNL_OBJS)
 	@make -C $(LIBFTDIR) clean --no-print-directory
 	@make -C $(PRINTFDIR) clean --no-print-directory
 	@make -C $(MLXDIR) clean --no-print-directory
 
 fclean: clean
-	@echo "$(RED)Cleaning executables...$(RESET)"
+	@echo "Cleaning executables..."
 	@rm -f $(NAME) $(BONUS_NAME)
 	@make -C $(LIBFTDIR) fclean --no-print-directory
 	@make -C $(PRINTFDIR) fclean --no-print-directory
@@ -188,15 +188,6 @@ fclean: clean
 re: fclean all
 
 re_bonus: fclean bonus
-
-# Test targets
-test: $(NAME)
-	@echo "$(GREEN)Running mandatory test with 42.fdf...$(RESET)"
-	@./$(NAME) maps/test_maps/42.fdf
-
-test_bonus: $(BONUS_NAME)
-	@echo "$(GREEN)Running bonus test with 42.fdf...$(RESET)"
-	@./$(BONUS_NAME) maps/test_maps/42.fdf
 
 # Debug versions
 debug: CFLAGS += -fsanitize=address -g3

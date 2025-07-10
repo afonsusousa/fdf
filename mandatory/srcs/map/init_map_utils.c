@@ -6,14 +6,11 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:35:55 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/16 02:51:29 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 19:39:39 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "./fdf.h"
-
-char	*get_next_line(int fd);
+#include "fdf.h"
 
 int	count_map_width(char **row)
 {

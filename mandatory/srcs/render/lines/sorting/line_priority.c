@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 03:40:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/06 21:53:16 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 19:30:01 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	draw_lines_priority(t_data *data)
 		return (free_data(data));
 	line_count = collect_lines(data, data->map->lines);
 	if (line_count == 0)
-		return (free_and_null(&data->map->lines), free_data(data));
+		return (free_and_null(&data->map->lines));
 	i = -1;
 	while (++i < line_count)
 		data->map->lines[i].depth = calculate_line_depth(&data->map->lines[i],

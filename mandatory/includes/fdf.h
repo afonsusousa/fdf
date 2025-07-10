@@ -6,16 +6,16 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/10 19:44:41 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/06 22:16:54 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "ft_printf.h"
-# include "libft.h"
-# include "mlx.h"
+# include "lib/ft_printf/ft_printf.h"
+# include "lib/libft/libft.h"
+# include "lib/minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
@@ -117,8 +117,6 @@ typedef struct s_pixel_values
 	float			y_fract;
 	float			y_rfract;
 }					t_pixel_values;
-
-char	*get_next_line(int fd);
 
 // Map initialization
 void	point_atoi(t_point *point, char *nptr);

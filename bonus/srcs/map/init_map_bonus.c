@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:32:32 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/10 19:20:25 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 20:09:32 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	process_row_limits(t_data *data, int y, int *min, int *max)
 	}
 }
 
-static void	map_set_limits(t_data *data)
+void	map_set_limits(t_data *data)
 {
 	int	y;
 	int	min;
