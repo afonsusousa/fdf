@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 20:28:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/17 15:25:08 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 23:14:05 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	point_atoi(t_point *point, char *nptr)
 
 	sign = 1;
 	result = 0;
-	point->paint = false;
+	point->colored = false;
 	point->color = 0;
 	while (*nptr == ' ' || (*nptr >= 9 && *nptr <= 13))
 		nptr++;
@@ -78,5 +78,5 @@ void	point_atoi(t_point *point, char *nptr)
 		return ;
 	nptr++;
 	point->color = atoi_base(nptr);
-	point->paint = true;
+	point->colored = true;
 }

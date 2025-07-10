@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/10 18:27:29 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 23:15:11 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-typedef struct s_coords
-{
-	int				x;
-	int				y;
-}					t_coords;
-
 typedef struct s_point
 {
 	int				x;
@@ -33,8 +27,8 @@ typedef struct s_point
 	int				z;
 	int				display[2];
 	double			world_3d[3];
-	double			globe_2d[2];
-	bool			paint;
+	double			axial[2];
+	bool			colored;
 	int				color;
 	float			scale;
 }					t_point;
@@ -50,13 +44,11 @@ typedef struct s_line
 {
 	float			dx;
 	float			dy;
-	float			gradient;
-	int				xpxl1;
-	int				xpxl2;
-	float			intersect_y;
+	float			slope;
+	int				x_start;
+	int				x_end;
+	float			current_y;
 	bool			steep;
-	int				z1;
-	int				z2;
 	int				color1;
 	int				color2;
 }					t_line;
@@ -111,7 +103,6 @@ typedef struct s_view
 	double			gamma;
 	double			scale;
 	double			angle;
-	// TODO : BETTER ZOOM
 	int				zoom;
 	float			brange;
 	bool			bend;

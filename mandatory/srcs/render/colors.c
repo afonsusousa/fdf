@@ -6,11 +6,16 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:56:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/06/19 02:16:10 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 23:21:25 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+#define EXTRACT_R(color) ((color >> 16) & 0xFF)
+#define EXTRACT_G(color) ((color >> 8) & 0xFF)
+#define EXTRACT_B(color) (color & 0xFF)
+#define PACK_RGB(r, g, b) ((r << 16) | (g << 8) | b)
 
 int	get_color_from_z(t_data *data, t_point *point)
 {
@@ -41,20 +46,11 @@ int	get_color_from_z(t_data *data, t_point *point)
 
 int	interpolate_color(int color1, int color2, float t)
 {
-	int	rgb1[3];
-	int	rgb2[3];
-	int	result[3];
-
-	rgb1[0] = (color1 >> 16) & 0xFF;
-	rgb1[1] = (color1 >> 8) & 0xFF;
-	rgb1[2] = color1 & 0xFF;
-	rgb2[0] = (color2 >> 16) & 0xFF;
-	rgb2[1] = (color2 >> 8) & 0xFF;
-	rgb2[2] = color2 & 0xFF;
-	result[0] = (int)(rgb1[0] + (rgb2[0] - rgb1[0]) * t);
-	result[1] = (int)(rgb1[1] + (rgb2[1] - rgb1[1]) * t);
-	result[2] = (int)(rgb1[2] + (rgb2[2] - rgb1[2]) * t);
-	return ((result[0] << 16) | (result[1] << 8) | result[2]);
+    return (PACK_RGB(
+        EXTRACT_R(color1) + (int)((EXTRACT_R(color2) - EXTRACT_R(color1)) * t),
+        EXTRACT_G(color1) + (int)((EXTRACT_G(color2) - EXTRACT_G(color1)) * t),
+        EXTRACT_B(color1) + (int)((EXTRACT_B(color2) - EXTRACT_B(color1)) * t)
+    ));
 }
 
 void	colorize_points(t_data *data)
@@ -64,7 +60,7 @@ void	colorize_points(t_data *data)
 	i = 0;
 	while (i < data->map->points_count)
 	{
-		if (!data->map->points[i].paint)
+		if (!data->map->points[i].colored)
 			data->map->points[i].color = get_color_from_z(data,
 					&data->map->points[i]);
 		i++;

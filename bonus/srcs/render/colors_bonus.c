@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:56:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/07 18:26:48 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 23:14:05 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	colorize_points(t_data *data)
 	i = 0;
 	while (i < data->map->points_count)
 	{
-		if (!data->map->points[i].paint)
+		if (!data->map->points[i].colored)
 			data->map->points[i].color = get_color_from_z(data,
 					&data->map->points[i]);
 		i++;

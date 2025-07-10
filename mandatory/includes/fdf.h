@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 23:31:17 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/06 22:16:54 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 23:16:57 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_point
 	int				z;
 	int				display[2];
 	double			world_3d[3];
-	bool			paint;
+	bool			colored;
 	int				color;
 }					t_point;
 
@@ -52,13 +52,11 @@ typedef struct s_line
 {
 	float			dx;
 	float			dy;
-	float			gradient;
-	int				xpxl1;
-	int				xpxl2;
-	float			intersect_y;
+	float			slope;
+	int				x_start;
+	int				x_end;
+	float			current_y;
 	bool			steep;
-	int				z1;
-	int				z2;
 	int				color1;
 	int				color2;
 }					t_line;

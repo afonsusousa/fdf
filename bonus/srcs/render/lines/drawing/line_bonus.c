@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:57:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/10 19:21:28 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 23:12:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	draw_steep(t_data *data, t_line *line)
 	t_pixel_values	pixels;
 	t_color			pixel_color;
 
-	x = line->xpxl1;
-	while (x <= line->xpxl2)
+	x = line->x_start;
+	while (x <= line->x_end)
 	{
 		calculate_pixel_values(line, &pixels);
 		pixel_color.color = get_interpolated_color(line, x);
@@ -29,7 +29,7 @@ static void	draw_steep(t_data *data, t_line *line)
 		draw_pixel_color(data, pixels.y_pixel, x, &pixel_color);
 		pixel_color.brightness = pixels.y_fract;
 		draw_pixel_color(data, pixels.y_pixel + 1, x, &pixel_color);
-		line->intersect_y += line->gradient;
+		line->current_y += line->slope;
 		x++;
 	}
 }
@@ -40,8 +40,8 @@ static void	draw_nonsteep(t_data *data, t_line *line)
 	t_pixel_values	pixels;
 	t_color			pixel_color;
 
-	x = line->xpxl1;
-	while (x <= line->xpxl2)
+	x = line->x_start;
+	while (x <= line->x_end)
 	{
 		calculate_pixel_values(line, &pixels);
 		pixel_color.color = get_interpolated_color(line, x);
@@ -49,7 +49,7 @@ static void	draw_nonsteep(t_data *data, t_line *line)
 		draw_pixel_color(data, x, pixels.y_pixel, &pixel_color);
 		pixel_color.brightness = pixels.y_fract;
 		draw_pixel_color(data, x, pixels.y_pixel + 1, &pixel_color);
-		line->intersect_y += line->gradient;
+		line->current_y += line->slope;
 		x++;
 	}
 }

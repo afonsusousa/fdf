@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:32:10 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/07 18:26:48 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 23:12:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	init_line_struct(t_line *line, int p0[2], int p1[2])
 	if (fabs(line->dx) < 0.001f)
 	{
 		if (line->dy > 0)
-			line->gradient = 1000.0f;
+			line->slope = 1000.0f;
 		else
-			line->gradient = -1000.0f;
+			line->slope = -1000.0f;
 	}
 	else
-		line->gradient = line->dy / line->dx;
-	line->xpxl1 = p0[0];
-	line->xpxl2 = p1[0];
-	line->intersect_y = (float)p0[1];
+		line->slope = line->dy / line->dx;
+	line->x_start = p0[0];
+	line->x_end = p1[0];
+	line->current_y = (float)p0[1];
 }
 
 static bool	prepare_line_endpoints(int start[2], int end[2], int z_values[2],

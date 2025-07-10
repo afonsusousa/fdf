@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 16:56:24 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/10 20:34:06 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 23:14:05 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_point(t_point *point, int x, int y, char *value)
 {
-	point->paint = false;
+	point->colored = false;
 	point->x = x;
 	point->y = y;
 	point_atoi(point, value);
