@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:32:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/07 18:26:48 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 00:21:10 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	draw_axis_line(t_data *img, int start[2], int end[2], int color)
 	float	pos[2];
 	t_color	pixel_color;
 
-	pixel_color.color = color;
-	pixel_color.brightness = 1.0f;
+	pixel_color.hex = color;
+	pixel_color.rgba.a = 255;
 	calculate_line_params(start, end, &steps, increment);
 	pos[0] = start[0];
 	pos[1] = start[1];
@@ -62,8 +62,8 @@ void	draw_axis_border(t_data *img, int corner_x, int corner_y, int size)
 	int		y;
 	t_color	pixel_color;
 
-	pixel_color.color = 0xFFFFFF;
-	pixel_color.brightness = 1.0f;
+	pixel_color.hex = 0xFFFFFF;
+	pixel_color.rgba.a = 255;
 	y = 0;
 	while (y < size)
 	{

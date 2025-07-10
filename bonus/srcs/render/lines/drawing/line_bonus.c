@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:57:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/10 23:12:29 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 23:56:07 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ static void	draw_steep(t_data *data, t_line *line)
 {
 	int				x;
 	t_pixel_values	pixels;
-	t_color			pixel_color;
+	t_color			color;
 
 	x = line->x_start;
 	while (x <= line->x_end)
 	{
 		calculate_pixel_values(line, &pixels);
-		pixel_color.color = get_interpolated_color(line, x);
-		pixel_color.brightness = pixels.y_rfract;
-		draw_pixel_color(data, pixels.y_pixel, x, &pixel_color);
-		pixel_color.brightness = pixels.y_fract;
-		draw_pixel_color(data, pixels.y_pixel + 1, x, &pixel_color);
+		color.hex = get_interpolated_color(line, x);
+		color.rgba.a = (unsigned char)(pixels.y_rfract * 255);
+		draw_pixel_color(data, pixels.y_pixel, x, &color);
+		color.rgba.a = (unsigned char)(pixels.y_fract * 255);
+		draw_pixel_color(data, pixels.y_pixel + 1, x, &color);
 		line->current_y += line->slope;
 		x++;
 	}
@@ -38,17 +38,17 @@ static void	draw_nonsteep(t_data *data, t_line *line)
 {
 	int				x;
 	t_pixel_values	pixels;
-	t_color			pixel_color;
+	t_color			color;
 
 	x = line->x_start;
 	while (x <= line->x_end)
 	{
 		calculate_pixel_values(line, &pixels);
-		pixel_color.color = get_interpolated_color(line, x);
-		pixel_color.brightness = pixels.y_rfract;
-		draw_pixel_color(data, x, pixels.y_pixel, &pixel_color);
-		pixel_color.brightness = pixels.y_fract;
-		draw_pixel_color(data, x, pixels.y_pixel + 1, &pixel_color);
+		color.hex = get_interpolated_color(line, x);
+		color.rgba.a = (unsigned char)(pixels.y_rfract * 255);
+		draw_pixel_color(data, x, pixels.y_pixel, &color);
+		color.rgba.a = (unsigned char)(pixels.y_fract * 255);
+		draw_pixel_color(data, x, pixels.y_pixel + 1, &color);
 		line->current_y += line->slope;
 		x++;
 	}

@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 20:42:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/07 18:26:48 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 00:13:38 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	init_window(t_data *data)
 {
 	data->w_height = 1080;
 	data->w_width = 1920;
+	data->pixel_count = data->w_width * data->w_height;
 	data->m_ratio = 6;
 	data->m_width = data->w_width / data->m_ratio;
 	data->mlx = mlx_init();

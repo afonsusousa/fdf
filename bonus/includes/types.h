@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/10 23:15:11 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 00:16:51 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ typedef struct s_point
 	int				x;
 	int				y;
 	int				z;
+	int				color;
 	int				display[2];
 	double			world_3d[3];
 	double			axial[2];
 	bool			colored;
-	int				color;
 	float			scale;
 }					t_point;
 
@@ -39,6 +39,27 @@ typedef struct s_line_info
 	t_point			*p1;
 	float			depth;
 }					t_line_info;
+
+typedef union u_color
+{
+	int				hex;
+	struct
+	{
+		unsigned char	b;
+		unsigned char	g;
+		unsigned char	r;
+		unsigned char	a;
+	}				rgba;
+}					t_color;
+
+typedef struct s_color_gradient
+{
+	int				low_color;
+	int				mid_color;
+	int				high_color;
+	float			z_range;
+	float			z_min;
+}					t_color_gradient;
 
 typedef struct s_line
 {
@@ -129,6 +150,7 @@ typedef struct s_map
 	t_point			*points;
 	t_point			*center;
 	t_line_info		*lines;
+	t_color_gradient	gradient;
 }					t_map;
 
 typedef struct s_mouse
@@ -172,10 +194,11 @@ typedef struct s_data
 	void			*mlx_win;
 	void			*img;
 	char			*addr;
-	int				w_height;
-	int				w_width;
-	int				m_ratio;
-	int				m_width;
+    int				w_height;
+    int				w_width;
+    int				m_ratio;
+    int				m_width;
+	unsigned int	pixel_count;
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
@@ -199,6 +222,7 @@ typedef struct s_data
 	int				w_width;
 	int				m_ratio;
 	int				m_width;
+	int				pixel_count;
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
@@ -217,12 +241,6 @@ typedef struct s_axis_params
 	int				end[2];
 	int				color;
 }					t_axis_params;
-
-typedef struct s_color
-{
-	int				color;
-	float			brightness;
-}					t_color;
 
 typedef struct s_pixel_values
 {
