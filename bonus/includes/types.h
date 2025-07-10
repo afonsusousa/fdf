@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/04 21:47:39 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 18:27:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ typedef enum e_view_mode
 {
 	ISOMETRIC = 0,
 	ORTOGRAPHIC = 1,
-	SPHERICAL = 2
+	SPHERICAL = 2,
+	CYLINDRICAL = 3
 }					t_view_mode;
 
 typedef struct s_ripple

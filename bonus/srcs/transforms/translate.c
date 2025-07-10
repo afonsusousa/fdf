@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bend_bonus.c                                       :+:      :+:    :+:   */
+/*   translate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/18 20:41:09 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/10 18:27:29 by amagno-r         ###   ########.fr       */
+/*   Created: 2025/07/10 01:53:43 by amagno-r          #+#    #+#             */
+/*   Updated: 2025/07/10 02:22:37 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf_bonus.h"
+#include "fdf.h"
 
-void	bend(t_data *data, t_point *point)
+void    orbit(double *world_3d, t_data *data)
 {
-	if (!data->view.bend || data->view.view_mode == ORTOGRAPHIC
-		|| data->view.view_mode == SPHERICAL
-		|| data->view.view_mode == CYLINDRICAL)
-		return ;
-	point->world_3d[2] -= ((point->x * point->x) * (data->view.brange))
-		+ (point->y * point->y) * (data->view.brange);
+    double radius_x = data->map->map_width / 2.0;
+    double radius_y = data->map->map_height / 2.0;
+    double x_diff = radius_x * cos(data->time);
+    double y_diff = radius_y * sin(data->time);
+
+    world_3d[0] += x_diff;
+    world_3d[1] += y_diff;
 }

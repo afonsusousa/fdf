@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 17:23:40 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/07 18:40:52 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 18:30:21 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ void	spherize(t_point *point, t_data *data)
 	point->world_3d[2] = radius * sin(point->globe_2d[0]);
 }
 
+void	cylindrize(t_point *point, t_data *data)
+{
+	float	radius;
+
+	if (data->view.view_mode != CYLINDRICAL)
+		return ;
+	radius = (data->map->radius + point->z) * point->scale;
+	point->world_3d[0] = radius * cos(point->globe_2d[1]);
+	point->world_3d[1] = point->globe_2d[0] * data->map->radius;
+	point->world_3d[2] = radius * sin(point->globe_2d[1]);
+}
+
 #else
 
 void	spherize(t_point *point, t_data *data)
@@ -43,6 +55,18 @@ void	spherize(t_point *point, t_data *data)
 	point->world_3d[1] = radius * cos(point->globe_2d[0])
 		* sin(point->globe_2d[1]);
 	point->world_3d[2] = radius * sin(point->globe_2d[0]);
+}
+
+void	cylindrize(t_point *point, t_data *data)
+{
+	float	radius;
+
+	if (data->view.view_mode != CYLINDRICAL)
+		return ;
+	radius = data->map->radius + (point->z * data->view.scale);
+	point->world_3d[0] = radius * cos(point->globe_2d[1]);
+	point->world_3d[1] = point->globe_2d[0] * data->map->radius;
+	point->world_3d[2] = radius * sin(point->globe_2d[1]);
 }
 
 #endif

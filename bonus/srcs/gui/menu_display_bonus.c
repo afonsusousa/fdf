@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/07 18:26:48 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 18:27:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ void	display_effects_status(t_data *data)
 		mode_name = "ORTHOGRAPHIC";
 	else if (data->view.view_mode == SPHERICAL)
 		mode_name = "SPHERICAL";
+	else if (data->view.view_mode == CYLINDRICAL)
+		mode_name = "CYLINDRICAL";
 	else
 		mode_name = "UNKNOWN";
 	ft_strlcpy(view_mode_text, "View Mode: ", sizeof(view_mode_text));

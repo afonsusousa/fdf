@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 01:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/07 18:26:48 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/10 18:27:29 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ int	handle_rendering_keys(int keycode, t_data *data)
 	else if (keycode == KEY_G)
 	{
 		data->view.view_mode = SPHERICAL;
+		return (1);
+	}
+	else if (keycode == KEY_C)
+	{
+		data->view.view_mode = CYLINDRICAL;
 		return (1);
 	}
 	return (0);
