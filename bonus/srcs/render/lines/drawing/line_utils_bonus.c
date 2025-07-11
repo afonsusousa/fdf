@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 10:00:00 by asousa            #+#    #+#             */
-/*   Updated: 2025/07/11 17:47:19 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 20:04:06 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	get_interpolated_color(t_line *line, int x)
 		return (interpolate_color(line->color1, line->color2, 0));
 	else
 	{
-		return (interpolate_color(line->color1, line->color2, 
+		return (interpolate_color(line->color1, line->color2,
 				(unsigned char)((255 * (x - line->x_start)) / range)));
 	}
 }
