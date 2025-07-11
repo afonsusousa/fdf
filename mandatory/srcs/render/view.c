@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:28:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/10 20:17:43 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:58:23 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init_view(t_data *data)
 void	init_optimal_scale(t_data *data)
 {
 	int		i;
+
 	while (data->view.scale > 0.01)
 	{
 		transform(data);
