@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:57:28 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/10 23:56:07 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:56:33 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void	draw_steep(t_data *data, t_line *line)
 	{
 		calculate_pixel_values(line, &pixels);
 		color.hex = get_interpolated_color(line, x);
-		color.rgba.a = (unsigned char)(pixels.y_rfract * 255);
+		color.s_rgba.a = (unsigned char)(pixels.y_rfract * 255);
 		draw_pixel_color(data, pixels.y_pixel, x, &color);
-		color.rgba.a = (unsigned char)(pixels.y_fract * 255);
+		color.s_rgba.a = (unsigned char)(pixels.y_fract * 255);
 		draw_pixel_color(data, pixels.y_pixel + 1, x, &color);
 		line->current_y += line->slope;
 		x++;
@@ -45,9 +45,9 @@ static void	draw_nonsteep(t_data *data, t_line *line)
 	{
 		calculate_pixel_values(line, &pixels);
 		color.hex = get_interpolated_color(line, x);
-		color.rgba.a = (unsigned char)(pixels.y_rfract * 255);
+		color.s_rgba.a = (unsigned char)(pixels.y_rfract * 255);
 		draw_pixel_color(data, x, pixels.y_pixel, &color);
-		color.rgba.a = (unsigned char)(pixels.y_fract * 255);
+		color.s_rgba.a = (unsigned char)(pixels.y_fract * 255);
 		draw_pixel_color(data, x, pixels.y_pixel + 1, &color);
 		line->current_y += line->slope;
 		x++;

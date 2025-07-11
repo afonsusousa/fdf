@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 19:05:41 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/11 00:18:18 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:56:33 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@ void	draw_pixel_color(t_data *data, int x, int y, t_color *color)
 		return ;
 	if (!data || !color)
 		return ;
-	if (color->rgba.a == 255)
+	if (color->s_rgba.a == 255)
 		return (my_mlx_pixel_put(data, x, y, color->hex & 0xFFFFFF));
-	if (color->rgba.a == 0)
+	if (color->s_rgba.a == 0)
 		return ;
-	final_color.rgba.r = (color->rgba.r * color->rgba.a) >> 8;
-	final_color.rgba.g = (color->rgba.g * color->rgba.a) >> 8;
-	final_color.rgba.b = (color->rgba.b * color->rgba.a) >> 8;
-	final_color.rgba.a = 0;
+	final_color.s_rgba.r = (color->s_rgba.r * color->s_rgba.a) >> 8;
+	final_color.s_rgba.g = (color->s_rgba.g * color->s_rgba.a) >> 8;
+	final_color.s_rgba.b = (color->s_rgba.b * color->s_rgba.a) >> 8;
+	final_color.s_rgba.a = 0;
 	my_mlx_pixel_put(data, x, y, final_color.hex);
 }
 
 void	draw_background(t_data *data, int color)
 {
 	int	i;
-	int				*dest;
+	int	*dest;
 
 	i = 0;
 	dest = (int *)data->addr;

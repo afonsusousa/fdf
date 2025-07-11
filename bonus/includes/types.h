@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/11 00:16:51 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:57:09 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef union u_color
 		unsigned char	g;
 		unsigned char	r;
 		unsigned char	a;
-	}				rgba;
+	}	s_rgba;
 }					t_color;
 
 typedef struct s_color_gradient
@@ -139,17 +139,17 @@ typedef struct s_view
 
 typedef struct s_map
 {
-	int				map_width;
-	int				map_height;
-	int				points_count;
-	int				line_capacity;
-	int				max_z;
-	int				min_z;
-	int				max_distance;
-	float			radius;
-	t_point			*points;
-	t_point			*center;
-	t_line_info		*lines;
+	int					map_width;
+	int					map_height;
+	int					points_count;
+	int					line_capacity;
+	int					max_z;
+	int					min_z;
+	int					max_distance;
+	float				radius;
+	t_point				*points;
+	t_point				*center;
+	t_line_info			*lines;
 	t_color_gradient	gradient;
 }					t_map;
 
@@ -194,10 +194,10 @@ typedef struct s_data
 	void			*mlx_win;
 	void			*img;
 	char			*addr;
-    int				w_height;
-    int				w_width;
-    int				m_ratio;
-    int				m_width;
+	int				w_height;
+	int				w_width;
+	int				m_ratio;
+	int				m_width;
 	unsigned int	pixel_count;
 	int				bits_per_pixel;
 	int				line_length;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   axis_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:32:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/11 00:37:53 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:56:33 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_axis_line(t_data *img, int start[2], int end[2], int color)
 	t_color	pixel_color;
 
 	pixel_color.hex = color;
-	pixel_color.rgba.a = 255;
+	pixel_color.s_rgba.a = 255;
 	calculate_line_params(start, end, &steps, increment);
 	pos[0] = start[0];
 	pos[1] = start[1];
@@ -63,7 +63,7 @@ void	draw_axis_border(t_data *img, int corner_x, int corner_y, int size)
 	t_color	pixel_color;
 
 	pixel_color.hex = 0xFFFFFF;
-	pixel_color.rgba.a = 255;
+	pixel_color.s_rgba.a = 255;
 	y = 0;
 	while (y < size)
 	{

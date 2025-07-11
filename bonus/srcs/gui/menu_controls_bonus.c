@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_controls_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/07 18:26:48 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:55:16 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	display_rendering_controls(t_data *img)
 	mlx_string_put(img->mlx, img->mlx_win, 15, 310, 0xFFFFFF, "I - Isometric");
 	mlx_string_put(img->mlx, img->mlx_win, 15, 325, 0xFFFFFF,
 		"O - Orthographic");
-	mlx_string_put(img->mlx, img->mlx_win, 15, 340, 0xFFFFFF, "G - Spherical");
+	mlx_string_put(img->mlx, img->mlx_win, 15, 340, 0xFFFFFF,
+		"G/C - Spherical/Cylindrical");
 	mlx_string_put(img->mlx, img->mlx_win, 15, 355, 0xFFFFFF,
 		"M - Render Mode");
 }

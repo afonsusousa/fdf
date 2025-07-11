@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   view_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 01:28:03 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/10 20:10:47 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:55:00 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_view(t_data *data)
 {
 	int	i;
-	
+
 	ft_memset(&data->view, 0, sizeof(t_view));
 	data->view.zoom = 25;
 	data->view.bend = false;

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   rotations_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 23:28:22 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/11 00:23:43 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:54:00 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 #include <math.h>
 
-void	inline rotate_x_coords(double coords[3], double alpha)
+void inline	rotate_x_coords(double coords[3], double alpha)
 {
 	double	cos_a;
 	double	sin_a;
@@ -28,7 +28,7 @@ void	inline rotate_x_coords(double coords[3], double alpha)
 	coords[2] = temp_y * sin_a + temp_z * cos_a;
 }
 
-void	inline rotate_y_coords(double coords[3], double beta)
+void inline	rotate_y_coords(double coords[3], double beta)
 {
 	double	cos_b;
 	double	sin_b;
@@ -43,7 +43,7 @@ void	inline rotate_y_coords(double coords[3], double beta)
 	coords[2] = -temp_x * sin_b + temp_z * cos_b;
 }
 
-void	inline rotate_z_coords(double coords[3], double gamma)
+void inline	rotate_z_coords(double coords[3], double gamma)
 {
 	double	cos_g;
 	double	sin_g;

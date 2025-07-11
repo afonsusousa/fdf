@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/11 00:21:02 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:56:33 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_menu_background(t_data *data, int color)
 	t_color	bg_color;
 
 	bg_color.hex = color;
-	bg_color.rgba.a = 255;
+	bg_color.s_rgba.a = 255;
 	y = 0;
 	while (y < data->w_height)
 	{
