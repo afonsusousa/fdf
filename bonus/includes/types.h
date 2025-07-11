@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/11 17:55:41 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 20:10:59 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ typedef struct s_data
 	int				w_width;
 	int				m_ratio;
 	int				m_width;
-	unsigned int	pixel_count;
+	int				pixel_count;
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;

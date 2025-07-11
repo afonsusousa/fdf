@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+         #
+#    By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/06 20:43:30 by amagno-r          #+#    #+#              #
-#    Updated: 2025/07/11 00:30:40 by amagno-r         ###   ########.fr        #
+#    Updated: 2025/07/11 20:09:12 by amagno-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ BONUS_NAME = fdf_bonus
 
 # Compiler and flags
 CC = clang
-CFLAGS = -O3 -ffast-math -fPIE -Wall -Wextra -Werror -g
+CFLAGS = -O3 -ffast-math -fPIE -Wall -Wextra -Werror
 
 # Base includes for libraries
 BASE_INCLUDES = -I. -I./lib/libft -I./lib/minilibx-linux -I./lib/get_next_line -I./lib/ft_printf
