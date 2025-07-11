@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/10 20:08:44 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:18:51 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int		collect_lines(t_data *data, t_line_info *lines);
 void	draw_lines_traversal(t_data *data);
 
 // Colors
-int		get_color_from_z(t_data *data, t_point *point);
-int		interpolate_color(int color1, int color2, float t);
+t_color get_color_from_z(t_data *data, t_point *point);
+int		interpolate_color(t_color c1, t_color c2, unsigned char t);
 void	draw_pixel_color(t_data *data, int x, int y, t_color *color);
 
 #endif

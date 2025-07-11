@@ -6,7 +6,7 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 10:00:00 by asousa            #+#    #+#             */
-/*   Updated: 2025/07/10 23:12:29 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:47:19 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,14 @@ void	calculate_pixel_values(t_line *line, t_pixel_values *pixels)
 
 int	get_interpolated_color(t_line *line, int x)
 {
-	if ((line->x_end - line->x_start) == 0)
-		return (interpolate_color(line->color1, line->color2, 0.0f));
+	int				range;
+
+	range = line->x_end - line->x_start;
+	if (range == 0)
+		return (interpolate_color(line->color1, line->color2, 0));
 	else
-		return (interpolate_color(line->color1, line->color2,
-				(float)(x - line->x_start) / (float)(line->x_end
-			- line->x_start)));
+	{
+		return (interpolate_color(line->color1, line->color2, 
+				(unsigned char)((255 * (x - line->x_start)) / range)));
+	}
 }

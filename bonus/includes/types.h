@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amagno-r <amagno-r@student.42port.com>     +#+  +:+       +#+        */
+/*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 02:00:00 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/11 16:57:09 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:55:41 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,6 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-typedef struct s_point
-{
-	int				x;
-	int				y;
-	int				z;
-	int				color;
-	int				display[2];
-	double			world_3d[3];
-	double			axial[2];
-	bool			colored;
-	float			scale;
-}					t_point;
-
-typedef struct s_line_info
-{
-	t_point			*p0;
-	t_point			*p1;
-	float			depth;
-}					t_line_info;
-
 typedef union u_color
 {
 	int				hex;
@@ -52,14 +32,25 @@ typedef union u_color
 	}	s_rgba;
 }					t_color;
 
-typedef struct s_color_gradient
+typedef struct s_point
 {
-	int				low_color;
-	int				mid_color;
-	int				high_color;
-	float			z_range;
-	float			z_min;
-}					t_color_gradient;
+	int				x;
+	int				y;
+	int				z;
+	int				display[2];
+	double			world_3d[3];
+	double			axial[2];
+	t_color			color;
+	bool			colored;
+	float			scale;
+}					t_point;
+
+typedef struct s_line_info
+{
+	t_point			*p0;
+	t_point			*p1;
+	float			depth;
+}					t_line_info;
 
 typedef struct s_line
 {
@@ -70,8 +61,8 @@ typedef struct s_line
 	int				x_end;
 	float			current_y;
 	bool			steep;
-	int				color1;
-	int				color2;
+	t_color			color1;
+	t_color			color2;
 }					t_line;
 
 typedef enum e_render_mode
@@ -150,7 +141,6 @@ typedef struct s_map
 	t_point				*points;
 	t_point				*center;
 	t_line_info			*lines;
-	t_color_gradient	gradient;
 }					t_map;
 
 typedef struct s_mouse

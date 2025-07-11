@@ -6,18 +6,16 @@
 /*   By: amagno-r <amagno-r@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 01:56:12 by amagno-r          #+#    #+#             */
-/*   Updated: 2025/07/10 23:14:05 by amagno-r         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:55:01 by amagno-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-int	get_color_from_z(t_data *data, t_point *point)
+t_color	get_color_from_z(t_data *data, t_point *point)
 {
 	float	ratio;
-	int		r;
-	int		g;
-	int		b;
+	t_color	result;
 
 	if (data->map->max_z == data->map->min_z)
 		ratio = 0.5f;
@@ -26,40 +24,38 @@ int	get_color_from_z(t_data *data, t_point *point)
 				- data->map->min_z);
 	if (ratio <= 0.5f)
 	{
-		r = (int)(80 + (140 - 80) * ratio * 2.0f);
-		g = (int)(70 + (120 - 70) * ratio * 2.0f);
-		b = (int)(200 + (180 - 200) * ratio * 2.0f);
+		result.s_rgba.r = (int)(80 + (140 - 80) * ratio * 2.0f);
+		result.s_rgba.g = (int)(70 + (120 - 70) * ratio * 2.0f);
+		result.s_rgba.b = (int)(200 + (180 - 200) * ratio * 2.0f);
 	}
 	else
 	{
-		r = (int)(140 + (255 - 140) * (ratio - 0.5f) * 2.0f);
-		g = (int)(120 + (140 - 120) * (ratio - 0.5f) * 2.0f);
-		b = (int)(180 + (120 - 180) * (ratio - 0.5f) * 2.0f);
+		result.s_rgba.r = (int)(140 + (255 - 140) * (ratio - 0.5f) * 2.0f);
+		result.s_rgba.g = (int)(120 + (140 - 120) * (ratio - 0.5f) * 2.0f);
+		result.s_rgba.b = (int)(180 + (120 - 180) * (ratio - 0.5f) * 2.0f);
 	}
-	return ((r << 16) | (g << 8) | b);
+	result.s_rgba.a = 0;
+	return (result);
 }
 
-int	interpolate_color(int color1, int color2, float t)
+int	interpolate_color(t_color c1, t_color c2, unsigned char t)
 {
-	int	rgb1[3];
-	int	rgb2[3];
-	int	result[3];
+	t_color	result;
 
-	rgb1[0] = (color1 >> 16) & 0xFF;
-	rgb1[1] = (color1 >> 8) & 0xFF;
-	rgb1[2] = color1 & 0xFF;
-	rgb2[0] = (color2 >> 16) & 0xFF;
-	rgb2[1] = (color2 >> 8) & 0xFF;
-	rgb2[2] = color2 & 0xFF;
-	result[0] = (int)(rgb1[0] + (rgb2[0] - rgb1[0]) * t);
-	result[1] = (int)(rgb1[1] + (rgb2[1] - rgb1[1]) * t);
-	result[2] = (int)(rgb1[2] + (rgb2[2] - rgb1[2]) * t);
-	return ((result[0] << 16) | (result[1] << 8) | result[2]);
+	if (t == 255)
+		return (c2.hex);
+	if (t == 0)
+		return (c1.hex);
+	result.s_rgba.r = c1.s_rgba.r + (((c2.s_rgba.r - c1.s_rgba.r) * t) >> 8);
+	result.s_rgba.g = c1.s_rgba.g + (((c2.s_rgba.g - c1.s_rgba.g) * t) >> 8);
+	result.s_rgba.b = c1.s_rgba.b + (((c2.s_rgba.b - c1.s_rgba.b) * t) >> 8);
+	result.s_rgba.a = 0;
+	return (result.hex);
 }
 
 void	colorize_points(t_data *data)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (i < data->map->points_count)
